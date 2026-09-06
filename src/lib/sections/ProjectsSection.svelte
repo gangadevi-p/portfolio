@@ -1,42 +1,64 @@
 <script>
 	import { work } from '$data/work.js';
 	import Container from '$components/Container.svelte';
-	import SectionHeading from '$components/SectionHeading.svelte';
 	import WorkCard from '$components/WorkCard.svelte';
+	import { reveal } from '$motion/reveal.js';
+
+	/* two independent columns so cards stagger like the reference */
+	const left = work.filter((_, i) => i % 2 === 0);
+	const right = work.filter((_, i) => i % 2 === 1);
 </script>
 
-<section class="section">
+<section id="projects" class="section">
 	<Container>
-		<SectionHeading id="projects" kicker="Selected" title="Projects" />
-		<div class="grid">
-			{#each work as item, i (item.slug)}
-				<WorkCard {item} index={i} />
-			{/each}
+		<h2 class="title" use:reveal>Projects</h2>
+
+		<div class="cols">
+			<div class="col">
+				{#each left as item, i (item.title)}
+					<WorkCard {item} index={i * 2} />
+				{/each}
+			</div>
+			<div class="col">
+				{#each right as item, i (item.title)}
+					<WorkCard {item} index={i * 2 + 1} />
+				{/each}
+			</div>
 		</div>
 	</Container>
 </section>
 
 <style>
 	.section {
-		padding-block: clamp(3rem, 9vw, 7rem);
+		padding-block: clamp(3.5rem, 10vw, 8rem);
+		/* light band — the rest of the page is dark, so opt back into light ink */
+		background: #eef1f6;
+		color: #241a16;
+		--c-ink: #241a16;
+		--c-ink-soft: #8a8480;
+		--c-line: rgba(36, 26, 22, 0.14);
+		--c-cursor: #241a16;
 	}
-	.grid {
+	.title {
+		font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		margin-bottom: clamp(2rem, 5vw, 3.5rem);
+	}
+	.cols {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
-		row-gap: clamp(2.5rem, 7vw, 5rem);
-		/* 3D stage for the scroll-driven card tilt */
-		perspective: 1500px;
-		perspective-origin: 50% 45%;
+		gap: clamp(1.25rem, 3vw, 2rem);
+		align-items: start;
 	}
-	@media (max-width: 640px) {
-		.grid {
+	.col {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1.25rem, 3vw, 2rem);
+	}
+	@media (max-width: 760px) {
+		.cols {
 			grid-template-columns: 1fr;
-		}
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.grid {
-			perspective: none;
 		}
 	}
 </style>

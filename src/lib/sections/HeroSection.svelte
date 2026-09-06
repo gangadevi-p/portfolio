@@ -63,7 +63,7 @@
 			{#each hero.icons as icon, i (icon.name)}
 				<div
 					class="icon-slot"
-					style="left: {icon.x}%; top: {icon.y}%;"
+					style="left: {icon.x}%; top: {icon.y}%;{icon.z ? ` z-index: ${icon.z};` : ''}"
 					use:cursorLabel={icon.name}
 				>
 					<FloatingIcon {...icon} index={i} />
@@ -76,7 +76,7 @@
 		</div>
 
 		<div class="hero-photo" use:cursorLabel={hero.photo.label}>
-			<ParallaxImage src={hero.photo.src} alt={hero.photo.alt} depth={-0.06} />
+			<ParallaxImage src={hero.photo.src} alt={hero.photo.alt} depth={-0.04} />
 		</div>
 	</div>
 </section>
@@ -98,21 +98,45 @@
 		max-width: var(--maxw);
 		margin-inline: auto;
 		min-height: min(92svh, 900px);
-		padding: clamp(1.25rem, 3vw, 2.5rem);
+		padding: var(--frame-pad);
 		border-radius: var(--radius);
 		/* visible so the oversized display name is never cropped at the frame edge —
 		   it now runs on into the portrait, which is a transparent cut-out */
 		overflow: visible;
+
+		--frame-pad: clamp(1.25rem, 3vw, 2.5rem);
+
+		/* ---- vertical rhythm of the headline, as tokens ------------------- */
+		/* the same values the elements below use, so the portrait can be
+		   anchored to the name without measuring anything at runtime */
+		--headline-mt: clamp(1rem, 6vw, 3.5rem);
+		--name-fs: var(--fs-display);
+		--kicker-h: calc(var(--fs-lead) * 1.2);
+		--name-h: calc(var(--name-fs) * 0.9);
+
+		/* How far the portrait's top edge rises into the name, measured up from
+		   the bottom of the name's line box, in units of the display size.
+		   Anton sits its baseline ~0.1em above that bottom and has a 0.54em
+		   x-height, so 0.29em ≈ just under the middle of the "evi" letters.
+		   0.36em would be exactly mid-"evi" — don't go past it. */
+		--photo-overlap: calc(var(--name-fs) * 0.29);
+
+		--photo-top: calc(
+			var(--headline-mt) + var(--kicker-h) + var(--name-h) - var(--photo-overlap)
+		);
 	}
 
 	.headline {
 		position: relative;
 		z-index: 3;
-		margin-top: clamp(1rem, 6vw, 3.5rem);
+		margin-top: var(--headline-mt);
 		pointer-events: none;
 	}
 	.kicker {
-		display: inline-block;
+		/* block, with a pinned line-height, so its height is exactly
+		   --kicker-h and the portrait anchor stays true */
+		display: block;
+		line-height: 1.2;
 		margin-left: 0.35em;
 		font-size: var(--fs-lead);
 		font-weight: 700;
@@ -120,20 +144,25 @@
 	}
 	.name-mask {
 		display: block;
+		/* the headroom below is written in `em`, so the mask has to carry the
+		   display size itself — inheriting 1rem made 0.22em ≈ 3px and sheared
+		   the descenders off the two g's */
+		font-size: var(--name-fs);
 		/* only as wide as the word, so `overflow: hidden` still masks the
 		   vertical slide-up reveal but never truncates it horizontally */
 		width: max-content;
 		max-width: none;
 		overflow: hidden;
 		/* headroom so the mask-reveal doesn't crop the caps or the 'g' descender,
-		   pulled back with negative margins so layout is unchanged */
-		padding: 0.1em 0.04em 0.22em;
-		margin: -0.1em -0.04em -0.22em;
+		   pulled back with negative margins so layout is unchanged.
+		   Anton drops its 'g' ~0.17em below the 0.9 line box; 0.3em is margin. */
+		padding: 0.1em 0.04em 0.3em;
+		margin: -0.1em -0.04em -0.3em;
 	}
 	.name {
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: var(--fs-display);
+		font-size: var(--name-fs);
 		line-height: 0.9;
 		letter-spacing: -0.005em;
 	}
@@ -141,7 +170,8 @@
 	.stage {
 		position: absolute;
 		inset: 0;
-		z-index: 2;
+		/* above the portrait, so a badge parked over her hair reads in front */
+		z-index: 6;
 		pointer-events: none;
 	}
 	.icon-slot {
@@ -154,7 +184,7 @@
 		position: absolute;
 		left: clamp(1rem, 6vw, 5rem);
 		bottom: clamp(3rem, 14vw, 8rem);
-		z-index: 4;
+		z-index: 7;
 		width: min(290px, 62vw);
 		rotate: -3deg;
 	}
@@ -162,35 +192,52 @@
 	.hero-photo {
 		position: absolute;
 		right: 0;
-		bottom: 0;
-		z-index: 6; /* in front of the headline — photo overlaps the name */
+		/* top edge anchored to the name: she rises into "evi" and no further */
+		top: var(--photo-top);
+		/* down to the very bottom of the frame, past its padding */
+		bottom: calc(var(--frame-pad) * -1);
+		/* in FRONT of the headline — she overlaps the bottom of the letters */
+		z-index: 5;
 		/* fluid: a share of the frame, capped so it never gets huge on wide screens.
 		   no px floor — it keeps shrinking with the viewport. */
-		width: 46%;
-		max-width: 560px;
+		width: 48%;
+		max-width: 600px;
+		/* whatever of her doesn't fit is cropped at the bottom of the frame */
+		overflow: hidden;
 	}
 	.hero-photo :global(img) {
 		display: block;
 		width: 100%;
 		height: auto; /* preserve aspect ratio, never a fixed height */
+
+		/* ---- the fade zone -------------------------------------------------- */
+		/* Only her head dissolves — she is fully transparent where she crosses
+		   "evi" so the letters read whole, then ramps to a solid, un-blended
+		   photo by the jawline. Stops are % of the IMAGE's own height (not the
+		   font size or the frame), so they stay pinned to her anatomy at every
+		   viewport: ~0% is the top of her hair, ~38% is her chin. */
+		--fade-from: 3%; /* fully transparent down to here */
+		--fade-to: 38%; /* fully solid from here down */
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent var(--fade-from),
+			#000 var(--fade-to)
+		);
+		mask-image: linear-gradient(to bottom, transparent var(--fade-from), #000 var(--fade-to));
 	}
 
 	@media (max-width: 760px) {
 		.frame {
 			min-height: 82svh;
-		}
-		.name {
-			font-size: clamp(3.5rem, 23vw, 6.5rem);
+			/* the anchor maths follow the smaller display size automatically */
+			--name-fs: clamp(3.5rem, 23vw, 6.5rem);
 		}
 		.hero-photo {
-			width: 60%;
-			max-width: 340px;
-			opacity: 0.92;
-			z-index: 1; /* drop behind the copy on small screens */
+			width: 66%;
+			max-width: 360px;
 		}
 		.hero-speech {
 			bottom: 9rem;
-			z-index: 4;
 		}
 	}
 </style>

@@ -11,7 +11,7 @@ export const experience = [
 	{
 		company: 'Manino',
 		role: 'Product Designer',
-		logo: '/img/experience/manino.svg',
+		logo: '/img/experience/manino.png',
 		blurb: 'Designed end-to-end product — flows, visuals, UX and problem solving.',
 		period: 'May 2026 – July 2026',
 		href: ''
@@ -19,7 +19,7 @@ export const experience = [
 	{
 		company: 'Geekbull',
 		role: 'UIUX Design Intern',
-		logo: '/img/experience/geekbull.svg',
+		logo: '/img/experience/geekbull.png',
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
 		period: 'Nov 2024 – Feb 2025',
 		href: ''
@@ -27,7 +27,7 @@ export const experience = [
 	{
 		company: 'ADM Education Society',
 		role: 'Graphic Design Intern',
-		logo: '/img/experience/adm.svg',
+		logo: '/img/experience/adm.png',
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
 		href: ''

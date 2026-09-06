@@ -1,43 +1,48 @@
 /**
- * Work / case-study grid. Add or remove entries freely.
- * `cover` points at /static/img/*, swap with your exports.
+ * Projects grid (light band — see ProjectsSection.svelte).
+ *
+ * Each card is a logo on the left + title / blurb / date pill on the right.
+ * Drop a square-ish logo in /static/img/work/ (PNG or SVG) and point `logo`
+ * at it. Until the file exists the card shows a monogram fallback.
+ *
+ * `href`  — optional. A path starting with "/" opens in-page as a case study;
+ *           any other URL opens in a new tab. Omit it and the pill is static.
+ * `size`  — 'lg' makes a taller bento tile; anything else is the short tile.
+ *           Order the list so each column gets one tall + one short.
+ * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
+ * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
  */
 export const work = [
 	{
+		title: 'Student App',
+		logo: '/img/work/kiet.png',
+		blurb: 'Real-world application, live on the Play Store.',
+		period: 'Jan 2024 – April 2024',
+		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
-		title: 'KIET Student App',
-		year: '2024',
-		role: 'Product Designer',
-		summary: 'One app for everything at KIET campus — announcements, academics and student services.',
-		cover: '/kiet/hero-phone-home.png',
-		tags: ['Mobile', 'Android', '0 → 1'],
-		bespoke: true // has its own route at /work/kiet-student-app
+		bespoke: true
 	},
 	{
-		slug: 'retail-dashboard',
-		title: 'Shelf — Retail Analytics',
-		year: '2024',
-		role: 'Product Designer',
-		summary: 'A calmer dashboard for store managers on the floor.',
-		cover: '/img/work-2.svg',
-		tags: ['Web', 'Data Viz']
+		title: 'CueUp',
+		logo: '/img/work/cueup.png',
+		blurb: 'A relationship between landlords and tenants.',
+		period: 'Apr 2026 – Jun 2026',
+		href: '',
+		size: 'lg'
 	},
 	{
-		slug: 'healthcare-portal',
-		title: 'Cura — Patient Portal',
-		year: '2024',
-		role: 'UX Designer',
-		summary: 'Booking, records and reminders without the anxiety.',
-		cover: '/img/work-3.svg',
-		tags: ['Web', 'Accessibility']
+		title: 'Athera',
+		logo: '/img/work/athera.png',
+		blurb: 'E-commerce web app selling furniture.',
+		period: 'Apr 2026 – Jun 2026',
+		href: '',
+		size: 'lg'
 	},
 	{
-		slug: 'travel-brand',
-		title: 'Long Way — Travel Brand',
-		year: '2023',
-		role: 'Designer',
-		summary: 'Identity and booking flow for a slow-travel startup.',
-		cover: '/img/work-4.svg',
-		tags: ['Brand', 'Mobile']
+		title: 'Fitbit',
+		logo: '/img/work/fitbit.png',
+		blurb: 'Real-world application, live on the Play Store.',
+		period: 'Jan 2024 – April 2024',
+		href: ''
 	}
 ];

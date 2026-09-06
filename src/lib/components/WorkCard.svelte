@@ -1,134 +1,181 @@
 <script>
 	import { reveal } from '$motion/reveal.js';
-	import { tilt3d } from '$motion/scene3d.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
+
+	/** One white project card: logo on the left, text + date pill on the right. */
 	let { item, index = 0 } = $props();
+
+	let broken = $state(false);
+	const internal = $derived(item.href?.startsWith('/'));
 </script>
 
-<article class="card" use:reveal={{ delay: (index % 2) * 0.08 }}>
-	<div class="card-3d" use:tilt3d>
-		<a
-			class="cover"
-			href={`/work/${item.slug}`}
-			aria-label={item.title}
-			use:cursorLabel={{ label: item.title, variant: 'view' }}
-		>
-			<img src={item.cover} alt="" loading="lazy" />
-			<span class="sheen" aria-hidden="true"></span>
-		</a>
-		<div class="meta">
-			<h3>{item.title}</h3>
-			<p class="summary">{item.summary}</p>
-			<p class="line">
-				<span>{item.role}</span>
-				<span>{item.year}</span>
-			</p>
-			<ul class="tags">
-				{#each item.tags as tag}<li>{tag}</li>{/each}
-			</ul>
-		</div>
+<article class="card" class:lg={item.size === 'lg'} use:reveal={{ delay: (index % 2) * 0.08 }}>
+	<div class="visual" class:framed={item.framed}>
+		{#if item.logo && !broken}
+			<img src={item.logo} alt={item.title} loading="lazy" onerror={() => (broken = true)} />
+		{:else}
+			<span class="mono" aria-hidden="true">{item.title.charAt(0)}</span>
+		{/if}
+	</div>
+
+	<div class="body">
+		<h3>{item.title}</h3>
+		<p class="blurb">{item.blurb}</p>
+
+		{#if item.href}
+			<a
+				class="period"
+				href={item.href}
+				target={internal ? undefined : '_blank'}
+				rel={internal ? undefined : 'noreferrer'}
+				use:cursorLabel={{ label: item.title, variant: internal ? 'view' : 'link' }}
+			>
+				<span>{item.period}</span>
+				<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+					<path
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M7 17 17 7M9 7h8v8"
+					/>
+				</svg>
+			</a>
+		{:else}
+			<span class="period">
+				<span>{item.period}</span>
+				<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+					<path
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M7 17 17 7M9 7h8v8"
+					/>
+				</svg>
+			</span>
+		{/if}
 	</div>
 </article>
 
 <style>
 	.card {
 		display: flex;
-		flex-direction: column;
+		gap: clamp(1.25rem, 3.5vw, 2.5rem);
+		min-height: clamp(200px, 25vw, 244px);
+		background: #fff;
+		color: #241a16;
+		border-radius: 20px;
+		padding: clamp(1.5rem, 3.5vw, 2.25rem);
+		box-shadow:
+			0 1px 2px rgba(24, 33, 58, 0.04),
+			0 18px 48px -22px rgba(24, 33, 58, 0.22);
+	}
+	/* taller bento tile */
+	.card.lg {
+		min-height: clamp(280px, 35vw, 340px);
 	}
 
-	/* scroll-driven 3D layer — transform + opacity are written by `use:tilt3d` */
-	.card-3d {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		transform-style: preserve-3d;
-		will-change: transform, opacity;
+	/* left visual */
+	.visual {
+		flex: none;
+		align-self: flex-start;
+		width: clamp(110px, 30%, 190px);
+		aspect-ratio: 1;
+		display: grid;
+		place-items: center;
+		border-radius: 18px;
 	}
-
-	.cover {
-		position: relative;
-		display: block;
-		overflow: hidden;
-		border-radius: var(--radius-card);
-		border: 1.5px solid var(--c-ink);
-		aspect-ratio: 4 / 3;
-		transition:
-			box-shadow 0.45s var(--ease-out),
-			border-color 0.45s var(--ease-out);
-	}
-	.cover img {
+	.visual img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		transition: scale var(--dur-med) var(--ease-out);
+		object-fit: contain;
 	}
-	.cover:hover img {
-		scale: 1.04;
+	.visual.framed {
+		background: #fff;
+		border: 1px solid #f0ddd0;
+		box-shadow: 0 14px 32px -16px rgba(255, 106, 61, 0.4);
+		padding: clamp(0.75rem, 2vw, 1.25rem);
 	}
-	/* moving highlight that sweeps across while the card is the active one */
-	.sheen {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			105deg,
-			transparent 30%,
-			rgba(255, 255, 255, 0.35) 48%,
-			transparent 66%
-		);
-		transform: translateX(-120%);
-		opacity: 0;
-		pointer-events: none;
+	.mono {
+		font-family: var(--font-display);
+		font-size: clamp(2.25rem, 7vw, 3.5rem);
+		color: #c8c2bb;
 	}
 
-	/* `.is-active` is toggled from JS (scene3d), so mark it :global */
-	.card-3d:global(.is-active) .cover {
-		border-color: var(--c-accent);
-		box-shadow: 0 26px 55px -20px rgba(var(--c-ink-rgb), 0.45);
+	/* right column */
+	.body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
 	}
-	.card-3d:global(.is-active) .sheen {
-		opacity: 1;
-		transform: translateX(120%);
-		transition:
-			transform 0.9s var(--ease-out),
-			opacity 0.3s ease;
-	}
-
 	h3 {
-		font-size: 1.25rem;
-		font-weight: 700;
+		font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+		font-weight: 800;
+		letter-spacing: -0.01em;
 	}
-	.summary {
-		color: var(--c-ink-soft);
-		margin-top: 0.25rem;
+	.blurb {
+		margin-top: 0.5rem;
+		max-width: 24ch;
+		color: #8a8480;
+		font-size: clamp(0.95rem, 1.7vw, 1.05rem);
+		line-height: 1.45;
 	}
-	.line {
-		display: flex;
-		justify-content: space-between;
+
+	/* date pill — pushed to the bottom of the card */
+	.period {
+		margin-top: auto;
+		padding-top: clamp(1.25rem, 3.5vw, 2.25rem);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.85rem;
 		font-size: var(--fs-small);
-		color: var(--c-ink-soft);
-		margin-top: 0.6rem;
+		white-space: nowrap;
 	}
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-		list-style: none;
-		padding: 0;
-		margin-top: 0.75rem;
-	}
-	.tags li {
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		padding: 0.25rem 0.55rem;
-		border: 1px solid var(--c-line);
+	.period > span:first-child {
+		background: #eef0f4;
+		color: #2a2a2a;
+		padding: 0.62rem 1.15rem;
 		border-radius: 999px;
 	}
+	.period .ic {
+		flex: none;
+		width: 26px;
+		height: 26px;
+		padding: 6px;
+		border-radius: 999px;
+		border: 1.5px solid rgba(42, 42, 42, 0.22);
+		color: #2a2a2a;
+	}
+	a.period {
+		transition: transform var(--dur-fast) var(--ease-out);
+	}
+	a.period:hover {
+		transform: translateY(-2px);
+	}
+	a.period:hover .ic {
+		border-color: var(--c-accent);
+		color: var(--c-accent);
+	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.sheen {
-			display: none;
+	@media (max-width: 900px) {
+		.card {
+			gap: 1.25rem;
+		}
+	}
+	@media (max-width: 480px) {
+		.card {
+			flex-direction: column;
+		}
+		.visual {
+			width: clamp(110px, 42%, 170px);
+		}
+		.period {
+			padding-top: 1.25rem;
 		}
 	}
 </style>
