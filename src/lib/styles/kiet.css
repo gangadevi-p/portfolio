@@ -1,0 +1,141 @@
+/* ========================================================================== */
+/*  KIET case-study — design tokens + shared primitives (scoped to .kiet)      */
+/* ========================================================================== */
+
+.kiet {
+	--k-bg: #f4f5f9;
+	--k-rule: #e7e9f2;
+	--k-card: #ffffff;
+	--k-orange: #f15a24;
+	--k-orange-deep: #d84c19;
+	--k-ink: #4c4c4c;
+	--k-ink-strong: #2c2c2c;
+	--k-ink-soft: #7c7c86;
+
+	/* pill palette — [text, fill] */
+	--t-green: #1c9e57;
+	--t-green-bg: #e6f4ec;
+	--t-blue: #2f6be0;
+	--t-blue-bg: #e7effc;
+	--t-teal: #0fa39c;
+	--t-teal-bg: #e1f4f2;
+	--t-amber: #cf9200;
+	--t-amber-bg: #fbf1d6;
+	--t-rose: #e0568a;
+	--t-rose-bg: #fce3ee;
+	--t-violet: #7c48c9;
+	--t-violet-bg: #efe7fa;
+	--t-brown: #9a6a4a;
+	--t-brown-bg: #f2e8e1;
+	--t-dark: #3a3a3a;
+	--t-dark-bg: #ececec;
+	--t-orange: var(--k-orange);
+	--t-orange-bg: #fde7de;
+
+	/* sticky-note fills */
+	--n-sky: #cfe6f6;
+	--n-blush: #f8dcec;
+	--n-mint: #d6f0dd;
+	--n-butter: #f7ecb8;
+
+	--k-radius: 18px;
+	--k-shadow: 0 1px 2px rgba(30, 30, 40, 0.04), 0 18px 40px -24px rgba(30, 30, 40, 0.4);
+	--k-shadow-lift: 0 2px 4px rgba(30, 30, 40, 0.05), 0 34px 60px -30px rgba(30, 30, 40, 0.45);
+
+	background-color: var(--k-bg);
+	/* faint ruled-paper lines */
+	background-image: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		transparent 31px,
+		var(--k-rule) 31px,
+		var(--k-rule) 32px
+	);
+	color: var(--k-ink);
+	font-family: 'Poppins', 'Archivo', system-ui, sans-serif;
+	font-size: 16px;
+	line-height: 1.62;
+}
+
+.kiet h1,
+.kiet h2,
+.kiet h3,
+.kiet h4 {
+	font-family: 'Poppins', 'Archivo', system-ui, sans-serif;
+	margin: 0;
+	line-height: 1.05;
+	letter-spacing: -0.02em;
+}
+
+.kiet p {
+	margin: 0;
+}
+
+/* section title — heavy orange, the recurring header in the deck */
+.kiet .k-title {
+	font-size: clamp(1.6rem, 3.6vw, 2.5rem);
+	font-weight: 800;
+	color: var(--k-orange);
+	margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+}
+.kiet .k-title.ink {
+	color: var(--k-ink-strong);
+}
+
+/* generic white paper card */
+.kiet .k-card {
+	background: var(--k-card);
+	border-radius: var(--k-radius);
+	box-shadow: var(--k-shadow);
+	padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(1.25rem, 3vw, 1.9rem);
+}
+
+/* pill: coloured dot + label */
+.kiet .k-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	padding: 0.42em 0.9em;
+	border-radius: 999px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	white-space: nowrap;
+	background: var(--pill-bg, var(--t-dark-bg));
+	color: var(--pill-fg, var(--t-dark));
+}
+.kiet .k-pill::before {
+	content: '';
+	width: 0.5em;
+	height: 0.5em;
+	border-radius: 50%;
+	background: currentColor;
+	flex: none;
+}
+.kiet .k-pill.no-dot::before {
+	display: none;
+}
+
+/* stat chip used on hero / impact / usage */
+.kiet .k-stat {
+	background: var(--k-card);
+	border-radius: 14px;
+	box-shadow: var(--k-shadow);
+	padding: 0.7rem 1.1rem;
+	line-height: 1.2;
+}
+.kiet .k-stat b {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: 800;
+	color: var(--pill-fg, var(--k-ink-strong));
+}
+.kiet .k-stat span {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--pill-fg, var(--k-ink-strong));
+}
+
+/* reveal-on-scroll (paired with use:reveal, but works without JS) */
+.kiet .k-section {
+	padding-block: clamp(3.5rem, 9vw, 7rem);
+}

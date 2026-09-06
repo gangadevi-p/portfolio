@@ -1,0 +1,43 @@
+/* -------------------------------------------------------------------------- */
+/*  Design tokens — edit the whole look of the site from here.                 */
+/* -------------------------------------------------------------------------- */
+
+:root {
+	/* palette */
+	--c-bg: #d9cec0;
+	--c-surface: #ede7dd;
+	--c-ink: #3a221d;
+	--c-ink-soft: #6b5750;
+	--c-line: rgba(58, 34, 29, 0.22);
+	--c-accent: #ff6a3d;
+
+	/* the "Gangadevi" display colour, as tokens the cursor reuses */
+	--c-ink-rgb: 58, 34, 29;
+	--c-cursor: var(--c-ink);
+
+	/* typography */
+	--font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-display: 'Anton', 'Archivo', sans-serif;
+
+	--fs-display: clamp(4.5rem, 20vw, 15rem);
+	--fs-h2: clamp(1.4rem, 3vw, 2.2rem);
+	--fs-lead: clamp(1rem, 2.4vw, 1.9rem);
+	--fs-body: 1rem;
+	--fs-small: 0.85rem;
+
+	/* layout */
+	--maxw: 1200px;
+	--pad-x: clamp(1.25rem, 4vw, 3.5rem);
+	--pad-y: clamp(1.25rem, 3vw, 2.5rem);
+	--radius: 6px;
+	--radius-card: 14px;
+
+	/* motion */
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--dur-fast: 0.35s;
+	--dur-med: 0.6s;
+
+	/* parallax strength (px travelled at full pointer deflection) */
+	--parallax-range: 130px;
+}

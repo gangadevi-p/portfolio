@@ -1,0 +1,100 @@
+<script>
+	import { experience } from '$data/experience.js';
+	import { resume } from '$data/resume.js';
+	import Container from '$components/Container.svelte';
+	import ExperienceCard from '$components/ExperienceCard.svelte';
+	import { reveal } from '$motion/reveal.js';
+
+	const [featured, ...rest] = experience;
+</script>
+
+<section id="work" class="xp-section">
+	<Container>
+		<header class="head" use:reveal>
+			<h2>Work Experience</h2>
+			<a class="resume" href={resume.resumeUrl} target="_blank" rel="noreferrer">
+				<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+					<path
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M7 3h7l4 4v14H7zM14 3v5h5M9 12h6M9 16h6"
+					/>
+				</svg>
+				Resume
+			</a>
+		</header>
+
+		<div class="grid">
+			<div class="primary">
+				<ExperienceCard job={featured} featured index={0} />
+			</div>
+			<div class="rest">
+				{#each rest as job, i (job.company)}
+					<ExperienceCard {job} index={i + 1} />
+				{/each}
+			</div>
+		</div>
+	</Container>
+</section>
+
+<style>
+	.xp-section {
+		padding-block: clamp(3rem, 9vw, 7rem);
+	}
+
+	.head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		margin-bottom: clamp(2rem, 5vw, 3.5rem);
+	}
+	.head h2 {
+		font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+	.resume {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: #fff;
+		color: #1c1c1c;
+		font-weight: 600;
+		font-size: var(--fs-small);
+		padding: 0.7rem 1.25rem;
+		border-radius: 999px;
+		white-space: nowrap;
+		transition: transform var(--dur-fast) var(--ease-out);
+	}
+	.resume:hover {
+		transform: translateY(-2px);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+		align-items: stretch;
+	}
+	.primary {
+		display: flex;
+	}
+	.primary :global(.xp) {
+		width: 100%;
+	}
+	.rest {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2.5vw, 1.5rem);
+	}
+
+	@media (max-width: 760px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
