@@ -78,10 +78,16 @@
 		flex-wrap: wrap;
 		margin-top: 34px;
 	}
+	/* white pill behind just the "Sources:" label + Reddit icon, matching the chips */
 	.lead {
 		display: inline-flex;
 		align-items: center;
 		gap: 10px;
+		height: 44px;
+		padding-inline: 20px;
+		border-radius: 999px;
+		background: var(--cu-card);
+		box-shadow: var(--cu-shadow);
 		font-size: 16px;
 		font-weight: 600;
 		color: #2b3440;
