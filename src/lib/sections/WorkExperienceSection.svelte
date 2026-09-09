@@ -4,6 +4,7 @@
 	import Container from '$components/Container.svelte';
 	import ExperienceCard from '$components/ExperienceCard.svelte';
 	import { reveal } from '$motion/reveal.js';
+	import { cursorLabel } from '$motion/cursor.svelte.js';
 
 	const [featured, ...rest] = experience;
 </script>
@@ -12,7 +13,13 @@
 	<Container>
 		<header class="head" use:reveal>
 			<h2>Work Experience</h2>
-			<a class="resume" href={resume.resumeUrl} target="_blank" rel="noreferrer">
+			<a
+				class="resume"
+				href={resume.resumeUrl}
+				target="_blank"
+				rel="noreferrer"
+				use:cursorLabel={{ label: 'See my work', variant: 'link' }}
+			>
 				<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
 					<path
 						fill="none"
