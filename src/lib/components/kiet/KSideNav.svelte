@@ -68,7 +68,7 @@
 		position: fixed;
 		left: 27px;
 		top: 72px;
-		width: 196px;
+		width: 210px;
 		max-height: calc(100dvh - 260px);
 		overflow-y: auto;
 		overscroll-behavior: contain;
@@ -97,21 +97,22 @@
 	ul {
 		display: flex;
 		flex-direction: column;
-		gap: 6px;
+		gap: 2px;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 	li {
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 1.5;
 	}
 	li a {
 		display: inline-flex;
 		align-items: center;
-		padding: 8px 16px;
+		padding: 6px 14px;
 		border-radius: 50px;
 		color: #6b7480;
+		font-weight: 500;
 		white-space: nowrap;
 		transition:
 			background 0.18s ease,

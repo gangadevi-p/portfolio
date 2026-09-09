@@ -38,7 +38,6 @@
 
 	const sections = [
 		{ id: 'overview', label: 'Overview' },
-		{ id: 'problem', label: 'Problem' },
 		{ id: 'roles', label: 'Roles & Timeline' },
 		{ id: 'process', label: 'Design Process' },
 		{ id: 'personas', label: 'User Persona' },
@@ -115,9 +114,8 @@
 			</div>
 
 			<div class="block right" id="problem">
-				<h3 class="mini-title center">Problem</h3>
-				<div class="k-card w2 shift-right" use:revealScale>
-					<p class="rowhead"><span class="ic frown">☹</span>{overview.problem.label}</p>
+				<h3 class="mini-title">Problem</h3>
+				<div class="k-card w2" use:revealScale>
 					<p>{overview.problem.text}</p>
 				</div>
 			</div>
@@ -423,16 +421,13 @@
 	.stack {
 		display: flex;
 		flex-direction: column;
-		gap: clamp(2.5rem, 5vw, 3.75rem);
+		gap: 24px;
 	}
 	.mini-title {
-		font-size: clamp(1.3rem, 3vw, 1.9rem);
-		font-weight: 800;
+		font-size: 24px;
+		font-weight: 600;
 		color: var(--k-orange);
 		margin-bottom: 1rem;
-	}
-	.mini-title.center {
-		text-align: center;
 	}
 	.k-card.w1 {
 		max-width: 620px;
@@ -440,7 +435,11 @@
 	.k-card.w2 {
 		max-width: 640px;
 	}
-	.shift-right {
+	/* problem block sits on the right — keep its heading and card on the
+	   same 640px column so their left edges line up */
+	.block.right .mini-title,
+	.block.right .k-card {
+		max-width: 640px;
 		margin-left: auto;
 	}
 	.rowhead {
@@ -458,10 +457,6 @@
 		display: grid;
 		place-items: center;
 		font-size: 1rem;
-	}
-	.ic.frown {
-		color: var(--k-orange);
-		border: 1.5px solid currentColor;
 	}
 	.ic.smile {
 		color: var(--t-blue);

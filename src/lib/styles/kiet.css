@@ -75,10 +75,10 @@
 	margin: 0;
 }
 
-/* section title — heavy orange, the recurring header in the deck */
+/* section title — semi-bold orange, the recurring header in the deck */
 .kiet .k-title {
-	font-size: clamp(1.6rem, 3.6vw, 2.5rem);
-	font-weight: 800;
+	font-size: 24px;
+	font-weight: 600;
 	color: var(--k-orange);
 	margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
 }
@@ -140,7 +140,7 @@
 }
 
 /* reveal-on-scroll (paired with use:reveal, but works without JS) */
-/* tight rhythm — ~40-60px of air between adjacent sections */
+/* tight rhythm — 26px of air between adjacent sections (13px each side) */
 .kiet .k-section {
-	padding-block: clamp(1.375rem, 3.5vw, 1.875rem);
+	padding-block: 13px;
 }
