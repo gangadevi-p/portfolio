@@ -8,8 +8,9 @@
 	let { groups = [] } = $props();
 
 	const ROOT_W = 132; // root pill width
-	const INDENT = 55; // children sit this far right of the group's left edge
-	const SPINE = 12; // spine x, measured from the group's left edge
+	const INDENT = 86; // children sit this far right of the group's left edge
+	const SPINE = ROOT_W / 2; // branches leave from the root's centre
+	const CHILD_COMPACT = 33; // preserves the 1020px artboard after moving the spine
 	const PITCH = 47; // vertical distance between children
 
 	const rowsMax = $derived(Math.max(1, ...groups.map((g) => g.children.length)));
@@ -19,7 +20,7 @@
 	{#each groups as g (g.root + g.x)}
 		<div
 			class="group t-{g.tone}"
-			style="left:{g.x}px; --spine:{SPINE}px; --indent:{INDENT}px; --root-w:{ROOT_W}px; --child-w:{g.width}px; --rows:{g.children.length}"
+			style="left:{g.x}px; --spine:{SPINE}px; --indent:{INDENT}px; --root-w:{ROOT_W}px; --child-w:{g.width - CHILD_COMPACT}px; --rows:{g.children.length}"
 		>
 			<span class="cu-node root">{g.root}</span>
 			<span class="spine" aria-hidden="true"></span>
@@ -52,6 +53,7 @@
 		--t-emerald-bg: #ecfdf5;
 		--t-skyDeep: #0369a1;
 		--t-skyDeep-bg: #e0f2fe;
+		--line-stroke: 2px;
 	}
 
 	.group {
@@ -67,14 +69,15 @@
 		background: #fff;
 	}
 
-	/* spine: drops from under the root to the last child's centre line */
+	/* The spine runs from the root down to the centre of the final child, so
+	   every branch is the same solid stroke leaving a single continuous line. */
 	.spine {
 		position: absolute;
 		left: var(--spine);
 		top: 33px;
-		width: 1.6px;
+		width: var(--line-stroke);
 		background: var(--c);
-		height: calc(32px + (var(--rows) - 1) * var(--pitch) + 15px);
+		height: calc(49px + (var(--rows) - 1) * var(--pitch));
 	}
 
 	ul {
@@ -94,8 +97,8 @@
 		position: absolute;
 		right: 100%;
 		top: 50%;
-		width: calc(var(--indent) - var(--spine) - 6px);
-		height: 1.6px;
+		width: calc(var(--indent) - var(--spine));
+		height: var(--line-stroke);
 		background: var(--c);
 		translate: 0 -50%;
 	}
