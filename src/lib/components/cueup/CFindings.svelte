@@ -31,8 +31,8 @@
 						<p class="gap">{s.gap}</p>
 					</div>
 
-					{#if callout && s.title === anchor}
-						<p class="callout">
+					{#if s.highlight}
+						<p class="callout" class:bare={s.title !== anchor}>
 							<svg class="hook" viewBox="0 0 44 40" aria-hidden="true">
 								<path
 									d="M4 38 C 16 36, 30 28, 32 6"
@@ -50,7 +50,7 @@
 									stroke-linejoin="round"
 								/>
 							</svg>
-							{callout}
+							{#if callout && s.title === anchor}{callout}{/if}
 						</p>
 					{/if}
 				</div>
@@ -168,7 +168,13 @@
 		top: -34px;
 		width: 40px;
 		height: 36px;
-		color: var(--green-ink);
+		max-width: none;
+		color: var(--ink);
+	}
+	/* arrow-only marker under any other highlighted stage — no caption text */
+	.callout.bare {
+		width: 0;
+		min-height: 0;
 	}
 
 	.t-green {
