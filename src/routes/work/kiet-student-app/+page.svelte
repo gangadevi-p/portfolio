@@ -361,8 +361,8 @@
 		align-items: center;
 	}
 	.hero-copy h1 {
-		font-size: clamp(2.6rem, 7vw, 5.2rem);
-		font-weight: 800;
+		font-size: clamp(2.6rem, 5.5vw, 4.375rem);
+		font-weight: 700;
 		color: #8f8f8f;
 		line-height: 0.98;
 	}

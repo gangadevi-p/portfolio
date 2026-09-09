@@ -129,8 +129,8 @@
 }
 .kiet .k-stat b {
 	display: block;
-	font-size: 1.5rem;
-	font-weight: 800;
+	font-size: 18px;
+	font-weight: 600;
 	color: var(--pill-fg, var(--k-ink-strong));
 }
 .kiet .k-stat span {

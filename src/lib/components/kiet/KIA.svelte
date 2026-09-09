@@ -38,20 +38,34 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0;
 	}
 	.stem {
+		position: relative;
 		width: 2px;
-		height: 22px;
+		height: 32px;
 		background: var(--c);
 		opacity: 0.5;
 	}
+	.stem::after,
+	.children li + li::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		border-inline: 5px solid transparent;
+		border-top: 7px solid var(--c);
+		translate: -50% 0;
+	}
+	.stem::after {
+		bottom: -7px;
+	}
 	.children {
 		list-style: none;
+		margin: 0;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.55rem;
+		gap: 1rem;
 		align-items: center;
 	}
 	.children li {
@@ -60,11 +74,15 @@
 	.children li + li::before {
 		content: '';
 		position: absolute;
-		top: -0.55rem;
+		top: -1rem;
 		left: 50%;
 		width: 2px;
-		height: 0.55rem;
+		height: 1rem;
 		background: var(--c);
+		opacity: 0.5;
+	}
+	.children li + li::after {
+		top: -7px;
 		opacity: 0.5;
 	}
 	.grid {

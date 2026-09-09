@@ -43,6 +43,10 @@
 		margin-top: 1rem;
 		font-weight: 600;
 		border-bottom: 2px solid var(--c-accent);
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.email:hover {
+		color: var(--c-accent);
 	}
 	.socials {
 		display: flex;
@@ -51,6 +55,26 @@
 		list-style: none;
 		padding: 0;
 		font-weight: 600;
+	}
+	/* these had no hover state at all — nothing told you they were links */
+	.socials a {
+		position: relative;
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.socials a::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -2px;
+		height: 2px;
+		background: var(--c-accent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform var(--dur-fast) var(--ease-out);
+	}
+	.socials a:hover::after {
+		transform: scaleX(1);
 	}
 	.fine {
 		margin-top: 3rem;

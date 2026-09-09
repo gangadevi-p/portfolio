@@ -22,7 +22,7 @@ export const nav = [
 	{ label: 'Projects', href: '#projects' },
 	{ label: 'Resume', href: '#resume' },
 	{ label: 'I Play', href: '#playground' },
-	{ label: 'Also me', href: '#resume' }
+	{ label: 'Also me', href: '#also-me' }
 ];
 
 /**
@@ -30,4 +30,4 @@ export const nav = [
  * with everything else, Apple-style, rather than as a separate button.
  * @type {NavLink}
  */
-export const navCta = { label: 'Also me', href: '#resume' };
+export const navCta = { label: 'Also me', href: '#also-me' };

@@ -4,16 +4,27 @@
 
 :root {
 	/* palette */
+	--c-coffee: #3a221d;
 	--c-bg: #d9cec0;
 	--c-surface: #ede7dd;
 	--c-ink: #3a221d;
 	--c-ink-soft: #6b5750;
 	--c-line: rgba(58, 34, 29, 0.22);
 	--c-accent: #ff6a3d;
+	/* a deeper accent for light backgrounds, where #ff6a3d is too pale to read */
+	--c-accent-deep: #d9481c;
 
 	/* the "Gangadevi" display colour, as tokens the cursor reuses */
 	--c-ink-rgb: 58, 34, 29;
-	--c-cursor: var(--c-ink);
+
+	/* ---- custom cursor ---------------------------------------------------- */
+	/* The cursor is mounted in the layout, OUTSIDE every section, so it can't
+	   inherit a section's palette — it reads these two off whatever element is
+	   under the pointer instead. Every section that changes its background has
+	   to set BOTH: `--c-cursor` is the heart / label pill, `--c-cursor-ink` is
+	   the text on that pill, so the pair always has to contrast. */
+	--c-cursor: #3a221d;
+	--c-cursor-ink: #f7f5f0;
 
 	/* typography */
 	--font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;

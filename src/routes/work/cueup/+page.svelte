@@ -147,7 +147,7 @@
 		<!-- 2 · OVERVIEW -->
 		<section class="sec cu-wrap" use:scrollFade id="overview">
 			<h2 class="cu-head" use:reveal>Overview</h2>
-			<p class="cu-note" use:reveal>
+			<p class="cu-note cu-note--surface" use:reveal>
 				{#each overview.lead as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}
 			</p>
 			<div class="pad"><CFacts facts={overview.facts} /></div>
@@ -156,7 +156,7 @@
 		<!-- 3 · SOLUTION -->
 		<section class="sec cu-wrap" use:scrollFade>
 			<h2 class="cu-head" use:reveal>Solution</h2>
-			<p class="cu-note" use:reveal>
+			<p class="cu-note cu-note--surface" use:reveal>
 				{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}
 			</p>
 		</section>
@@ -208,7 +208,7 @@
 			<h2 class="cu-head" use:reveal>User flow</h2>
 			<p class="cu-note" use:reveal>{flowLandlord.note}</p>
 			<div class="pad">
-				<CFlow height={flowLandlord.height} nodes={flowLandlord.nodes} links={flowLandlord.links} />
+				<CFlow height={flowLandlord.height} nodes={flowLandlord.nodes} links={flowLandlord.links} rowGap={24} />
 			</div>
 		</section>
 
@@ -479,6 +479,12 @@
 	}
 	.pad {
 		margin-top: 30px;
+	}
+	.cu-note--surface {
+		padding: 16px;
+		background: #fff;
+		border-radius: 24px;
+		font-weight: 500;
 	}
 
 	/* ---------- user persona ---------- */

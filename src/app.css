@@ -34,11 +34,18 @@ body {
 	--c-line: rgba(255, 255, 255, 0.16);
 	--c-surface: #161616;
 	--c-ink-rgb: 244, 241, 234;
+	/* light heart + pill on the dark page, with dark text on the pill */
+	--c-cursor: #f4f1ea;
+	--c-cursor-ink: #14100f;
 }
 img,
 svg {
 	display: block;
 	max-width: 100%;
+}
+/* jumping to a section shouldn't tuck its heading under the sticky navbar */
+main [id] {
+	scroll-margin-top: 5.5rem;
 }
 a {
 	color: inherit;

@@ -49,7 +49,7 @@
 
 <section id="me" class="hero" bind:this={root} use:pointer.track>
 	<div class="frame">
-		<SiteNav active="ME" />
+		<SiteNav />
 
 		<div class="headline">
 			<span class="kicker">{hero.kicker}</span>
@@ -87,11 +87,14 @@
 		background: var(--c-bg);
 		color: var(--c-ink);
 		/* re-assert the light palette — the rest of the page is dark */
-		--c-ink: #3a221d;
+		--c-ink: var(--c-coffee);
 		--c-ink-soft: #6b5750;
 		--c-line: rgba(58, 34, 29, 0.22);
 		--c-surface: #ede7dd;
 		--c-ink-rgb: 58, 34, 29;
+		/* dark heart / pill on the light hero — see tokens.css */
+		--c-cursor: #3a221d;
+		--c-cursor-ink: #f7f5f0;
 	}
 	.frame {
 		position: relative;
@@ -117,9 +120,9 @@
 		/* How far the portrait's top edge rises into the name, measured up from
 		   the bottom of the name's line box, in units of the display size.
 		   Anton sits its baseline ~0.1em above that bottom and has a 0.54em
-		   x-height, so 0.29em ≈ just under the middle of the "evi" letters.
-		   0.36em would be exactly mid-"evi" — don't go past it. */
-		--photo-overlap: calc(var(--name-fs) * 0.29);
+		   x-height, so 0.36em is exactly mid-"evi" — the deepest the letters
+		   can be crossed and still read. Don't go past it. */
+		--photo-overlap: calc(var(--name-fs) * 0.36);
 
 		--photo-top: calc(
 			var(--headline-mt) + var(--kicker-h) + var(--name-h) - var(--photo-overlap)
@@ -210,20 +213,6 @@
 		width: 100%;
 		height: auto; /* preserve aspect ratio, never a fixed height */
 
-		/* ---- the fade zone -------------------------------------------------- */
-		/* Only her head dissolves — she is fully transparent where she crosses
-		   "evi" so the letters read whole, then ramps to a solid, un-blended
-		   photo by the jawline. Stops are % of the IMAGE's own height (not the
-		   font size or the frame), so they stay pinned to her anatomy at every
-		   viewport: ~0% is the top of her hair, ~38% is her chin. */
-		--fade-from: 3%; /* fully transparent down to here */
-		--fade-to: 38%; /* fully solid from here down */
-		-webkit-mask-image: linear-gradient(
-			to bottom,
-			transparent var(--fade-from),
-			#000 var(--fade-to)
-		);
-		mask-image: linear-gradient(to bottom, transparent var(--fade-from), #000 var(--fade-to));
 	}
 
 	@media (max-width: 760px) {

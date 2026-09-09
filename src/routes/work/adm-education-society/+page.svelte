@@ -17,8 +17,13 @@
 
 		<header class="head" use:reveal>
 			<h1>{admMeta.company}</h1>
-			<p class="role">{admMeta.role} · {admMeta.period}</p>
-			<p class="summary">{admMeta.summary}</p>
+			<div class="role-row">
+				<p class="role">{admMeta.role}</p>
+				<p class="period">{admMeta.period}</p>
+			</div>
+			<div class="what-i-did">
+				<p class="summary">{admMeta.summary}</p>
+			</div>
 		</header>
 
 		<!-- regular grid: every poster is a 500px square -->
@@ -52,15 +57,39 @@
 		letter-spacing: -0.02em;
 	}
 	.role {
-		margin-top: 0.5rem;
-		font-weight: 600;
+		font-size: calc(1rem + 4px);
+		font-weight: 700;
 		color: var(--c-accent);
+	}
+	.role-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+	.period {
+		margin: 0;
+		color: var(--c-ink-soft);
+		font-size: var(--fs-small);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+	.what-i-did {
+		margin-top: clamp(1.75rem, 4vw, 2.5rem);
 	}
 	.summary {
 		margin-top: 1rem;
 		font-size: var(--fs-lead);
 		color: var(--c-ink-soft);
 		max-width: 46ch;
+	}
+	@media (max-width: 480px) {
+		.role-row {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.35rem;
+		}
 	}
 
 </style>

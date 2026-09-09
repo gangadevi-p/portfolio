@@ -1,5 +1,6 @@
 <script>
 	import { reveal } from '$motion/reveal.js';
+	import { cursorLabel } from '$motion/cursor.svelte.js';
 
 	/** One white card in the dark "Work Experience" grid. */
 	let { job, featured = false, index = 0 } = $props();
@@ -19,6 +20,9 @@
 	target={job.href && !internal ? '_blank' : undefined}
 	rel={job.href && !internal ? 'noreferrer' : undefined}
 	use:reveal={{ delay: index * 0.06 }}
+	use:cursorLabel={job.href
+		? { label: internal ? 'Open case study' : 'View my work', variant: internal ? 'view' : 'link' }
+		: undefined}
 >
 	<div class="logo">
 		{#if job.logo && !broken}

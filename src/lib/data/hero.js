@@ -31,6 +31,7 @@ export const hero = {
 		{ name: 'Adobe XD', src: '/icons/xd.png', x: 51, y: 74, size: 60, depth: 0.07 },
 		{ name: 'Notion', src: '/icons/notion.png', x: 35, y: 83, size: 48, depth: 0.09 },
 		{ name: 'ChatGPT', src: '/icons/chatgpt.png', x: 33, y: 93, size: 52, depth: 0.05 },
-		{ name: 'Canva', src: '/icons/canva.png', x: 46, y: 91, size: 54, depth: 0.13 }
+		{ name: 'Canva', src: '/icons/canva.png', x: 46, y: 91, size: 54, depth: 0.13 },
+		{ name: 'Codex', src: '/icons/codex.png', x: 50, y: 52, size: 62, depth: 0.11, z: 7 }
 	]
 };

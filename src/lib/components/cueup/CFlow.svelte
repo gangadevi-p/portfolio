@@ -5,9 +5,19 @@
 	 */
 	import { revealScale } from '$motion/reveal.js';
 
-	let { height = 300, nodes = [], links = [] } = $props();
+	let { height = 300, nodes = [], links = [], rowGap = 12 } = $props();
 
 	const W = 1020;
+	const ROW_PITCH = 60;
+
+	// Keep every pill at its designed size, then add breathing room between the
+	// horizontal flow rows. Applying this to nodes and wires together preserves
+	// all connector attachments.
+	function breathe(y) {
+		return y + Math.floor(y / ROW_PITCH) * rowGap;
+	}
+
+	const displayHeight = $derived(breathe(height));
 
 	/** rounded elbow polyline, so the corners match the deck's soft turns */
 	function path(points, r = 10) {
@@ -28,8 +38,8 @@
 	}
 </script>
 
-<div class="flow cu-card" style="--h:{height}px" use:revealScale>
-	<svg class="wires" viewBox="0 0 {W} {height}" aria-hidden="true">
+<div class="flow cu-card" style="--h:{displayHeight}px" use:revealScale>
+	<svg class="wires" viewBox="0 0 {W} {displayHeight}" aria-hidden="true">
 		<defs>
 			{#each ['home', 'fuchsia', 'lime', 'violet', 'amber', 'orange', 'blue', 'pink'] as tone (tone)}
 				<marker
@@ -49,7 +59,7 @@
 			<path
 				class="wire"
 				style="--line: var(--n-{l.tone}-line)"
-				d={path(l.points)}
+				d={path(l.points.map(([x, y]) => [x, breathe(y)]))}
 				marker-end={l.arrow ? `url(#cu-arrow-${l.tone})` : undefined}
 			/>
 		{/each}
@@ -58,7 +68,7 @@
 	{#each nodes as n (n.label + n.box[0])}
 		<span
 			class="cu-node node t-{n.tone}"
-			style="left:{n.box[0]}px; top:{n.box[1]}px; width:{n.box[2]}px; height:{n.box[3]}px"
+			style="left:{n.box[0]}px; top:{breathe(n.box[1])}px; width:{n.box[2]}px; height:{n.box[3]}px"
 		>
 			{n.label}
 		</span>

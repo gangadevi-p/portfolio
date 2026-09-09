@@ -20,8 +20,31 @@
 
 		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const styles = getComputedStyle(document.documentElement);
-		const inkColor = styles.getPropertyValue('--c-cursor').trim() || '#3a221d';
 		const accentColor = styles.getPropertyValue('--c-accent').trim() || '#ff6a3d';
+
+		/* ---- palette under the pointer ------------------------------------ */
+		/* This element lives in the layout, outside every section, so it can't
+		   inherit the palette of the band it happens to be floating over — a
+		   light heart would vanish on the hero, a dark one on the black
+		   sections. So sample --c-cursor / --c-cursor-ink from whatever is
+		   actually under the pointer, and only when that element changes. */
+		let inkColor = styles.getPropertyValue('--c-cursor').trim() || '#3a221d';
+		let lastHit = null;
+
+		const samplePalette = (x, y) => {
+			// the cursor itself is pointer-events: none, so this is the page below
+			const el = document.elementFromPoint(x, y);
+			if (!el || el === lastHit) return;
+			lastHit = el;
+			const cs = getComputedStyle(el);
+			const ink = cs.getPropertyValue('--c-cursor').trim();
+			const paper = cs.getPropertyValue('--c-cursor-ink').trim();
+			if (ink) {
+				inkColor = ink;
+				dotEl?.style.setProperty('--cur-ink', ink);
+			}
+			if (paper) dotEl?.style.setProperty('--cur-paper', paper);
+		};
 
 		const ctx = canvasEl.getContext('2d');
 		const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -57,6 +80,7 @@
 			tx = e.clientX;
 			ty = e.clientY;
 			if (!visible) visible = true;
+			samplePalette(e.clientX, e.clientY);
 		};
 		const onDown = () => (pressed = true);
 		const onUp = () => (pressed = false);
@@ -229,8 +253,12 @@
 		width: 34px;
 		height: 34px;
 		margin: -17px 0 0 -17px; /* centre the heart on the pointer */
-		color: var(--c-cursor);
-		filter: drop-shadow(0 2px 4px rgba(var(--c-ink-rgb), 0.25));
+		/* --cur-ink is set from the section under the pointer; the token is the
+		   fallback for the first frame, before the first pointermove lands */
+		color: var(--cur-ink, var(--c-cursor));
+		/* a fixed dark shadow: the inherited --c-ink-rgb is the dark page's
+		   near-white, which drew an invisible halo on the light sections */
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.28));
 		transition: transform 0.28s var(--ease-back);
 	}
 	.cursor.labelled .dot {
@@ -247,8 +275,12 @@
 		margin-top: -1.9em;
 		padding: 0.32rem 0.66rem;
 		border-radius: 999px;
-		background: var(--c-ink);
-		color: var(--c-bg);
+		/* pill + text are a contrasting PAIR taken from the section under the
+		   pointer. It used to be --c-ink on --c-bg, which resolved against the
+		   layout root: a near-white pill with beige text, on every section. */
+		background: var(--cur-ink, var(--c-cursor));
+		color: var(--cur-paper, var(--c-cursor-ink));
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 		font-family: var(--font-body);
 		font-size: 0.78rem;
 		font-weight: 600;

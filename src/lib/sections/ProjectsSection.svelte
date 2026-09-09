@@ -38,6 +38,7 @@
 		--c-ink-soft: #8a8480;
 		--c-line: rgba(36, 26, 22, 0.14);
 		--c-cursor: #241a16;
+		--c-cursor-ink: #f7f5f0;
 	}
 	.title {
 		font-size: clamp(1.5rem, 3.5vw, 2.25rem);

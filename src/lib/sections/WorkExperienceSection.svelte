@@ -63,6 +63,9 @@
 		gap: 0.5rem;
 		background: #fff;
 		color: #1c1c1c;
+		/* white pill on the dark section — see ExperienceCard */
+		--c-cursor: #1c1c1c;
+		--c-cursor-ink: #f7f5f0;
 		font-weight: 600;
 		font-size: var(--fs-small);
 		padding: 0.7rem 1.25rem;

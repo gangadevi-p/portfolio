@@ -48,21 +48,28 @@
 		align-items: baseline;
 		gap: 1.5rem;
 		padding: 1.4rem 0;
-		transition: padding-inline var(--dur-fast) var(--ease-out);
+		transition:
+			padding-inline var(--dur-fast) var(--ease-out),
+			background var(--dur-fast) var(--ease-out);
 	}
 	.list a:hover {
 		padding-inline: 0.75rem;
+		/* the indent alone was easy to miss — lift the row and its dimmed
+		   secondary text so the whole line reads as the thing being hovered */
+		background: rgba(var(--c-ink-rgb), 0.05);
 	}
 	.title {
 		font-weight: 700;
 	}
-	.note {
-		color: var(--c-ink-soft);
-		font-size: var(--fs-small);
-	}
+	.note,
 	.year {
 		color: var(--c-ink-soft);
 		font-size: var(--fs-small);
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.list a:hover .note,
+	.list a:hover .year {
+		color: var(--c-ink);
 	}
 	.arrow {
 		color: var(--c-accent);

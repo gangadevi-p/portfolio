@@ -55,15 +55,30 @@
 	.chain {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0;
 		width: max-content;
 	}
 	.spine {
 		margin-bottom: 0.5rem;
 	}
 	.arw {
+		position: relative;
+		width: 2rem;
+		height: 2px;
+		margin-inline: -1px;
+		background: currentColor;
 		color: var(--k-ink-soft);
-		font-weight: 700;
+		font-size: 0;
+		flex: none;
+	}
+	.arw::after {
+		content: '';
+		position: absolute;
+		right: -1px;
+		top: 50%;
+		translate: 0 -50%;
+		border-block: 5px solid transparent;
+		border-left: 7px solid currentColor;
 	}
 	.from {
 		font-size: 0.9rem;
