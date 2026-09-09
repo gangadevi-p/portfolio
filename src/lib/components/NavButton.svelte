@@ -16,9 +16,10 @@
 	}
 	a:hover {
 		background: color-mix(in srgb, var(--c-ink) 12%, transparent);
+		color: #fff;
 	}
 	a.wide {
-		padding-inline: 1.4rem;
+		padding-inline: 1.65rem;
 	}
 	a[aria-current] {
 		background: var(--c-coffee);
@@ -30,7 +31,7 @@
 			font-size: var(--fs-small);
 		}
 		a.wide {
-			padding-inline: 1.1rem;
+			padding-inline: 1.25rem;
 		}
 	}
 </style>

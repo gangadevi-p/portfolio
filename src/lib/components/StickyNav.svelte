@@ -102,6 +102,12 @@
 	:global(.sticky-nav .nav.centered) {
 		display: flex;
 		justify-content: center;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		box-shadow: none;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
 	}
 	:global(.sticky-nav .brand),
 	:global(.sticky-nav .resume) {

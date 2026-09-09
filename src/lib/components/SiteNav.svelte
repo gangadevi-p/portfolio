@@ -76,21 +76,45 @@
 	}
 	.resume {
 		justify-self: end;
-		border: 1.5px solid var(--c-line);
+		border: 1px solid rgb(255 255 255 / 50%);
 		border-radius: 999px;
+		background: rgb(255 255 255 / 20%);
 	}
 
 	/* the single pill that holds the whole menu */
 	.pill {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
 		display: flex;
 		align-items: center;
 		gap: 0.15rem;
 		list-style: none;
 		margin: 0;
 		padding: 0.3rem;
-		border: 1.5px solid var(--c-line);
+		border: 1px solid rgb(255 255 255 / 42%);
 		border-radius: 999px;
-		background: color-mix(in srgb, var(--c-ink) 6%, transparent);
+		background: linear-gradient(118deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 13%) 48%, rgb(255 255 255 / 6%));
+		box-shadow:
+			inset 0 1px 0 rgb(255 255 255 / 58%),
+			inset 0 0 0 1px rgb(255 255 255 / 6%),
+			0 4px 10px rgb(58 34 29 / 7%);
+		backdrop-filter: blur(16px) saturate(120%);
+		-webkit-backdrop-filter: blur(16px) saturate(120%);
+	}
+	.pill::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(112deg, rgb(255 255 255 / 12%), transparent 38%),
+			radial-gradient(circle at 78% -30%, rgb(255 255 255 / 26%), transparent 55%);
+	}
+	.pill > li {
+		position: relative;
+		z-index: 1;
 	}
 	@media (max-width: 900px) {
 		.nav.centered {
