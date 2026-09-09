@@ -4,6 +4,7 @@
 	import { prefersReducedMotion } from '$motion/gsap.js';
 	import { setLenis } from '$motion/smoothscroll.js';
 	import CustomCursor from '$components/CustomCursor.svelte';
+	import StickyNav from '$components/StickyNav.svelte';
 	import SiteFooter from '$components/SiteFooter.svelte';
 
 	let { children } = $props();
@@ -48,6 +49,7 @@
 </svelte:head>
 
 <CustomCursor />
+<StickyNav />
 
 <main>
 	{@render children()}

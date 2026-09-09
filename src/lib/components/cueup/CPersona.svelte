@@ -125,6 +125,12 @@
 		align-self: stretch;
 		justify-content: space-between;
 	}
+	/* tighten the gaps between the stacked cards so a column comes down to the
+	   height of its photo-bearing partner instead of leaving a big spread */
+	.persona:not(.tenant) .col:last-child,
+	.persona.tenant .col {
+		gap: 14px;
+	}
 
 	/* each Context / Behaviours / Pain Points / Goals block = one white card */
 	.block {
@@ -151,7 +157,8 @@
 		margin-bottom: 14px;
 	}
 	.block .props-head {
-		margin-top: 24px;
+		margin-top: 16px;
+		margin-bottom: 10px;
 	}
 	.block p {
 		font-size: 16px;
@@ -189,19 +196,19 @@
 	.stat {
 		flex: 1;
 		min-width: 90px;
-		background: var(--cu-bg);
 		border-radius: 14px;
-		padding: 14px 10px;
+		padding: 0 8px;
 		text-align: center;
 	}
 	.stat b {
 		display: block;
-		font-size: 26px;
-		font-weight: 800;
+		font-size: 18px;
+		font-weight: 700;
 		line-height: 1.2;
 	}
 	.stat span {
-		font-size: 14px;
+		font-size: 16px;
+		font-weight: 500;
 		color: var(--cu-ink-soft);
 	}
 
