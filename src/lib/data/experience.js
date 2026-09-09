@@ -5,7 +5,8 @@
  * `logo` at it. Until the file exists, the card shows a monogram fallback.
  *
  * Each card renders either `points` (a short list) or `blurb` (a sentence).
- * `href` is optional — when set, the date pill becomes an outbound link.
+ * `href` is optional — when set, the date pill becomes a link. A path starting
+ * with "/" opens in-page; any other URL opens in a new tab.
  */
 export const experience = [
 	{
@@ -19,17 +20,17 @@ export const experience = [
 	{
 		company: 'Geekbull',
 		role: 'UIUX Design Intern',
-		logo: '/img/experience/geekbull.png',
+		logo: '/img/experience/geekbull-hd.png',
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
 		period: 'Nov 2024 – Feb 2025',
-		href: ''
+		href: '/work/geekbull'
 	},
 	{
 		company: 'ADM Education Society',
 		role: 'Graphic Design Intern',
-		logo: '/img/experience/adm.png',
+		logo: '/img/experience/adm-hd.png',
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
-		href: ''
+		href: '/work/adm-education-society'
 	}
 ];

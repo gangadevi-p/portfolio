@@ -24,10 +24,12 @@ export const work = [
 	},
 	{
 		title: 'CueUp',
-		logo: '/img/work/cueup.png',
+		logo: '/img/work/cueup-clean.png',
 		blurb: 'A relationship between landlords and tenants.',
 		period: 'Apr 2026 – Jun 2026',
-		href: '',
+		href: '/work/cueup',
+		slug: 'cueup',
+		bespoke: true,
 		size: 'lg'
 	},
 	{

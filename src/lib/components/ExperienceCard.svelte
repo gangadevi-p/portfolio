@@ -5,9 +5,21 @@
 	let { job, featured = false, index = 0 } = $props();
 
 	let broken = $state(false);
+
+	/** in-site case studies open in place; outbound links get a new tab */
+	const internal = $derived(job.href?.startsWith('/'));
 </script>
 
-<article class="xp" class:featured use:reveal={{ delay: index * 0.06 }}>
+<svelte:element
+	this={job.href ? 'a' : 'article'}
+	class="xp"
+	class:featured
+	class:linked={Boolean(job.href)}
+	href={job.href || undefined}
+	target={job.href && !internal ? '_blank' : undefined}
+	rel={job.href && !internal ? 'noreferrer' : undefined}
+	use:reveal={{ delay: index * 0.06 }}
+>
 	<div class="logo">
 		{#if job.logo && !broken}
 			<img src={job.logo} alt={job.company} loading="lazy" onerror={() => (broken = true)} />
@@ -27,44 +39,32 @@
 			<p class="blurb">{job.blurb}</p>
 		{/if}
 
-		{#if job.href}
-			<a class="period" href={job.href} target="_blank" rel="noreferrer">
-				<span>{job.period}</span>
-				<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-					<path
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M7 17 17 7M9 7h8v8"
-					/>
-				</svg>
-			</a>
-		{:else}
-			<span class="period">
-				<span>{job.period}</span>
-				<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-					<path
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M7 17 17 7M9 7h8v8"
-					/>
-				</svg>
-			</span>
-		{/if}
+		<span class="period">
+			<span>{job.period}</span>
+			<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+				<path
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M7 17 17 7M9 7h8v8"
+				/>
+			</svg>
+		</span>
 	</div>
-</article>
+</svelte:element>
 
 <style>
 	.xp {
 		display: flex;
 		gap: clamp(1rem, 2.5vw, 1.75rem);
-		background: #fff;
+		background: #f2f5f8;
 		color: #1c1c1c;
+		/* white card inside the dark section — flip the cursor back to dark ink,
+		   otherwise the light heart the dark page sets is invisible on it */
+		--c-cursor: #1c1c1c;
+		--c-cursor-ink: #f7f5f0;
 		border: 1px solid rgba(0, 0, 0, 0.06);
 		border-radius: 22px;
 		padding: clamp(1.1rem, 2.5vw, 1.75rem);
@@ -72,9 +72,9 @@
 	.xp.featured {
 		height: 100%;
 	}
-
 	.logo {
 		position: relative;
+		align-self: flex-start;
 		flex: none;
 		width: clamp(96px, 12vw, 150px);
 		aspect-ratio: 1;
@@ -124,17 +124,18 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: #ededed;
+		background: #fff;
+		box-shadow: 0 2px 8px rgba(28, 28, 28, 0.08);
 		color: #2a2a2a;
 		font-size: var(--fs-small);
 		padding: 0.6rem 1rem;
 		border-radius: 999px;
 	}
-	a.period {
+	.xp.linked {
 		transition: background var(--dur-fast) var(--ease-out);
 	}
-	a.period:hover {
-		background: #e3e3e3;
+	.xp.linked:hover {
+		background: #fafafa;
 	}
 
 	@media (max-width: 560px) {

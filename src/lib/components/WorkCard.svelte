@@ -9,7 +9,17 @@
 	const internal = $derived(item.href?.startsWith('/'));
 </script>
 
-<article class="card" class:lg={item.size === 'lg'} use:reveal={{ delay: (index % 2) * 0.08 }}>
+<svelte:element
+	this={item.href ? 'a' : 'article'}
+	class="card"
+	class:lg={item.size === 'lg'}
+	class:linked={Boolean(item.href)}
+	href={item.href || undefined}
+	target={item.href && !internal ? '_blank' : undefined}
+	rel={item.href && !internal ? 'noreferrer' : undefined}
+	use:reveal={{ delay: (index % 2) * 0.08 }}
+	use:cursorLabel={item.href ? { label: item.title, variant: internal ? 'view' : 'link' } : undefined}
+>
 	<div class="visual" class:framed={item.framed}>
 		{#if item.logo && !broken}
 			<img src={item.logo} alt={item.title} loading="lazy" onerror={() => (broken = true)} />
@@ -22,43 +32,21 @@
 		<h3>{item.title}</h3>
 		<p class="blurb">{item.blurb}</p>
 
-		{#if item.href}
-			<a
-				class="period"
-				href={item.href}
-				target={internal ? undefined : '_blank'}
-				rel={internal ? undefined : 'noreferrer'}
-				use:cursorLabel={{ label: item.title, variant: internal ? 'view' : 'link' }}
-			>
-				<span>{item.period}</span>
-				<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-					<path
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M7 17 17 7M9 7h8v8"
-					/>
-				</svg>
-			</a>
-		{:else}
-			<span class="period">
-				<span>{item.period}</span>
-				<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-					<path
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M7 17 17 7M9 7h8v8"
-					/>
-				</svg>
-			</span>
-		{/if}
+		<span class="period">
+			<span>{item.period}</span>
+			<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+				<path
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M7 17 17 7M9 7h8v8"
+				/>
+			</svg>
+		</span>
 	</div>
-</article>
+</svelte:element>
 
 <style>
 	.card {
@@ -67,6 +55,7 @@
 		min-height: clamp(200px, 25vw, 244px);
 		background: #fff;
 		color: #241a16;
+		text-decoration: none;
 		border-radius: 20px;
 		padding: clamp(1.5rem, 3.5vw, 2.25rem);
 		box-shadow:
@@ -133,33 +122,28 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.85rem;
+		background: #fff;
+		color: #2a2a2a;
 		font-size: var(--fs-small);
+		padding: 0.62rem 1.15rem;
+		border-radius: 999px;
+		box-shadow: 0 2px 8px rgba(28, 28, 28, 0.08);
 		white-space: nowrap;
 	}
 	.period > span:first-child {
-		background: #eef0f4;
-		color: #2a2a2a;
-		padding: 0.62rem 1.15rem;
-		border-radius: 999px;
+		color: inherit;
 	}
 	.period .ic {
 		flex: none;
-		width: 26px;
-		height: 26px;
-		padding: 6px;
-		border-radius: 999px;
-		border: 1.5px solid rgba(42, 42, 42, 0.22);
-		color: #2a2a2a;
+		color: inherit;
 	}
-	a.period {
-		transition: transform var(--dur-fast) var(--ease-out);
+	.card.linked {
+		transition:
+			transform var(--dur-fast) var(--ease-out),
+			background var(--dur-fast) var(--ease-out);
 	}
-	a.period:hover {
+	.card.linked:hover {
 		transform: translateY(-2px);
-	}
-	a.period:hover .ic {
-		border-color: var(--c-accent);
-		color: var(--c-accent);
 	}
 
 	@media (max-width: 900px) {

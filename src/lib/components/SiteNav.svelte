@@ -1,10 +1,16 @@
 <script>
 	import { nav, site } from '$data/site.js';
-	let { active = 'ME' } = $props();
+	import NavButton from './NavButton.svelte';
+	import { navigation } from '$motion/navigation.svelte.js';
+	import { base } from '$app/paths';
+	import { page } from '$app/state';
+	let onHome = $derived(page.url.pathname === `${base}/`);
+	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
+	let { label = 'Primary', centered = true } = $props();
 </script>
 
-<nav class="nav" aria-label="Primary">
-	<a class="brand" href="#me">
+<nav class="nav" class:centered aria-label={label}>
+	<a class="brand" href={`${base}/#me`}>
 		<span class="pin" aria-hidden="true">
 			<svg viewBox="0 0 24 24" width="16" height="16">
 				<path
@@ -16,15 +22,28 @@
 		<span>{site.location}</span>
 	</a>
 
-	<ul class="links">
-		{#each nav as link (link.href)}
+	<!-- Main sections share a centered pill; Resume sits opposite the location. -->
+	<ul class="pill">
+		{#each nav.filter((link) => link.label !== 'Resume') as link (link.label)}
 			<li>
-				<a href={link.href} aria-current={link.label === active ? 'page' : undefined}>
-					{link.label}
-				</a>
+				<NavButton
+					href={`${base}/${link.href}`}
+					label={link.label}
+					wide={link.label === 'Me'}
+					selected={onHome && link.label === navigation.active}
+					onclick={() => (navigation.active = link.label)}
+				/>
 			</li>
 		{/each}
 	</ul>
+	<div class="resume">
+		<NavButton
+			href={`${base}/#resume`}
+			label="Resume"
+			selected={onHome && navigation.active === 'Resume'}
+			onclick={() => (navigation.active = 'Resume')}
+		/>
+	</div>
 </nav>
 
 <style>
@@ -44,31 +63,50 @@
 	.pin {
 		display: inline-flex;
 	}
-	.links {
+	.nav.centered {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	}
+	.centered .brand {
+		justify-self: start;
+	}
+	.centered .pill {
+		grid-column: 2;
+		justify-self: center;
+	}
+	.resume {
+		justify-self: end;
+		border: 1.5px solid var(--c-line);
+		border-radius: 999px;
+	}
+
+	/* the single pill that holds the whole menu */
+	.pill {
 		display: flex;
-		gap: clamp(0.9rem, 2.5vw, 1.8rem);
+		align-items: center;
+		gap: 0.15rem;
 		list-style: none;
-		padding: 0;
+		margin: 0;
+		padding: 0.3rem;
+		border: 1.5px solid var(--c-line);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--c-ink) 6%, transparent);
 	}
-	.links a {
-		position: relative;
-		padding-block: 0.25rem;
-	}
-	.links a::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 2px;
-		background: currentColor;
-		transform: scaleX(0);
-		transform-origin: left;
-		transition: transform var(--dur-fast) var(--ease-out);
-	}
-	.links a:hover::after,
-	.links a[aria-current='page']::after {
-		transform: scaleX(1);
+	@media (max-width: 900px) {
+		.nav.centered {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem;
+		}
+		.centered .pill {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			max-width: 100%;
+			justify-content: center;
+		}
+		.resume {
+			grid-column: 2;
+			grid-row: 1;
+		}
 	}
 
 	@media (max-width: 560px) {
@@ -77,5 +115,10 @@
 			align-items: flex-start;
 			gap: 0.75rem;
 		}
+		.pill {
+			flex-wrap: wrap;
+			row-gap: 0.15rem;
+		}
+
 	}
 </style>
