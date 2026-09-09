@@ -7,21 +7,22 @@
 	import KSection from '$components/kiet/KSection.svelte';
 	import KPill from '$components/kiet/KPill.svelte';
 	import KPhone from '$components/kiet/KPhone.svelte';
-	import KProcess from '$components/kiet/KProcess.svelte';
 	import KPersona from '$components/kiet/KPersona.svelte';
 	import KJobs from '$components/kiet/KJobs.svelte';
 	import KIA from '$components/kiet/KIA.svelte';
 	import KFlow from '$components/kiet/KFlow.svelte';
 	import KBeforeAfter from '$components/kiet/KBeforeAfter.svelte';
 	import KReview from '$components/kiet/KReview.svelte';
+	import KSummary from '$components/kiet/KSummary.svelte';
 	import { toneVars } from '$components/kiet/tone.js';
+
+	let summary;
 
 	import {
 		kietMeta,
 		hero,
 		overview,
 		team,
-		process,
 		personas,
 		existing,
 		jobs,
@@ -58,6 +59,16 @@
 
 <div class="kiet">
 	<KSideNav {sections} back={{ href: '/#work', label: 'All work' }} />
+
+	<KSummary bind:this={summary} />
+	<div class="summary-dock">
+		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
+			Too long; didn't read?
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+			</svg>
+		</button>
+	</div>
 
 	<div class="topbar">
 		<a class="back" href="/#work" use:cursorLabel={'All work'}>← All work</a>
@@ -150,7 +161,13 @@
 
 	<!-- 4 · DESIGN PROCESS -->
 	<KSection id="process" title="Design Process">
-		<KProcess steps={process} />
+		<div class="process-shot" use:revealScale>
+			<img
+				src="/img/design-process-kiet.png"
+				alt="Design process for the KIET Student App — ground the problem, set priorities, build structure, test, then design and refine."
+				loading="lazy"
+			/>
+		</div>
 	</KSection>
 
 	<!-- 5 · USER PERSONAS -->
@@ -246,6 +263,50 @@
 	.kiet {
 		min-height: 100vh;
 		overflow: hidden;
+		padding-bottom: 112px;
+	}
+
+	/* ---------- "too long; didn't read?" dock ---------- */
+	.summary-dock {
+		position: fixed;
+		inset-inline: 0;
+		bottom: 0;
+		z-index: 50;
+		display: flex;
+		justify-content: center;
+		padding: 24px 16px max(20px, env(safe-area-inset-bottom));
+		background: linear-gradient(transparent, var(--k-bg) 70%);
+		pointer-events: none;
+	}
+	.summary-cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		pointer-events: auto;
+		max-width: 100%;
+		padding: 18px clamp(24px, 6vw, 80px);
+		border: 0;
+		border-radius: 999px;
+		background: #000;
+		color: #fff;
+		font-family: 'Poppins', 'Archivo', system-ui, sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		box-shadow: 0 6px 24px rgb(0 0 0 / 16%);
+		transition:
+			transform 180ms ease,
+			background 180ms ease;
+	}
+	.summary-cta:hover {
+		background: #242424;
+		transform: translateY(-2px);
+	}
+	.summary-cta svg {
+		flex-shrink: 0;
+	}
+	.summary-cta:active {
+		transform: scale(0.98);
 	}
 	/* make room for the fixed left section rail (labels always visible) */
 	@media (min-width: 1200px) {
@@ -362,7 +423,7 @@
 	.stack {
 		display: flex;
 		flex-direction: column;
-		gap: clamp(2rem, 6vw, 4rem);
+		gap: clamp(2.5rem, 5vw, 3.75rem);
 	}
 	.mini-title {
 		font-size: clamp(1.3rem, 3vw, 1.9rem);
@@ -468,6 +529,14 @@
 	}
 	.k-title.jtbd {
 		margin-top: 0.5rem;
+	}
+
+	/* ---------- design process ---------- */
+	.process-shot img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: var(--k-radius);
 	}
 
 	/* ---------- student experience ---------- */

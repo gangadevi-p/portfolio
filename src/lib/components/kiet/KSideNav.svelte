@@ -9,11 +9,11 @@
 		let raf = 0;
 		const scan = () => {
 			raf = 0;
-			const line = 140; // px from the top of the viewport
+			const marker = window.innerHeight * 0.35;
 			let current = sections[0]?.id ?? '';
 			for (const s of sections) {
 				const el = document.getElementById(s.id);
-				if (el && el.getBoundingClientRect().top - line <= 0) current = s.id;
+				if (el && el.getBoundingClientRect().top <= marker) current = s.id;
 			}
 			active = current;
 		};
@@ -38,9 +38,21 @@
 	}
 </script>
 
-<nav class="sidenav" aria-label="Case study sections">
+<nav class="toc" aria-label="Case study sections">
 	{#if back}
-		<a class="back" href={back.href}>← {back.label}</a>
+		<a class="back" href={back.href}>
+			<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+				<path
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M19 12H5m0 0 6-6m-6 6 6 6"
+				/>
+			</svg>
+			Back
+		</a>
 	{/if}
 	<ul>
 		{#each sections as s (s.id)}
@@ -52,60 +64,82 @@
 </nav>
 
 <style>
-	.sidenav {
+	.toc {
 		position: fixed;
-		left: 0;
-		top: 40%;
-		translate: 0 -50%;
-		z-index: 30;
-		padding: 1rem 1rem 1rem 1.75rem;
+		left: 27px;
+		top: 72px;
+		width: 196px;
+		max-height: calc(100dvh - 260px);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: none;
+		z-index: 40;
+		padding-right: 12px;
 		font-family: 'Poppins', system-ui, sans-serif;
 	}
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-	}
-	a {
-		display: block;
-		padding: 0.24rem 0;
-		color: #a2a2ac;
-		font-size: 0.82rem;
-		font-weight: 600;
-		line-height: 1.2;
-		white-space: nowrap;
-		transition: color 0.2s ease;
-	}
-	a:hover,
-	a:focus-visible {
-		color: #55555f;
-		outline: none;
-	}
-	.active a {
-		color: var(--k-orange, #f15a24);
+	.toc::-webkit-scrollbar {
+		display: none;
 	}
 
 	.back {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0 0 12px 11px;
+		font-size: 15px;
+		font-weight: 600;
 		color: var(--k-ink-strong, #2c2c2c);
-		font-weight: 700;
-		margin-bottom: 0.9rem;
-		padding-bottom: 0.9rem;
-		border-bottom: 1px solid var(--k-rule, #e7e9f2);
 	}
 	.back:hover {
 		color: var(--k-orange, #f15a24);
 	}
 
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		font-size: 14px;
+		line-height: 1.5;
+	}
+	li a {
+		display: inline-flex;
+		align-items: center;
+		padding: 8px 16px;
+		border-radius: 50px;
+		color: #6b7480;
+		white-space: nowrap;
+		transition:
+			background 0.18s ease,
+			color 0.18s ease,
+			font-weight 0.18s ease;
+	}
+	li:not(.active) a:hover,
+	li:not(.active) a:focus-visible {
+		background: color-mix(in srgb, var(--k-ink, #4c4c4c) 12%, transparent);
+		color: var(--k-ink-strong, #2c2c2c);
+		font-weight: 600;
+		outline: none;
+	}
+	li.active a,
+	li.active a:hover,
+	li.active a:focus-visible {
+		background: #000;
+		color: #fff;
+		font-weight: 600;
+	}
+
 	@media (max-width: 1200px) {
-		.sidenav {
+		.toc {
 			display: none;
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
-		a {
+		li a {
 			transition: none;
 		}
 	}

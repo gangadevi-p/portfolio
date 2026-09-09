@@ -3,6 +3,10 @@
 /* ========================================================================== */
 
 .kiet {
+	/* light page — the cursor has to flip back to dark ink over it */
+	--c-cursor: #2c2c2c;
+	--c-cursor-ink: #f7f5f0;
+
 	--k-bg: #f4f5f9;
 	--k-rule: #e7e9f2;
 	--k-card: #ffffff;
@@ -136,6 +140,7 @@
 }
 
 /* reveal-on-scroll (paired with use:reveal, but works without JS) */
+/* tight rhythm — ~40-60px of air between adjacent sections */
 .kiet .k-section {
-	padding-block: clamp(3.5rem, 9vw, 7rem);
+	padding-block: clamp(1.375rem, 3.5vw, 1.875rem);
 }
