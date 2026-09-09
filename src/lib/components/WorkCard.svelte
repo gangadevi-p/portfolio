@@ -18,7 +18,7 @@
 	target={item.href && !internal ? '_blank' : undefined}
 	rel={item.href && !internal ? 'noreferrer' : undefined}
 	use:reveal={{ delay: (index % 2) * 0.08 }}
-	use:cursorLabel={item.href ? { label: item.title, variant: internal ? 'view' : 'link' } : undefined}
+	use:cursorLabel={{ label: 'Read case study', variant: 'view' }}
 >
 	<div class="visual" class:framed={item.framed}>
 		{#if item.logo && !broken}
