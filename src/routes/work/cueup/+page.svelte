@@ -341,8 +341,10 @@
 		font-weight: 500;
 		color: #2b3440;
 	}
-	.back:hover {
-		color: var(--cu-emerald);
+	.back:hover,
+	.back:focus-visible {
+		color: var(--c-coffee);
+		outline: none;
 	}
 
 	.top-grid {

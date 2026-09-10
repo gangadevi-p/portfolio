@@ -2,7 +2,7 @@
 	import { reveal } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
 
-	/** One white project card: logo on the left, text + date pill on the right. */
+	/** A compact project overview: logo, name, description, and date. */
 	let { item, index = 0 } = $props();
 
 	let broken = $state(false);
@@ -51,27 +51,24 @@
 <style>
 	.card {
 		display: flex;
-		gap: clamp(1.25rem, 3.5vw, 2.5rem);
-		min-height: clamp(200px, 25vw, 244px);
+		flex-direction: column;
+		align-items: stretch;
+		gap: clamp(1.25rem, 2.5vw, 1.75rem);
+		min-height: 280px;
 		background: #fff;
 		color: #241a16;
 		text-decoration: none;
 		border-radius: 20px;
-		padding: clamp(1.5rem, 3.5vw, 2.25rem);
+		padding: clamp(1.35rem, 2.25vw, 1.75rem);
 		box-shadow:
 			0 1px 2px rgba(24, 33, 58, 0.04),
 			0 18px 48px -22px rgba(24, 33, 58, 0.22);
 	}
-	/* taller bento tile */
-	.card.lg {
-		min-height: clamp(280px, 35vw, 340px);
-	}
-
-	/* left visual */
+	/* Project logo */
 	.visual {
 		flex: none;
 		align-self: flex-start;
-		width: clamp(110px, 30%, 190px);
+		width: clamp(68px, 24%, 88px);
 		aspect-ratio: 1;
 		display: grid;
 		place-items: center;
@@ -94,7 +91,7 @@
 		color: #c8c2bb;
 	}
 
-	/* right column */
+	/* Project details */
 	.body {
 		display: flex;
 		flex: 1;
@@ -103,22 +100,25 @@
 		min-width: 0;
 	}
 	h3 {
-		font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
 		font-weight: 800;
 		letter-spacing: -0.01em;
 	}
 	.blurb {
-		margin-top: 0.5rem;
-		max-width: 24ch;
+		margin-top: 0.6rem;
+		max-width: 26ch;
 		color: #8a8480;
-		font-size: clamp(0.95rem, 1.7vw, 1.05rem);
+		font-size: clamp(0.92rem, 1.25vw, 1rem);
 		line-height: 1.45;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 
 	/* date pill — pushed to the bottom of the card */
 	.period {
 		margin-top: auto;
-		padding-top: clamp(1.25rem, 3.5vw, 2.25rem);
 		display: inline-flex;
 		align-items: center;
 		gap: 0.85rem;
@@ -146,20 +146,4 @@
 		transform: translateY(-2px);
 	}
 
-	@media (max-width: 900px) {
-		.card {
-			gap: 1.25rem;
-		}
-	}
-	@media (max-width: 480px) {
-		.card {
-			flex-direction: column;
-		}
-		.visual {
-			width: clamp(110px, 42%, 170px);
-		}
-		.period {
-			padding-top: 1.25rem;
-		}
-	}
 </style>

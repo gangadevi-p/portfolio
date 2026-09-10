@@ -4,26 +4,16 @@
 	import WorkCard from '$components/WorkCard.svelte';
 	import { reveal } from '$motion/reveal.js';
 
-	/* two independent columns so cards stagger like the reference */
-	const left = work.filter((_, i) => i % 2 === 0);
-	const right = work.filter((_, i) => i % 2 === 1);
 </script>
 
 <section id="projects" class="section">
 	<Container>
 		<h2 class="title" use:reveal>Projects</h2>
 
-		<div class="cols">
-			<div class="col">
-				{#each left as item, i (item.title)}
-					<WorkCard {item} index={i * 2} />
-				{/each}
-			</div>
-			<div class="col">
-				{#each right as item, i (item.title)}
-					<WorkCard {item} index={i * 2 + 1} />
-				{/each}
-			</div>
+		<div class="grid">
+			{#each work as item, index (item.title)}
+				<WorkCard {item} {index} />
+			{/each}
 		</div>
 	</Container>
 </section>
@@ -46,19 +36,19 @@
 		letter-spacing: -0.02em;
 		margin-bottom: clamp(2rem, 5vw, 3.5rem);
 	}
-	.cols {
+	.grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: clamp(1.25rem, 3vw, 2rem);
-		align-items: start;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.75rem);
+		align-items: stretch;
 	}
-	.col {
-		display: flex;
-		flex-direction: column;
-		gap: clamp(1.25rem, 3vw, 2rem);
+	@media (max-width: 1024px) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
-	@media (max-width: 760px) {
-		.cols {
+	@media (max-width: 560px) {
+		.grid {
 			grid-template-columns: 1fr;
 		}
 	}

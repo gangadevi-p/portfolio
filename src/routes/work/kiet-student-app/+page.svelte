@@ -326,6 +326,12 @@
 	}
 	.back {
 		color: var(--k-ink-strong);
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.back:hover,
+	.back:focus-visible {
+		color: var(--c-coffee);
+		outline: none;
 	}
 	/* the left rail carries its own back link on wide screens */
 	@media (min-width: 1200px) {

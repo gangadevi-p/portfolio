@@ -33,7 +33,7 @@
 
 <style>
 	.page {
-		padding-block: clamp(2rem, 6vw, 4.5rem) clamp(4rem, 10vw, 8rem);
+		padding: clamp(2rem, 6vw, 4.5rem) 0 0;
 	}
 
 	.back {
@@ -44,8 +44,10 @@
 		margin-bottom: clamp(2rem, 6vw, 3.5rem);
 		transition: color var(--dur-fast) var(--ease-out);
 	}
-	.back:hover {
-		color: var(--c-ink);
+	.back:hover,
+	.back:focus-visible {
+		color: #f7f5f0;
+		outline: none;
 	}
 
 	.head {
@@ -59,7 +61,7 @@
 	.role {
 		font-size: calc(1rem + 4px);
 		font-weight: 700;
-		color: var(--c-accent);
+		color: #f7f5f0;
 	}
 	.role-row {
 		display: flex;

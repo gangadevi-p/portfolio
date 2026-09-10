@@ -6,8 +6,11 @@
 	import CustomCursor from '$components/CustomCursor.svelte';
 	import StickyNav from '$components/StickyNav.svelte';
 	import SiteFooter from '$components/SiteFooter.svelte';
+	import { page } from '$app/state';
 
 	let { children } = $props();
+	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-education-society/']);
+	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
 
 	onMount(() => {
 		if (prefersReducedMotion()) return;
@@ -55,4 +58,4 @@
 	{@render children()}
 </main>
 
-<SiteFooter />
+<SiteFooter compact={compactFooter} />

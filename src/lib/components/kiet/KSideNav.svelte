@@ -90,8 +90,10 @@
 		font-weight: 600;
 		color: var(--k-ink-strong, #2c2c2c);
 	}
-	.back:hover {
-		color: var(--k-orange, #f15a24);
+	.back:hover,
+	.back:focus-visible {
+		color: var(--c-coffee, #3a221d);
+		outline: none;
 	}
 
 	ul {

@@ -3,7 +3,6 @@
 	import Container from '$components/Container.svelte';
 	import ShotGallery from '$components/ShotGallery.svelte';
 	import { reveal } from '$motion/reveal.js';
-	import { cursorLabel } from '$motion/cursor.svelte.js';
 </script>
 
 <svelte:head>
@@ -13,7 +12,7 @@
 
 <div class="page">
 	<Container>
-		<a class="back" href="/#work" use:cursorLabel={'All work'}>← All work</a>
+		<a class="back" href="/#work">← All work</a>
 
 		<header class="head" use:reveal>
 			<h1>{geekbullMeta.company}</h1>
@@ -33,7 +32,7 @@
 
 <style>
 	.page {
-		padding-block: clamp(2rem, 6vw, 4.5rem) clamp(4rem, 10vw, 8rem);
+		padding: clamp(2rem, 6vw, 4.5rem) 0 0;
 	}
 
 	.back {
@@ -41,11 +40,13 @@
 		font-weight: 600;
 		font-size: var(--fs-small);
 		color: var(--c-ink-soft);
-		margin-bottom: clamp(2rem, 6vw, 3.5rem);
+		margin-bottom: clamp(1.25rem, 3vw, 2rem);
 		transition: color var(--dur-fast) var(--ease-out);
 	}
-	.back:hover {
-		color: var(--c-ink);
+	.back:hover,
+	.back:focus-visible {
+		color: #f7f5f0;
+		outline: none;
 	}
 
 	.head {
@@ -59,7 +60,7 @@
 	.role {
 		font-size: calc(1rem + 4px);
 		font-weight: 700;
-		color: var(--c-accent);
+		color: #f7f5f0;
 	}
 	.role-row {
 		display: flex;

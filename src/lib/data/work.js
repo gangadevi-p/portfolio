@@ -1,7 +1,7 @@
 /**
  * Projects grid (light band — see ProjectsSection.svelte).
  *
- * Each card is a logo on the left + title / blurb / date pill on the right.
+ * Each card has a logo, title, short description, and date.
  * Drop a square-ish logo in /static/img/work/ (PNG or SVG) and point `logo`
  * at it. Until the file exists the card shows a monogram fallback.
  *
@@ -14,36 +14,34 @@
  */
 export const work = [
 	{
+		title: 'CueUp',
+		logo: '/img/work/cueup-clean.png',
+		blurb: 'A calmer, clearer experience that helps landlords and tenants manage their rental relationship.',
+		period: 'Apr 2026 – Jun 2026',
+		href: '/work/cueup',
+		slug: 'cueup',
+		bespoke: true
+	},
+	{
 		title: 'Student App',
 		logo: '/img/work/kiet.png',
-		blurb: 'Real-world application, live on the Play Store.',
+		blurb: 'A student companion app for academic updates, attendance, and campus essentials—live on Google Play.',
 		period: 'Jan 2024 – April 2024',
 		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
 	},
 	{
-		title: 'CueUp',
-		logo: '/img/work/cueup-clean.png',
-		blurb: 'A relationship between landlords and tenants.',
-		period: 'Apr 2026 – Jun 2026',
-		href: '/work/cueup',
-		slug: 'cueup',
-		bespoke: true,
-		size: 'lg'
-	},
-	{
 		title: 'Athera',
 		logo: '/img/work/athera.png',
-		blurb: 'E-commerce web app selling furniture.',
+		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
 		period: 'Apr 2026 – Jun 2026',
-		href: '',
-		size: 'lg'
+		href: ''
 	},
 	{
 		title: 'Fitbit',
 		logo: '/img/work/fitbit.png',
-		blurb: 'Real-world application, live on the Play Store.',
+		blurb: 'A motivating fitness experience for tracking daily activity and building healthier habits.',
 		period: 'Jan 2024 – April 2024',
 		href: ''
 	}

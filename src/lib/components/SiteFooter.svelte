@@ -1,9 +1,11 @@
 <script>
 	import { site } from '$data/site.js';
 	import Container from './Container.svelte';
+
+	let { compact = false } = $props();
 </script>
 
-<footer id="contact" class="footer">
+<footer id="contact" class="footer" class:compact>
 	<Container>
 		<div class="inner">
 			<div>
@@ -25,6 +27,10 @@
 		padding-block: clamp(3rem, 8vw, 6rem) 2rem;
 		border-top: 1px solid var(--c-line);
 		margin-top: clamp(4rem, 12vw, 9rem);
+	}
+	.footer.compact {
+		margin-top: 0;
+		padding-top: 60px;
 	}
 	.inner {
 		display: flex;
