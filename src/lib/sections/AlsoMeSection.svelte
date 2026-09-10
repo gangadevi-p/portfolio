@@ -16,6 +16,22 @@
 		<header class="head" use:reveal>
 			<p>Beyond the screen</p>
 			<h2>Also me.</h2>
+			<div class="intro">
+				<p>
+					🎨 If I'm not designing in <strong>Figma</strong> 🟦, you'll probably find me at the
+					<strong>gym</strong> 🏋️, fueled by <strong>coffee</strong> ☕, or sketching ideas with
+					<strong>pencils</strong> ✏️, <strong>paper</strong> 📄, and <strong>paint</strong> 🎨.
+				</p>
+				<p>
+					🎓 I graduated in <strong>Cybersecurity</strong>, but my creative mind chose crafting
+					experiences over chasing vulnerabilities.
+				</p>
+				<p>
+					💡 Curiosity drives everything I do—I question, explore, and iterate relentlessly,
+					always asking <strong>“Why?”</strong>, <strong>“What if?”</strong>, and
+					<strong>“How can this be better?”</strong>.
+				</p>
+			</div>
 		</header>
 
 		<div class="stack">
@@ -54,7 +70,7 @@
 		margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
 		text-align: center;
 	}
-	.head p {
+	.head > p {
 		margin-bottom: 0.55rem;
 		color: #6e6e73;
 		font-size: var(--fs-small);
@@ -68,11 +84,25 @@
 		letter-spacing: -0.06em;
 		line-height: 0.95;
 	}
+	.intro {
+		display: grid;
+		gap: 0.8rem;
+		margin-top: 1.5rem;
+		color: #4d4d52;
+		font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+		line-height: 1.65;
+	}
+	.intro strong {
+		color: #1d1d1f;
+		font-weight: 700;
+	}
 	.stack {
 		display: flex;
 		flex-direction: column;
-		gap: 24px; /* space between the layout rows */
-		width: 100%;
+		gap: 20px; /* space between the layout rows */
+		/* Scale the complete gallery rather than individual images, preserving
+		   each row's original proportions and alignment. */
+		width: 72%;
 		margin: 0 auto;
 	}
 	.row {
@@ -104,13 +134,18 @@
 	.cluster {
 		display: flex;
 		align-items: stretch;
-		gap: 24px;
+		gap: 20px;
 	}
 	.cluster-main {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
+		gap: 20px;
 		flex: 0 0 72%; /* wider Layout 2 / Layout 3; Layout 4 takes the slimmer rest */
 		min-width: 0;
+	}
+	@media (max-width: 760px) {
+		.stack {
+			width: 100%;
+		}
 	}
 </style>

@@ -23,9 +23,9 @@
 		<span>{site.location}</span>
 	</a>
 
-	<!-- Main sections share a centered pill; Resume sits opposite the location. -->
+	<!-- Main sections share a centered pill. -->
 	<ul class="pill">
-		{#each nav.filter((link) => link.label !== 'Resume') as link (link.label)}
+		{#each nav as link (link.label)}
 			<li>
 				<NavButton
 					href={`${base}/${link.href}`}
@@ -38,14 +38,6 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
-		<div class="resume">
-			<NavButton
-				href={`${base}/#resume`}
-				label="Resume"
-				selected={onHome && navigation.active === 'Resume'}
-				onclick={() => (navigation.active = 'Resume')}
-			/>
-		</div>
 		<PortfolioAssistant placement="nav" />
 	</div>
 </nav>
@@ -86,12 +78,6 @@
 		gap: 0.8rem;
 		justify-self: end;
 	}
-	.resume {
-		border: 1px solid rgb(255 255 255 / 50%);
-		border-radius: 999px;
-		background: rgb(255 255 255 / 20%);
-	}
-
 	/* the single pill that holds the whole menu */
 	.pill {
 		position: relative;

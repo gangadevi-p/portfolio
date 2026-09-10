@@ -4,7 +4,6 @@
 	import ProjectsSection from '$sections/ProjectsSection.svelte';
 	import PlaygroundSection from '$sections/PlaygroundSection.svelte';
 	import AlsoMeSection from '$sections/AlsoMeSection.svelte';
-	import ResumeSection from '$sections/ResumeSection.svelte';
 </script>
 
 <HeroSection />
@@ -12,4 +11,3 @@
 <ProjectsSection />
 <PlaygroundSection />
 <AlsoMeSection />
-<ResumeSection />

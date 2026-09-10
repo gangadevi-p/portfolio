@@ -28,7 +28,7 @@
 	.layout2 {
 		display: flex;
 		align-items: flex-start;
-		gap: 24px; /* fixed horizontal space between every image */
+		gap: 20px; /* fixed horizontal space between every image */
 		width: 100%; /* the section constrains this to 65% of the row */
 	}
 	.layout2 img {

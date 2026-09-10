@@ -6,9 +6,9 @@
 	import { loadGsap, prefersReducedMotion } from '$motion/gsap.js';
 
 	import SiteNav from '$components/SiteNav.svelte';
-	import FloatingIcon from '$components/FloatingIcon.svelte';
 	import ParallaxImage from '$components/ParallaxImage.svelte';
 	import SkillsDeck from '$components/SkillsDeck.svelte';
+	import ToolsDeck from '$components/ToolsDeck.svelte';
 
 	let root;
 
@@ -26,7 +26,7 @@
 					// icons: only opacity + a hair of blur, so the parallax / bob
 					// transforms on child layers are never touched.
 					.from(
-						'.icon-slot',
+						'.tools-slot',
 						{ autoAlpha: 0, filter: 'blur(6px)', duration: 0.5, stagger: 0.08 },
 						'-=0.55'
 					)
@@ -58,17 +58,11 @@
 			</span>
 		</div>
 
-		<!-- floating app badges -->
-		<div class="stage" aria-hidden="true">
-			{#each hero.icons as icon, i (icon.name)}
-				<div
-					class="icon-slot"
-					style="left: {icon.x}%; top: {icon.y}%;{icon.z ? ` z-index: ${icon.z};` : ''}"
-					use:cursorLabel={icon.name}
-				>
-					<FloatingIcon {...icon} index={i} />
-				</div>
-			{/each}
+		<!-- Tool icons live in a folder and rise out of it on hover, like the skills sheets. -->
+		<div class="stage">
+			<div class="tools-slot">
+				<ToolsDeck icons={hero.icons} />
+			</div>
 		</div>
 
 		<div class="hero-speech">
@@ -173,14 +167,16 @@
 	.stage {
 		position: absolute;
 		inset: 0;
-		/* above the portrait, so a badge parked over her hair reads in front */
+		/* above the portrait, so the open tool deck reads in front */
 		z-index: 6;
 		pointer-events: none;
 	}
-	.icon-slot {
+	.tools-slot {
 		position: absolute;
-		translate: -50% -50%;
-		pointer-events: auto; /* hoverable for the custom cursor label */
+		left: 37%;
+		bottom: clamp(2rem, 7vw, 4.5rem);
+		width: min(260px, 48vw);
+		pointer-events: auto;
 	}
 
 	.hero-speech {
@@ -229,6 +225,11 @@
 		}
 		.hero-speech {
 			bottom: 9rem;
+		}
+		.tools-slot {
+			left: 24%;
+			bottom: 2rem;
+			width: min(220px, 52vw);
 		}
 	}
 </style>

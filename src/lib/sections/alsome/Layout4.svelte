@@ -24,7 +24,7 @@
 	.layout4 {
 		display: flex;
 		flex-direction: column;
-		gap: 24px; /* fixed vertical space between the two images */
+		gap: 20px; /* fixed vertical space between the two images */
 		flex: 1 1 0; /* fill the width left of Layout 2 & 3 */
 		min-width: 0;
 		min-height: 0;

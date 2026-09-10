@@ -13,7 +13,7 @@
 		<img
 			src={image.src}
 			alt={image.alt}
-			style="flex-grow: {image.ratio}; aspect-ratio: {image.ratio}"
+			style="flex-grow: {image.ratio}; aspect-ratio: {image.ratio}; --image-rotation: {image.rotation ?? 0}deg"
 			loading="lazy"
 			decoding="async"
 		/>
@@ -24,7 +24,7 @@
 	.layout3 {
 		display: flex;
 		align-items: flex-start;
-		gap: 24px; /* fixed horizontal space between every image */
+		gap: 20px; /* fixed horizontal space between every image */
 		width: 100%; /* the section constrains this to 65% of the row */
 	}
 	.layout3 img {
@@ -34,5 +34,6 @@
 		height: auto;
 		display: block;
 		object-fit: cover;
+		rotate: var(--image-rotation);
 	}
 </style>
