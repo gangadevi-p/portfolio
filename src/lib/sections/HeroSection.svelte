@@ -190,15 +190,15 @@
 	}
 	.tools-slot {
 		width: min(220px, 48vw);
-		/* 154px current height + 40px. The offset keeps its visible top 24px lower. */
-		height: 194px;
+		/* 183px drawn height, stretched ×1.26 below. The offset keeps its visible top lower. */
+		height: 230px;
 		translate: 0 104px;
 	}
 	.tools-slot :global(.deck) {
 		/* ToolsDeck reads this to keep its icons square inside the stretch */
 		--deck-stretch: 1.26;
 		height: auto;
-		aspect-ratio: 300 / 210;
+		aspect-ratio: 300 / 249;
 		transform: scaleY(var(--deck-stretch));
 		transform-origin: top center;
 	}
@@ -255,7 +255,7 @@
 		.tools-slot :global(.deck) {
 			--deck-stretch: 1;
 			height: auto;
-			aspect-ratio: 300 / 210;
+			aspect-ratio: 300 / 249;
 			transform: none;
 		}
 	}
