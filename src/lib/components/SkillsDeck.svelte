@@ -50,10 +50,10 @@
 	onkeydown={onKeydown}
 	use:cursorLabel={{ label: 'Explore skills', variant: 'view' }}
 >
-	<svg class="shell shell--back" viewBox="0 0 300 236" aria-hidden="true">
+	<svg class="shell shell--back" viewBox="0 0 300 298" aria-hidden="true">
 		<path
 			class="back"
-			d="M 36,18 H 264 A 20,20 0 0 1 284,38 V 210 A 20,20 0 0 1 264,230 H 36 A 20,20 0 0 1 16,210 V 38 A 20,20 0 0 1 36,18 Z"
+			d="M 36,18 H 264 A 20,20 0 0 1 284,38 V 272 A 20,20 0 0 1 264,292 H 36 A 20,20 0 0 1 16,272 V 38 A 20,20 0 0 1 36,18 Z"
 		/>
 	</svg>
 
@@ -69,7 +69,7 @@
 	{/each}
 
 	<div class="cover">
-		<svg class="shell" viewBox="0 0 300 236" aria-hidden="true">
+		<svg class="shell" viewBox="0 0 300 298" aria-hidden="true">
 			<defs>
 				<linearGradient id="folder-face" x1="0" y1="0" x2="0" y2="1">
 					<stop offset="0%" stop-color="var(--folder-top)" />
@@ -79,13 +79,12 @@
 			<!-- the raised tab on the left, then an S-curve down to the body -->
 			<path
 				class="front"
-				d="M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 208 A 22,22 0 0 1 272,230 H 28 A 22,22 0 0 1 6,208 V 78 A 22,22 0 0 1 28,56 Z"
+				d="M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z"
 			/>
 		</svg>
 
 		<div class="label">
 			<strong>Skills</strong>
-			<span>{sheets.length} Files</span>
 		</div>
 	</div>
 </div>
@@ -111,7 +110,7 @@
 
 		position: relative;
 		width: 100%;
-		aspect-ratio: 300 / 236;
+		aspect-ratio: 300 / 298;
 		isolation: isolate;
 		/* so the sheet type scales with the deck, not the viewport */
 		container-type: inline-size;
@@ -146,8 +145,8 @@
 		position: absolute;
 		z-index: 3;
 		inset: 0;
-		/* the hinge: the bottom fold (y = 230 of 236 in the drawing) */
-		transform-origin: 50% 97.46%;
+		/* the hinge: the bottom fold (y = 292 of 298 in the drawing) */
+		transform-origin: 50% 97.99%;
 		/* closing: wait for the sheets to settle, then tip back up */
 		transition: transform var(--flip) ease-in-out var(--settle);
 	}
@@ -164,18 +163,17 @@
 	.sheet {
 		position: absolute;
 		z-index: 2;
-		/* centred over the folder */
-		left: 10%;
-		/* sized and placed so the sliver that shows above the closed flap is the
-		   sheet's own top padding — blank paper, never a clipped heading.
-		   Wide enough that the 16px list never wraps, tall enough to hold it. */
-		top: 12%;
-		width: 80%;
-		height: 70%;
+		/* centred over the folder by the -50% in each transform */
+		left: 50%;
+		/* just below the tab, so only the top padding peeks above the closed flap */
+		top: 16.6%;
+		/* as wide as the longest item, so the 16px list never wraps */
+		width: max-content;
 		box-sizing: border-box;
-		/* the extra top padding is what shows above the closed flap */
-		padding: 1.55rem 1.2rem 1.1rem;
-		border-radius: 18px;
+		padding: 16px;
+		border-radius: 14px;
+		/* resting scale-down shrinks toward the top edge, keeping the peek in place */
+		transform-origin: 50% 0;
 		background: var(--sheet-bg);
 		color: rgba(255, 248, 240, 0.92);
 		box-shadow: 0 18px 34px -18px rgba(28, 15, 11, 0.75);
@@ -186,14 +184,15 @@
 	}
 	.sheet h2 {
 		font-family: var(--font-card);
-		font-size: clamp(1.05rem, 5.5cqw, 1.5rem);
+		font-size: 1rem;
 		font-weight: 700;
-		letter-spacing: -2px;
+		letter-spacing: 0;
 		line-height: 1;
 	}
 	.sheet ul {
 		margin-top: 0.7rem;
-		padding-left: 1rem;
+		padding-left: 0;
+		list-style: none;
 		color: rgba(255, 246, 236, 0.78);
 		font-family: var(--font-card);
 		/* fixed body size, not scaled with the deck */
@@ -203,48 +202,42 @@
 		line-height: 1.35;
 	}
 
-	/* resting: tucked in the folder, only the top edges peeking out */
+	/* resting: tucked in the folder, only the top edges peeking out. Scaled down
+	   while tucked — at full size the five-item list is taller than the flap and
+	   its bottom would poke out underneath. */
 	.sheet--design {
-		/* just wide enough for its longest item on one line; still centred */
-		left: 13%;
-		width: 74%;
-		/* five items, so taller than Outside Figma */
-		height: 80%;
-		/* barely dropped and only a slight tilt: it's tall, and any lower its
-		   bottom corner pokes out under the flap */
-		transform: translate(-4%, 3%) rotate(-2deg);
+		transform: translate(-50%, 0) rotate(-2deg) scale(0.8);
 	}
 	/* sits lower than Design: it's over on the right, where the flap dips into
-	   its S-curve, and any higher its heading shows above the closed flap. Only a
-	   slight tilt — any more and its bottom-right corner pokes out under the flap. */
+	   its S-curve, and any higher its heading shows above the closed flap */
 	.sheet--outside-figma {
-		/* narrower than Design — its list is shorter; still centred */
-		left: 18%;
-		width: 64%;
-		transform: translate(-14%, 16%) rotate(3deg);
+		transform: translate(-44%, 12%) rotate(3deg) scale(0.8);
 	}
 
 	/* open: up out of the folder, still behind the cover, so the cover hides
-	   their bottom edges — Design up and to the left, Outside Figma higher, to the
-	   right and tilted further, overlapping Design's corner */
+	   their bottom edges — side by side, Design on the left and Outside Figma to
+	   its right, so neither card covers the other's list. Outside Figma sits
+	   lower, its bottom-left corner still tucked behind the flap so it reads as
+	   coming out of the folder. Only a nudge left for Design: the deck sits close
+	   to the page edge and its overflow clip. */
 	.deck:is(:hover, :focus-visible, .is-open) .sheet {
 		transition: transform var(--rise) var(--ease-back) var(--rise-delay);
 	}
 	.deck:is(:hover, :focus-visible, .is-open) .sheet--design {
-		transform: translate(-40%, -74%) rotate(-5deg);
+		transform: translate(calc(-50% - 26px), -97%) rotate(-5deg);
 	}
 	.deck:is(:hover, :focus-visible, .is-open) .sheet--outside-figma {
-		transform: translate(60%, -92%) rotate(14deg);
+		transform: translate(calc(-50% + 176px), -57%) rotate(4deg);
 	}
 
-	/* narrow screens: the deck sits close to the edge, so spread less far or
-	   the left sheet lands under the page's overflow clip */
-	@media (max-width: 760px) {
+	/* phones: both cards side by side are wider than the screen, so they come out
+	   a touch smaller and closer together */
+	@media (max-width: 480px) {
 		.deck:is(:hover, :focus-visible, .is-open) .sheet--design {
-			transform: translate(-21%, -74%) rotate(-5deg);
+			transform: translate(calc(-50% - 37px), -97%) rotate(-5deg) scale(0.88);
 		}
 		.deck:is(:hover, :focus-visible, .is-open) .sheet--outside-figma {
-			transform: translate(30%, -84%) rotate(12deg);
+			transform: translate(calc(-50% + 150px), -57%) rotate(4deg) scale(0.88);
 		}
 	}
 
@@ -268,11 +261,6 @@
 	.label strong {
 		font-size: clamp(0.95rem, 5cqw, 1.35rem);
 		line-height: 1.1;
-	}
-	.label span {
-		font-size: clamp(0.75rem, 4cqw, 1rem);
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.82);
 	}
 
 	@media (prefers-reduced-motion: reduce) {

@@ -26,7 +26,7 @@
 					// icons: only opacity + a hair of blur, so the parallax / bob
 					// transforms on child layers are never touched.
 					.from(
-						'.tools-slot',
+						'.deck-slot',
 						{ autoAlpha: 0, filter: 'blur(6px)', duration: 0.5, stagger: 0.08 },
 						'-=0.55'
 					)
@@ -58,15 +58,14 @@
 			</span>
 		</div>
 
-		<!-- Tool icons live in a folder and rise out of it on hover, like the skills sheets. -->
-		<div class="stage">
-			<div class="tools-slot">
+		<!-- Keep the two interactive folders together, with one shared gap. -->
+		<div class="deck-row">
+			<div class="deck-slot skills-slot">
+				<SkillsDeck />
+			</div>
+			<div class="deck-slot tools-slot">
 				<ToolsDeck icons={hero.icons} />
 			</div>
-		</div>
-
-		<div class="hero-speech">
-			<SkillsDeck />
 		</div>
 
 		<div class="hero-photo" use:cursorLabel={hero.photo.label}>
@@ -164,30 +163,44 @@
 		letter-spacing: -0.005em;
 	}
 
-	.stage {
+	.deck-row {
 		position: absolute;
-		inset: 0;
-		/* above the portrait, so the open tool deck reads in front */
-		z-index: 6;
-		pointer-events: none;
-	}
-	.tools-slot {
-		position: absolute;
-		left: 37%;
-		bottom: clamp(2rem, 7vw, 4.5rem);
-		width: min(260px, 48vw);
-		pointer-events: auto;
-	}
-
-	.hero-speech {
-		position: absolute;
-		left: clamp(1rem, 6vw, 5rem);
+		left: max(1rem, calc(clamp(1rem, 6vw, 5rem) - 32px));
 		bottom: clamp(3rem, 14vw, 8rem);
 		z-index: 7;
-		/* the skill cards' 16px lists need the full 290px; on phones let it take
-		   more of the width rather than shrink */
-		width: min(290px, 78vw);
+		display: flex;
+		align-items: flex-end;
+		gap: 20px;
+	}
+	.deck-slot {
+		flex: none;
+		pointer-events: auto;
+	}
+	.skills-slot {
+		width: min(220px, 78vw);
+		/* 219px drawn height, stretched ×1.092 below. */
+		height: 239px;
 		rotate: -3deg;
+	}
+	.skills-slot :global(.deck) {
+		height: auto;
+		aspect-ratio: 300 / 298;
+		transform: scaleY(1.092);
+		transform-origin: top center;
+	}
+	.tools-slot {
+		width: min(220px, 48vw);
+		/* 154px current height + 40px. The offset keeps its visible top 24px lower. */
+		height: 194px;
+		translate: 0 104px;
+	}
+	.tools-slot :global(.deck) {
+		/* ToolsDeck reads this to keep its icons square inside the stretch */
+		--deck-stretch: 1.26;
+		height: auto;
+		aspect-ratio: 300 / 210;
+		transform: scaleY(var(--deck-stretch));
+		transform-origin: top center;
 	}
 
 	.hero-photo {
@@ -223,13 +236,27 @@
 			width: 66%;
 			max-width: 360px;
 		}
-		.hero-speech {
-			bottom: 9rem;
+		.deck-row {
+			bottom: 2rem;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.skills-slot {
+			height: auto;
+		}
+		.skills-slot :global(.deck) {
+			transform: none;
 		}
 		.tools-slot {
-			left: 24%;
-			bottom: 2rem;
 			width: min(220px, 52vw);
+			height: auto;
+			translate: none;
+		}
+		.tools-slot :global(.deck) {
+			--deck-stretch: 1;
+			height: auto;
+			aspect-ratio: 300 / 210;
+			transform: none;
 		}
 	}
 </style>

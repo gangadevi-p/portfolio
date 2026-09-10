@@ -7,13 +7,14 @@
 	let open = $state(false);
 	const fan = [
 		{ x: -2, y: 0.8, rotate: -14 },
-		{ x: -1.1, y: 0.3, rotate: -8 },
-		{ x: -0.2, y: 0, rotate: -3 },
-		{ x: 0.85, y: 0.25, rotate: 6 },
+		{ x: -1.1, y: 0.5, rotate: -8 },
+		{ x: -0.2, y: 0.35, rotate: -3 },
+		{ x: 0.85, y: 0.5, rotate: 6 },
 		{ x: 1.85, y: 0.7, rotate: 13 },
+		/* bottom row: a flat line, so every icon dips behind the folder's edge */
 		{ x: -1.45, y: 1.8, rotate: -12 },
-		{ x: -0.45, y: 1.35, rotate: -5 },
-		{ x: 0.55, y: 1.4, rotate: 7 },
+		{ x: -0.45, y: 1.7, rotate: -5 },
+		{ x: 0.55, y: 1.95, rotate: 7 },
 		{ x: 1.5, y: 1.8, rotate: 14 }
 	];
 
@@ -55,7 +56,7 @@
 			{@const position = fan[index] ?? fan[fan.length - 1]}
 			<span
 				class="icon"
-				style={`--i: ${index}; --x: ${position.x}; --y: ${position.y}; --rotate: ${position.rotate}deg;`}
+				style={`--i: ${index}; --x: ${position.x}; --y: ${position.y}; --row: ${position.y > 1 ? 1 : 0}; --rotate: ${position.rotate}deg;`}
 			>
 				<img src={icon.src} alt="" loading="lazy" draggable="false" />
 			</span>
@@ -78,7 +79,6 @@
 
 		<div class="label">
 			<strong>Tools</strong>
-			<span>{icons.length} Files</span>
 		</div>
 	</div>
 </div>
@@ -138,14 +138,17 @@
 		position: absolute;
 		left: 50%;
 		top: 44%;
-		width: clamp(2.3rem, 15cqw, 3.6rem);
+		width: clamp(calc(2.3rem + 16px), calc(15cqw + 16px), calc(3.6rem + 16px));
 		aspect-ratio: 1;
 		/* resting: tucked in the folder, the front row's tops just peeking over
-		   the flap (it rises to the right, so they sit lower there) and the back
-		   row hidden behind the cover */
+		   the flap — the clamp follows its S-curve, high on the left and low on
+		   the right — and the back row hidden behind the cover */
 		transform: translate(
 				calc(-50% + (var(--x) * 1.1rem)),
-				calc(-50% + (var(--x) * 0.4rem) + (var(--y) * 0.9rem) - 0.4rem)
+				calc(
+					-50% + clamp(-1.5rem, var(--x) * 1rem - 0.5rem, -0.19rem) + 1rem + 3px +
+						(var(--row) * 1.5rem)
+				)
 			)
 			scale(0.8)
 			rotate(calc(var(--rotate) * 0.4));
@@ -160,13 +163,21 @@
 		height: 100%;
 		object-fit: contain;
 		filter: drop-shadow(0 10px 14px rgba(58, 34, 29, 0.24));
+		/* the parent may stretch the whole deck taller (--deck-stretch); undo it
+		   here so the logos stay square */
+		scale: 1 calc(1 / var(--deck-stretch, 1));
 	}
 	/* open: up out of the folder once the cover has swung, one after another.
-	   Still behind the cover, so it hides the bottom row's lower edges. */
+	   Just high enough to stay connected to the folder: the bottom row's lower
+	   edges stay tucked behind the tipped cover — dropping a little more on the
+	   right, where the flap sits lower — and spaced so no icon overlaps another. */
 	.deck:is(:hover, :focus-visible, .is-open) .icon {
 		transform: translate(
-				calc(-50% + (var(--x) * 3.15rem)),
-				calc(-50% + (var(--y) * 2.15rem) - 4.3rem)
+				calc(-50% + var(--fan-shift, 0px) + (var(--x) * (3.4rem + 6px))),
+				calc(
+					-50% + (var(--y) * (2.875rem + 6px)) - 8.6rem + 10px +
+						(clamp(0, var(--x), 1.5) * 10px)
+				)
 			)
 			scale(1)
 			rotate(var(--rotate));
@@ -208,11 +219,14 @@
 		font-size: clamp(1rem, 6cqw, 1.45rem);
 		line-height: 1.1;
 	}
-	.label span {
-		font-size: clamp(0.75rem, 4cqw, 1rem);
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.82);
+	/* matches the hero's stacked layout: the deck hugs the page edge there, so
+	   the fan shifts right or its leftmost icon lands off-screen */
+	@media (max-width: 760px) {
+		.deck {
+			--fan-shift: 20px;
+		}
 	}
+
 	.deck:focus-visible {
 		outline: 2px solid var(--c-accent-deep);
 		outline-offset: 8px;
