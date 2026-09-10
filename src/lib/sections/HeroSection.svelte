@@ -125,7 +125,9 @@
 	.headline {
 		position: relative;
 		z-index: 3;
-		margin-top: var(--headline-mt);
+		/* lifted 24px clear of the portrait; --photo-top still reads the
+		   unshifted --headline-mt, so the photo itself doesn't move */
+		margin-top: calc(var(--headline-mt) - 24px);
 		pointer-events: none;
 	}
 	.kicker {
@@ -221,7 +223,10 @@
 	}
 	.hero-photo :global(img) {
 		display: block;
-		width: 100%;
+		/* 8px shorter than the box would give it: trim the width by the
+		   photo's 1100:1319 ratio so height drops by exactly 8px, undistorted */
+		width: calc(100% - 8px * 1100 / 1319);
+		margin-left: auto; /* keep her right edge where it was */
 		height: auto; /* preserve aspect ratio, never a fixed height */
 
 	}
