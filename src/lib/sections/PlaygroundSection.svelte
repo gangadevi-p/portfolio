@@ -6,7 +6,10 @@
 
 <section class="section">
 	<Container>
-		<SectionHeading id="playground" kicker="More" title="I Play" />
+		<div class="section-head">
+			<SectionHeading id="playground" kicker="More" title="I Play" />
+			<span class="tool">Figma</span>
+		</div>
 
 		<div class="videos" use:reveal>
 			<div class="video">
@@ -59,9 +62,32 @@
 		text-align: center;
 		align-items: center;
 	}
+	.section-head {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		margin-bottom: clamp(1.5rem, 4vw, 3rem);
+	}
+	.section-head :global(.heading) {
+		grid-column: 2;
+		margin-bottom: 0;
+	}
+	.tool {
+		grid-column: 3;
+		justify-self: end;
+		display: inline-flex;
+		align-items: center;
+		background: #fff;
+		color: #1c1c1c;
+		font-size: var(--fs-small);
+		font-weight: 600;
+		line-height: 1;
+		padding: 0.7rem 1.25rem;
+		border-radius: 999px;
+	}
 	.videos {
 		display: flex;
-		gap: 40px;
+		gap: 12px;
 		align-items: stretch;
 		/* hold the row narrower than the container so the two tiles read
 		   smaller; they still share one width via flex: 1 1 0 */
@@ -116,6 +142,15 @@
 		filter: url(#pg-knockout);
 	}
 	@media (max-width: 720px) {
+		.section-head {
+			grid-template-columns: 1fr auto;
+		}
+		.section-head :global(.heading) {
+			grid-column: 1;
+		}
+		.tool {
+			grid-column: 2;
+		}
 		.videos {
 			flex-direction: column;
 		}
