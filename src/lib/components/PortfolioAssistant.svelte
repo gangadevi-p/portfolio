@@ -97,7 +97,7 @@
 <style>
 	.portfolio-assistant {
 		position: absolute;
-		right: clamp(1rem, 3vw, 2.5rem);
+		right: 1rem;
 		bottom: clamp(1rem, 3vw, 2.5rem);
 		z-index: 12;
 		display: grid;
@@ -120,7 +120,7 @@
 		position: fixed;
 		top: clamp(4.75rem, 9vh, 6.5rem);
 		bottom: clamp(1.5rem, 6vh, 3rem);
-		right: clamp(1rem, 3vw, 2.5rem);
+		right: 1rem;
 		z-index: 50;
 		width: min(380px, calc(100vw - 2rem));
 		display: flex;
@@ -130,6 +130,12 @@
 		flex: 1;
 		min-height: 0;
 		overflow-y: auto;
+		/* scroll still works, just no visible scrollbar */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	.chat-card.rail .messages::-webkit-scrollbar {
+		display: none;
 	}
 	.nav-placement .launcher {
 		padding: 0.58rem 0.82rem;
