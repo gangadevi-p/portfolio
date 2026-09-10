@@ -86,7 +86,7 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
 		gap: clamp(1rem, 2.5vw, 1.5rem);
 		align-items: stretch;
 	}

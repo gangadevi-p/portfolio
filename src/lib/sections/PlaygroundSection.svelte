@@ -97,7 +97,7 @@
 	.video {
 		flex: 1 1 0;
 		min-width: 0;
-		border-radius: 50px;
+		border-radius: 24px;
 		overflow: hidden;
 		background: transparent;
 	}
@@ -105,7 +105,7 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		border-radius: 50px;
+		border-radius: 24px;
 	}
 	/* keep the two tiles in this row identical in width and height,
 	   cropping to fill rather than letterboxing the differing aspect ratios */

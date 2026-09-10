@@ -11,9 +11,18 @@
 export const experience = [
 	{
 		company: 'Manino',
-		role: 'Product Designer',
+		role: 'Product & UX Designer',
+		project: '(Expense Tracker)',
+		summary: 'Focused on core UX flows and experience.',
+		status: 'Under development',
 		logo: '/img/experience/manino.png',
-		blurb: 'Designed end-to-end product — flows, visuals, UX and problem solving.',
+		points: [
+			'Simplified complex findings into clear insights',
+			'Streamlined expense-adding flow, cutting friction',
+			'Cut 239 tags to 21 for simpler categorization',
+			'Built clean, scalable information architecture',
+			'Prioritized core needs, trimmed the rest'
+		],
 		period: 'May 2026 – July 2026',
 		href: ''
 	},

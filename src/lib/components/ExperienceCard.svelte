@@ -21,8 +21,10 @@
 	rel={job.href && !internal ? 'noreferrer' : undefined}
 	use:reveal={{ delay: index * 0.06 }}
 	use:cursorLabel={job.href
-		? { label: internal ? 'Open case study' : 'View my work', variant: internal ? 'view' : 'link' }
-		: undefined}
+		? { label: 'Open my work', variant: 'view' }
+		: job.status
+			? { label: job.status, variant: 'view' }
+			: undefined}
 >
 	<div class="logo">
 		{#if job.logo && !broken}
@@ -34,8 +36,12 @@
 
 	<div class="body">
 		<h3>{job.role}</h3>
+		{#if featured}
+			<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
+			{#if job.summary}<p class="featured-summary">{job.summary}</p>{/if}
+		{/if}
 
-		{#if job.points?.length}
+		{#if !featured && job.points?.length}
 			<ul class="points">
 				{#each job.points as point}<li>{point}</li>{/each}
 			</ul>
@@ -44,7 +50,8 @@
 		{/if}
 
 		<span class="period">
-			<span>{job.period}</span>
+			{#if featured && job.status}<span class="status">{job.status}</span>{/if}
+			<span class="period-date">{job.period}</span>
 			<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
 				<path
 					fill="none"
@@ -57,10 +64,19 @@
 			</svg>
 		</span>
 	</div>
+
+	{#if featured && job.points?.length}
+		<ul class="points featured-points">
+			{#each job.points as point}<li>{point}</li>{/each}
+		</ul>
+	{/if}
+
 </svelte:element>
 
 <style>
 	.xp {
+		--card-pad: clamp(1.1rem, 2.5vw, 1.75rem);
+		--logo-size: clamp(96px, 12vw, 150px);
 		display: flex;
 		gap: clamp(1rem, 2.5vw, 1.75rem);
 		background: #f2f5f8;
@@ -71,16 +87,18 @@
 		--c-cursor-ink: #f7f5f0;
 		border: 1px solid rgba(0, 0, 0, 0.06);
 		border-radius: 22px;
-		padding: clamp(1.1rem, 2.5vw, 1.75rem);
+		padding: var(--card-pad);
 	}
 	.xp.featured {
 		height: 100%;
+		position: relative;
+		--logo-size: clamp(96px, 10vw, 120px);
 	}
 	.logo {
 		position: relative;
 		align-self: flex-start;
 		flex: none;
-		width: clamp(96px, 12vw, 150px);
+		width: var(--logo-size);
 		aspect-ratio: 1;
 		border-radius: 16px;
 		overflow: hidden;
@@ -106,10 +124,26 @@
 		gap: 0.75rem;
 		min-width: 0;
 	}
+	.featured .body {
+		padding-bottom: 3.75rem;
+	}
+	.xp.featured .featured-points {
+		position: absolute;
+		top: calc(var(--card-pad) + var(--logo-size) + 1.5rem);
+		left: var(--card-pad);
+		right: var(--card-pad);
+		list-style: disc;
+		padding-left: 1.2rem;
+		gap: 0.5rem;
+	}
 	h3 {
 		font-size: clamp(1.15rem, 2.4vw, 1.5rem);
 		font-weight: 800;
 		letter-spacing: -0.01em;
+	}
+	.featured h3 {
+		font-size: clamp(1.1rem, 1.8vw, 1.25rem);
+		letter-spacing: -0.02em;
 	}
 	.blurb {
 		color: #5f5f5f;
@@ -121,6 +155,18 @@
 		color: #5f5f5f;
 		display: grid;
 		gap: 0.35rem;
+	}
+	.company-name {
+		font-weight: 700;
+	}
+	.project-name {
+		margin-left: 0.45rem;
+		font-weight: 500;
+		color: #5f5f5f;
+	}
+	.featured-summary {
+		color: #5f5f5f;
+		max-width: 34ch;
 	}
 
 	.period {
@@ -135,6 +181,18 @@
 		padding: 0.6rem 1rem;
 		border-radius: 999px;
 	}
+	.featured .period {
+		position: absolute;
+		left: 16px;
+		right: 16px;
+		bottom: 16px;
+		margin-top: 0;
+		justify-content: space-between;
+	}
+	.status {
+		font-weight: 600;
+		color: #5f5f5f;
+	}
 	.xp.linked {
 		transition: background var(--dur-fast) var(--ease-out);
 	}
@@ -145,6 +203,10 @@
 	@media (max-width: 560px) {
 		.xp {
 			flex-direction: column;
+		}
+		.featured .period {
+			position: static;
+			margin-top: 0.4rem;
 		}
 	}
 </style>

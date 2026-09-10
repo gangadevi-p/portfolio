@@ -1,10 +1,9 @@
 <script>
 	import { revealScale } from '$motion/reveal.js';
-	import { scrollFade } from '$motion/scrollfade.js';
 	let { id, title, ink = false, children } = $props();
 </script>
 
-<section {id} class="k-section" use:scrollFade>
+<section {id} class="k-section">
 	<div class="inner">
 		{#if title}
 			<h2 class="k-title" class:ink use:revealScale>{title}</h2>
