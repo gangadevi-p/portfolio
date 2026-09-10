@@ -3,6 +3,7 @@
 	import NavButton from './NavButton.svelte';
 	import { navigation } from '$motion/navigation.svelte.js';
 	import { base } from '$app/paths';
+	import PortfolioAssistant from './PortfolioAssistant.svelte';
 	import { page } from '$app/state';
 	let onHome = $derived(page.url.pathname === `${base}/`);
 	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
@@ -36,18 +37,23 @@
 			</li>
 		{/each}
 	</ul>
-	<div class="resume">
-		<NavButton
-			href={`${base}/#resume`}
-			label="Resume"
-			selected={onHome && navigation.active === 'Resume'}
-			onclick={() => (navigation.active = 'Resume')}
-		/>
+	<div class="nav-actions">
+		<div class="resume">
+			<NavButton
+				href={`${base}/#resume`}
+				label="Resume"
+				selected={onHome && navigation.active === 'Resume'}
+				onclick={() => (navigation.active = 'Resume')}
+			/>
+		</div>
+		<PortfolioAssistant placement="nav" />
 	</div>
 </nav>
 
 <style>
 	.nav {
+		position: relative;
+		z-index: 13;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -74,8 +80,13 @@
 		grid-column: 2;
 		justify-self: center;
 	}
-	.resume {
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
 		justify-self: end;
+	}
+	.resume {
 		border: 1px solid rgb(255 255 255 / 50%);
 		border-radius: 999px;
 		background: rgb(255 255 255 / 20%);
@@ -127,7 +138,7 @@
 			max-width: 100%;
 			justify-content: center;
 		}
-		.resume {
+		.nav-actions {
 			grid-column: 2;
 			grid-row: 1;
 		}
