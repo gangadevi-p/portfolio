@@ -81,6 +81,23 @@
 	/* rounded corners on every image in the gallery */
 	.stack :global(img) {
 		border-radius: 24px;
+		transition:
+			transform var(--dur-med) var(--ease-out),
+			filter var(--dur-med) var(--ease-out);
+	}
+	/* quiet hover: a small zoom + brightness lift, no looping motion */
+	.stack :global(img:hover) {
+		transform: scale(1.02);
+		filter: brightness(1.04) saturate(1.05);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.stack :global(img) {
+			transition: none;
+		}
+		.stack :global(img:hover) {
+			transform: none;
+			filter: none;
+		}
 	}
 	/* Layout 2 + Layout 3 in a 65% column, Layout 4 filling the rest and
 	   matching that column's height. */
