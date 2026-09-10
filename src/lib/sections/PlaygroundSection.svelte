@@ -1,32 +1,29 @@
 <script>
-	import { projects } from '$data/projects.js';
 	import Container from '$components/Container.svelte';
 	import SectionHeading from '$components/SectionHeading.svelte';
 	import { reveal } from '$motion/reveal.js';
-	import { cursorLabel } from '$motion/cursor.svelte.js';
 </script>
 
 <section class="section">
 	<Container>
-		<SectionHeading id="playground" kicker="More" title="Playground" />
+		<SectionHeading id="playground" kicker="More" title="I Play" />
 
-		<ul class="list">
-			{#each projects as p, i (p.title)}
-				<li use:reveal={{ y: 20, delay: (i % 3) * 0.05 }}>
-					<a
-						href={p.href}
-						target="_blank"
-						rel="noreferrer"
-						use:cursorLabel={{ label: p.title, variant: 'link' }}
-					>
-						<span class="title">{p.title}</span>
-						<span class="note">{p.note}</span>
-						<span class="year">{p.year}</span>
-						<span class="arrow" aria-hidden="true">↗</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
+		<div class="videos" use:reveal>
+			<div class="video">
+				<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
+			</div>
+			<div class="video video--contain">
+				<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
+			</div>
+		</div>
+
+		<div class="video video--wide video--narrow" use:reveal>
+			<img src="/files/slider.gif" alt="Slider interaction preview" loading="lazy" />
+		</div>
+
+		<div class="video video--wide video--narrow" use:reveal>
+			<img src="/files/navigation-web.avif" alt="Navigation interaction preview" loading="lazy" />
+		</div>
 	</Container>
 </section>
 
@@ -34,54 +31,58 @@
 	.section {
 		padding-block: clamp(3rem, 9vw, 7rem);
 	}
-	.list {
-		list-style: none;
-		padding: 0;
-		border-top: 1px solid var(--c-line);
+	/* centre the heading to match the centred media stack below it */
+	.section :global(#playground) {
+		text-align: center;
+		align-items: center;
 	}
-	.list li {
-		border-bottom: 1px solid var(--c-line);
+	.videos {
+		display: flex;
+		gap: 40px;
+		align-items: stretch;
+		/* hold the row narrower than the container so the two tiles read
+		   smaller; they still share one width via flex: 1 1 0 */
+		max-width: 560px;
+		margin-inline: auto;
 	}
-	.list a {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) auto auto;
-		align-items: baseline;
-		gap: 1.5rem;
-		padding: 1.4rem 0;
-		transition:
-			padding-inline var(--dur-fast) var(--ease-out),
-			background var(--dur-fast) var(--ease-out);
+	.video {
+		flex: 1 1 0;
+		min-width: 0;
+		border-radius: 50px;
+		overflow: hidden;
+		background: transparent;
 	}
-	.list a:hover {
-		padding-inline: 0.75rem;
-		/* the indent alone was easy to miss — lift the row and its dimmed
-		   secondary text so the whole line reads as the thing being hovered */
-		background: rgba(var(--c-ink-rgb), 0.05);
+	.video img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 50px;
 	}
-	.title {
-		font-weight: 700;
+	/* keep the two tiles in this row identical in width and height,
+	   cropping to fill rather than letterboxing the differing aspect ratios */
+	.videos .video {
+		aspect-ratio: 348 / 244;
 	}
-	.note,
-	.year {
-		color: var(--c-ink-soft);
-		font-size: var(--fs-small);
-		transition: color var(--dur-fast) var(--ease-out);
+	.videos .video img {
+		height: 100%;
+		object-fit: cover;
 	}
-	.list a:hover .note,
-	.list a:hover .year {
-		color: var(--c-ink);
+	/* the progress clip is square — contain it so the circle stays whole
+	   inside the shared tile size instead of being cropped top and bottom */
+	.videos .video--contain img {
+		object-fit: contain;
 	}
-	.arrow {
-		color: var(--c-accent);
+	.video--wide {
+		margin-top: 24px;
 	}
-	@media (max-width: 640px) {
-		.list a {
-			grid-template-columns: 1fr auto;
-			gap: 0.35rem 1rem;
-		}
-		.note {
-			grid-column: 1 / -1;
-			order: 3;
+	/* hold the slider to the same width as the two tiles above it */
+	.video--narrow {
+		max-width: 560px;
+		margin-inline: auto;
+	}
+	@media (max-width: 720px) {
+		.videos {
+			flex-direction: column;
 		}
 	}
 </style>
