@@ -8,7 +8,7 @@
 	import SiteNav from '$components/SiteNav.svelte';
 	import FloatingIcon from '$components/FloatingIcon.svelte';
 	import ParallaxImage from '$components/ParallaxImage.svelte';
-	import SpeechBubble from '$components/SpeechBubble.svelte';
+	import SkillsDeck from '$components/SkillsDeck.svelte';
 
 	let root;
 
@@ -72,7 +72,7 @@
 		</div>
 
 		<div class="hero-speech">
-			<SpeechBubble title={hero.speech.title} lines={hero.speech.lines} />
+			<SkillsDeck />
 		</div>
 
 		<div class="hero-photo" use:cursorLabel={hero.photo.label}>
@@ -188,7 +188,9 @@
 		left: clamp(1rem, 6vw, 5rem);
 		bottom: clamp(3rem, 14vw, 8rem);
 		z-index: 7;
-		width: min(290px, 62vw);
+		/* the skill cards' 16px lists need the full 290px; on phones let it take
+		   more of the width rather than shrink */
+		width: min(290px, 78vw);
 		rotate: -3deg;
 	}
 
