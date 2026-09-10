@@ -15,21 +15,21 @@
 	<div class="inner">
 		<header class="head" use:reveal>
 			<p>Beyond the screen</p>
-			<h2>Also me.</h2>
+			<h2>If I were a moodboard, this would be me.</h2>
 			<div class="intro">
 				<p>
-					🎨 If I'm not designing in <strong>Figma</strong> 🟦, you'll probably find me at the
-					<strong>gym</strong> 🏋️, fueled by <strong>coffee</strong> ☕, or sketching ideas with
-					<strong>pencils</strong> ✏️, <strong>paper</strong> 📄, and <strong>paint</strong> 🎨.
+					If I'm not designing in <strong>Figma</strong>, you'll probably find me at the
+					<strong>gym</strong>, fueled by <strong>coffee</strong>, or sketching ideas with
+					<strong>pencils, paper, and paint</strong>.
 				</p>
 				<p>
-					🎓 I graduated in <strong>Cybersecurity</strong>, but my creative mind chose crafting
-					experiences over chasing vulnerabilities.
+					I graduated in <strong>Cybersecurity</strong>, but my creative mind chose
+					<strong>crafting experiences</strong> over chasing vulnerabilities.
 				</p>
 				<p>
-					💡 Curiosity drives everything I do—I question, explore, and iterate relentlessly,
-					always asking <strong>“Why?”</strong>, <strong>“What if?”</strong>, and
-					<strong>“How can this be better?”</strong>.
+					<strong>Curiosity drives everything I do.</strong> I question, explore, and iterate
+					relentlessly, always asking <strong>“Why?”</strong>, <strong>“What if?”</strong>, and
+					<strong>“How can this be better?”</strong>
 				</p>
 			</div>
 		</header>
@@ -65,10 +65,12 @@
 		margin-inline: auto;
 		padding-inline: clamp(1.25rem, 4vw, 3.5rem);
 	}
+	/* Left-aligned, sharing the gallery's width so the heading lines up with
+	   the images' left edge. */
 	.head {
-		max-width: 46rem;
+		width: 72%;
 		margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
-		text-align: center;
+		text-align: left;
 	}
 	.head > p {
 		margin-bottom: 0.55rem;
@@ -79,22 +81,32 @@
 		text-transform: uppercase;
 	}
 	.head h2 {
-		font-size: clamp(2.5rem, 7vw, 5.5rem);
+		max-width: 20ch;
+		font-size: clamp(2.25rem, 5.5vw, 4.25rem);
 		font-weight: 800;
-		letter-spacing: -0.06em;
-		line-height: 0.95;
+		letter-spacing: -0.05em;
+		line-height: 1;
 	}
+	/* Apple-style editorial copy: large semibold text in a muted coffee tone,
+	   with the key phrases stepping up to the full coffee brown. */
 	.intro {
 		display: grid;
-		gap: 0.8rem;
-		margin-top: 1.5rem;
-		color: #4d4d52;
-		font-size: clamp(0.98rem, 1.8vw, 1.08rem);
-		line-height: 1.65;
+		gap: 1.1rem;
+		margin-top: clamp(1.75rem, 3vw, 2.5rem);
+		color: #8f7d77;
+		font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+		font-weight: 600;
+		letter-spacing: -0.015em;
+		line-height: 1.35;
 	}
 	.intro strong {
-		color: #1d1d1f;
+		color: var(--c-coffee);
 		font-weight: 700;
+	}
+	@media (max-width: 760px) {
+		.head {
+			width: 100%;
+		}
 	}
 	.stack {
 		display: flex;
