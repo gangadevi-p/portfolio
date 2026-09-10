@@ -220,7 +220,7 @@ export const experience = [
  */
 export const forAudience = {
 	hiringManager:
-		'She ships. The KIET Student App is live on the Play Store with real adoption (6,061 acquisitions, ~600 DAU), and she designed it end to end, so she needs less hand-off across research, IA, flows, and UI. She scopes tightly — CueUp is defined as much by what it refuses to do as by what it does — and she communicates decisions through structured case studies. Range across mobile apps, B2B tools, e-commerce, and communication design.',
+		'She ships. The KIET Student App is live on the Play Store with real adoption (6,061 acquisitions, ~600 DAU), and she designed it end to end, carrying research, IA, flows, and UI with minimal hand-off. She scopes tightly — CueUp is defined as much by what it refuses to do as by what it does — and she communicates decisions through structured case studies. Her work ranges across mobile apps, B2B tools, e-commerce, and communication design.',
 	designer:
 		'Research-led and systems-minded. She shows the IA, the flows, and the before/after iterations, not just the final shots. She thinks in reusable components, treats motion as part of the craft, and grounds choices in real user language (student interviews, forum research). Comfortable pairing with engineers — the KIET app was built with an Android developer.',
 	recruiter:
@@ -262,7 +262,7 @@ export const knowledge = [
 	{
 		id: 'kiet',
 		tags: ['kiet', 'student', 'app', 'campus', 'college', 'university', 'play', 'store', 'android', 'metrics', 'impact', 'users'],
-		text: 'For the KIET Student App, Gangadevi designed a unified campus app for announcements, attendance, academics, permissions, and services like the café menu, library, and timetable — 9+ modules across student and admin roles. Students had been relying on WhatsApp, PDFs, and scattered websites. Her role covered research, personas, UX and UI, user flows, and iteration; the finished app reached 6,061 total acquisitions with about 600 daily and 1.8k monthly active users and 5-star Play Store reviews.'
+		text: 'For the KIET Student App, Gangadevi designed a unified campus app for announcements, attendance, academics, permissions, and services like the café menu, library, and timetable — 9+ modules across student and admin roles. Students had been relying on WhatsApp, PDFs, and scattered websites. Her role covered research, personas, UX and UI, user flows, and iteration; the finished app reached 6,061 total acquisitions, about 600 daily and 1.8k monthly active users, and 5-star Play Store reviews.'
 	},
 	{
 		id: 'cueup',
@@ -317,7 +317,7 @@ export const knowledge = [
 	{
 		id: 'contact',
 		tags: ['contact', 'reach', 'email', 'hire', 'talk', 'connect', 'linkedin', 'dribbble', 'message', 'resume', 'cv'],
-		text: 'You can reach Gangadevi at hello@gangadevi.design, or through the Dribbble, LinkedIn, and Read.cv links in the site. The Resume link on the page has her full profile.'
+		text: 'You can reach Gangadevi at hello@gangadevi.design, or through the Dribbble, LinkedIn, and Read.cv links on the site. The Resume link on the page has her full profile.'
 	},
 	{
 		id: 'location',

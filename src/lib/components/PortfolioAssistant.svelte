@@ -7,8 +7,21 @@
 
 	let open = $state(false);
 	let question = $state('');
-	let messages = $state([{ role: 'assistant', text: assistantWelcome }]);
+	let messages = $state([{ role: 'assistant', text: assistantWelcome, animate: true }]);
 	let { placement = 'hero' } = $props();
+
+	/** Recommended prompts already asked — dropped from the chip row. */
+	let askedPrompts = $state([]);
+	let remainingPrompts = $derived(
+		assistantPrompts.filter((prompt) => !askedPrompts.includes(prompt))
+	);
+
+	/** The transcript element, so a new answer scrolls it to the bottom. */
+	let transcript = $state(null);
+	$effect(() => {
+		messages.length;
+		transcript?.scrollTo({ top: transcript.scrollHeight });
+	});
 
 	/**
 	 * Move the open chat to <body>. In the nav, GSAP's intro leaves a sub-pixel
@@ -30,10 +43,13 @@
 		if (!cleanQuestion) return;
 
 		messages = [
-			...messages.slice(-1),
+			...messages,
 			{ role: 'user', text: cleanQuestion },
-			{ role: 'assistant', text: getPortfolioAnswer(cleanQuestion) }
+			{ role: 'assistant', text: getPortfolioAnswer(cleanQuestion), animate: true }
 		];
+		if (assistantPrompts.includes(cleanQuestion) && !askedPrompts.includes(cleanQuestion)) {
+			askedPrompts = [...askedPrompts, cleanQuestion];
+		}
 		question = '';
 		open = true;
 	}
@@ -54,26 +70,37 @@
 			aria-live="polite"
 		>
 			<header>
-				<div>
-					<span class="eyebrow">Portfolio guide</span>
-					<h2>Ask about my work</h2>
-				</div>
+				<span class="eyebrow">Portfolio guide</span>
 				<button class="close" type="button" aria-label="Close portfolio guide" onclick={() => (open = false)}>
 					×
 				</button>
+				<h2>Ask about my work</h2>
 			</header>
 
-			<div class="messages">
+			<!-- data-lenis-prevent: let the page's Lenis smooth-scroll ignore the
+			     wheel here so this panel scrolls natively instead -->
+			<div class="messages" data-lenis-prevent bind:this={transcript}>
 				{#each messages as message, i (`${message.role}-${i}`)}
-					<p class:user={message.role === 'user'}>{message.text}</p>
+					<p class:user={message.role === 'user'}>
+						{#if message.role === 'assistant' && message.animate}
+							{#each message.text.split(' ') as word, w}<span
+									class="word"
+									style="animation-delay: {Math.min(w * 70, 3200)}ms">{word}</span
+								>{' '}{/each}
+						{:else}
+							{message.text}
+						{/if}
+					</p>
 				{/each}
 			</div>
 
-			<div class="suggestions" aria-label="Suggested questions">
-				{#each assistantPrompts as prompt}
-					<button type="button" onclick={() => ask(prompt)}>{prompt}</button>
-				{/each}
-			</div>
+			{#if remainingPrompts.length}
+				<div class="suggestions" aria-label="Suggested questions">
+					{#each remainingPrompts as prompt (prompt)}
+						<button type="button" onclick={() => ask(prompt)}>{prompt}</button>
+					{/each}
+				</div>
+			{/if}
 
 			<form onsubmit={submit}>
 				<label class="sr-only" for="portfolio-question">Ask a question</label>
@@ -95,6 +122,12 @@
 </div>
 
 <style>
+	/* the guide's own accent — a warm brown in place of the site's orange */
+	.portfolio-assistant,
+	.chat-card {
+		--guide-accent: #7a4a2f;
+		--guide-accent-tint: rgb(122 74 47 / 10%);
+	}
 	.portfolio-assistant {
 		position: absolute;
 		right: 1rem;
@@ -111,23 +144,25 @@
 		bottom: auto;
 		max-width: none;
 	}
-	/* Open chat (nav): a tall column pinned to the right edge of the screen,
-	   running the full viewport height so it overlays the hero. It's portalled
-	   to <body>, so it's a true viewport-fixed panel. Flex column so the
-	   transcript takes every pixel left over by the header, chips and input,
-	   and scrolls inside itself when the conversation gets long. */
+	/* Open chat (nav): a card pinned to the right edge of the screen, sized to
+	   its own content — the header, chips, input and just enough height for the
+	   answer already on screen. It's portalled to <body>, so it's a true
+	   viewport-fixed panel. `max-height` keeps a long conversation from running
+	   off-screen; only then does the transcript scroll inside itself. */
 	.chat-card.rail {
 		position: fixed;
 		top: clamp(4.75rem, 9vh, 6.5rem);
-		bottom: clamp(1.5rem, 6vh, 3rem);
 		right: 1rem;
 		z-index: 50;
 		width: min(380px, calc(100vw - 2rem));
+		max-height: calc(
+			100vh - clamp(4.75rem, 9vh, 6.5rem) - clamp(1.5rem, 6vh, 3rem)
+		);
 		display: flex;
 		flex-direction: column;
 	}
 	.chat-card.rail .messages {
-		flex: 1;
+		flex: 0 1 auto;
 		min-height: 0;
 		overflow-y: auto;
 		/* scroll still works, just no visible scrollbar */
@@ -156,20 +191,27 @@
 		box-shadow: 0 18px 45px rgb(58 34 29 / 22%);
 		backdrop-filter: blur(18px);
 	}
+	/* Row 1: "Portfolio guide" eyebrow ——— close (×), centred to each other.
+	   Row 2: the "Ask about my work" heading, spanning the full width.
+	   Then the transcript starts. */
 	header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: 0.75rem;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: 0.75rem;
+		row-gap: 0.3rem;
+	}
+	header h2 {
+		grid-column: 1 / -1;
 	}
 	.eyebrow {
 		display: block;
-		margin-bottom: 0.12rem;
+		margin-bottom: 0;
 		font-size: 0.68rem;
 		font-weight: 800;
 		letter-spacing: 0.11em;
 		text-transform: uppercase;
-		color: var(--c-accent);
+		color: var(--guide-accent);
 	}
 	h2 {
 		margin: 0;
@@ -208,6 +250,30 @@
 		background: var(--c-coffee);
 		color: #fff;
 	}
+	/* answers arrive word by word — a quick blur-to-sharp shimmer, like the
+	   launcher spark. Layout space is held from the start so nothing jumps. */
+	.messages p .word {
+		display: inline-block;
+		opacity: 0;
+		filter: blur(5px);
+		transform: translateY(0.14em);
+		animation: word-in 0.55s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+	}
+	@keyframes word-in {
+		to {
+			opacity: 1;
+			filter: blur(0);
+			transform: none;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.messages p .word {
+			animation: none;
+			opacity: 1;
+			filter: none;
+			transform: none;
+		}
+	}
 	.suggestions {
 		display: flex;
 		flex-wrap: wrap;
@@ -225,8 +291,8 @@
 	}
 	.suggestions button:hover,
 	.suggestions button:focus-visible {
-		border-color: var(--c-accent);
-		background: rgb(232 110 60 / 10%);
+		border-color: var(--guide-accent);
+		background: var(--guide-accent-tint);
 	}
 	form {
 		display: flex;
@@ -277,7 +343,7 @@
 		transform: translateY(-2px);
 		background: #1f120f;
 	}
-	.spark { color: var(--c-accent); }
+	.spark { color: var(--guide-accent); }
 	.sr-only {
 		position: absolute;
 		width: 1px;
