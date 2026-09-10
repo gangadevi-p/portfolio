@@ -88,6 +88,12 @@
 	use:cursorLabel={{ label: 'Explore tools', variant: 'view' }}
 >
 	<svg class="shell shell--back" viewBox="0 0 300 249" aria-hidden="true">
+		<defs>
+			<linearGradient id="tools-back-fill" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0%" stop-color="#7a5242" />
+				<stop offset="100%" stop-color="#4a2e25" />
+			</linearGradient>
+		</defs>
 		<path
 			class="back"
 			d="M30 22h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v144c0 14-10 24-24 24H30c-14 0-24-10-24-24V46c0-13 10-24 24-24Z"
@@ -106,15 +112,34 @@
 	</div>
 
 	<div class="cover">
+		<div class="glass" aria-hidden="true"></div>
 		<svg class="shell" viewBox="0 0 300 249" aria-hidden="true">
 			<defs>
-				<linearGradient id="tools-folder-face" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stop-color="#3a221d" />
-					<stop offset="100%" stop-color="#ff6a3d" />
+				<linearGradient id="tools-glass-tint" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="var(--glass-top)" />
+					<stop offset="100%" stop-color="var(--glass-bottom)" />
+				</linearGradient>
+				<linearGradient id="tools-glass-sheen" x1="0" y1="0" x2="0.9" y2="1">
+					<stop offset="0%" stop-color="#fff" stop-opacity="0.28" />
+					<stop offset="38%" stop-color="#fff" stop-opacity="0.06" />
+					<stop offset="60%" stop-color="#fff" stop-opacity="0" />
+				</linearGradient>
+				<linearGradient id="tools-glass-edge" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="#ffe9dc" stop-opacity="0.85" />
+					<stop offset="100%" stop-color="#ffe9dc" stop-opacity="0.2" />
 				</linearGradient>
 			</defs>
+			<!-- drawn three times: tint, sheen, lit edge -->
 			<path
-				class="front"
+				class="front-tint"
+				d="M30 60h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v106c0 14-10 24-24 24H30c-14 0-24-10-24-24V84c0-13 10-24 24-24Z"
+			/>
+			<path
+				class="front-sheen"
+				d="M30 60h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v106c0 14-10 24-24 24H30c-14 0-24-10-24-24V84c0-13 10-24 24-24Z"
+			/>
+			<path
+				class="front-edge"
 				d="M30 60h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v106c0 14-10 24-24 24H30c-14 0-24-10-24-24V84c0-13 10-24 24-24Z"
 			/>
 		</svg>
@@ -137,6 +162,9 @@
 		--rise-delay: 300ms;
 		/* close: the icons settle back in before the cover tips back up */
 		--settle: 300ms;
+		/* brown glass, same as SkillsDeck: light at the top, deep at the fold */
+		--glass-top: rgba(150, 104, 82, 0.45);
+		--glass-bottom: rgba(70, 42, 32, 0.78);
 
 		position: relative;
 		width: 100%;
@@ -161,11 +189,22 @@
 		z-index: 1;
 	}
 	.back {
-		fill: #5a3a30;
+		/* deeper brown than the glass cover, with a faint lit edge */
+		fill: url(#tools-back-fill);
+		stroke: rgba(255, 232, 216, 0.3);
+		stroke-width: 1.2;
 	}
-	.front {
-		fill: url(#tools-folder-face);
-		stroke: rgba(255, 245, 235, 0.55);
+	/* brown frosted glass, as in SkillsDeck: .glass blurs what's behind, then a
+	   translucent tint, a soft diagonal sheen, and a lit edge */
+	.front-tint {
+		fill: url(#tools-glass-tint);
+	}
+	.front-sheen {
+		fill: url(#tools-glass-sheen);
+	}
+	.front-edge {
+		fill: none;
+		stroke: url(#tools-glass-edge);
 		stroke-width: 1.5;
 	}
 
@@ -241,7 +280,19 @@
 		transition: transform var(--flip) ease-in-out var(--settle);
 	}
 	.cover .shell {
-		filter: drop-shadow(0 18px 28px rgba(58, 34, 29, 0.3));
+		filter: drop-shadow(0 18px 28px rgba(40, 24, 18, 0.28));
+	}
+	/* frosted glass: blurs the icons and back panel behind the cover, masked to
+	   the cover's outline (the same path as .front-tint) */
+	.glass {
+		position: absolute;
+		inset: 0;
+		-webkit-backdrop-filter: blur(10px) saturate(1.4);
+		backdrop-filter: blur(10px) saturate(1.4);
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 249' preserveAspectRatio='none'%3E%3Cpath d='M30 60h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v106c0 14-10 24-24 24H30c-14 0-24-10-24-24V84c0-13 10-24 24-24Z'/%3E%3C/svg%3E")
+			0 0 / 100% 100% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 249' preserveAspectRatio='none'%3E%3Cpath d='M30 60h80c13 0 18 9 24 17 6 8 11 12 24 12h112c13 0 24 11 24 24v106c0 14-10 24-24 24H30c-14 0-24-10-24-24V84c0-13 10-24 24-24Z'/%3E%3C/svg%3E")
+			0 0 / 100% 100% no-repeat;
 	}
 	/* open: springs forward over the fold */
 	.deck:is(:hover, :focus-visible, .is-open) .cover {
@@ -258,6 +309,8 @@
 		flex-direction: column;
 		gap: 0.15rem;
 		color: #fff;
+		/* keeps the label crisp on the glass */
+		text-shadow: 0 1px 2px rgba(40, 22, 16, 0.45);
 		pointer-events: none;
 	}
 	.label strong {

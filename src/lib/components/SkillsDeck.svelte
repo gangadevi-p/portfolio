@@ -51,6 +51,12 @@
 	use:cursorLabel={{ label: 'Explore skills', variant: 'view' }}
 >
 	<svg class="shell shell--back" viewBox="0 0 300 298" aria-hidden="true">
+		<defs>
+			<linearGradient id="skills-back-fill" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0%" stop-color="#7a5242" />
+				<stop offset="100%" stop-color="#4a2e25" />
+			</linearGradient>
+		</defs>
 		<path
 			class="back"
 			d="M 28,18 H 116 C 128,18 132,26 138,34 C 144,42 148,46 160,46 H 272 A 22,22 0 0 1 294,68 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 40 A 22,22 0 0 1 28,18 Z"
@@ -69,16 +75,35 @@
 	{/each}
 
 	<div class="cover">
+		<div class="glass" aria-hidden="true"></div>
 		<svg class="shell" viewBox="0 0 300 298" aria-hidden="true">
 			<defs>
-				<linearGradient id="folder-face" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stop-color="var(--folder-top)" />
-					<stop offset="100%" stop-color="var(--folder-bottom)" />
+				<linearGradient id="skills-glass-tint" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="var(--glass-top)" />
+					<stop offset="100%" stop-color="var(--glass-bottom)" />
+				</linearGradient>
+				<linearGradient id="skills-glass-sheen" x1="0" y1="0" x2="0.9" y2="1">
+					<stop offset="0%" stop-color="#fff" stop-opacity="0.28" />
+					<stop offset="38%" stop-color="#fff" stop-opacity="0.06" />
+					<stop offset="60%" stop-color="#fff" stop-opacity="0" />
+				</linearGradient>
+				<linearGradient id="skills-glass-edge" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="#ffe9dc" stop-opacity="0.85" />
+					<stop offset="100%" stop-color="#ffe9dc" stop-opacity="0.2" />
 				</linearGradient>
 			</defs>
-			<!-- the raised tab on the left, then an S-curve down to the body -->
+			<!-- the raised tab on the left, then an S-curve down to the body — drawn
+			     three times: tint, sheen, lit edge -->
 			<path
-				class="front"
+				class="front-tint"
+				d="M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z"
+			/>
+			<path
+				class="front-sheen"
+				d="M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z"
+			/>
+			<path
+				class="front-edge"
 				d="M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z"
 			/>
 		</svg>
@@ -91,8 +116,9 @@
 
 <style>
 	.deck {
-		--folder-top: #3a221d;
-		--folder-bottom: #ff6a3d;
+		/* brown glass: the cover's tint, light at the top and deep at the fold */
+		--glass-top: rgba(150, 104, 82, 0.45);
+		--glass-bottom: rgba(70, 42, 32, 0.78);
 		--sheet-bg: #4a352f;
 		/* the skill cards' own face — headings and lists */
 		--font-card: 'Montserrat', var(--font-body);
@@ -131,12 +157,23 @@
 		z-index: 1;
 	}
 	.back {
-		/* a shade off the flap so the folder's back edge reads as its own strip */
-		fill: #5a3a30;
+		/* deeper brown than the glass cover, with a faint lit edge */
+		fill: url(#skills-back-fill);
+		stroke: rgba(255, 232, 216, 0.3);
+		stroke-width: 1.2;
 	}
-	.front {
-		fill: url(#folder-face);
-		stroke: rgba(255, 245, 235, 0.55);
+	/* the cover is brown frosted glass, in layers: .glass blurs what's behind,
+	   then a translucent tint, a soft diagonal sheen, and a lit edge that fades
+	   toward the fold */
+	.front-tint {
+		fill: url(#skills-glass-tint);
+	}
+	.front-sheen {
+		fill: url(#skills-glass-sheen);
+	}
+	.front-edge {
+		fill: none;
+		stroke: url(#skills-glass-edge);
 		stroke-width: 1.5;
 	}
 
@@ -151,7 +188,19 @@
 		transition: transform var(--flip) ease-in-out var(--settle);
 	}
 	.cover .shell {
-		filter: drop-shadow(0 18px 28px rgba(58, 34, 29, 0.32));
+		filter: drop-shadow(0 18px 28px rgba(40, 24, 18, 0.28));
+	}
+	/* frosted glass: blurs the sheets and back panel behind the cover, masked to
+	   the cover's outline (the same path as .front-tint) */
+	.glass {
+		position: absolute;
+		inset: 0;
+		-webkit-backdrop-filter: blur(10px) saturate(1.4);
+		backdrop-filter: blur(10px) saturate(1.4);
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 298' preserveAspectRatio='none'%3E%3Cpath d='M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z'/%3E%3C/svg%3E")
+			0 0 / 100% 100% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 298' preserveAspectRatio='none'%3E%3Cpath d='M 28,56 H 116 C 128,56 132,64 138,72 C 144,80 148,84 160,84 H 272 A 22,22 0 0 1 294,106 V 270 A 22,22 0 0 1 272,292 H 28 A 22,22 0 0 1 6,270 V 78 A 22,22 0 0 1 28,56 Z'/%3E%3C/svg%3E")
+			0 0 / 100% 100% no-repeat;
 	}
 	/* open: springs forward over the fold — just a nudge, not falling all the way open */
 	.deck:is(:hover, :focus-visible, .is-open) .cover {
@@ -256,6 +305,8 @@
 		flex-direction: column;
 		gap: 0.15rem;
 		color: #fff;
+		/* keeps the label crisp on the glass */
+		text-shadow: 0 1px 2px rgba(40, 22, 16, 0.45);
 		pointer-events: none;
 	}
 	.label strong {
