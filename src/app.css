@@ -16,6 +16,13 @@ html {
 	scroll-behavior: smooth;
 	/* lock to the light palette — the design has no dark theme */
 	color-scheme: light;
+	/* hide the native page scrollbar — Lenis drives scrolling, and the wheel,
+	   trackpad, keyboard and drag all still work without the track showing */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+	display: none;
 }
 body {
 	min-height: 100svh;
