@@ -39,6 +39,11 @@
 		{#if featured}
 			<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
 			{#if job.summary}<p class="featured-summary">{job.summary}</p>{/if}
+			{#if job.points?.length}
+				<ul class="points featured-points">
+					{#each job.points as point}<li>{point}</li>{/each}
+				</ul>
+			{/if}
 		{/if}
 
 		{#if !featured && job.points?.length}
@@ -64,13 +69,6 @@
 			</svg>
 		</span>
 	</div>
-
-	{#if featured && job.points?.length}
-		<ul class="points featured-points">
-			{#each job.points as point}<li>{point}</li>{/each}
-		</ul>
-	{/if}
-
 </svelte:element>
 
 <style>
@@ -131,10 +129,6 @@
 		padding-bottom: 3.75rem;
 	}
 	.xp.featured .featured-points {
-		position: absolute;
-		top: calc(var(--card-pad) + var(--logo-size) + 1.5rem);
-		left: var(--card-pad);
-		right: var(--card-pad);
 		list-style: disc;
 		padding-left: 1.2rem;
 		gap: 0.5rem;
