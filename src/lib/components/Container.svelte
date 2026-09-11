@@ -13,5 +13,6 @@
 		max-width: var(--maxw);
 		margin-inline: auto;
 		padding-inline: var(--pad-x);
+		color: var(--c-coffee);
 	}
 </style>

@@ -11,8 +11,18 @@
 	let { children } = $props();
 	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-education-society/']);
 	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
+	let pageSource = $derived(
+		page.route.id === '/' ? 'src/routes/+page.svelte' : `src/routes${page.route.id}/+page.svelte`
+	);
+	let DevFileOverlay = $state();
 
 	onMount(() => {
+		if (import.meta.env.DEV) {
+			import('$components/DevFileOverlay.svelte').then(({ default: component }) => {
+				DevFileOverlay = component;
+			});
+		}
+
 		if (prefersReducedMotion()) return;
 
 		let lenis;
@@ -54,8 +64,12 @@
 <CustomCursor />
 <StickyNav />
 
-<main>
+<main data-dev-page-source={import.meta.env.DEV ? pageSource : undefined}>
 	{@render children()}
 </main>
 
 <SiteFooter compact={compactFooter} />
+
+{#if DevFileOverlay}
+	<DevFileOverlay />
+{/if}

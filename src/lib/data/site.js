@@ -7,11 +7,11 @@ export const site = {
 	name: 'Gangadevi',
 	role: 'Product & UX Designer',
 	location: 'Bengaluru',
-	email: 'hello@gangadevi.design',
+	email: 'gangadevi.ponna@gmail.com',
 	socials: [
-		{ label: 'Dribbble', href: 'https://dribbble.com/' },
-		{ label: 'LinkedIn', href: 'https://linkedin.com/' },
-		{ label: 'Read.cv', href: 'https://read.cv/' }
+		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/pgangadevi/' },
+		{ label: 'Behance', href: 'https://www.behance.net/gangadevip12' },
+		{ label: 'Medium', href: 'https://medium.com/@Gangadevi12' }
 	]
 };
 
