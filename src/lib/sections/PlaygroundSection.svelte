@@ -55,7 +55,7 @@
 
 <style>
 	.section {
-		padding-block: clamp(3rem, 9vw, 7rem);
+		padding-block: 40px;
 	}
 	/* centre the heading to match the centred media stack below it */
 	.section :global(#playground) {

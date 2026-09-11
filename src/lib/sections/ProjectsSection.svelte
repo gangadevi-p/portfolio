@@ -20,7 +20,7 @@
 
 <style>
 	.section {
-		padding-block: clamp(3.5rem, 10vw, 8rem);
+		padding-block: 40px;
 		/* light band — the rest of the page is dark, so opt back into light ink */
 		background: #eef1f6;
 		color: #241a16;

@@ -11,6 +11,7 @@
 	let { children } = $props();
 	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-education-society/']);
 	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
+	let homeFooter = $derived(page.route.id === '/');
 	let pageSource = $derived(
 		page.route.id === '/' ? 'src/routes/+page.svelte' : `src/routes${page.route.id}/+page.svelte`
 	);
@@ -68,7 +69,7 @@
 	{@render children()}
 </main>
 
-<SiteFooter compact={compactFooter} />
+<SiteFooter compact={compactFooter} home={homeFooter} />
 
 {#if DevFileOverlay}
 	<DevFileOverlay />

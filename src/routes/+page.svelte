@@ -6,8 +6,17 @@
 	import AlsoMeSection from '$sections/AlsoMeSection.svelte';
 </script>
 
-<HeroSection />
-<WorkExperienceSection />
-<ProjectsSection />
-<PlaygroundSection />
-<AlsoMeSection />
+<div class="home-page">
+	<HeroSection />
+	<WorkExperienceSection />
+	<ProjectsSection />
+	<PlaygroundSection />
+	<AlsoMeSection />
+</div>
+
+<style>
+	.home-page {
+		--pad-x: clamp(1.25rem, 3vw, 2.5rem);
+		--pad-y: 40px;
+	}
+</style>

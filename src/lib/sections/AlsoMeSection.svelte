@@ -51,7 +51,7 @@
 
 <style>
 	.section {
-		padding-block: clamp(4rem, 10vw, 8rem);
+		padding-block: 40px;
 		background: #fff;
 		color: #1d1d1f;
 		--c-cursor: #1d1d1f;
@@ -61,9 +61,9 @@
 	   room. */
 	.inner {
 		width: 100%;
-		max-width: 90rem;
+		max-width: var(--maxw);
 		margin-inline: auto;
-		padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+		padding-inline: var(--pad-x);
 	}
 	/* Left-aligned, sharing the gallery's width so the heading lines up with
 	   the images' left edge. */

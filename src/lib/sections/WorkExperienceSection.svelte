@@ -49,7 +49,7 @@
 
 <style>
 	.xp-section {
-		padding-block: clamp(3rem, 9vw, 7rem);
+		padding-block: 40px;
 	}
 
 	.head {
