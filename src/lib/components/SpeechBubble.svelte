@@ -40,7 +40,7 @@
 		height: 26px;
 		translate: -50% 0;
 		rotate: -4deg;
-		background: rgba(122, 100, 92, 0.55);
+		background: rgb(29 29 31 / 55%);
 		mix-blend-mode: multiply;
 	}
 	h2 {

@@ -90,8 +90,8 @@
 	<svg class="shell shell--back" viewBox="0 0 300 249" aria-hidden="true">
 		<defs>
 			<linearGradient id="tools-back-fill" x1="0" y1="0" x2="0" y2="1">
-				<stop offset="0%" stop-color="#7a5242" />
-				<stop offset="100%" stop-color="#4a2e25" />
+				<stop offset="0%" stop-color="#6e6e73" />
+				<stop offset="100%" stop-color="#1d1d1f" />
 			</linearGradient>
 		</defs>
 		<path
@@ -125,8 +125,8 @@
 					<stop offset="60%" stop-color="#fff" stop-opacity="0" />
 				</linearGradient>
 				<linearGradient id="tools-glass-edge" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stop-color="#ffe9dc" stop-opacity="0.85" />
-					<stop offset="100%" stop-color="#ffe9dc" stop-opacity="0.2" />
+					<stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+					<stop offset="100%" stop-color="#d2d2d7" stop-opacity="0.2" />
 				</linearGradient>
 			</defs>
 			<!-- drawn three times: tint, sheen, lit edge -->
@@ -163,8 +163,8 @@
 		/* close: the icons settle back in before the cover tips back up */
 		--settle: 300ms;
 		/* brown glass, same as SkillsDeck: light at the top, deep at the fold */
-		--glass-top: rgba(150, 104, 82, 0.45);
-		--glass-bottom: rgba(70, 42, 32, 0.78);
+		--glass-top: rgb(161 161 166 / 50%);
+		--glass-bottom: rgb(29 29 31 / 82%);
 
 		position: relative;
 		width: 100%;
@@ -191,7 +191,7 @@
 	.back {
 		/* deeper brown than the glass cover, with a faint lit edge */
 		fill: url(#tools-back-fill);
-		stroke: rgba(255, 232, 216, 0.3);
+		stroke: rgb(255 255 255 / 42%);
 		stroke-width: 1.2;
 	}
 	/* brown frosted glass, as in SkillsDeck: .glass blurs what's behind, then a
@@ -245,7 +245,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
-		filter: drop-shadow(0 10px 14px rgba(58, 34, 29, 0.24));
+		filter: drop-shadow(0 10px 14px rgb(0 0 0 / 20%));
 		/* the parent may stretch the whole deck taller (--deck-stretch); undo it
 		   here so the logos stay square */
 		scale: 1 calc(1 / var(--deck-stretch, 1));
@@ -280,7 +280,7 @@
 		transition: transform var(--flip) ease-in-out var(--settle);
 	}
 	.cover .shell {
-		filter: drop-shadow(0 18px 28px rgba(40, 24, 18, 0.28));
+		filter: drop-shadow(0 18px 28px rgb(0 0 0 / 24%));
 	}
 	/* frosted glass: blurs the icons and back panel behind the cover, masked to
 	   the cover's outline (the same path as .front-tint) */
@@ -310,7 +310,7 @@
 		gap: 0.15rem;
 		color: #fff;
 		/* keeps the label crisp on the glass */
-		text-shadow: 0 1px 2px rgba(40, 22, 16, 0.45);
+		text-shadow: 0 1px 2px rgb(0 0 0 / 42%);
 		pointer-events: none;
 	}
 	.label strong {

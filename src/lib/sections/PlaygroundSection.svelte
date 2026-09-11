@@ -24,38 +24,14 @@
 			<img src="/files/slider.gif" alt="Slider interaction preview" loading="lazy" />
 		</div>
 
-		<div class="video video--wide video--narrow video--flat" use:reveal>
-			<img src="/files/navigation-web.avif" alt="Navigation interaction preview" loading="lazy" />
-		</div>
 	</Container>
-
-	<!-- Knocks the near-black (#1e1e1e) backing baked into the navigation clip
-	     out to full transparency with a hard luminance threshold, so only the
-	     dark frame disappears. Every pixel above the threshold — the white UI
-	     and its hover/CTA states — passes through completely untouched, unlike
-	     a contrast() filter which flattens those subtle tonal differences. -->
-	<svg class="filter-defs" width="0" height="0" aria-hidden="true" focusable="false">
-		<filter id="pg-knockout" color-interpolation-filters="sRGB">
-			<feColorMatrix
-				type="matrix"
-				values="0 0 0 0 0
-				        0 0 0 0 0
-				        0 0 0 0 0
-				        0.2126 0.7152 0.0722 0 0"
-				result="lum"
-			/>
-			<feComponentTransfer in="lum" result="mask">
-				<feFuncA type="discrete" tableValues="0 1 1 1 1" />
-			</feComponentTransfer>
-			<feGaussianBlur in="mask" stdDeviation="0.4" result="softmask" />
-			<feComposite in="SourceGraphic" in2="softmask" operator="in" />
-		</filter>
-	</svg>
 </section>
 
 <style>
 	.section {
 		padding-block: 40px;
+		background: #f5f5f7;
+		color: #1d1d1f;
 	}
 	/* centre the heading to match the centred media stack below it */
 	.section :global(#playground) {
@@ -77,8 +53,8 @@
 		justify-self: end;
 		display: inline-flex;
 		align-items: center;
-		background: #fff;
-		color: #1c1c1c;
+		background: #1d1d1f;
+		color: #fff;
 		font-size: var(--fs-small);
 		font-weight: 600;
 		line-height: 1;
@@ -97,7 +73,8 @@
 	.video {
 		flex: 1 1 0;
 		min-width: 0;
-		border-radius: 24px;
+		border-radius: 28px;
+		box-shadow: 0 12px 32px rgb(0 0 0 / 8%);
 		overflow: hidden;
 		background: transparent;
 	}
@@ -105,7 +82,7 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		border-radius: 24px;
+		border-radius: 28px;
 	}
 	/* keep the two tiles in this row identical in width and height,
 	   cropping to fill rather than letterboxing the differing aspect ratios */
@@ -128,18 +105,6 @@
 	.video--narrow {
 		max-width: 560px;
 		margin-inline: auto;
-	}
-	.filter-defs {
-		position: absolute;
-		width: 0;
-		height: 0;
-		pointer-events: none;
-	}
-	/* drop only the baked-in dark backing of the navigation clip (see the
-	   #pg-knockout filter markup) so the panel reads as if it were
-	   transparent, without touching the UI or its hover states */
-	.video--flat img {
-		filter: url(#pg-knockout);
 	}
 	@media (max-width: 720px) {
 		.section-head {

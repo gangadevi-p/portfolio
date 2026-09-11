@@ -23,7 +23,7 @@
 	}
 	h2 {
 		font-family: var(--font-display);
-		font-weight: 400;
+		font-weight: 700;
 		font-size: var(--fs-h2);
 		line-height: 1;
 	}

@@ -4,8 +4,9 @@
 	import { navigation } from '$motion/navigation.svelte.js';
 	import { base } from '$app/paths';
 	import PortfolioAssistant from './PortfolioAssistant.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 	import { page } from '$app/state';
-	let onHome = $derived(page.url.pathname === `${base}/`);
+	let onHome = $derived(page.route.id === '/');
 	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
 	let { label = 'Primary', centered = true } = $props();
 </script>
@@ -38,6 +39,7 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
+		{#if onHome}<ThemeToggle />{/if}
 		<PortfolioAssistant placement="nav" />
 	</div>
 </nav>
@@ -56,7 +58,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.4rem;
-		font-weight: 700;
+		font-weight: 600;
 	}
 	.pin {
 		display: inline-flex;
@@ -89,13 +91,12 @@
 		list-style: none;
 		margin: 0;
 		padding: 0.3rem;
-		border: 1px solid rgb(255 255 255 / 42%);
+		border: 1px solid rgb(0 0 0 / 8%);
 		border-radius: 999px;
-		background: linear-gradient(118deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 13%) 48%, rgb(255 255 255 / 6%));
+		background: rgb(255 255 255 / 72%);
 		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 58%),
-			inset 0 0 0 1px rgb(255 255 255 / 6%),
-			0 4px 10px rgb(58 34 29 / 7%);
+			inset 0 1px 0 rgb(255 255 255 / 80%),
+			0 6px 20px rgb(0 0 0 / 6%);
 		backdrop-filter: blur(16px) saturate(120%);
 		-webkit-backdrop-filter: blur(16px) saturate(120%);
 	}
@@ -105,9 +106,7 @@
 		inset: 0;
 		z-index: 0;
 		pointer-events: none;
-		background:
-			linear-gradient(112deg, rgb(255 255 255 / 12%), transparent 38%),
-			radial-gradient(circle at 78% -30%, rgb(255 255 255 / 26%), transparent 55%);
+		background: linear-gradient(112deg, rgb(255 255 255 / 40%), transparent 45%);
 	}
 	.pill > li {
 		position: relative;

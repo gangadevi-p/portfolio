@@ -79,15 +79,16 @@
 		--logo-size: clamp(96px, 12vw, 150px);
 		display: flex;
 		gap: clamp(1rem, 2.5vw, 1.75rem);
-		background: #f2f5f8;
-		color: #1c1c1c;
+		background: rgb(255 255 255 / 88%);
+		color: #1d1d1f;
 		/* white card inside the dark section — flip the cursor back to dark ink,
 		   otherwise the light heart the dark page sets is invisible on it */
 		--c-cursor: #1c1c1c;
 		--c-cursor-ink: #f7f5f0;
-		border: 1px solid rgba(0, 0, 0, 0.06);
-		border-radius: 22px;
+		border: 1px solid rgb(0 0 0 / 6%);
+		border-radius: 28px;
 		padding: var(--card-pad);
+		box-shadow: 0 8px 30px rgb(0 0 0 / 5%);
 	}
 	.xp.featured {
 		height: 100%;
@@ -100,7 +101,7 @@
 		flex: none;
 		width: var(--logo-size);
 		aspect-ratio: 1;
-		border-radius: 16px;
+		border-radius: 20px;
 		overflow: hidden;
 		background: #f4f4f4;
 		display: grid;
@@ -110,6 +111,8 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
+		image-rendering: auto;
+		transform: translateZ(0);
 	}
 	.mono {
 		font-family: var(--font-display);
@@ -138,7 +141,7 @@
 	}
 	h3 {
 		font-size: clamp(1.15rem, 2.4vw, 1.5rem);
-		font-weight: 800;
+		font-weight: 700;
 		letter-spacing: -0.01em;
 	}
 	.featured h3 {
@@ -146,13 +149,13 @@
 		letter-spacing: -0.02em;
 	}
 	.blurb {
-		color: #5f5f5f;
+		color: #6e6e73;
 		max-width: 34ch;
 	}
 	.points {
 		list-style: none;
 		padding: 0;
-		color: #5f5f5f;
+		color: #6e6e73;
 		display: grid;
 		gap: 0.35rem;
 	}
@@ -162,7 +165,7 @@
 	.project-name {
 		margin-left: 0.45rem;
 		font-weight: 500;
-		color: #5f5f5f;
+		color: #6e6e73;
 	}
 	.featured-summary {
 		color: #5f5f5f;
@@ -174,9 +177,9 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: #fff;
-		box-shadow: 0 2px 8px rgba(28, 28, 28, 0.08);
-		color: #2a2a2a;
+		background: #f5f5f7;
+		box-shadow: none;
+		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 0.6rem 1rem;
 		border-radius: 999px;
@@ -197,7 +200,8 @@
 		transition: background var(--dur-fast) var(--ease-out);
 	}
 	.xp.linked:hover {
-		background: #fafafa;
+		background: #ffffff;
+		box-shadow: 0 14px 34px rgb(0 0 0 / 8%);
 	}
 
 	@media (max-width: 560px) {

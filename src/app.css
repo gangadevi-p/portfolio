@@ -28,12 +28,11 @@ body {
 	min-height: 100svh;
 	font-family: var(--font-body);
 	font-size: var(--fs-body);
-	line-height: 1.5;
+	line-height: var(--lh-body);
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 
-	/* The page is dark by default (work experience, projects, playground,
-	   resume, footer). The hero section opts back into the light palette. */
+	/* Case studies retain their original dark presentation. */
 	color: #f4f1ea;
 	background: #000;
 	--c-ink: #f4f1ea;
@@ -41,9 +40,103 @@ body {
 	--c-line: rgba(255, 255, 255, 0.16);
 	--c-surface: #161616;
 	--c-ink-rgb: 244, 241, 234;
-	/* light heart + pill on the dark page, with dark text on the pill */
 	--c-cursor: #f4f1ea;
 	--c-cursor-ink: #14100f;
+}
+body:has(main.home-route) {
+	color: #1d1d1f;
+	background: #f5f5f7;
+	--c-accent: #1d1d1f;
+	--c-accent-deep: #000000;
+	--c-ink: #1d1d1f;
+	--c-ink-soft: #6e6e73;
+	--c-line: #d2d2d7;
+	--c-surface: #ffffff;
+	--c-ink-rgb: 29, 29, 31;
+	--c-cursor: #1d1d1f;
+	--c-cursor-ink: #ffffff;
+}
+html:is(.dark, [data-theme='dark']):has(main.home-route) {
+	color-scheme: dark;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) {
+	background: #000000;
+	color: #f5f5f7;
+	--c-coffee: #f5f5f7;
+	--c-bg: #000000;
+	--c-surface: #1c1c1e;
+	--c-ink: #f5f5f7;
+	--c-ink-soft: #a1a1a6;
+	--c-line: #38383a;
+	--c-accent: #f5f5f7;
+	--c-accent-deep: #ffffff;
+	--c-ink-rgb: 245, 245, 247;
+	--c-cursor: #f5f5f7;
+	--c-cursor-ink: #1d1d1f;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .hero,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .xp-section,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .section,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .footer {
+	background: #000000 !important;
+	color: #f5f5f7 !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .hero {
+	--c-ink: #f5f5f7 !important;
+	--c-ink-soft: #a1a1a6 !important;
+	--c-line: #48484a !important;
+	--c-surface: #2c2c2e !important;
+	--c-cursor: #f5f5f7 !important;
+	--c-cursor-ink: #1d1d1f !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .frame {
+	background: linear-gradient(145deg, #1c1c1e, #0d0d0e) !important;
+	box-shadow: 0 20px 60px rgb(0 0 0 / 32%) !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .xp,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .card {
+	background: #1c1c1e !important;
+	color: #f5f5f7 !important;
+	border-color: #38383a !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .xp .logo,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .card .visual.framed,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .period,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .contact-nav,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .contact-nav a {
+	background: #2c2c2e !important;
+	color: #f5f5f7 !important;
+	border-color: #48484a !important;
+	box-shadow: none !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .blurb,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .points,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .featured-summary,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .project-name,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .status,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .mono,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .fine,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .intro,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .eyebrow,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .head > p {
+	color: #a1a1a6 !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .pill {
+	background: rgb(44 44 46 / 88%) !important;
+	border-color: rgb(255 255 255 / 16%) !important;
+	box-shadow: none !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .pill a[aria-current],
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .pill a:hover {
+	background: #f5f5f7 !important;
+	color: #1d1d1f !important;
+}
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .contact-nav a:hover,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .contact-nav a:focus-visible,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .resume,
+html:is(.dark, [data-theme='dark']) body:has(main.home-route) .tool {
+	background: #f5f5f7 !important;
+	color: #1d1d1f !important;
 }
 img,
 svg {
@@ -65,6 +158,39 @@ button {
 :focus-visible {
 	outline: 2px solid var(--c-accent);
 	outline-offset: 3px;
+}
+
+@media (prefers-contrast: more) {
+	:root {
+		--c-ink: #000000;
+		--c-ink-soft: #424245;
+		--c-line: #6e6e73;
+	}
+	html:is(.dark, [data-theme='dark']) body:has(main.home-route) {
+		--c-ink: #ffffff;
+		--c-ink-soft: #d2d2d7;
+		--c-line: #a1a1a6;
+	}
+	body:has(main.home-route) .pill,
+	body:has(main.home-route) .theme-toggle,
+	body:has(main.home-route) .contact-nav,
+	body:has(main.home-route) .xp,
+	body:has(main.home-route) .card {
+		border-width: 2px !important;
+	}
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	body:has(main.home-route) .pill,
+	body:has(main.home-route) .theme-toggle {
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
+		background: #ffffff !important;
+	}
+	html:is(.dark, [data-theme='dark']) body:has(main.home-route) .pill,
+	html:is(.dark, [data-theme='dark']) body:has(main.home-route) .theme-toggle {
+		background: #2c2c2e !important;
+	}
 }
 
 /* -------------------------------------------------------------------------- */

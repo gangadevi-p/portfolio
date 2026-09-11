@@ -20,25 +20,26 @@
 			ctx = gsap.context((self) => {
 				const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-				tl.from('.nav', { y: -18, autoAlpha: 0, duration: 0.6 })
-					.from('.kicker', { yPercent: 120, autoAlpha: 0, duration: 0.6 }, '-=0.2')
-					.from('.name', { yPercent: 115, autoAlpha: 0, duration: 0.9 }, '-=0.3')
+				tl.from('.frame', { y: 12, autoAlpha: 0, duration: 0.5 })
+					.from('.nav', { y: -12, autoAlpha: 0, duration: 0.45 }, '-=0.18')
+					.from('.kicker', { y: 14, autoAlpha: 0, duration: 0.45 }, '-=0.16')
+					.from('.name', { yPercent: 105, autoAlpha: 0, duration: 0.7 }, '-=0.24')
 					// icons: only opacity + a hair of blur, so the parallax / bob
 					// transforms on child layers are never touched.
 					.from(
 						'.deck-slot',
-						{ autoAlpha: 0, filter: 'blur(6px)', duration: 0.5, stagger: 0.08 },
-						'-=0.55'
+						{ autoAlpha: 0, filter: 'blur(4px)', duration: 0.4, stagger: 0.06 },
+						'-=0.38'
 					)
 					.from(
 						'.hero-photo',
-						{ clipPath: 'inset(100% 0 0 0)', autoAlpha: 0, duration: 1 },
-						'-=0.7'
+						{ clipPath: 'inset(100% 0 0 0)', autoAlpha: 0, duration: 0.8 },
+						'-=0.45'
 					)
 					.from(
 						'.hero-speech',
-						{ scale: 0.6, rotate: -9, autoAlpha: 0, duration: 0.7, ease: 'back.out(1.6)' },
-						'-=0.6'
+						{ y: 14, autoAlpha: 0, duration: 0.45 },
+						'-=0.35'
 					);
 			}, root);
 		});
@@ -76,26 +77,28 @@
 
 <style>
 	.hero {
-		padding: var(--pad-y) var(--pad-x) var(--pad-y);
+		padding: clamp(0.75rem, 2vw, 1.5rem) var(--pad-x);
 		background: var(--c-bg);
 		color: var(--c-ink);
 		/* re-assert the light palette — the rest of the page is dark */
 		--c-ink: var(--c-coffee);
-		--c-ink-soft: #6b5750;
-		--c-line: rgba(58, 34, 29, 0.22);
-		--c-surface: #ede7dd;
-		--c-ink-rgb: 58, 34, 29;
+		--c-ink-soft: #6e6e73;
+		--c-line: #d2d2d7;
+		--c-surface: #ffffff;
+		--c-ink-rgb: 29, 29, 31;
 		/* dark heart / pill on the light hero — see tokens.css */
-		--c-cursor: #3a221d;
-		--c-cursor-ink: #f7f5f0;
+		--c-cursor: #1d1d1f;
+		--c-cursor-ink: #ffffff;
 	}
 	.frame {
 		position: relative;
 		max-width: var(--maxw);
 		margin-inline: auto;
-		min-height: min(92svh, 900px);
+		min-height: min(84svh, 860px);
 		padding: var(--frame-pad);
-		border-radius: var(--radius);
+		border-radius: clamp(1.5rem, 3vw, 2.5rem);
+		background: linear-gradient(145deg, #ffffff, #f2f2f5);
+		box-shadow: 0 20px 60px rgb(29 29 31 / 8%);
 		/* visible so the oversized display name is never cropped at the frame edge —
 		   it now runs on into the portrait, which is a transparent cut-out */
 		overflow: visible;
@@ -159,10 +162,10 @@
 	}
 	.name {
 		font-family: var(--font-display);
-		font-weight: 400;
+		font-weight: 700;
 		font-size: var(--name-fs);
-		line-height: 0.9;
-		letter-spacing: -0.005em;
+		line-height: 0.86;
+		letter-spacing: -0.075em;
 	}
 
 	.deck-row {
@@ -210,8 +213,8 @@
 		right: 0;
 		/* top edge anchored to the name: she rises into "evi" and no further */
 		top: var(--photo-top);
-		/* down to the very bottom of the frame, past its padding */
-		bottom: calc(var(--frame-pad) * -1);
+		/* Stop at the frame edge so the portrait stays inside the rectangle. */
+		bottom: 0;
 		/* in FRONT of the headline — she overlaps the bottom of the letters */
 		z-index: 5;
 		/* fluid: a share of the frame, capped so it never gets huge on wide screens.

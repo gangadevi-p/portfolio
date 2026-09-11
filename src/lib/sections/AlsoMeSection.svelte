@@ -52,7 +52,7 @@
 <style>
 	.section {
 		padding-block: 40px;
-		background: #fff;
+		background: #ffffff;
 		color: #1d1d1f;
 		--c-cursor: #1d1d1f;
 		--c-cursor-ink: #fff;
@@ -69,7 +69,7 @@
 	   the images' left edge. */
 	.head {
 		width: 72%;
-		margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
+		margin: 0 auto 36px;
 		text-align: left;
 	}
 	.head > p {
@@ -82,10 +82,10 @@
 	}
 	.head h2 {
 		max-width: 20ch;
-		font-size: clamp(2.25rem, 5.5vw, 4.25rem);
-		font-weight: 800;
-		letter-spacing: -0.05em;
-		line-height: 1;
+		font-size: clamp(2.5rem, 5vw, 4.5rem);
+		font-weight: 700;
+		letter-spacing: -0.06em;
+		line-height: 1.02;
 	}
 	/* Apple-style editorial copy: large semibold text in a muted coffee tone,
 	   with the key phrases stepping up to the full coffee brown. */
@@ -93,7 +93,7 @@
 		display: grid;
 		gap: 1.1rem;
 		margin-top: clamp(1.75rem, 3vw, 2.5rem);
-		color: #8f7d77;
+		color: #6e6e73;
 		font-size: clamp(1.2rem, 2.1vw, 1.65rem);
 		font-weight: 600;
 		letter-spacing: -0.015em;
@@ -122,7 +122,7 @@
 	}
 	/* rounded corners on every image in the gallery */
 	.stack :global(img) {
-		border-radius: 24px;
+		border-radius: 28px;
 		transition:
 			transform var(--dur-med) var(--ease-out),
 			filter var(--dur-med) var(--ease-out);

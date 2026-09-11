@@ -53,8 +53,8 @@
 	<svg class="shell shell--back" viewBox="0 0 300 298" aria-hidden="true">
 		<defs>
 			<linearGradient id="skills-back-fill" x1="0" y1="0" x2="0" y2="1">
-				<stop offset="0%" stop-color="#7a5242" />
-				<stop offset="100%" stop-color="#4a2e25" />
+				<stop offset="0%" stop-color="#6e6e73" />
+				<stop offset="100%" stop-color="#1d1d1f" />
 			</linearGradient>
 		</defs>
 		<path
@@ -88,8 +88,8 @@
 					<stop offset="60%" stop-color="#fff" stop-opacity="0" />
 				</linearGradient>
 				<linearGradient id="skills-glass-edge" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stop-color="#ffe9dc" stop-opacity="0.85" />
-					<stop offset="100%" stop-color="#ffe9dc" stop-opacity="0.2" />
+					<stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+					<stop offset="100%" stop-color="#d2d2d7" stop-opacity="0.2" />
 				</linearGradient>
 			</defs>
 			<!-- the raised tab on the left, then an S-curve down to the body — drawn
@@ -117,11 +117,11 @@
 <style>
 	.deck {
 		/* brown glass: the cover's tint, light at the top and deep at the fold */
-		--glass-top: rgba(150, 104, 82, 0.45);
-		--glass-bottom: rgba(70, 42, 32, 0.78);
-		--sheet-bg: #4a352f;
+		--glass-top: rgb(161 161 166 / 50%);
+		--glass-bottom: rgb(29 29 31 / 82%);
+		--sheet-bg: #ffffff;
 		/* the skill cards' own face — headings and lists */
-		--font-card: 'Montserrat', var(--font-body);
+		--font-card: var(--font-body);
 		/* open: the cover springs forward; once it has swung out, the sheets pop up */
 		--flip: 560ms;
 		/* damped spring (stiffness 170, damping 12): overshoots ~20% at 270ms,
@@ -159,7 +159,7 @@
 	.back {
 		/* deeper brown than the glass cover, with a faint lit edge */
 		fill: url(#skills-back-fill);
-		stroke: rgba(255, 232, 216, 0.3);
+		stroke: rgb(255 255 255 / 42%);
 		stroke-width: 1.2;
 	}
 	/* the cover is brown frosted glass, in layers: .glass blurs what's behind,
@@ -188,7 +188,7 @@
 		transition: transform var(--flip) ease-in-out var(--settle);
 	}
 	.cover .shell {
-		filter: drop-shadow(0 18px 28px rgba(40, 24, 18, 0.28));
+		filter: drop-shadow(0 18px 28px rgb(0 0 0 / 24%));
 	}
 	/* frosted glass: blurs the sheets and back panel behind the cover, masked to
 	   the cover's outline (the same path as .front-tint) */
@@ -224,8 +224,8 @@
 		/* resting scale-down shrinks toward the top edge, keeping the peek in place */
 		transform-origin: 50% 0;
 		background: var(--sheet-bg);
-		color: rgba(255, 248, 240, 0.92);
-		box-shadow: 0 18px 34px -18px rgba(28, 15, 11, 0.75);
+		color: #1d1d1f;
+		box-shadow: 0 18px 34px -18px rgb(0 0 0 / 24%);
 		/* closing: back into the folder first, so the cover has something to
 		   close over */
 		transition: transform var(--settle) ease-in-out;
@@ -242,7 +242,7 @@
 		margin-top: 0.7rem;
 		padding-left: 0;
 		list-style: none;
-		color: rgba(255, 246, 236, 0.78);
+		color: #424245;
 		font-family: var(--font-card);
 		/* fixed body size, not scaled with the deck */
 		font-size: 1rem;
@@ -306,7 +306,7 @@
 		gap: 0.15rem;
 		color: #fff;
 		/* keeps the label crisp on the glass */
-		text-shadow: 0 1px 2px rgba(40, 22, 16, 0.45);
+		text-shadow: 0 1px 2px rgb(0 0 0 / 42%);
 		pointer-events: none;
 	}
 	.label strong {

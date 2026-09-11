@@ -4,18 +4,18 @@
 
 :root {
 	/* palette */
-	--c-coffee: #3a221d;
-	--c-bg: #d9cec0;
-	--c-surface: #ede7dd;
-	--c-ink: #3a221d;
-	--c-ink-soft: #6b5750;
-	--c-line: rgba(58, 34, 29, 0.22);
-	--c-accent: #ff6a3d;
+	--c-coffee: #1d1d1f;
+	--c-bg: #fbfbfd;
+	--c-surface: #ffffff;
+	--c-ink: #1d1d1f;
+	--c-ink-soft: #6e6e73;
+	--c-line: #d2d2d7;
+	--c-accent: #0071e3;
 	/* a deeper accent for light backgrounds, where #ff6a3d is too pale to read */
-	--c-accent-deep: #d9481c;
+	--c-accent-deep: #0066cc;
 
 	/* the "Gangadevi" display colour, as tokens the cursor reuses */
-	--c-ink-rgb: 58, 34, 29;
+	--c-ink-rgb: 29, 29, 31;
 
 	/* ---- custom cursor ---------------------------------------------------- */
 	/* The cursor is mounted in the layout, OUTSIDE every section, so it can't
@@ -23,25 +23,30 @@
 	   under the pointer instead. Every section that changes its background has
 	   to set BOTH: `--c-cursor` is the heart / label pill, `--c-cursor-ink` is
 	   the text on that pill, so the pair always has to contrast. */
-	--c-cursor: #3a221d;
-	--c-cursor-ink: #f7f5f0;
+	--c-cursor: #1d1d1f;
+	--c-cursor-ink: #ffffff;
 
 	/* typography */
-	--font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-	--font-display: 'Anton', 'Archivo', sans-serif;
+	--font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', sans-serif;
+	--font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
 
-	--fs-display: clamp(4.5rem, 20vw, 15rem);
-	--fs-h2: clamp(1.4rem, 3vw, 2.2rem);
-	--fs-lead: clamp(1rem, 2.4vw, 1.9rem);
+	--fs-display: clamp(4.5rem, 14vw, 11rem);
+	--fs-h2: clamp(2rem, 4vw, 3.5rem);
+	--fs-lead: clamp(1rem, 2vw, 1.5rem);
 	--fs-body: 1rem;
-	--fs-small: 0.85rem;
+	--fs-small: 0.875rem;
+	--fs-label: 0.75rem;
+	--lh-body: 1.5;
+	--lh-tight: 1.08;
 
 	/* layout */
 	--maxw: 1200px;
 	--pad-x: clamp(1.25rem, 4vw, 3.5rem);
 	--pad-y: clamp(1.25rem, 3vw, 2.5rem);
-	--radius: 6px;
-	--radius-card: 14px;
+	--radius: 28px;
+	--radius-card: 28px;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 4%), 0 16px 42px -28px rgb(0 0 0 / 24%);
+	--shadow-card-lift: 0 6px 18px rgb(0 0 0 / 8%), 0 30px 58px -30px rgb(0 0 0 / 30%);
 
 	/* motion */
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);

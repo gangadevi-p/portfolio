@@ -53,7 +53,7 @@
 	.intro { max-width: none; }
 	.eyebrow {
 		margin-bottom: 1rem;
-		color: #75452e;
+		color: var(--c-accent);
 		font-size: 0.7rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
@@ -103,7 +103,7 @@
 	.contact-nav a:focus-visible span { transform: translate3d(0.35rem, 0, 0); }
 	.fine {
 		margin: 0;
-		color: #6e6e73;
+		color: #515154;
 		font-size: var(--fs-small);
 		text-align: center;
 	}

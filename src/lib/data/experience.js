@@ -37,7 +37,7 @@ export const experience = [
 	{
 		company: 'ADM Education Society',
 		role: 'Graphic Design Intern',
-		logo: '/img/experience/adm-hd.png',
+		logo: '/img/experience/adm-clean.png',
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
 		href: '/work/adm-education-society'

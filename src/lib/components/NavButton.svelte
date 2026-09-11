@@ -6,7 +6,9 @@
 
 <style>
 	a {
-		display: block;
+		display: grid;
+		place-items: center;
+		min-height: 44px;
 		padding: 0.4rem 0.95rem 0.45rem;
 		border-radius: 999px;
 		white-space: nowrap;
@@ -15,8 +17,12 @@
 			color var(--dur-fast) var(--ease-out);
 	}
 	a:hover {
-		background: color-mix(in srgb, var(--c-ink) 12%, transparent);
+		background: #1d1d1f;
 		color: #fff;
+	}
+	:global(html.dark) a:hover {
+		background: #f5f5f7;
+		color: #1d1d1f;
 	}
 	a.wide {
 		padding-inline: 1.65rem;
@@ -27,7 +33,7 @@
 	}
 	@media (max-width: 560px) {
 		a {
-			padding: 0.3rem 0.7rem 0.35rem;
+			padding: 0.3rem 0.7rem;
 			font-size: var(--fs-small);
 		}
 		a.wide {

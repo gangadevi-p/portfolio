@@ -122,11 +122,18 @@
 </div>
 
 <style>
-	/* the guide's own accent — a warm brown in place of the site's orange */
+	/* Explicit semantic roles keep this portalled panel readable in either theme. */
 	.portfolio-assistant,
 	.chat-card {
-		--guide-accent: #7a4a2f;
-		--guide-accent-tint: rgb(122 74 47 / 10%);
+		--guide-accent: #1d1d1f;
+		--guide-accent-tint: rgb(29 29 31 / 10%);
+		--guide-ink: #1d1d1f;
+		--guide-surface: #ffffff;
+		--guide-subtle: #f5f5f7;
+		--guide-border: #d2d2d7;
+		--guide-action: #1d1d1f;
+		--guide-action-hover: #000000;
+		--guide-action-ink: #ffffff;
 	}
 	.portfolio-assistant {
 		position: absolute;
@@ -182,13 +189,11 @@
 		display: grid;
 		gap: 0.85rem;
 		padding: 1rem;
-		border: 1px solid rgb(255 255 255 / 52%);
+		border: 1px solid var(--guide-border);
 		border-radius: 1.35rem;
-		background: rgb(247 245 240 / 92%);
-		/* carry an explicit dark ink: the panel is portalled to <body>, so it
-		   can't inherit the light hero's text colour any more */
-		color: var(--c-coffee);
-		box-shadow: 0 18px 45px rgb(58 34 29 / 22%);
+		background: color-mix(in srgb, var(--guide-surface) 94%, transparent);
+		color: var(--guide-ink);
+		box-shadow: var(--shadow-card-lift);
 		backdrop-filter: blur(18px);
 	}
 	/* Row 1: "Portfolio guide" eyebrow ——— close (×), centred to each other.
@@ -224,7 +229,7 @@
 		padding: 0;
 		border: 0;
 		border-radius: 50%;
-		background: rgb(58 34 29 / 8%);
+		background: var(--guide-subtle);
 		font-size: 1.4rem;
 		line-height: 1;
 		color: inherit;
@@ -240,15 +245,16 @@
 		margin: 0;
 		padding: 0.7rem 0.8rem;
 		border-radius: 0.9rem 0.9rem 0.9rem 0.2rem;
-		background: #fff;
+		background: var(--guide-subtle);
+		color: var(--guide-ink);
 		font-size: 0.79rem;
 		line-height: 1.45;
 	}
 	.messages p.user {
 		justify-self: end;
 		border-radius: 0.9rem 0.9rem 0.2rem 0.9rem;
-		background: var(--c-coffee);
-		color: #fff;
+		background: var(--guide-action);
+		color: var(--guide-action-ink);
 	}
 	/* answers arrive word by word — a quick blur-to-sharp shimmer, like the
 	   launcher spark. Layout space is held from the start so nothing jumps. */
@@ -280,7 +286,7 @@
 		gap: 0.42rem;
 	}
 	.suggestions button {
-		border: 1px solid rgb(58 34 29 / 18%);
+		border: 1px solid var(--guide-border);
 		border-radius: 999px;
 		padding: 0.38rem 0.58rem;
 		background: transparent;
@@ -300,7 +306,7 @@
 		padding: 0.3rem;
 		border: 1px solid rgb(58 34 29 / 16%);
 		border-radius: 999px;
-		background: #fff;
+		background: var(--guide-surface);
 	}
 	input {
 		min-width: 0;
@@ -316,15 +322,15 @@
 	form button,
 	.launcher {
 		border: 0;
-		background: var(--c-coffee);
-		color: #fff;
+		background: var(--guide-action);
+		color: var(--guide-action-ink);
 		font: inherit;
 		font-weight: 750;
 		cursor: pointer;
 	}
 	form button {
-		width: 2rem;
-		height: 2rem;
+		width: 2.75rem;
+		height: 2.75rem;
 		border-radius: 50%;
 		font-size: 1.15rem;
 		line-height: 1;
@@ -332,18 +338,29 @@
 	.launcher {
 		display: inline-flex;
 		align-items: center;
+		min-height: 2.75rem;
 		gap: 0.48rem;
 		padding: 0.76rem 1rem;
 		border-radius: 999px;
-		box-shadow: 0 10px 22px rgb(58 34 29 / 22%);
+		box-shadow: 0 10px 22px rgb(0 0 0 / 18%);
 		transition: transform 160ms ease, background 160ms ease;
 	}
 	.launcher:hover,
 	.launcher:focus-visible {
 		transform: translateY(-2px);
-		background: #1f120f;
+		background: var(--guide-action-hover);
 	}
-	.spark { color: var(--guide-accent); }
+	.spark { color: currentColor; }
+	:global(html.dark) .portfolio-assistant,
+	:global(html.dark) .chat-card {
+		--guide-ink: #f5f5f7;
+		--guide-surface: #1c1c1e;
+		--guide-subtle: #2c2c2e;
+		--guide-border: #48484a;
+		--guide-action: #f5f5f7;
+		--guide-action-hover: #ffffff;
+		--guide-action-ink: #1d1d1f;
+	}
 	.sr-only {
 		position: absolute;
 		width: 1px;

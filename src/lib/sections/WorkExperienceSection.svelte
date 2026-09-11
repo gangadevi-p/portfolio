@@ -50,6 +50,8 @@
 <style>
 	.xp-section {
 		padding-block: 40px;
+		background: #f5f5f7;
+		color: #1d1d1f;
 	}
 
 	.head {
@@ -57,19 +59,19 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
-		margin-bottom: clamp(2rem, 5vw, 3.5rem);
+		margin-bottom: 36px;
 	}
 	.head h2 {
-		font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-		font-weight: 800;
-		letter-spacing: -0.02em;
+		font-size: var(--fs-h2);
+		font-weight: 700;
+		letter-spacing: -0.045em;
 	}
 	.resume {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		background: #fff;
-		color: #1c1c1c;
+		background: #1d1d1f;
+		color: #fff;
 		/* white pill on the dark section — see ExperienceCard */
 		--c-cursor: #1c1c1c;
 		--c-cursor-ink: #f7f5f0;

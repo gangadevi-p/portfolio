@@ -12,7 +12,6 @@
 <svelte:element
 	this={item.href ? 'a' : 'article'}
 	class="card"
-	class:lg={item.size === 'lg'}
 	class:linked={Boolean(item.href)}
 	href={item.href || undefined}
 	target={item.href && !internal ? '_blank' : undefined}
@@ -54,25 +53,30 @@
 		flex-direction: column;
 		align-items: stretch;
 		gap: clamp(1.25rem, 2.5vw, 1.75rem);
-		min-height: 280px;
-		background: #fff;
-		color: #241a16;
+		min-height: 300px;
+		background: #f5f5f7;
+		color: #1d1d1f;
 		text-decoration: none;
-		border-radius: 20px;
+		border-radius: 28px;
 		padding: clamp(1.35rem, 2.25vw, 1.75rem);
 		box-shadow:
-			0 1px 2px rgba(24, 33, 58, 0.04),
-			0 18px 48px -22px rgba(24, 33, 58, 0.22);
+			0 1px 2px rgb(0 0 0 / 4%),
+			0 16px 42px -28px rgb(0 0 0 / 24%);
+		border: 1px solid #ebebed;
+		transition:
+			transform var(--dur-fast) var(--ease-out),
+			box-shadow var(--dur-fast) var(--ease-out),
+			border-color var(--dur-fast) var(--ease-out);
 	}
 	/* Project logo */
 	.visual {
 		flex: none;
 		align-self: flex-start;
-		width: clamp(68px, 24%, 88px);
-		aspect-ratio: 1;
+		width: 80px;
+		height: 80px;
 		display: grid;
 		place-items: center;
-		border-radius: 18px;
+		border-radius: 22px;
 	}
 	.visual img {
 		width: 100%;
@@ -101,13 +105,13 @@
 	}
 	h3 {
 		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
-		font-weight: 800;
+		font-weight: 700;
 		letter-spacing: -0.01em;
 	}
 	.blurb {
 		margin-top: 0.6rem;
 		max-width: 26ch;
-		color: #8a8480;
+		color: #6e6e73;
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
 		line-height: 1.45;
 		display: -webkit-box;
@@ -121,13 +125,15 @@
 		margin-top: auto;
 		display: inline-flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 0.85rem;
+		width: 100%;
 		background: #fff;
-		color: #2a2a2a;
+		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 0.62rem 1.15rem;
 		border-radius: 999px;
-		box-shadow: 0 2px 8px rgba(28, 28, 28, 0.08);
+		box-shadow: none;
 		white-space: nowrap;
 	}
 	.period > span:first-child {
@@ -137,13 +143,12 @@
 		flex: none;
 		color: inherit;
 	}
-	.card.linked {
-		transition:
-			transform var(--dur-fast) var(--ease-out),
-			background var(--dur-fast) var(--ease-out);
-	}
-	.card.linked:hover {
-		transform: translateY(-2px);
+	.card:hover {
+		transform: translateY(-4px);
+		border-color: #d2d2d7;
+		box-shadow:
+			0 5px 12px rgb(0 0 0 / 6%),
+			0 28px 52px -28px rgb(0 0 0 / 26%);
 	}
 
 </style>

@@ -22,19 +22,19 @@
 	.section {
 		padding-block: 40px;
 		/* light band — the rest of the page is dark, so opt back into light ink */
-		background: #eef1f6;
-		color: #241a16;
-		--c-ink: #241a16;
-		--c-ink-soft: #8a8480;
-		--c-line: rgba(36, 26, 22, 0.14);
-		--c-cursor: #241a16;
-		--c-cursor-ink: #f7f5f0;
+		background: #ffffff;
+		color: #1d1d1f;
+		--c-ink: #1d1d1f;
+		--c-ink-soft: #6e6e73;
+		--c-line: #d2d2d7;
+		--c-cursor: #1d1d1f;
+		--c-cursor-ink: #ffffff;
 	}
 	.title {
-		font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		margin-bottom: clamp(2rem, 5vw, 3.5rem);
+		font-size: var(--fs-h2);
+		font-weight: 700;
+		letter-spacing: -0.045em;
+		margin-bottom: 36px;
 	}
 	.grid {
 		display: grid;
