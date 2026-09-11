@@ -1,54 +1,15 @@
 <script>
-	import { onMount } from 'svelte';
 	import { hero } from '$data/hero.js';
 	import { pointer } from '$motion/pointer.svelte.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
-	import { loadGsap, prefersReducedMotion } from '$motion/gsap.js';
 
 	import SiteNav from '$components/SiteNav.svelte';
 	import ParallaxImage from '$components/ParallaxImage.svelte';
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
-
-	let root;
-
-	onMount(() => {
-		if (prefersReducedMotion()) return;
-
-		let ctx;
-		loadGsap().then(({ gsap }) => {
-			ctx = gsap.context((self) => {
-				const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-				tl.from('.frame', { y: 12, autoAlpha: 0, duration: 0.5 })
-					.from('.nav', { y: -12, autoAlpha: 0, duration: 0.45 }, '-=0.18')
-					.from('.kicker', { y: 14, autoAlpha: 0, duration: 0.45 }, '-=0.16')
-					.from('.name', { yPercent: 105, autoAlpha: 0, duration: 0.7 }, '-=0.24')
-					// icons: only opacity + a hair of blur, so the parallax / bob
-					// transforms on child layers are never touched.
-					.from(
-						'.deck-slot',
-						{ autoAlpha: 0, filter: 'blur(4px)', duration: 0.4, stagger: 0.06 },
-						'-=0.38'
-					)
-					.from(
-						'.hero-photo',
-						{ clipPath: 'inset(100% 0 0 0)', autoAlpha: 0, duration: 0.8 },
-						'-=0.45'
-					)
-					.from(
-						'.hero-speech',
-						{ y: 14, autoAlpha: 0, duration: 0.45 },
-						'-=0.35'
-					);
-			}, root);
-		});
-
-		return () => ctx?.revert();
-	});
 </script>
 
-<section id="me" class="hero" bind:this={root} use:pointer.track>
+<section id="me" class="hero" use:pointer.track>
 	<div class="frame">
 		<SiteNav />
 
@@ -90,6 +51,58 @@
 		--c-cursor: #1d1d1f;
 		--c-cursor-ink: #ffffff;
 	}
+	/* ---- intro reveal ------------------------------------------------------
+	   Plain CSS in place of a GSAP timeline: same choreography (frame, nav,
+	   kicker, name, decks, photo, in that order) without a JS scheduler that
+	   can stall partway and leave elements stuck invisible. */
+	@keyframes hero-in {
+		from {
+			opacity: 0;
+			transform: translateY(var(--hero-in-y, 12px));
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.frame {
+		animation: hero-in 0.5s ease-out both;
+	}
+	.frame :global(.nav) {
+		--hero-in-y: -12px;
+		animation: hero-in 0.45s ease-out 0.1s both;
+	}
+	.kicker {
+		animation: hero-in 0.45s ease-out 0.2s both;
+	}
+	.name {
+		animation: hero-in 0.6s ease-out 0.3s both;
+	}
+	.deck-slot {
+		opacity: 0;
+		animation: hero-in 0.4s ease-out both;
+	}
+	.skills-slot {
+		animation-delay: 0.45s;
+	}
+	.tools-slot {
+		animation-delay: 0.51s;
+	}
+	.hero-photo {
+		animation: hero-in 0.7s ease-out 0.5s both;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.frame,
+		.frame :global(.nav),
+		.kicker,
+		.name,
+		.deck-slot,
+		.hero-photo {
+			animation: none;
+			opacity: 1;
+		}
+	}
+
 	.frame {
 		position: relative;
 		max-width: var(--maxw);
