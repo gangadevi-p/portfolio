@@ -6,6 +6,8 @@
 		getPortfolioAnswer,
 		MAX_USER_MESSAGES
 	} from '$data/portfolio-assistant.js';
+	import { parseMessageSegments } from '$data/chat-render.js';
+	import ChartBlock from './ChartBlock.svelte';
 
 	let open = $state(false);
 	let question = $state('');
@@ -76,7 +78,7 @@
 		}
 
 		messages = messages.map((m, i) =>
-			i === thinkingIndex ? { role: 'assistant', text: replyText, animate: true } : m
+			i === thinkingIndex ? { role: 'assistant', text: replyText, rendered: true } : m
 		);
 		sending = false;
 	}
@@ -108,18 +110,30 @@
 			     wheel here so this panel scrolls natively instead -->
 			<div class="messages" data-lenis-prevent bind:this={transcript}>
 				{#each messages as message, i (`${message.role}-${i}`)}
-					<p class:user={message.role === 'user'} class:thinking={message.thinking}>
-						{#if message.thinking}
+					{#if message.thinking}
+						<p class="thinking">
 							<span class="dots" aria-label="Thinking"><span></span><span></span><span></span></span>
-						{:else if message.role === 'assistant' && message.animate}
+						</p>
+					{:else if message.role === 'user'}
+						<p class="user">{message.text}</p>
+					{:else if message.rendered}
+						<div class="bubble reply">
+							{#each parseMessageSegments(message.text) as segment}
+								{#if segment.type === 'chart'}
+									<ChartBlock spec={segment.spec} />
+								{:else}
+									{@html segment.html}
+								{/if}
+							{/each}
+						</div>
+					{:else}
+						<p>
 							{#each message.text.split(' ') as word, w}<span
 									class="word"
 									style="animation-delay: {Math.min(w * 70, 3200)}ms">{word}</span
 								>{' '}{/each}
-						{:else}
-							{message.text}
-						{/if}
-					</p>
+						</p>
+					{/if}
 				{/each}
 			</div>
 
@@ -275,7 +289,8 @@
 		display: grid;
 		gap: 0.6rem;
 	}
-	.messages p {
+	.messages p,
+	.messages .bubble {
 		width: fit-content;
 		max-width: 94%;
 		margin: 0;
@@ -294,6 +309,70 @@
 	}
 	.messages p.thinking {
 		padding-block: 0.85rem;
+	}
+	/* markdown produced by the assistant's replies */
+	.bubble.reply {
+		display: block;
+		max-width: 100%;
+		opacity: 0;
+		filter: blur(5px);
+		transform: translateY(0.14em);
+		animation: word-in 0.4s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+	}
+	.bubble.reply :global(p) {
+		margin: 0 0 0.5em;
+	}
+	.bubble.reply :global(p:last-child) {
+		margin-bottom: 0;
+	}
+	.bubble.reply :global(ul),
+	.bubble.reply :global(ol) {
+		margin: 0.3em 0;
+		padding-left: 1.1em;
+	}
+	.bubble.reply :global(li) {
+		margin-bottom: 0.2em;
+	}
+	.bubble.reply :global(strong) {
+		font-weight: 800;
+	}
+	.bubble.reply :global(a) {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+	.bubble.reply :global(code) {
+		background: rgb(127 127 127 / 16%);
+		padding: 0.1em 0.32em;
+		border-radius: 0.3em;
+		font-size: 0.85em;
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	}
+	.bubble.reply :global(pre) {
+		overflow-x: auto;
+		padding: 0.55em 0.6em;
+		background: rgb(127 127 127 / 16%);
+		border-radius: 0.5em;
+	}
+	.bubble.reply :global(pre code) {
+		background: none;
+		padding: 0;
+	}
+	.bubble.reply :global(blockquote) {
+		margin: 0.3em 0;
+		padding-left: 0.6em;
+		border-left: 2px solid var(--guide-border);
+		opacity: 0.82;
+	}
+	.bubble.reply :global(h4) {
+		margin: 0.2em 0 0.35em;
+		font-size: 0.85rem;
+		font-weight: 800;
+	}
+	.bubble.reply :global(hr) {
+		border: none;
+		border-top: 1px solid var(--guide-border);
+		margin: 0.5em 0;
 	}
 	.dots {
 		display: inline-flex;
@@ -343,7 +422,8 @@
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
-		.messages p .word {
+		.messages p .word,
+		.bubble.reply {
 			animation: none;
 			opacity: 1;
 			filter: none;
