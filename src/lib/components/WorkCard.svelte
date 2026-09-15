@@ -128,7 +128,7 @@
 		justify-content: space-between;
 		gap: 16px;
 		width: 100%;
-		background: #fff;
+		background: #f5f5f7;
 		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 8px 16px;
