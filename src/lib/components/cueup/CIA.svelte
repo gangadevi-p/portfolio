@@ -144,4 +144,11 @@
 		--c: var(--t-skyDeep);
 		--c-bg: var(--t-skyDeep-bg);
 	}
+	@media (max-width: 999px) {
+		.ia { display: flex; width: 100%; height: auto; flex-direction: column; gap: 24px; padding: 20px; }
+		.group { position: relative; top: auto; left: auto !important; width: 100%; }
+		.spine { height: calc(49px + (var(--rows) - 1) * 44px); }
+		ul { gap: 13px; }
+		.child { width: min(100%, var(--child-w)); height: auto; min-height: 34px; padding: 0.4rem 0.75rem; white-space: normal; }
+	}
 </style>

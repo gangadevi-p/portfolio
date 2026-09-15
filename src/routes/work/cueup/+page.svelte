@@ -355,15 +355,14 @@
 	}
 	.toc {
 		position: fixed;
-		left: 27px;
+		left: 20px;
 		top: 72px;
-		width: 196px;
-		max-height: calc(100dvh - 260px);
+		width: 226px;
+		max-height: calc(100dvh - 140px);
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-width: none;
 		z-index: 40;
-		padding-right: 12px;
 	}
 	.toc::-webkit-scrollbar {
 		display: none;
@@ -386,16 +385,14 @@
 	.toc li a {
 		display: inline-flex;
 		align-items: center;
-		padding: 8px 16px;
+		padding: 8px 14px 8px 21px;
 		border-radius: 50px;
 		color: #6b7480;
+		white-space: nowrap;
 		transition:
 			background var(--dur-fast) var(--ease-out),
 			color var(--dur-fast) var(--ease-out),
 			font-weight var(--dur-fast) var(--ease-out);
-	}
-	.toc a[href='#ia-landlord'] {
-		white-space: nowrap;
 	}
 	.toc li:not(.muted) a:hover,
 	.toc li:not(.muted) a:focus-visible {
@@ -427,16 +424,51 @@
 		.page { zoom: 1; }
 	}
 	@media (max-width: 999px) {
+		/* Switch from a shrunken desktop artboard to a real mobile layout. */
+		.cueup { overflow-x: clip; }
+		.page {
+			width: 100%;
+			zoom: 1;
+			padding: 12px 0 96px;
+		}
+		.cueup .cu-wrap {
+			width: auto;
+			margin-inline: 16px;
+		}
 		.toc {
 			position: relative;
 			inset: auto;
-		width: auto;
-		max-height: none;
-		margin: 0 27px;
-		padding: 24px 0 12px;
-		border-right: 0;
-	}
+			width: auto;
+			max-height: none;
+			margin: 0 16px;
+			padding: 24px 0 12px;
+			border-right: 0;
+		}
 		.toc ul { flex-direction: row; gap: 10px 20px; flex-wrap: wrap; }
+		.top-grid { margin-top: 8px; }
+		.sec { margin-top: 48px; }
+		.pad { margin-top: 20px; }
+		.cueup .cu-head { font-size: 24px; gap: 9px; }
+		.cueup .cu-head::before { width: 10px; height: 10px; }
+		.cueup .cu-note { margin-top: 12px; font-size: 16px; line-height: 1.6; }
+		.cueup .cu-note--surface { padding: 14px; border-radius: 18px; }
+
+		/* Content cards reflow; the intentionally wide diagrams stay legible
+		   inside their own swipe area rather than overflowing the page. */
+		:global(.cueup .facts) {
+			width: 100%;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 20px 12px;
+			padding: 20px;
+		}
+		:global(.cueup .facts dt) { font-size: 15px; margin-bottom: 8px; white-space: normal; }
+		:global(.cueup .facts dd) { font-size: 14px; margin-bottom: 6px; padding-right: 0; }
+		:global(.cueup .facts .tools) { gap: 8px; }
+		:global(.cueup .facts .tools img) { width: 24px; height: 24px; }
+		:global(.cueup .persona) { gap: 20px; }
+		:global(.cueup .persona .col) { gap: 16px; }
+		:global(.cueup .persona .block) { padding: 20px; }
+		:global(.cueup .grid) { grid-template-columns: 1fr; gap: 14px; }
 	}
 
 	.shot {
@@ -446,7 +478,7 @@
 	/* iPhone 16 frame wrapping the looping walkthrough video */
 	.phone {
 		position: relative;
-		width: 208px;
+		width: clamp(160px, 45vw, 208px);
 		aspect-ratio: 9 / 19.5;
 		padding: 7px;
 		border-radius: 34px;

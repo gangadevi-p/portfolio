@@ -75,8 +75,16 @@
 	{/each}
 </div>
 
+<div class="flow-stack cu-card" use:revealScale aria-label="User flow">
+	{#each nodes as n, i (n.label + n.box[0])}
+		<span class="cu-node t-{n.tone}">{n.label}</span>
+		{#if i < nodes.length - 1}<span class="down" aria-hidden="true">↓</span>{/if}
+	{/each}
+</div>
+
 <style>
-	.flow {
+	.flow,
+	.flow-stack {
 		position: relative;
 		width: 1020px;
 		height: var(--h);
@@ -164,5 +172,12 @@
 	.t-pink {
 		--n-bg: var(--n-pink-bg);
 		--n-ink: var(--n-pink-ink);
+	}
+	.flow-stack { display: none; }
+	@media (max-width: 999px) {
+		.flow { display: none; }
+		.flow-stack { display: flex; width: 100%; height: auto; flex-direction: column; align-items: center; gap: 10px; padding: 20px; }
+		.flow-stack .cu-node { width: min(100%, 280px); min-height: 40px; padding: 0.55rem 0.9rem; white-space: normal; }
+		.flow-stack .down { color: var(--cu-ink-soft); font-size: 20px; line-height: 1; }
 	}
 </style>

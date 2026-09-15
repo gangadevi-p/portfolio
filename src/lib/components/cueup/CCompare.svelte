@@ -90,4 +90,11 @@
 		line-height: 1.45;
 		color: #2b3440;
 	}
+	@media (max-width: 999px) {
+		.compare { width: 100%; padding: 20px; gap: 18px; }
+		.row { grid-template-columns: 1fr; gap: 12px; }
+		.logos { display: none; }
+		.row .lead { margin-bottom: 2px; }
+		.row p { padding: 14px; border-radius: 12px; background: #f8f9fb; font-size: 16px; }
+	}
 </style>

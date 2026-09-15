@@ -187,4 +187,17 @@
 		--ink: var(--orange-ink);
 		--fill: var(--orange-fill);
 	}
+	@media (max-width: 999px) {
+		.findings { width: 100%; padding: 20px; }
+		.bands { display: none; }
+		.stages { grid-template-columns: 1fr; gap: 14px; padding: 0; }
+		.stage,
+		.stage.on { min-height: 0; padding: 18px; background: var(--fill, #fff); }
+		.stage { border: 1px solid var(--cu-rule); }
+		.stage h3 { color: var(--ink, #2b3440); padding-bottom: 10px; }
+		.stage p { padding-block: 10px; }
+		.callout { position: static; width: auto; margin-top: 12px; font-size: 15px; }
+		.callout .hook,
+		.callout.bare { display: none; }
+	}
 </style>

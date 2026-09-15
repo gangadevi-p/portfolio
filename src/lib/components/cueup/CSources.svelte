@@ -1,9 +1,8 @@
 <script>
 	/**
 	 * Sources row for the Research section: a "Sources:" label and six clickable
-	 * user chips styled like the page's pill buttons. Each chip links out to the
-	 * Reddit thread and, on hover or keyboard focus, floats the post itself
-	 * (rebuilt as text by CRedditPost) above it.
+	 * user chips styled like the page's pill buttons. On hover, each chip floats
+	 * a local preview of the post rebuilt as text by CRedditPost.
 	 */
 	import { reveal } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
@@ -43,27 +42,9 @@
 	<div class="users">
 		{#each users as u, i (u.label)}
 			<span class="user" class:end={i >= users.length - 2}>
-				<a
-					class="chip"
-					href={u.href}
-					target="_blank"
-					rel="noreferrer"
-					use:cursorLabel={{ label: 'Reddit', variant: 'link' }}
-				>
-					{u.label}
-					<svg class="arw" viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M7 17 17 7M9 7h8v8"
-						/>
-					</svg>
-				</a>
+				<span class="chip" use:cursorLabel={'Source preview'}>{u.label}</span>
 				<span class="peek">
-					<CRedditPost posts={u.posts} href={u.href} />
+					<CRedditPost posts={u.posts} />
 				</span>
 			</span>
 		{/each}
@@ -127,10 +108,6 @@
 			transform 0.16s ease,
 			box-shadow 0.16s ease;
 	}
-	.chip .arw {
-		width: 16px;
-		height: 16px;
-	}
 	.user:hover .chip,
 	.user:focus-within .chip {
 		color: var(--cu-emerald);
@@ -178,5 +155,8 @@
 		.peek {
 			transition: none;
 		}
+	}
+	@media (max-width: 999px) {
+		.peek { display: none; }
 	}
 </style>
