@@ -57,7 +57,7 @@
 	<ul>
 		{#each sections as s (s.id)}
 			<li class:active={active === s.id}>
-				<a href={'#' + s.id} onclick={(e) => go(e, s.id)}>{s.label}</a>
+				<a class:condensed={s.id === 'ia'} href={'#' + s.id} onclick={(e) => go(e, s.id)}>{s.label}</a>
 			</li>
 		{/each}
 	</ul>
@@ -66,15 +66,17 @@
 <style>
 	.toc {
 		position: fixed;
-		left: 27px;
+		left: 20px;
 		top: 72px;
-		width: 210px;
-		max-height: calc(100dvh - 260px);
+		width: 226px;
+		/* Keep the final navigation item visible in compact laptop viewports.
+		   The remaining space still reserves room for the browser chrome and
+		   the fixed summary action at the bottom of the page. */
+		max-height: calc(100dvh - 140px);
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-width: none;
 		z-index: 40;
-		padding-right: 12px;
 		font-family: 'Poppins', system-ui, sans-serif;
 	}
 	.toc::-webkit-scrollbar {
@@ -111,7 +113,9 @@
 	li a {
 		display: inline-flex;
 		align-items: center;
-		padding: 6px 14px;
+		/* Preserve the existing text alignment while giving long labels a
+		   consistent right inset inside the wider rail. */
+		padding: 6px 14px 6px 21px;
 		border-radius: 50px;
 		color: #6b7480;
 		font-weight: 500;
@@ -120,6 +124,11 @@
 			background 0.18s ease,
 			color 0.18s ease,
 			font-weight 0.18s ease;
+	}
+	/* The longest label stays single-line while retaining its right padding. */
+	li a.condensed {
+		font-size: 15px;
+		letter-spacing: -0.01em;
 	}
 	li:not(.active) a:hover,
 	li:not(.active) a:focus-visible {

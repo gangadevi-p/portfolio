@@ -27,4 +27,10 @@
 		display: flex;
 		gap: clamp(1rem, 3vw, 2.25rem);
 	}
+	@media (max-width: 540px) {
+		.pair {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
 </style>

@@ -96,12 +96,14 @@
 		pointer-events: auto;
 	}
 	.inner {
-		max-width: var(--maxw);
-		margin-inline: auto;
+		display: flex;
+		justify-content: center;
 	}
 	:global(.sticky-nav .nav.centered) {
 		display: flex;
 		justify-content: center;
+		width: fit-content;
+		max-width: 100%;
 		padding: 0;
 		border: 0;
 		background: transparent;
@@ -113,6 +115,12 @@
 	:global(.sticky-nav .resume) {
 		display: none;
 	}
+	/* This is a compact scroll-only menu. Keeping the assistant launcher in
+	   the main navigation avoids an extra control widening and offsetting the
+	   pill as it drops back into view. */
+	:global(.sticky-nav .nav-actions) {
+		display: none !important;
+	}
 	:global(.sticky-nav .pill) {
 		background: rgba(0, 0, 0, 0.72);
 		border-color: rgba(255, 255, 255, 0.24);
@@ -121,11 +129,25 @@
 	}
 	:global(.sticky-nav .pill a) {
 		color: #f4f1ea;
+		min-height: 38px;
+		padding: 0.3rem 0.75rem 0.35rem;
+		font-size: 0.9rem;
+	}
+	:global(.sticky-nav .pill a.wide) {
+		padding-inline: 1.1rem;
 	}
 
 	@media (max-width: 560px) {
 		.sticky-nav {
-			padding-block: 0.55rem;
+			padding: 0.55rem 0.75rem;
+		}
+		:global(.sticky-nav .pill a) {
+			min-height: 34px;
+			padding: 0.25rem 0.55rem 0.3rem;
+			font-size: 0.78rem;
+		}
+		:global(.sticky-nav .pill a.wide) {
+			padding-inline: 0.8rem;
 		}
 	}
 </style>

@@ -76,8 +76,6 @@
 	<!-- 1 · HERO -->
 	<header class="hero" id="top">
 		<div class="hero-in">
-			<div class="badge-wrap"><span class="badge">{hero.badge}</span></div>
-
 			<div class="hero-grid">
 				<div class="hero-copy" use:revealScale>
 					<h1>
@@ -346,20 +344,6 @@
 		margin-inline: auto;
 		padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 5vw, 3.5rem) clamp(2rem, 6vw, 4rem);
 	}
-	.badge-wrap {
-		text-align: center;
-		margin-bottom: clamp(1.5rem, 5vw, 3.5rem);
-	}
-	.badge {
-		display: inline-block;
-		background: var(--k-orange);
-		color: #fff;
-		font-weight: 700;
-		font-size: clamp(0.95rem, 2.2vw, 1.35rem);
-		padding: 0.55em 1.4em;
-		border-radius: 999px;
-		box-shadow: var(--k-shadow);
-	}
 	.hero-grid {
 		display: grid;
 		grid-template-columns: 1.05fr 0.95fr;
@@ -599,6 +583,14 @@
 		}
 	}
 	@media (max-width: 520px) {
+		.summary-dock {
+			padding-inline: 12px;
+		}
+		.summary-cta {
+			gap: 8px;
+			padding: 15px 20px;
+			font-size: 15px;
+		}
 		.hero-phones .back {
 			transform: translateX(-30%) scale(0.82);
 		}
