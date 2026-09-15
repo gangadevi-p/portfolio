@@ -52,13 +52,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		gap: clamp(1.25rem, 2.5vw, 1.75rem);
-		min-height: 300px;
+		gap: 24px;
+		min-height: 304px;
 		background: #f5f5f7;
 		color: #1d1d1f;
 		text-decoration: none;
-		border-radius: 28px;
-		padding: clamp(1.35rem, 2.25vw, 1.75rem);
+		border-radius: 24px;
+		padding: 24px;
 		box-shadow:
 			0 1px 2px rgb(0 0 0 / 4%),
 			0 16px 42px -28px rgb(0 0 0 / 24%);
@@ -76,7 +76,7 @@
 		height: 80px;
 		display: grid;
 		place-items: center;
-		border-radius: 22px;
+		border-radius: 24px;
 	}
 	.visual img {
 		width: 100%;
@@ -87,7 +87,7 @@
 		background: #fff;
 		border: 1px solid #f0ddd0;
 		box-shadow: 0 14px 32px -16px rgba(255, 106, 61, 0.4);
-		padding: clamp(0.75rem, 2vw, 1.25rem);
+		padding: 16px;
 	}
 	.mono {
 		font-family: var(--font-display);
@@ -109,7 +109,7 @@
 		letter-spacing: -0.01em;
 	}
 	.blurb {
-		margin-top: 0.6rem;
+		margin-top: 8px;
 		max-width: 26ch;
 		color: #6e6e73;
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
@@ -126,12 +126,12 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 0.85rem;
+		gap: 16px;
 		width: 100%;
 		background: #fff;
 		color: #1d1d1f;
 		font-size: var(--fs-small);
-		padding: 0.62rem 1.15rem;
+		padding: 8px 16px;
 		border-radius: 999px;
 		box-shadow: none;
 		white-space: nowrap;

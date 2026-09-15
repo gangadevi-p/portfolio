@@ -65,11 +65,10 @@
 		margin-inline: auto;
 		padding-inline: var(--pad-x);
 	}
-	/* Left-aligned, sharing the gallery's width so the heading lines up with
-	   the images' left edge. */
+	/* Match the Work Experience and Projects heading alignment. */
 	.head {
-		width: 72%;
-		margin: 0 auto 36px;
+		width: 100%;
+		margin: 0 0 32px;
 		text-align: left;
 	}
 	.head > p {

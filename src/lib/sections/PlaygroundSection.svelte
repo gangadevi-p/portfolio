@@ -18,10 +18,9 @@
 			<div class="video video--contain">
 				<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
 			</div>
-		</div>
-
-		<div class="video video--wide video--narrow" use:reveal>
-			<img src="/files/slider.gif" alt="Slider interaction preview" loading="lazy" />
+			<div class="video video--slider">
+				<img src="/files/slider.gif" alt="Slider interaction preview" loading="lazy" />
+			</div>
 		</div>
 
 	</Container>
@@ -33,23 +32,23 @@
 		background: #f5f5f7;
 		color: #1d1d1f;
 	}
-	/* centre the heading to match the centred media stack below it */
+	/* Match the Work Experience and Projects heading alignment. */
 	.section :global(#playground) {
-		text-align: center;
-		align-items: center;
+		text-align: left;
+		align-items: flex-start;
 	}
 	.section-head {
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
+		grid-template-columns: 1fr auto;
 		align-items: center;
-		margin-bottom: clamp(1.5rem, 4vw, 3rem);
+		margin-bottom: 32px;
 	}
 	.section-head :global(.heading) {
-		grid-column: 2;
+		grid-column: 1;
 		margin-bottom: 0;
 	}
 	.tool {
-		grid-column: 3;
+		grid-column: 2;
 		justify-self: end;
 		display: inline-flex;
 		align-items: center;
@@ -62,16 +61,13 @@
 		border-radius: 999px;
 	}
 	.videos {
-		display: flex;
-		gap: 12px;
+		display: grid;
+		grid-template-columns: auto auto minmax(0, 1fr);
+		gap: 24px;
 		align-items: stretch;
-		/* hold the row narrower than the container so the two tiles read
-		   smaller; they still share one width via flex: 1 1 0 */
-		max-width: 560px;
-		margin-inline: auto;
 	}
 	.video {
-		flex: 1 1 0;
+		height: clamp(88px, 9.5vw, 136px);
 		min-width: 0;
 		border-radius: 28px;
 		box-shadow: 0 12px 32px rgb(0 0 0 / 8%);
@@ -81,43 +77,38 @@
 	.video img {
 		display: block;
 		width: 100%;
-		height: auto;
+		height: 100%;
 		border-radius: 28px;
 	}
-	/* keep the two tiles in this row identical in width and height,
-	   cropping to fill rather than letterboxing the differing aspect ratios */
+	/* Each animation uses the same height. The square progress GIF stays compact
+	   while the wide slider receives the remaining space instead of being
+	   compressed into a square tile. */
 	.videos .video {
 		aspect-ratio: 348 / 244;
 	}
+	.videos .video--contain { aspect-ratio: 1; }
+	.videos .video--slider { aspect-ratio: auto; }
 	.videos .video img {
-		height: 100%;
 		object-fit: cover;
 	}
 	/* the progress clip is square — contain it so the circle stays whole
 	   inside the shared tile size instead of being cropped top and bottom */
-	.videos .video--contain img {
+	.videos .video--contain img,
+	.videos .video--slider img {
 		object-fit: contain;
 	}
-	.video--wide {
-		margin-top: 24px;
-	}
-	/* hold the slider to the same width as the two tiles above it */
-	.video--narrow {
-		max-width: 560px;
-		margin-inline: auto;
-	}
 	@media (max-width: 720px) {
-		.section-head {
-			grid-template-columns: 1fr auto;
-		}
-		.section-head :global(.heading) {
-			grid-column: 1;
-		}
-		.tool {
-			grid-column: 2;
-		}
 		.videos {
-			flex-direction: column;
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+		.video {
+			height: auto;
+		}
+		.videos .video,
+		.videos .video--contain,
+		.videos .video--slider {
+			aspect-ratio: 348 / 244;
 		}
 	}
 </style>
