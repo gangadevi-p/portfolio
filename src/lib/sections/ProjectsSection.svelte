@@ -7,7 +7,7 @@
 </script>
 
 <section id="projects" class="section">
-	<Container>
+	<Container class="wide-container">
 		<h2 class="title" use:reveal>Projects</h2>
 
 		<div class="grid">
@@ -21,6 +21,9 @@
 <style>
 	.section {
 		padding-block: 40px;
+		/* horizontal inset moved here (off the Container) so the section's
+		   visible width matches the hero frame's — see WorkExperienceSection. */
+		padding-inline: var(--pad-x);
 		/* light band — the rest of the page is dark, so opt back into light ink */
 		background: #ffffff;
 		color: #1d1d1f;
@@ -29,6 +32,9 @@
 		--c-line: #d2d2d7;
 		--c-cursor: #1d1d1f;
 		--c-cursor-ink: #ffffff;
+	}
+	.section :global(.wide-container) {
+		padding-inline: 0;
 	}
 	.title {
 		font-size: var(--fs-h2);

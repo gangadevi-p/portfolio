@@ -5,7 +5,7 @@
 </script>
 
 <section class="section">
-	<Container>
+	<Container class="wide-container">
 		<div class="section-head">
 			<SectionHeading id="playground" title="I Play" />
 			<span class="tool">Figma</span>
@@ -29,8 +29,14 @@
 <style>
 	.section {
 		padding-block: 40px;
+		/* horizontal inset moved here (off the Container) so the section's
+		   visible width matches the hero frame's — see WorkExperienceSection. */
+		padding-inline: var(--pad-x);
 		background: #f5f5f7;
 		color: #1d1d1f;
+	}
+	.section :global(.wide-container) {
+		padding-inline: 0;
 	}
 	/* Match the Work Experience and Projects heading alignment. */
 	.section :global(#playground) {

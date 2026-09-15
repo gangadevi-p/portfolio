@@ -6,7 +6,7 @@
 </script>
 
 <section class="section">
-	<Container>
+	<Container class="wide-container">
 		<SectionHeading id="resume" kicker="About" title="Resume" />
 
 		<p class="intro" use:reveal>{resume.intro}</p>
@@ -39,6 +39,12 @@
 <style>
 	.section {
 		padding-block: clamp(3rem, 9vw, 7rem);
+		/* horizontal inset moved here (off the Container) so the section's
+		   visible width matches the hero frame's — see WorkExperienceSection. */
+		padding-inline: var(--pad-x);
+	}
+	.section :global(.wide-container) {
+		padding-inline: 0;
 	}
 	.intro {
 		font-size: var(--fs-lead);

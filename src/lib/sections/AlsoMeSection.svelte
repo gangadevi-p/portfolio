@@ -33,6 +33,9 @@
 <style>
 	.section {
 		padding-block: 40px;
+		/* horizontal inset moved here (off .inner) so the section's visible
+		   width matches the hero frame's — see WorkExperienceSection. */
+		padding-inline: var(--pad-x);
 		background: #ffffff;
 		color: #1d1d1f;
 		--c-cursor: #1d1d1f;
@@ -42,7 +45,6 @@
 		width: 100%;
 		max-width: var(--maxw);
 		margin-inline: auto;
-		padding-inline: var(--pad-x);
 	}
 	/* Match the Work Experience and Projects heading alignment. */
 	.head {
