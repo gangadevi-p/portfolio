@@ -280,4 +280,40 @@
 			transform: none;
 		}
 	}
+
+	/* Below ~600px the nav pill itself wraps onto two lines (not enough room
+	   for brand + 5 links + the assistant launcher on one row), which makes
+	   the nav taller than the collage's fixed overlap math assumes — the
+	   photo would ride up over the wrapped nav. Simplest fix: stop
+	   absolutely-positioning the photo and the deck cards here and just
+	   stack everything in normal document flow instead. */
+	@media (max-width: 600px) {
+		.frame {
+			display: flex;
+			flex-direction: column;
+			min-height: 0;
+		}
+		.headline {
+			margin-top: 1.25rem;
+		}
+		.hero-photo {
+			order: 2;
+			position: static;
+			width: min(62%, 280px);
+			max-width: none;
+			height: auto;
+			margin: 1rem auto 0;
+			overflow: visible;
+		}
+		.hero-photo :global(img) {
+			width: 100%;
+		}
+		.deck-row {
+			order: 3;
+			position: static;
+			margin-top: 1.75rem;
+			left: auto;
+			bottom: auto;
+		}
+	}
 </style>
