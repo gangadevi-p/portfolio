@@ -26,36 +26,57 @@
 			? { label: job.status, variant: 'view' }
 			: undefined}
 >
-	<div class="logo">
-		{#if job.logo && !broken}
-			<img src={job.logo} alt={job.company} loading="lazy" onerror={() => (broken = true)} />
-		{:else}
-			<span class="mono" aria-hidden="true">{job.company.charAt(0)}</span>
-		{/if}
-	</div>
+	<div class="top">
+		<div class="logo">
+			{#if job.logo && !broken}
+				<img src={job.logo} alt={job.company} loading="lazy" onerror={() => (broken = true)} />
+			{:else}
+				<span class="mono" aria-hidden="true">{job.company.charAt(0)}</span>
+			{/if}
+		</div>
 
-	<div class="body">
-		<h3>{job.role}</h3>
-		<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
-		{#if featured}
-			{#if job.summary}<p class="featured-summary">{job.summary}</p>{/if}
-			{#if job.points?.length}
-				<ul class="points featured-points">
+		<div class="body">
+			<h3>{job.role}</h3>
+			<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
+			{#if featured}
+				{#if job.summary}<p class="featured-summary">{job.summary}</p>{/if}
+			{/if}
+
+			{#if !featured && job.points?.length}
+				<ul class="points">
 					{#each job.points as point}<li>{point}</li>{/each}
 				</ul>
+			{:else if !featured && job.blurb}
+				<p class="blurb">{job.blurb}</p>
 			{/if}
-		{/if}
 
-		{#if !featured && job.points?.length}
-			<ul class="points">
+			{#if !featured}
+				<span class="period">
+					<span class="period-date">{job.period}</span>
+					<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+						<path
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M7 17 17 7M9 7h8v8"
+						/>
+					</svg>
+				</span>
+			{/if}
+		</div>
+	</div>
+
+	{#if featured}
+		{#if job.points?.length}
+			<ul class="points featured-points">
 				{#each job.points as point}<li>{point}</li>{/each}
 			</ul>
-		{:else if job.blurb}
-			<p class="blurb">{job.blurb}</p>
 		{/if}
 
 		<span class="period">
-			{#if featured && job.status}<span class="status">{job.status}</span>{/if}
+			{#if job.status}<span class="status">{job.status}</span>{/if}
 			<span class="period-date">{job.period}</span>
 			<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
 				<path
@@ -68,7 +89,7 @@
 				/>
 			</svg>
 		</span>
-	</div>
+	{/if}
 </svelte:element>
 
 <style>
@@ -91,7 +112,14 @@
 	.xp.featured {
 		height: 100%;
 		position: relative;
+		flex-direction: column;
+		gap: 1rem;
 		--logo-size: clamp(96px, 10vw, 120px);
+		padding-bottom: 3.75rem;
+	}
+	.top {
+		display: flex;
+		gap: clamp(1rem, 2.5vw, 1.75rem);
 	}
 	.logo {
 		position: relative;
@@ -125,12 +153,11 @@
 		gap: 0.75rem;
 		min-width: 0;
 	}
-	.featured .body {
-		padding-bottom: 3.75rem;
-	}
 	.xp.featured .featured-points {
+		width: 100%;
 		list-style: disc;
-		padding-left: 1.2rem;
+		list-style-position: inside;
+		padding-left: 0;
 		gap: 0.5rem;
 	}
 	h3 {
