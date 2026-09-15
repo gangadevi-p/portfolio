@@ -54,7 +54,7 @@
 		align-items: stretch;
 		gap: 24px;
 		min-height: 304px;
-		background: #f5f5f7;
+		background: #ffffff;
 		color: #1d1d1f;
 		text-decoration: none;
 		border-radius: 24px;

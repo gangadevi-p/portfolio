@@ -7,7 +7,7 @@
 <section class="section">
 	<Container>
 		<div class="section-head">
-			<SectionHeading id="playground" kicker="More" title="I Play" />
+			<SectionHeading id="playground" title="I Play" />
 			<span class="tool">Figma</span>
 		</div>
 
@@ -69,16 +69,12 @@
 	.video {
 		height: clamp(88px, 9.5vw, 136px);
 		min-width: 0;
-		border-radius: 28px;
-		box-shadow: 0 12px 32px rgb(0 0 0 / 8%);
-		overflow: hidden;
 		background: transparent;
 	}
 	.video img {
 		display: block;
 		width: 100%;
 		height: 100%;
-		border-radius: 28px;
 	}
 	/* Each animation uses the same height. The square progress GIF stays compact
 	   while the wide slider receives the remaining space instead of being

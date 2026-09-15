@@ -56,6 +56,16 @@ body:has(main.home-route) {
 	--c-cursor: #1d1d1f;
 	--c-cursor-ink: #ffffff;
 }
+/* One flat page colour across every home-page band, the same way the dark
+   theme is uniformly black below — each section otherwise ships its own
+   background (#fff, #fbfbfd, #f5f5f7, ...), which reads as a subtle
+   checkerboard instead of one continuous page. */
+html:not(.dark, [data-theme='dark']) body:has(main.home-route) .hero,
+html:not(.dark, [data-theme='dark']) body:has(main.home-route) .xp-section,
+html:not(.dark, [data-theme='dark']) body:has(main.home-route) .section,
+html:not(.dark, [data-theme='dark']) body:has(main.home-route) .footer {
+	background: #f5f5f7 !important;
+}
 html:is(.dark, [data-theme='dark']):has(main.home-route) {
 	color-scheme: dark;
 }

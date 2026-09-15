@@ -10,7 +10,6 @@
 <section id="also-me" class="section">
 	<div class="inner">
 		<header class="head" use:reveal>
-			<p>Beyond the screen</p>
 			<h2>If I were a moodboard, this would be me.</h2>
 			<div class="intro">
 				<p>
@@ -39,8 +38,6 @@
 		--c-cursor: #1d1d1f;
 		--c-cursor-ink: #fff;
 	}
-	/* Wider than the site's standard container so Layout 2 + Layout 3 get more
-	   room. */
 	.inner {
 		width: 100%;
 		max-width: var(--maxw);
@@ -52,14 +49,6 @@
 		width: 100%;
 		margin: 0 0 32px;
 		text-align: left;
-	}
-	.head > p {
-		margin-bottom: 0.55rem;
-		color: #6e6e73;
-		font-size: var(--fs-small);
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
 	}
 	.head h2 {
 		max-width: 20ch;
