@@ -1,22 +1,40 @@
 <script>
 	/**
-	 * "Also me" gallery — three independent rows (2 / 4 / 5 images). Each row
-	 * sizes itself purely from its images' own ratios, so the top row ends up a
-	 * different height than the two below it with no special-casing needed.
+	 * "Also me" gallery — three rows, each the same total occupied width as the
+	 * top row. Every row still lays out at one shared height (equal heights
+	 * within itself, images unstretched/uncropped) — but rows with a smaller or
+	 * larger combined ratio+gap footprint than the top row get their own height
+	 * solved for algebraically, so `rowWidth = height * sumRatio + gaps` comes
+	 * out equal for all three rows without ever exceeding the top row's width.
 	 */
 	import { row1, row2, row3 } from '$data/also-me.js';
 
 	const rows = [row1, row2, row3];
+
+	const footprint = (row) => ({
+		sumRatio: row.reduce((sum, img) => sum + img.ratio, 0),
+		gaps: row.length - 1
+	});
+	const base = footprint(row1);
+
+	// height_i = (base.sumRatio / sumRatio_i) * baseHeight + ((base.gaps - gaps_i) * 24 / sumRatio_i)
+	const coefficients = rows.map((row) => {
+		const { sumRatio, gaps } = footprint(row);
+		return {
+			k1: base.sumRatio / sumRatio,
+			k2: ((base.gaps - gaps) * 24) / sumRatio
+		};
+	});
 </script>
 
 <div class="gani-layout" aria-label="Personal gallery">
 	{#each rows as row, i (i)}
-		<div class="row">
+		<div class="row" style="--k1: {coefficients[i].k1}; --k2: {coefficients[i].k2}px">
 			{#each row as image (image.src)}
 				<img
 					src={image.src}
 					alt={image.alt}
-					style="flex-grow: {image.ratio}; aspect-ratio: {image.ratio}; --image-rotation: {image.rotation ?? 0}deg"
+					style="aspect-ratio: {image.ratio}; --image-rotation: {image.rotation ?? 0}deg; object-position: {image.position ?? 'center'}"
 					loading="lazy"
 					decoding="async"
 				/>
@@ -27,6 +45,7 @@
 
 <style>
 	.gani-layout {
+		--row-h-base: clamp(140px, 19vw, 260px);
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
@@ -34,24 +53,17 @@
 	}
 	.row {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: flex-start;
+		justify-content: center;
 		gap: 24px;
 		width: 100%;
 	}
-	/* The top row has only two images, so filling the full width would make it
-	   noticeably taller than the rows below. Narrowing it (rather than cropping
-	   either image) brings its height down while keeping both images — and
-	   each other — uncropped and exactly matched in height. */
-	.row:first-child {
-		width: 76%;
-	}
 	.row img {
-		flex-basis: 0; /* grow purely by the ratio above → equal heights within the row */
-		min-width: 0;
-		width: 100%;
-		height: auto;
+		height: calc(var(--k1, 1) * var(--row-h-base) + var(--k2, 0px));
+		width: auto;
 		display: block;
-		object-fit: cover; /* the box's aspect-ratio matches the image, so nothing is cropped */
+		object-fit: cover; /* only the intentionally-cropped images (custom `position`) lose any edge */
 		rotate: var(--image-rotation);
 		border-radius: 20px;
 		transition:
@@ -71,15 +83,8 @@
 		}
 	}
 	@media (max-width: 760px) {
-		.row,
-		.row:first-child {
-			width: 100%;
-			flex-wrap: wrap;
-		}
-		.row img {
-			flex-basis: calc(50% - 12px);
-			flex-grow: 0;
-			width: calc(50% - 12px);
+		.gani-layout {
+			--row-h-base: clamp(110px, 26vw, 160px);
 		}
 	}
 </style>
