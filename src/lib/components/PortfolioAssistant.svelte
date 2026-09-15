@@ -2,11 +2,15 @@
 	import {
 		assistantPrompts,
 		assistantWelcome,
-		getPortfolioAnswer
+		askPortfolioAssistant,
+		getPortfolioAnswer,
+		MAX_USER_MESSAGES
 	} from '$data/portfolio-assistant.js';
 
 	let open = $state(false);
 	let question = $state('');
+	let sending = $state(false);
+	let limitReached = $state(false);
 	let messages = $state([{ role: 'assistant', text: assistantWelcome, animate: true }]);
 	let { placement = 'hero' } = $props();
 
@@ -14,6 +18,10 @@
 	let askedPrompts = $state([]);
 	let remainingPrompts = $derived(
 		assistantPrompts.filter((prompt) => !askedPrompts.includes(prompt))
+	);
+	/** true once the visitor has sent MAX_USER_MESSAGES questions this session */
+	let capReached = $derived(
+		limitReached || messages.filter((m) => m.role === 'user').length >= MAX_USER_MESSAGES
 	);
 
 	/** The transcript element, so a new answer scrolls it to the bottom. */
@@ -38,20 +46,39 @@
 		};
 	}
 
-	function ask(text) {
+	async function ask(text) {
 		const cleanQuestion = text.trim();
-		if (!cleanQuestion) return;
+		if (!cleanQuestion || sending || capReached) return;
 
-		messages = [
-			...messages,
-			{ role: 'user', text: cleanQuestion },
-			{ role: 'assistant', text: getPortfolioAnswer(cleanQuestion), animate: true }
-		];
+		messages = [...messages, { role: 'user', text: cleanQuestion }, { role: 'assistant', text: '', thinking: true }];
+		const thinkingIndex = messages.length - 1;
 		if (assistantPrompts.includes(cleanQuestion) && !askedPrompts.includes(cleanQuestion)) {
 			askedPrompts = [...askedPrompts, cleanQuestion];
 		}
 		question = '';
 		open = true;
+		sending = true;
+
+		const history = messages
+			.filter((m) => !m.thinking)
+			.map((m) => ({ role: m.role, content: m.text }));
+
+		let replyText;
+		try {
+			replyText = await askPortfolioAssistant(history);
+		} catch (err) {
+			if (err?.limitReached) {
+				limitReached = true;
+				replyText = err.message;
+			} else {
+				replyText = getPortfolioAnswer(cleanQuestion);
+			}
+		}
+
+		messages = messages.map((m, i) =>
+			i === thinkingIndex ? { role: 'assistant', text: replyText, animate: true } : m
+		);
+		sending = false;
 	}
 
 	function submit(event) {
@@ -81,8 +108,10 @@
 			     wheel here so this panel scrolls natively instead -->
 			<div class="messages" data-lenis-prevent bind:this={transcript}>
 				{#each messages as message, i (`${message.role}-${i}`)}
-					<p class:user={message.role === 'user'}>
-						{#if message.role === 'assistant' && message.animate}
+					<p class:user={message.role === 'user'} class:thinking={message.thinking}>
+						{#if message.thinking}
+							<span class="dots" aria-label="Thinking"><span></span><span></span><span></span></span>
+						{:else if message.role === 'assistant' && message.animate}
 							{#each message.text.split(' ') as word, w}<span
 									class="word"
 									style="animation-delay: {Math.min(w * 70, 3200)}ms">{word}</span
@@ -94,12 +123,18 @@
 				{/each}
 			</div>
 
-			{#if remainingPrompts.length}
+			{#if remainingPrompts.length && !capReached}
 				<div class="suggestions" aria-label="Suggested questions">
 					{#each remainingPrompts as prompt (prompt)}
-						<button type="button" onclick={() => ask(prompt)}>{prompt}</button>
+						<button type="button" disabled={sending} onclick={() => ask(prompt)}>{prompt}</button>
 					{/each}
 				</div>
+			{/if}
+
+			{#if capReached}
+				<p class="limit-note">
+					You've reached the {MAX_USER_MESSAGES}-message limit for this conversation. Refresh the page to start a new one.
+				</p>
 			{/if}
 
 			<form onsubmit={submit}>
@@ -107,10 +142,11 @@
 				<input
 					id="portfolio-question"
 					bind:value={question}
-					placeholder="Ask a quick question…"
+					placeholder={capReached ? 'Conversation limit reached' : 'Ask a quick question…'}
 					autocomplete="off"
+					disabled={sending || capReached}
 				/>
-				<button type="submit" aria-label="Send question">↑</button>
+				<button type="submit" aria-label="Send question" disabled={sending || capReached || !question.trim()}>↑</button>
 			</form>
 		</section>
 	{/if}
@@ -255,6 +291,40 @@
 		border-radius: 0.9rem 0.9rem 0.2rem 0.9rem;
 		background: var(--guide-action);
 		color: var(--guide-action-ink);
+	}
+	.messages p.thinking {
+		padding-block: 0.85rem;
+	}
+	.dots {
+		display: inline-flex;
+		gap: 0.28rem;
+	}
+	.dots span {
+		width: 0.36rem;
+		height: 0.36rem;
+		border-radius: 50%;
+		background: currentColor;
+		opacity: 0.35;
+		animation: dot-pulse 1.1s ease-in-out infinite;
+	}
+	.dots span:nth-child(2) { animation-delay: 0.15s; }
+	.dots span:nth-child(3) { animation-delay: 0.3s; }
+	@keyframes dot-pulse {
+		0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+		30% { opacity: 1; transform: translateY(-0.1rem); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.dots span {
+			animation: none;
+			opacity: 0.7;
+		}
+	}
+	.limit-note {
+		margin: 0;
+		font-size: 0.72rem;
+		line-height: 1.4;
+		color: var(--guide-ink);
+		opacity: 0.65;
 	}
 	/* answers arrive word by word — a quick blur-to-sharp shimmer, like the
 	   launcher spark. Layout space is held from the start so nothing jumps. */

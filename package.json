@@ -7,10 +7,10 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "serve build -s -l tcp://0.0.0.0:$PORT"
+    "start": "node build/index.js"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^3.0.8",
+    "@sveltejs/adapter-node": "^5.5.7",
     "@sveltejs/kit": "^2.20.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "svelte": "^5.25.0",
@@ -19,6 +19,6 @@
   "dependencies": {
     "gsap": "^3.12.7",
     "lenis": "^1.2.3",
-    "serve": "^14.2.6"
+    "openai": "^7.15.0"
   }
 }

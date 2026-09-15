@@ -1,10 +1,11 @@
 /**
  * portfolio-assistant.js — the adapter behind the on-site "Portfolio guide".
  *
- * All the content lives in profile.js (the canonical knowledge base, also the
- * source for PROFILE.md). This file only turns a visitor's question into the
- * best-matching answer. Keeping it local means the first reply is instant and
- * the portfolio needs no API key or visitor data to work.
+ * The real answers now come from /api/chat — a server route that calls an
+ * LLM with tools over the portfolio's own data (see
+ * src/lib/server/chat-tools.js). `getPortfolioAnswer` below is kept only as
+ * an offline fallback for when that request fails (no key configured,
+ * network error, etc.), so the widget still says something useful.
  */
 import { knowledge, fallback } from './profile.js';
 
@@ -18,6 +19,35 @@ export const assistantPrompts = [
 	'Tell me about her work',
 	'Why hire Gangadevi?'
 ];
+
+/** Mirrors MAX_USER_MESSAGES in src/routes/api/chat/+server.js. */
+export const MAX_USER_MESSAGES = 35;
+
+/**
+ * Send the full conversation so far (including the new user turn) to the
+ * LLM-backed endpoint and return its reply.
+ * @param {{role: 'user'|'assistant', content: string}[]} history
+ * @returns {Promise<string>}
+ */
+export async function askPortfolioAssistant(history) {
+	const res = await fetch('/api/chat', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ messages: history })
+	});
+
+	const data = await res.json().catch(() => ({}));
+
+	if (res.status === 429) {
+		const err = new Error(data.message || `You've reached the ${MAX_USER_MESSAGES}-message limit.`);
+		err.limitReached = true;
+		throw err;
+	}
+	if (!res.ok) {
+		throw new Error(data.message || 'Request failed');
+	}
+	return data.reply;
+}
 
 /** words too common to carry meaning when scoring a question */
 const STOP_WORDS = new Set([
