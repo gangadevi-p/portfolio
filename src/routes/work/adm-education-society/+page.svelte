@@ -21,9 +21,6 @@
 				<p class="role">{admMeta.role}</p>
 				<p class="period">{admMeta.period}</p>
 			</div>
-			<div class="what-i-did">
-				<p class="summary">{admMeta.summary}</p>
-			</div>
 		</header>
 
 		<!-- regular grid: every poster is a 500px square -->
@@ -57,6 +54,12 @@
 		font-size: clamp(1.9rem, 5vw, 3.25rem);
 		font-weight: 800;
 		letter-spacing: -0.02em;
+		/* These pages retain a dark canvas in either site theme. Keep the
+		   company name explicit so it cannot inherit the home page's dark ink. */
+		color: #f4f1ea;
+	}
+	:global(html:is(.dark, [data-theme='dark'])) .head h1 {
+		color: #f5f5f7;
 	}
 	.role {
 		font-size: calc(1rem + 4px);
@@ -76,15 +79,6 @@
 		font-size: var(--fs-small);
 		font-weight: 600;
 		white-space: nowrap;
-	}
-	.what-i-did {
-		margin-top: clamp(1.75rem, 4vw, 2.5rem);
-	}
-	.summary {
-		margin-top: 1rem;
-		font-size: var(--fs-lead);
-		color: var(--c-ink-soft);
-		max-width: 46ch;
 	}
 	@media (max-width: 480px) {
 		.role-row {

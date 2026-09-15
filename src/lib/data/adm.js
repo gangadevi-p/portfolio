@@ -7,7 +7,7 @@
  * file to something without spaces and use the plain path.
  */
 export const admMeta = {
-	company: 'ADM Education Society',
+	company: 'ADM Educational Welfare Society (Remote)',
 	role: 'Graphic Design Intern',
 	period: 'May 2024 – June 2024',
 	summary:

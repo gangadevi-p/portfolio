@@ -56,6 +56,12 @@
 		font-size: clamp(1.9rem, 5vw, 3.25rem);
 		font-weight: 800;
 		letter-spacing: -0.02em;
+		/* These pages retain a dark canvas in either site theme. Keep the
+		   company name explicit so it cannot inherit the home page's dark ink. */
+		color: #f4f1ea;
+	}
+	:global(html:is(.dark, [data-theme='dark'])) .head h1 {
+		color: #f5f5f7;
 	}
 	.role {
 		font-size: calc(1rem + 4px);
@@ -83,7 +89,7 @@
 		margin-top: 1rem;
 		font-size: var(--fs-lead);
 		color: var(--c-ink-soft);
-		max-width: 46ch;
+		max-width: none;
 	}
 	@media (max-width: 480px) {
 		.role-row {

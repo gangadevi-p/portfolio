@@ -27,7 +27,7 @@ export const experience = [
 		href: ''
 	},
 	{
-		company: 'Geekbull',
+		company: 'Geekbull Consultancy — Hyderabad (Onsite)',
 		role: 'UIUX Design Intern',
 		logo: '/img/experience/geekbull-hd.png',
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
@@ -35,7 +35,7 @@ export const experience = [
 		href: '/work/geekbull'
 	},
 	{
-		company: 'ADM Education Society',
+		company: 'ADM Educational Welfare Society (Remote)',
 		role: 'Graphic Design Intern',
 		logo: '/img/experience/adm-clean.png',
 		blurb: 'Social-media poster designing for their organization.',

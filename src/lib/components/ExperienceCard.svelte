@@ -36,8 +36,8 @@
 
 	<div class="body">
 		<h3>{job.role}</h3>
+		<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
 		{#if featured}
-			<p class="company-name">{job.company}{#if job.project}<span class="project-name">{job.project}</span>{/if}</p>
 			{#if job.summary}<p class="featured-summary">{job.summary}</p>{/if}
 			{#if job.points?.length}
 				<ul class="points featured-points">

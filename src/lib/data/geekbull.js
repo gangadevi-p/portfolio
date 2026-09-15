@@ -3,10 +3,11 @@
  * Rendered by /work/geekbull.
  */
 export const geekbullMeta = {
-	company: 'Geekbull',
+	company: 'Geekbull Consultancy — Hyderabad (Onsite)',
 	role: 'UIUX Design Intern',
 	period: 'Nov 2024 – Feb 2025',
-	summary: 'Three products across the internship — an HRMS platform, a chatbot, and Pixer data.'
+	summary:
+		'Three products across the internship — an HRMS platform, a chatbot, and Pixer data. The internship concluded earlier than planned so I could focus on my semester examinations.'
 };
 
 export const geekbullShots = [
