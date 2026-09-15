@@ -10,7 +10,7 @@
 </script>
 
 <section id="work" class="xp-section">
-	<Container>
+	<Container class="xp-container">
 		<header class="head" use:reveal>
 			<h2>Work Experience</h2>
 			<a
@@ -50,8 +50,15 @@
 <style>
 	.xp-section {
 		padding-block: 40px;
+		/* horizontal inset moved here (off the Container) so the section's
+		   visible width matches the hero frame's — which insets the same way,
+		   on the section itself rather than on the maxw wrapper inside it. */
+		padding-inline: var(--pad-x);
 		background: #f5f5f7;
 		color: #1d1d1f;
+	}
+	.xp-section :global(.xp-container) {
+		padding-inline: 0;
 	}
 
 	.head {
