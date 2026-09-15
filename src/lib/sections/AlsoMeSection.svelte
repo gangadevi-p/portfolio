@@ -1,13 +1,9 @@
 <script>
 	/**
 	 * "Also me" — the big layout. It owns the section chrome (heading, spacing,
-	 * light palette) and composes the row layouts. Layout1 is a full-width strip;
-	 * Layout2 + Layout3 stack in a 65% column with Layout4 filling the rest.
+	 * light palette) and selects the original Gani gallery composition.
 	 */
-	import Layout1 from '$sections/alsome/Layout1.svelte';
-	import Layout2 from '$sections/alsome/Layout2.svelte';
-	import Layout3 from '$sections/alsome/Layout3.svelte';
-	import Layout4 from '$sections/alsome/Layout4.svelte';
+	import GaniLayout from '$sections/alsome/GaniLayout.svelte';
 	import { reveal } from '$motion/reveal.js';
 </script>
 
@@ -26,25 +22,11 @@
 					I graduated in <strong>Cybersecurity</strong>, but my creative mind chose
 					<strong>crafting experiences</strong> over chasing vulnerabilities.
 				</p>
-				<p>
-					<strong>Curiosity drives everything I do.</strong> I question, explore, and iterate
-					relentlessly, always asking <strong>“Why?”</strong>, <strong>“What if?”</strong>, and
-					<strong>“How can this be better?”</strong>
-				</p>
 			</div>
 		</header>
 
-		<div class="stack">
-			<div class="row" use:reveal={{ y: 24 }}>
-				<Layout1 />
-			</div>
-			<div class="row cluster" use:reveal={{ y: 24 }}>
-				<div class="cluster-main">
-					<Layout2 />
-					<Layout3 />
-				</div>
-				<Layout4 />
-			</div>
+		<div use:reveal={{ y: 24 }}>
+			<GaniLayout />
 		</div>
 	</div>
 </section>
@@ -104,58 +86,6 @@
 	}
 	@media (max-width: 760px) {
 		.head {
-			width: 100%;
-		}
-	}
-	.stack {
-		display: flex;
-		flex-direction: column;
-		gap: 20px; /* space between the layout rows */
-		/* Scale the complete gallery rather than individual images, preserving
-		   each row's original proportions and alignment. */
-		width: 72%;
-		margin: 0 auto;
-	}
-	.row {
-		width: 100%;
-	}
-	/* rounded corners on every image in the gallery */
-	.stack :global(img) {
-		border-radius: 28px;
-		transition:
-			transform var(--dur-med) var(--ease-out),
-			filter var(--dur-med) var(--ease-out);
-	}
-	/* quiet hover: a small zoom + brightness lift, no looping motion */
-	.stack :global(img:hover) {
-		transform: scale(1.02);
-		filter: brightness(1.04) saturate(1.05);
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.stack :global(img) {
-			transition: none;
-		}
-		.stack :global(img:hover) {
-			transform: none;
-			filter: none;
-		}
-	}
-	/* Layout 2 + Layout 3 in a 65% column, Layout 4 filling the rest and
-	   matching that column's height. */
-	.cluster {
-		display: flex;
-		align-items: stretch;
-		gap: 20px;
-	}
-	.cluster-main {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		flex: 0 0 72%; /* wider Layout 2 / Layout 3; Layout 4 takes the slimmer rest */
-		min-width: 0;
-	}
-	@media (max-width: 760px) {
-		.stack {
 			width: 100%;
 		}
 	}
