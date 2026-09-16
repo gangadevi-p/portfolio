@@ -24,12 +24,14 @@ export const hero = {
 		{ n: '2', label: 'User Roles', tone: 'green' },
 		{ n: '1', label: 'Unified Platform', tone: 'orange' }
 	],
-	lead: 'I faced this myself, so I brought scattered campus information and daily tasks into one place.',
-	phones: [
-		{ src: '/kiet/hero-phone-projects.png', alt: 'Projects screen' },
-		{ src: '/kiet/hero-phone-home.png', alt: 'Home screen' }
-	]
+	lead: 'I faced this myself, so I brought scattered campus information and daily tasks into one place.'
 };
+
+export const mockups = [
+	{ src: '/img/KIET/Home so.png', alt: 'KIET Student App home screen mockup' },
+	{ src: '/img/KIET/Attedance So.png', alt: 'KIET Student App attendance screen mockup' },
+	{ src: '/img/KIET/Materials so.png', alt: 'KIET Student App materials screen mockup' }
+];
 
 export const overview = {
 	overview:
@@ -49,7 +51,10 @@ export const team = {
 		{ label: 'Users:', value: 'Students + Admin', tone: 'teal' },
 		{ label: 'Timeline :', value: '4 Months', tone: 'dark' }
 	],
-	download: { label: 'Download App', href: '#' },
+	download: {
+		label: 'Download App',
+		href: 'https://play.google.com/store/apps/details?id=com.bharath.kiet_student_app&hl=en_IN'
+	},
 	members: [
 		{
 			name: 'Gangadevi',
@@ -203,6 +208,29 @@ export const studentExperience = {
 	phone: { src: '/kiet/student-home.png', alt: 'Student home screen' }
 };
 
+export const iterated = {
+	permissions: {
+		title: 'Permissions',
+		reason: 'Students had limited visibility into their permission requests, making it difficult to understand their status and know when follow-up was required.',
+		outcome: 'Current iteration Created a clearer request lifecycle, helping students quickly understand approval status, responsible authorities, and the next action required.',
+		screens: [
+			{ src: '/img/KIET/Permissions Old.png', alt: 'Old permissions screen', label: 'Old' },
+			{ src: '/img/KIET/Permissions so.png', alt: 'New permissions screen', label: 'New' }
+		]
+	},
+	projects: {
+		title: 'Projects',
+		reason:
+			'Project information was spread across different areas, making it difficult for students to understand overall progress, deadlines, and individual responsibilities.',
+		outcome:
+			'Current iteration brought important project context together, helping students understand progress, track responsibilities, and stay aware of upcoming deadlines.',
+		screens: [
+			{ src: '/img/KIET/Project Old.png', alt: 'Old projects screen', label: 'Old' },
+			{ src: '/img/KIET/Projects So.png', alt: 'New projects screen', label: 'New' }
+		]
+	}
+};
+
 export const iterations = [
 	{
 		caption:
@@ -213,21 +241,32 @@ export const iterations = [
 	{
 		caption: 'Simplified permission requests to make their status easier to scan and follow.',
 		before: { src: '/kiet/iter-perm-before.png', alt: 'Old permissions screen' },
-		after: { src: '/kiet/iter-perm-after.png', alt: 'New permissions screen' }
+		after: { src: '/img/KIET/Permissions so.png', alt: 'New permissions screen' }
 	}
 ];
 
 export const admin = [
 	{
-		caption: 'Reduced repeated information to make the student list faster and easier to scan.',
-		before: { src: '/kiet/admin-a.png', alt: 'Old student list' },
-		after: { src: '/kiet/admin-b.png', alt: 'New student list' }
+		title: 'Student Details',
+		oldReason:
+			'The existing experience made student information harder to scan, slowing down how quickly admins could find and review students.',
+		newReason:
+			'The iteration focused on making student information easier to scan and navigate, improving efficiency for everyday administrative tasks.',
+		screens: [
+			{ src: '/img/KIET/Students old so.png', alt: 'Old admin student details screen', label: 'Old' },
+			{ src: '/img/KIET/Student So.png', alt: 'New admin student details screen', label: 'New' }
+		]
 	},
 	{
-		caption:
-			'Reorganised complaints by status so admins can identify and track requests more efficiently.',
-		before: { src: '/kiet/admin-c.png', alt: 'Old complaints view' },
-		after: { src: '/kiet/admin-d.png', alt: 'New complaints view' }
+		title: 'Complaints',
+		oldReason:
+			'The existing experience made it harder to understand which complaints needed attention, creating friction in everyday issue management.',
+		newReason:
+			'The iteration focused on improving clarity around complaint handling, making it easier for admins to manage issues at a glance.',
+		screens: [
+			{ src: '/img/KIET/Complaints old So.png', alt: 'Old admin complaints screen', label: 'Old' },
+			{ src: '/img/KIET/Complaints So.png', alt: 'New admin complaints screen', label: 'New' }
+		]
 	}
 ];
 

@@ -101,7 +101,7 @@
 	ul {
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
+		gap: 8px;
 		list-style: none;
 		margin: 0;
 		padding: 0;

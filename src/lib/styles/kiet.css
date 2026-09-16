@@ -140,7 +140,23 @@
 }
 
 /* reveal-on-scroll (paired with use:reveal, but works without JS) */
-/* tight rhythm — 26px of air between adjacent sections (13px each side) */
+/* 60px of air between adjacent sections (30px each side) */
 .kiet .k-section {
-	padding-block: 13px;
+	padding-block: 30px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.kiet.scroll-focus-ready .k-section {
+		opacity: 0.52;
+		transform: scale(0.985);
+		transition:
+			opacity 420ms var(--ease-out),
+			transform 420ms var(--ease-out);
+		will-change: opacity, transform;
+	}
+
+	.kiet.scroll-focus-ready .k-section.is-scroll-focus {
+		opacity: 1;
+		transform: scale(1);
+	}
 }

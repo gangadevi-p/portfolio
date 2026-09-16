@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import '$lib/styles/kiet.css';
 	import { revealScale } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
@@ -11,16 +12,13 @@
 	import KJobs from '$components/kiet/KJobs.svelte';
 	import KIA from '$components/kiet/KIA.svelte';
 	import KFlow from '$components/kiet/KFlow.svelte';
-	import KBeforeAfter from '$components/kiet/KBeforeAfter.svelte';
 	import KReview from '$components/kiet/KReview.svelte';
-	import KSummary from '$components/kiet/KSummary.svelte';
 	import { toneVars } from '$components/kiet/tone.js';
-
-	let summary;
 
 	import {
 		kietMeta,
 		hero,
+		mockups,
 		overview,
 		team,
 		personas,
@@ -28,8 +26,7 @@
 		jobs,
 		ia,
 		flow,
-		studentExperience,
-		iterations,
+		iterated,
 		admin,
 		reviews,
 		impact,
@@ -44,11 +41,60 @@
 		{ id: 'existing', label: 'JTBD' },
 		{ id: 'ia', label: 'Information Architecture' },
 		{ id: 'flow', label: 'User Flow' },
-		{ id: 'student', label: 'Design' },
-		{ id: 'iterations', label: 'Iterations' },
+		{ id: 'iterated', label: 'Iterations' },
 		{ id: 'reviews', label: 'Reviews' },
-		{ id: 'impact', label: 'Metrics' }
+		{ id: 'impact', label: 'Metrics' },
+		{ id: 'learnings', label: 'Learnings' }
 	];
+
+	onMount(() => {
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		const page = document.querySelector('.kiet');
+		const caseSections = [...document.querySelectorAll('.kiet .k-section')];
+		if (!page || !caseSections.length) return;
+
+		let frame = 0;
+		const updateFocus = () => {
+			frame = 0;
+			if (window.scrollY < 40) {
+				page.classList.remove('scroll-focus-ready');
+				return;
+			}
+
+			const viewportMiddle = window.innerHeight / 2;
+			let focused = caseSections[0];
+			let closestDistance = Infinity;
+
+			for (const section of caseSections) {
+				const bounds = section.getBoundingClientRect();
+				const middle = bounds.top + bounds.height / 2;
+				const distance = Math.abs(middle - viewportMiddle);
+				if (distance < closestDistance) {
+					closestDistance = distance;
+					focused = section;
+				}
+			}
+
+			for (const section of caseSections) {
+				section.classList.toggle('is-scroll-focus', section === focused);
+			}
+			page.classList.add('scroll-focus-ready');
+		};
+		const scheduleFocus = () => {
+			if (!frame) frame = requestAnimationFrame(updateFocus);
+		};
+
+		updateFocus();
+		window.addEventListener('scroll', scheduleFocus, { passive: true });
+		window.addEventListener('resize', scheduleFocus, { passive: true });
+
+		return () => {
+			window.removeEventListener('scroll', scheduleFocus);
+			window.removeEventListener('resize', scheduleFocus);
+			if (frame) cancelAnimationFrame(frame);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -58,16 +104,6 @@
 
 <div class="kiet">
 	<KSideNav {sections} back={{ href: '/#work', label: 'All work' }} />
-
-	<KSummary bind:this={summary} />
-	<div class="summary-dock">
-		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
-			Too long; didn't read?
-			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-				<path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-			</svg>
-		</button>
-	</div>
 
 	<div class="topbar">
 		<a class="back" href="/#work" use:cursorLabel={'All work'}>← All work</a>
@@ -95,9 +131,10 @@
 					<p class="lead">{hero.lead}</p>
 				</div>
 
-				<div class="hero-phones" use:revealScale>
-					<div class="ph back"><KPhone src={hero.phones[0].src} alt={hero.phones[0].alt} width={240} tilt={-4} /></div>
-					<div class="ph front"><KPhone src={hero.phones[1].src} alt={hero.phones[1].alt} width={240} tilt={3} /></div>
+				<div class="hero-mockups" use:revealScale>
+					{#each mockups as mockup}
+						<img src={mockup.src} alt={mockup.alt} />
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -198,29 +235,79 @@
 		<KFlow spine={flow.spine} branches={flow.branches} quickActions={flow.quickActions} />
 	</KSection>
 
-	<!-- 9 · STUDENT EXPERIENCE -->
-	<KSection id="student" title="Student Experience">
-		<div class="single" use:revealScale>
-			<KPhone src={studentExperience.phone.src} alt={studentExperience.phone.alt} width={270} />
-		</div>
-	</KSection>
-
-	<!-- 10 · ITERATIONS -->
-	<KSection id="iterations" title="Iterations">
-		<div class="ba-grid">
-			{#each iterations as it}
-				<KBeforeAfter caption={it.caption} before={it.before} after={it.after} />
-			{/each}
-		</div>
+	<!-- 10 · ITERATED -->
+	<KSection id="iterated" title="Iterations">
+		<h3 class="comparison-subtitle">Student</h3>
+		<section class="permission-iteration" aria-labelledby="permissions-heading">
+			<h4 id="permissions-heading" class="iteration-label">{iterated.permissions.title}</h4>
+			<div class="permission-layout">
+				<figure class="iterated-screen" use:revealScale>
+					<img src={iterated.permissions.screens[0].src} alt={iterated.permissions.screens[0].alt} loading="lazy" />
+					<figcaption>{iterated.permissions.screens[0].label}</figcaption>
+				</figure>
+				<p class="iteration-reason" use:revealScale>{iterated.permissions.reason}</p>
+				<figure class="iterated-screen" use:revealScale>
+					<img src={iterated.permissions.screens[1].src} alt={iterated.permissions.screens[1].alt} loading="lazy" />
+					<figcaption>{iterated.permissions.screens[1].label}</figcaption>
+				</figure>
+				<p class="iteration-reason" use:revealScale>{iterated.permissions.outcome}</p>
+			</div>
+		</section>
+		<section class="projects-iteration" aria-labelledby="projects-heading">
+			<h4 id="projects-heading" class="iteration-label">{iterated.projects.title}</h4>
+			<div class="project-layout">
+				<figure class="iterated-screen" use:revealScale>
+					<img src={iterated.projects.screens[0].src} alt={iterated.projects.screens[0].alt} loading="lazy" />
+					<figcaption>{iterated.projects.screens[0].label}</figcaption>
+				</figure>
+				<p class="iteration-reason" use:revealScale>{iterated.projects.reason}</p>
+				<figure class="iterated-screen" use:revealScale>
+					<img src={iterated.projects.screens[1].src} alt={iterated.projects.screens[1].alt} loading="lazy" />
+					<figcaption>{iterated.projects.screens[1].label}</figcaption>
+				</figure>
+				<p class="iteration-reason" use:revealScale>{iterated.projects.outcome}</p>
+			</div>
+		</section>
 	</KSection>
 
 	<!-- 11 · ADMIN EXPERIENCE -->
-	<KSection id="admin" title="Admin Experience">
-		<div class="ba-grid">
-			{#each admin as it}
-				<KBeforeAfter caption={it.caption} before={it.before} after={it.after} />
-			{/each}
-		</div>
+	<KSection id="admin" title="Admin" ink>
+	{#each admin as iteration}
+		<section class="admin-iteration" aria-label={iteration.title}>
+			<h3 class="iteration-label">{iteration.title}</h3>
+			{#if iteration.oldReason}
+				<div class="admin-detail-layout">
+					<figure class="iterated-screen" use:revealScale>
+						<img
+							src={iteration.screens[0].src}
+							alt={iteration.screens[0].alt}
+							loading="lazy"
+						/>
+						<figcaption>{iteration.screens[0].label}</figcaption>
+					</figure>
+					<p class="iteration-reason" use:revealScale>{iteration.oldReason}</p>
+					<figure class="iterated-screen" use:revealScale>
+						<img
+							src={iteration.screens[1].src}
+							alt={iteration.screens[1].alt}
+							loading="lazy"
+						/>
+						<figcaption>{iteration.screens[1].label}</figcaption>
+					</figure>
+					<p class="iteration-reason" use:revealScale>{iteration.newReason}</p>
+				</div>
+			{:else}
+				<div class="admin-pair">
+					{#each iteration.screens as screen}
+						<figure class="iterated-screen" use:revealScale>
+							<img src={screen.src} alt={screen.alt} loading="lazy" />
+							<figcaption>{screen.label}</figcaption>
+						</figure>
+					{/each}
+				</div>
+			{/if}
+		</section>
+	{/each}
 	</KSection>
 
 	<!-- 12 · PLAYSTORE REVIEW -->
@@ -253,56 +340,27 @@
 		<p class="metric-cap" use:revealScale>{usage.caption}</p>
 		<div class="shot" use:revealScale><img src={usage.image.src} alt={usage.image.alt} loading="lazy" /></div>
 	</KSection>
+
+	<!-- 15 · LEARNINGS -->
+	<KSection id="learnings" title="Learnings">
+		<div class="learnings-copy" use:revealScale>
+			<p>
+				This was my first major project, and one of the most meaningful learning experiences in my design journey. It gave me the opportunity to understand how a real application works beyond the screens — how people interact with it, how teams build it, and what it takes to make a product useful in everyday life.
+			</p>
+			<p>
+				As my understanding of design grew, I continued to iterate and explore newer versions of the product. These iterations were not developed, as we had graduated from college and the project had already moved into implementation with the support of the management.
+			</p>
+			<p class="learnings-takeaway">
+				<strong>It taught me that designing a product is not just about making it look good — it is about making it work for real people.</strong>
+			</p>
+		</div>
+	</KSection>
 </div>
 
 <style>
 	.kiet {
 		min-height: 100vh;
 		overflow: hidden;
-		padding-bottom: 112px;
-	}
-
-	/* ---------- "too long; didn't read?" dock ---------- */
-	.summary-dock {
-		position: fixed;
-		inset-inline: 0;
-		bottom: 0;
-		z-index: 50;
-		display: flex;
-		justify-content: center;
-		padding: 24px 16px max(20px, env(safe-area-inset-bottom));
-		background: linear-gradient(transparent, var(--k-bg) 70%);
-		pointer-events: none;
-	}
-	.summary-cta {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 12px;
-		pointer-events: auto;
-		max-width: 100%;
-		padding: 18px clamp(24px, 6vw, 80px);
-		border: 0;
-		border-radius: 999px;
-		background: #000;
-		color: #fff;
-		font-family: 'Poppins', 'Archivo', system-ui, sans-serif;
-		font-size: 18px;
-		font-weight: 600;
-		box-shadow: 0 6px 24px rgb(0 0 0 / 16%);
-		transition:
-			transform 180ms ease,
-			background 180ms ease;
-	}
-	.summary-cta:hover {
-		background: #242424;
-		transform: translateY(-2px);
-	}
-	.summary-cta svg {
-		flex-shrink: 0;
-	}
-	.summary-cta:active {
-		transform: scale(0.98);
 	}
 	/* make room for the fixed left section rail (labels always visible) */
 	@media (min-width: 1200px) {
@@ -346,9 +404,14 @@
 	}
 	.hero-grid {
 		display: grid;
-		grid-template-columns: 1.05fr 0.95fr;
-		gap: clamp(1.5rem, 5vw, 3rem);
+		grid-template-columns: 1fr;
+		gap: clamp(2rem, 5vw, 3.5rem);
 		align-items: center;
+	}
+	.hero-copy {
+		max-width: 760px;
+		margin-inline: auto;
+		text-align: center;
 	}
 	.hero-copy h1 {
 		font-size: clamp(2.6rem, 5.5vw, 4.375rem);
@@ -366,7 +429,7 @@
 		border-radius: 16px;
 		box-shadow: var(--k-shadow);
 		padding: 1.1rem 1.5rem;
-		margin: 1.75rem 0 1.5rem;
+		margin: 1.75rem auto 1.5rem;
 		width: fit-content;
 	}
 	.stat b {
@@ -385,26 +448,50 @@
 		font-size: clamp(1rem, 2.4vw, 1.3rem);
 		font-weight: 500;
 		color: #6a6a6a;
-		max-width: 32ch;
+		max-width: 42ch;
+		margin-inline: auto;
 	}
-	.hero-phones {
+	.hero-mockups {
+		order: -1;
 		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		min-height: 480px;
+		z-index: 0;
+		isolation: isolate;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(0.75rem, 2vw, 1.5rem);
+		align-items: end;
+		width: min(100%, 900px);
+		margin-inline: auto;
 	}
-	.hero-phones .ph {
+	.hero-mockups::before {
+		content: '';
 		position: absolute;
+		inset: 10% -4% 4%;
+		z-index: -1;
+		background:
+			radial-gradient(ellipse 58% 92% at 50% 45%, rgb(255 205 184 / 16%), rgb(242 232 255 / 9%) 56%, transparent 76%),
+			radial-gradient(ellipse 35% 70% at 100% 35%, rgb(186 220 255 / 10%), transparent 85%);
+		filter: blur(38px);
 	}
-	.hero-phones .back {
-		transform: translateX(-38%);
-		z-index: 1;
-		filter: saturate(0.96);
+	.hero-mockups::after {
+		content: '';
+		position: absolute;
+		inset: 8% 12%;
+		z-index: -1;
+		border-radius: 50%;
+		background: linear-gradient(90deg, rgb(241 90 36 / 4%), rgb(120 100 220 / 5%));
+		filter: blur(60px);
 	}
-	.hero-phones .front {
-		transform: translateX(30%) translateY(6%);
-		z-index: 2;
+	.hero-mockups img {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter:
+			drop-shadow(0 20px 18px rgb(43 31 54 / 26%))
+			drop-shadow(0 0 18px rgb(241 90 36 / 8%));
+	}
+	.hero-mockups img:nth-child(2) {
+		transform: translateY(clamp(-0.75rem, -1.8vw, -1.25rem)) scale(1.035);
 	}
 
 	/* ---------- overview / problem / solution ---------- */
@@ -524,17 +611,104 @@
 		border-radius: var(--k-radius);
 	}
 
-	/* ---------- student experience ---------- */
-	.single {
+	.permission-iteration,
+	.projects-iteration {
+		width: 100%;
+		padding: clamp(1.25rem, 4vw, 2.5rem);
+		background: #fff;
+		border-radius: var(--k-radius);
+		box-shadow: var(--k-shadow);
+	}
+	.iteration-label {
+		margin: 0 0 1rem;
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--k-ink-strong);
+	}
+	.permission-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 220px) minmax(140px, 1fr) minmax(0, 220px) minmax(140px, 1fr);
+		gap: clamp(0.75rem, 2vw, 1.75rem);
+		justify-content: space-between;
+		justify-items: center;
+		align-items: center;
+	}
+	.project-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 220px) minmax(140px, 1fr) minmax(0, 220px) minmax(140px, 1fr);
+		gap: clamp(0.75rem, 2vw, 1.75rem);
+		justify-content: space-between;
+		justify-items: center;
+		align-items: center;
+	}
+	.projects-iteration {
+		margin-top: clamp(2rem, 5vw, 3.5rem);
+	}
+	.comparison-subtitle {
+		margin: -1.25rem 0 1rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		text-align: center;
+		color: var(--k-ink-strong);
+	}
+	:global(#admin .k-title) {
+		text-align: center;
+	}
+	.iterated-screen {
 		display: flex;
-		justify-content: flex-start;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		margin: 0;
+	}
+	.iterated-screen img {
+		display: block;
+		width: min(100%, 260px);
+		height: auto;
+	}
+	.iterated-screen figcaption {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--k-ink-soft);
+	}
+	.iteration-reason {
+		max-width: 28ch;
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.65;
+		text-align: left;
+		color: var(--k-ink-soft);
+	}
+	.admin-iteration {
+		width: 100%;
+		padding: clamp(1.25rem, 4vw, 2.5rem);
+		background: #fff;
+		border-radius: var(--k-radius);
+		box-shadow: var(--k-shadow);
+	}
+	.admin-iteration + .admin-iteration {
+		margin-top: clamp(2rem, 5vw, 3.5rem);
+	}
+	.admin-pair {
+		display: grid;
+		width: min(100%, 560px);
+		margin-inline: auto;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(1rem, 3vw, 2.5rem);
+		justify-items: center;
+		align-items: start;
+	}
+	.admin-pair .iterated-screen img {
+		width: min(100%, 260px);
 	}
 
-	/* ---------- before / after grids ---------- */
-	.ba-grid {
+	.admin-detail-layout {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: clamp(2rem, 6vw, 4rem);
+		grid-template-columns: minmax(0, 220px) minmax(140px, 1fr) minmax(0, 220px) minmax(140px, 1fr);
+		align-items: center;
+		justify-content: space-between;
+		justify-items: center;
+		gap: clamp(0.75rem, 2vw, 1.75rem);
 	}
 
 	/* ---------- reviews ---------- */
@@ -556,6 +730,26 @@
 		max-width: 52ch;
 		margin-bottom: 1.75rem;
 	}
+	.learnings-copy {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 24px;
+		background: #fff;
+		border-radius: var(--k-radius);
+		box-shadow: var(--k-shadow);
+		color: var(--k-ink-soft);
+		font-size: clamp(1rem, 1.4vw, 1.125rem);
+		line-height: 1.75;
+	}
+	.learnings-copy p {
+		margin: 0;
+	}
+	.learnings-copy p + p {
+		margin-top: 1.25rem;
+	}
+	.learnings-takeaway {
+		color: var(--k-ink-strong);
+	}
 	.shot {
 		background: #fff;
 		border-radius: 14px;
@@ -574,29 +768,39 @@
 		.hero-grid {
 			grid-template-columns: 1fr;
 		}
-		.hero-phones {
-			min-height: 420px;
+		.permission-layout {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5rem;
 		}
-		.ba-grid,
+		.project-layout {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
+		}
+
+		.admin-detail-layout {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5rem;
+		}
 		.reviews {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (max-width: 680px) {
+		.permission-layout {
 			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+		.project-layout {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.admin-detail-layout {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
 		}
 	}
 	@media (max-width: 520px) {
-		.summary-dock {
-			padding-inline: 12px;
-		}
-		.summary-cta {
-			gap: 8px;
-			padding: 15px 20px;
-			font-size: 15px;
-		}
-		.hero-phones .back {
-			transform: translateX(-30%) scale(0.82);
-		}
-		.hero-phones .front {
-			transform: translateX(24%) scale(0.82);
-		}
 		.stat-card {
 			width: 100%;
 		}
