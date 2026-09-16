@@ -433,3 +433,41 @@ export const flowTenant = {
 		{ tone: 'pink', points: [[842, 281], [841, 281], [841, 308]], arrow: true }
 	]
 };
+
+export const futureScope = {
+	note:
+		'Future iterations can strengthen coordination and trust while preserving CueUp’s focused rent-and-repairs boundary.',
+	items: [
+		{
+			title: 'Smart reminders',
+			text: 'Timely, status-aware prompts for rent due dates, proof review, repair updates, and unresolved next steps.'
+		},
+		{
+			title: 'Shared activity history',
+			text: 'A simple timeline for payment proof, verification, repair assignment, progress, and resolution.'
+		},
+		{
+			title: 'Property-level oversight',
+			text: 'A clearer multi-property view for landlords to spot overdue rent, open repairs, and items requiring attention.'
+		}
+	]
+};
+
+export const learnings = {
+	note:
+		'CueUp showed that everyday coordination problems are often visibility problems before they become feature problems.',
+	items: [
+		{
+			title: 'Make status shared',
+			text: 'Both people need the same reliable answer to what is paid, pending, open, or resolved.'
+		},
+		{
+			title: 'Make ownership explicit',
+			text: 'Each moment in a rent or repair flow should make clear who needs to act next.'
+		},
+		{
+			title: 'Protect the product boundary',
+			text: 'Focusing on proof, progress, and accountability kept the concept useful without becoming a full property-management suite.'
+		}
+	]
+};

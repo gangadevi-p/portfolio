@@ -30,11 +30,13 @@
 		iaLandlord,
 		iaTenant,
 		flowLandlord,
-		flowTenant
+		flowTenant,
+		futureScope,
+		learnings
 	} from '$data/cueup.js';
 
-	/** the remaining deck sections are still in progress */
-	const pending = new Set(['design-tenant', 'future-scope', 'learnings']);
+	/** this tenant-design link remains a placeholder until its own section is added */
+	const pending = new Set(['design-tenant']);
 	const scrollSections = [
 		{ section: 'overview', nav: 'overview' },
 		{ section: 'research', nav: 'research' },
@@ -45,7 +47,9 @@
 		{ section: 'flow-landlord', nav: 'flow-landlord' },
 		{ section: 'ia-tenant', nav: 'ia-landlord' },
 		{ section: 'flow-tenant', nav: 'flow-landlord' },
-		{ section: 'design-landlord', nav: 'design-landlord' }
+		{ section: 'design-landlord', nav: 'design-landlord' },
+		{ section: 'future-scope', nav: 'future-scope' },
+		{ section: 'learnings', nav: 'learnings' }
 	];
 
 	let active = $state(contents[0].id);
@@ -246,6 +250,34 @@
 				<img src="/img/CueUp/TenantRentSo.png?v=20260917002746" alt="CueUp tenant rent screen design" loading="lazy" />
 				<img src="/img/CueUp/TenantRepairsSo.png" alt="CueUp tenant repairs screen design" loading="lazy" />
 				<img src="/img/CueUp/TenantUpdateso.png" alt="CueUp tenant updates screen design" loading="lazy" />
+			</div>
+		</section>
+
+		<!-- 13 · FUTURE SCOPE -->
+		<section class="sec cu-wrap" use:scrollFade id="future-scope">
+			<h2 class="cu-head" use:reveal>Future scope</h2>
+			<p class="cu-note" use:reveal>{futureScope.note}</p>
+			<div class="outcome-grid" use:revealScale>
+				{#each futureScope.items as item}
+					<article class="outcome-card">
+						<h3>{item.title}</h3>
+						<p>{item.text}</p>
+					</article>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 14 · LEARNINGS -->
+		<section class="sec cu-wrap" use:scrollFade id="learnings">
+			<h2 class="cu-head" use:reveal>Learnings</h2>
+			<p class="cu-note" use:reveal>{learnings.note}</p>
+			<div class="outcome-grid" use:revealScale>
+				{#each learnings.items as item}
+					<article class="outcome-card">
+						<h3>{item.title}</h3>
+						<p>{item.text}</p>
+					</article>
+				{/each}
 			</div>
 		</section>
 
@@ -490,6 +522,8 @@
 		:global(.cueup .persona .col) { gap: 16px; }
 		:global(.cueup .persona .block) { padding: 20px; }
 		:global(.cueup .grid) { grid-template-columns: 1fr; gap: 14px; }
+		.outcome-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 20px; }
+		.outcome-card { min-height: 0; padding: 20px; border-radius: 18px; }
 	}
 
 	.shot {
@@ -568,14 +602,15 @@
 	}
 	.tenant-showcase {
 		display: grid;
-		grid-template-columns: repeat(2, 316px);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		width: 100%;
 		justify-content: center;
 		gap: 24px;
 		margin-top: 30px;
 	}
 	.tenant-showcase img {
 		display: block;
-		width: 316px;
+		width: 100%;
 		height: auto;
 	}
 	.design-showcase img {
@@ -589,6 +624,32 @@
 	}
 	.design-showcase img:nth-child(5) {
 		grid-column: 4 / span 2;
+	}
+	.outcome-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 24px;
+		margin-top: 30px;
+	}
+	.outcome-card {
+		min-height: 188px;
+		box-sizing: border-box;
+		padding: 28px;
+		background: #fff;
+		border-radius: var(--cu-radius);
+		box-shadow: var(--cu-shadow);
+	}
+	.outcome-card h3 {
+		margin: 0;
+		color: var(--cu-ink);
+		font-size: 20px;
+		line-height: 1.3;
+	}
+	.outcome-card p {
+		margin: 14px 0 0;
+		color: var(--cu-ink-soft);
+		font-size: 16px;
+		line-height: 1.65;
 	}
 
 </style>
