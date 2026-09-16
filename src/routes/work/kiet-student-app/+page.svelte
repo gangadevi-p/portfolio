@@ -32,7 +32,8 @@
 		reviews,
 		impact,
 		usage,
-		learnings
+		learnings,
+		designs
 	} from '$data/kiet.js';
 
 	let summary;
@@ -108,7 +109,7 @@
 
 <div class="kiet">
 	<KSideNav {sections} back={{ href: '/#work', label: 'All work' }} />
-	<KSummary {overview} {impact} {usage} {learnings} bind:this={summary} />
+	<KSummary {overview} {impact} {usage} {learnings} {designs} bind:this={summary} />
 	<div class="summary-dock">
 		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
 			Too long; didn't read?

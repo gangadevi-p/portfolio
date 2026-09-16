@@ -1,5 +1,5 @@
 <script>
-	let { overview, impact, usage, learnings } = $props();
+	let { overview, impact, usage, learnings, designs } = $props();
 	let dialog;
 	let card;
 	let moreBelow = $state(true);
@@ -50,9 +50,19 @@
 						<p>{overview.solution.text}</p>
 					</section>
 					<section>
+						<h2>Designs</h2>
+						<div class="design-grid">
+							{#each designs as design}
+								<figure class:project-design={design.alt === 'Project design screen'}>
+									<img src={design.src} alt={design.alt} loading="lazy" />
+								</figure>
+							{/each}
+						</div>
+					</section>
+					<section>
 						<h2>Impact</h2>
 						<p>{impact.caption}</p>
-						<ul>
+						<ul class="impact-stats">
 							{#each [...impact.stats, ...usage.stats] as stat}
 								<li><strong>{stat.n}</strong> {stat.label}</li>
 							{/each}
@@ -125,7 +135,7 @@
 		width: 100%;
 		overflow: hidden;
 		border-radius: 28px;
-		background: #fff;
+		background: #f8f7ff;
 		box-shadow: 0 24px 80px rgb(0 0 0 / 25%);
 	}
 	.card-shell::after {
@@ -133,7 +143,7 @@
 		position: absolute;
 		inset: auto 0 0;
 		height: 64px;
-		background: linear-gradient(transparent, #fff);
+		background: linear-gradient(transparent, #f8f7ff);
 		pointer-events: none;
 		opacity: 0;
 		transition: opacity 180ms ease;
@@ -183,6 +193,60 @@
 		padding-left: 24px;
 		display: grid;
 		gap: 8px;
+	}
+	.impact-stats {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 12px;
+		padding: 0;
+		list-style: none;
+	}
+	.design-grid {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 24px 16px;
+		padding: 8px 6px;
+	}
+	.design-grid figure {
+		margin: 0;
+		flex: 0 1 29%;
+	}
+	.design-grid img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+.design-grid figure.project-design {
+	box-sizing: border-box;
+	padding: 8px;
+	background: #fff;
+	border-radius: 8px;
+}
+	.design-grid figure:nth-child(1) {
+		flex-basis: 30%;
+		transform: rotate(-5deg);
+	}
+	.design-grid figure:nth-child(2) {
+		flex-basis: 26%;
+		transform: rotate(4deg);
+	}
+	.design-grid figure:nth-child(3) {
+		flex-basis: 29%;
+		transform: rotate(-5deg);
+	}
+	.design-grid figure:nth-child(4) {
+		flex-basis: 27%;
+		transform: rotate(5deg);
+	}
+	.design-grid figure:nth-child(5) {
+		flex-basis: 31%;
+		transform: rotate(0deg);
+	}
+	@media (max-width: 560px) {
+		.design-grid figure,
+		.design-grid figure:nth-child(n) {
+			flex-basis: calc(50% - 8px);
+		}
 	}
 	blockquote {
 		padding: 20px 24px;

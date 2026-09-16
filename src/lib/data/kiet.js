@@ -345,3 +345,11 @@ export const learnings = {
 	takeaway:
 		'It taught me that designing a product is not just about making it look good — it is about making it work for real people.'
 };
+
+export const designs = [
+	{ src: '/img/KIET/Complaints.png', alt: 'Complaints design screen' },
+	{ src: '/img/KIET/Notfication.png', alt: 'Notification design screen' },
+	{ src: '/img/KIET/Project.png', alt: 'Project design screen' },
+	{ src: '/img/KIET/student details.png', alt: 'Student details design screen' },
+	{ src: '/img/KIET/Performance.png', alt: 'Performance design screen' }
+];
