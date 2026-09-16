@@ -37,18 +37,19 @@ export function scrollFade(node, options = {}) {
 			}
 		);
 
-		// soft fade as it slides off the top — never fully gone
+		// Keep the current section crisp until it has almost cleared the viewport.
+		// A restrained fade then provides depth without the smoked-out appearance.
 		const outTrig = gsap.fromTo(
 			node,
 			{ autoAlpha: 1 },
 			{
-				autoAlpha: 0.25,
+				autoAlpha: 0.72,
 				ease: 'none',
 				immediateRender: false,
 				scrollTrigger: {
 					trigger: node,
-					start: 'bottom 34%',
-					end: 'bottom 6%',
+					start: 'bottom 8%',
+					end: 'bottom -28%',
 					scrub: 0.4
 				}
 			}

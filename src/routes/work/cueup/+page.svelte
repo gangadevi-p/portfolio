@@ -33,8 +33,8 @@
 		flowTenant
 	} from '$data/cueup.js';
 
-	/** the deck lists these four but stops after the tenant flow */
-	const pending = new Set(['design-landlord', 'design-tenant', 'future-scope', 'learnings']);
+	/** the remaining deck sections are still in progress */
+	const pending = new Set(['design-tenant', 'future-scope', 'learnings']);
 	const scrollSections = [
 		{ section: 'overview', nav: 'overview' },
 		{ section: 'research', nav: 'research' },
@@ -44,7 +44,8 @@
 		{ section: 'ia-landlord', nav: 'ia-landlord' },
 		{ section: 'flow-landlord', nav: 'flow-landlord' },
 		{ section: 'ia-tenant', nav: 'ia-landlord' },
-		{ section: 'flow-tenant', nav: 'flow-landlord' }
+		{ section: 'flow-tenant', nav: 'flow-landlord' },
+		{ section: 'design-landlord', nav: 'design-landlord' }
 	];
 
 	let active = $state(contents[0].id);
@@ -225,6 +226,26 @@
 			<p class="cu-note" use:reveal>{flowTenant.note}</p>
 			<div class="pad">
 				<CFlow height={flowTenant.height} nodes={flowTenant.nodes} links={flowTenant.links} />
+			</div>
+		</section>
+
+		<!-- 12 · DESIGN — LANDLORD -->
+		<section class="sec cu-wrap" use:scrollFade id="design-landlord">
+			<h2 class="cu-head" use:reveal>Design</h2>
+			<p class="design-subhead" use:reveal>Landlord Experience</p>
+			<div class="design-showcase" use:revealScale>
+				<img src="/img/CueUp/LandlordHomeSo%201.png" alt="CueUp landlord home screen design" loading="lazy" />
+				<img src="/img/CueUp/Landlord%20repairsSo.png" alt="CueUp landlord repairs screen design" loading="lazy" />
+				<img src="/img/CueUp/Landlord%20Tenant%20So.png" alt="CueUp landlord tenants screen design" loading="lazy" />
+				<img src="/img/CueUp/LandlordupdatesSo.png" alt="CueUp landlord updates screen design" loading="lazy" />
+				<img src="/img/CueUp/landlordRent%20So.png" alt="CueUp landlord rent screen design" loading="lazy" />
+			</div>
+			<p class="design-subhead tenant-subhead" use:reveal>Tenants Experience</p>
+			<div class="tenant-showcase" use:revealScale>
+				<img src="/img/CueUp/TenantHomeSo.png" alt="CueUp tenant home screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantRentSo.png?v=20260917002746" alt="CueUp tenant rent screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantRepairsSo.png" alt="CueUp tenant repairs screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantUpdateso.png" alt="CueUp tenant updates screen design" loading="lazy" />
 			</div>
 		</section>
 
@@ -528,6 +549,46 @@
 	/* "Landlords" / "Tenants" act as the persona card headings — same semibold weight */
 	.persona-label {
 		font-weight: 600;
+	}
+	.design-showcase {
+		display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		width: 100%;
+		gap: 24px;
+		margin-top: 30px;
+	}
+	.design-subhead {
+		margin: 12px 0 0;
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--cu-ink);
+	}
+	.tenant-subhead {
+		margin-top: 56px;
+	}
+	.tenant-showcase {
+		display: grid;
+		grid-template-columns: repeat(2, 316px);
+		justify-content: center;
+		gap: 24px;
+		margin-top: 30px;
+	}
+	.tenant-showcase img {
+		display: block;
+		width: 316px;
+		height: auto;
+	}
+	.design-showcase img {
+		display: block;
+		grid-column: span 2;
+		width: 100%;
+		height: auto;
+	}
+	.design-showcase img:nth-child(4) {
+		grid-column: 2 / span 2;
+	}
+	.design-showcase img:nth-child(5) {
+		grid-column: 4 / span 2;
 	}
 
 </style>
