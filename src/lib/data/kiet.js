@@ -334,3 +334,14 @@ export const usage = {
 		'Usage increased around key academic periods, showing that students returned to the app when campus information mattered most',
 	image: { src: '/kiet/impact-usage.png', alt: 'Daily and monthly active users over time' }
 };
+
+export const learnings = {
+	summary:
+		'This first major project taught me that product design goes beyond screens: it must work for real people, real teams, and everyday use. As my understanding grew, I continued exploring new iterations before the project moved into implementation after graduation.',
+	paragraphs: [
+		'This was my first major project, and one of the most meaningful learning experiences in my design journey. It gave me the opportunity to understand how a real application works beyond the screens — how people interact with it, how teams build it, and what it takes to make a product useful in everyday life.',
+		'As my understanding of design grew, I continued to iterate and explore newer versions of the product. These iterations were not developed, as we had graduated from college and the project had already moved into implementation with the support of the management.'
+	],
+	takeaway:
+		'It taught me that designing a product is not just about making it look good — it is about making it work for real people.'
+};

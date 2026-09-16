@@ -13,6 +13,7 @@
 	import KIA from '$components/kiet/KIA.svelte';
 	import KFlow from '$components/kiet/KFlow.svelte';
 	import KReview from '$components/kiet/KReview.svelte';
+	import KSummary from '$components/kiet/KSummary.svelte';
 	import { toneVars } from '$components/kiet/tone.js';
 
 	import {
@@ -30,8 +31,11 @@
 		admin,
 		reviews,
 		impact,
-		usage
+		usage,
+		learnings
 	} from '$data/kiet.js';
+
+	let summary;
 
 	const sections = [
 		{ id: 'overview', label: 'Overview' },
@@ -104,6 +108,15 @@
 
 <div class="kiet">
 	<KSideNav {sections} back={{ href: '/#work', label: 'All work' }} />
+	<KSummary {overview} {impact} {usage} {learnings} bind:this={summary} />
+	<div class="summary-dock">
+		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
+			Too long; didn't read?
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+			</svg>
+		</button>
+	</div>
 
 	<div class="topbar">
 		<a class="back" href="/#work" use:cursorLabel={'All work'}>← All work</a>
@@ -344,14 +357,11 @@
 	<!-- 15 · LEARNINGS -->
 	<KSection id="learnings" title="Learnings">
 		<div class="learnings-copy" use:revealScale>
-			<p>
-				This was my first major project, and one of the most meaningful learning experiences in my design journey. It gave me the opportunity to understand how a real application works beyond the screens — how people interact with it, how teams build it, and what it takes to make a product useful in everyday life.
-			</p>
-			<p>
-				As my understanding of design grew, I continued to iterate and explore newer versions of the product. These iterations were not developed, as we had graduated from college and the project had already moved into implementation with the support of the management.
-			</p>
+			{#each learnings.paragraphs as paragraph}
+				<p>{paragraph}</p>
+			{/each}
 			<p class="learnings-takeaway">
-				<strong>It taught me that designing a product is not just about making it look good — it is about making it work for real people.</strong>
+				<strong>{learnings.takeaway}</strong>
 			</p>
 		</div>
 	</KSection>
@@ -360,7 +370,50 @@
 <style>
 	.kiet {
 		min-height: 100vh;
+		padding-bottom: 120px;
 		overflow: hidden;
+	}
+	.summary-dock {
+		position: fixed;
+		inset-inline: 0;
+		bottom: 0;
+		z-index: 50;
+		display: flex;
+		justify-content: center;
+		padding: 24px 16px max(20px, env(safe-area-inset-bottom));
+		background: linear-gradient(transparent, var(--k-bg) 70%);
+		pointer-events: none;
+	}
+	.summary-cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		max-width: 100%;
+		padding: 18px clamp(24px, 6vw, 80px);
+		border: 0;
+		border-radius: 999px;
+		background: #000;
+		color: #fff;
+		font-family: inherit;
+		font-size: 18px;
+		font-weight: 600;
+		box-shadow: 0 6px 24px rgb(0 0 0 / 16%);
+		cursor: pointer;
+		pointer-events: auto;
+		transition: transform 180ms ease, background 180ms ease;
+	}
+	.summary-cta:hover,
+	.summary-cta:focus-visible {
+		background: #242424;
+		transform: translateY(-2px);
+		outline: none;
+	}
+	.summary-cta:active {
+		transform: scale(0.98);
+	}
+	.summary-cta svg {
+		flex-shrink: 0;
 	}
 	/* make room for the fixed left section rail (labels always visible) */
 	@media (min-width: 1200px) {

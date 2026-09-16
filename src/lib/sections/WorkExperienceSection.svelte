@@ -1,23 +1,24 @@
 <script>
 	import { experience } from '$data/experience.js';
-	import { resume } from '$data/resume.js';
 	import Container from '$components/Container.svelte';
 	import ExperienceCard from '$components/ExperienceCard.svelte';
+	import ResumeBook from '$components/ResumeBook.svelte';
 	import { reveal } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
 
 	const [featured, ...rest] = experience;
+
+	let bookOpen = $state(false);
 </script>
 
 <section id="work" class="xp-section">
 	<Container class="xp-container">
 		<header class="head" use:reveal>
 			<h2>Work Experience</h2>
-			<a
+			<button
+				type="button"
 				class="resume"
-				href={resume.resumeUrl}
-				target="_blank"
-				rel="noreferrer"
+				onclick={() => (bookOpen = true)}
 				use:cursorLabel={{ label: 'See my work', variant: 'link' }}
 			>
 				<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
@@ -31,7 +32,7 @@
 					/>
 				</svg>
 				Resume
-			</a>
+			</button>
 		</header>
 
 		<div class="grid">
@@ -46,6 +47,8 @@
 		</div>
 	</Container>
 </section>
+
+<ResumeBook bind:open={bookOpen} />
 
 <style>
 	.xp-section {
@@ -77,6 +80,8 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
+		border: none;
+		cursor: pointer;
 		background: #1d1d1f;
 		color: #fff;
 		/* white pill on the dark section — see ExperienceCard */

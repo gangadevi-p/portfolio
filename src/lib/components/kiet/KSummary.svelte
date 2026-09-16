@@ -1,4 +1,5 @@
 <script>
+	let { overview, impact, usage, learnings } = $props();
 	let dialog;
 	let card;
 	let moreBelow = $state(true);
@@ -38,50 +39,29 @@
 				<div class="details">
 					<section>
 						<h2>Overview</h2>
-						<ol>
-							<li>Pulled scattered campus information into one mobile app</li>
-							<li>Focused on the tasks students do every day</li>
-							<li>Shipped for students and admin across 9+ modules</li>
-						</ol>
+						<p>{overview.overview}</p>
 					</section>
 					<section>
 						<h2>Problem</h2>
-						<p>Students relied on WhatsApp, PDFs, and several websites for college information.</p>
-						<p>Updates were hard to find, easy to miss, and request status was unclear after submission.</p>
-					</section>
-					<section>
-						<h2>The reframe</h2>
-						<p>Instead of rebuilding the college ERP:</p>
-						<blockquote><strong>“How might we bring the day's updates and routine tasks into one predictable place?”</strong></blockquote>
-					</section>
-					<section>
-						<h2>Scope</h2>
-						<ul>
-							<li>Announcements, academics, and student services</li>
-							<li>Two roles — student and admin</li>
-							<li>Built with one Android developer over 4 months</li>
-						</ul>
+						<p>{overview.problem.text}</p>
 					</section>
 					<section>
 						<h2>Solution</h2>
-						<ul>
-							<li>One home for announcements, attendance, and academics</li>
-							<li>Permission and complaint requests with a clear status</li>
-							<li>Campus services gathered in one place</li>
-						</ul>
+						<p>{overview.solution.text}</p>
 					</section>
 					<section>
-						<h2>Result</h2>
-						<p>6,061 total acquisitions, with roughly 600 daily and 1.8k monthly active users.</p>
-						<p>Usage climbs around key academic periods, when campus information matters most.</p>
+						<h2>Impact</h2>
+						<p>{impact.caption}</p>
+						<ul>
+							{#each [...impact.stats, ...usage.stats] as stat}
+								<li><strong>{stat.n}</strong> {stat.label}</li>
+							{/each}
+						</ul>
 					</section>
 					<section>
 						<h2>Learnings</h2>
-						<ul>
-							<li>One predictable place beats many scattered ones</li>
-							<li>Every request needs a visible status</li>
-							<li>A focused scope is what actually ships</li>
-						</ul>
+						<p>{learnings.summary}</p>
+						<blockquote><strong>{learnings.takeaway}</strong></blockquote>
 					</section>
 				</div>
 			</article>
@@ -199,8 +179,7 @@
 		font-size: 16px;
 		line-height: 1.8;
 	}
-	ul,
-	ol {
+	ul {
 		padding-left: 24px;
 		display: grid;
 		gap: 8px;
