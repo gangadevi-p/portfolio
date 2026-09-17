@@ -36,11 +36,7 @@
 			<div class="details">
 				<section>
 					<h2>Overview</h2>
-					<ol>
-						<li>Studied rent and repair coordination problems</li>
-						<li>Focused the product on visibility and accountability</li>
-						<li>Designed complete landlord and tenant flows</li>
-					</ol>
+					<p>CueUp is a focused coordination concept for self-managing landlords and their tenants. It brings rent verification and repair progress into one shared view.</p>
 				</section>
 				<section>
 					<h2>Problem</h2>
@@ -48,17 +44,8 @@
 					<p>This creates unclear status, miscommunication, and repeated follow-ups.</p>
 				</section>
 				<section>
-					<h2>The reframe</h2>
-					<p>Instead of building a complete property-management system:</p>
-					<blockquote><strong>“How might we clearly show what is complete and who needs to act next?”</strong></blockquote>
-				</section>
-				<section>
-					<h2>Constraints</h2>
-					<ul><li>Rent and repairs only</li><li>Payments happen outside CueUp</li><li>Designed for self-managing landlords</li></ul>
-				</section>
-				<section>
 					<h2>Solution</h2>
-					<ul><li>One shared status for rent and repairs</li><li>Payment-proof submission and verification</li><li>Clear repair ownership and progress</li></ul>
+					<ul><li>One shared status for rent and repairs</li><li>Payment-proof submission and manual verification</li><li>Clear repair ownership, progress, and next actions</li></ul>
 				</section>
 				<section>
 					<h2>Design</h2>
@@ -76,12 +63,8 @@
 				</section>
 				<section>
 					<h2>Result</h2>
-					<p>A focused end-to-end concept built around visibility, accountability, and trust.</p>
-					<p>Product impact remains unmeasured because the concept has not been launched.</p>
-				</section>
-				<section>
-					<h2>Learnings</h2>
-					<ul><li>Shared status reduces coordination gaps</li><li>Every action needs clear ownership</li><li>A focused scope creates a clearer product</li></ul>
+					<p>A complete landlord and tenant concept, including role-specific flows and interfaces for payment proof, verification, repair reporting, and updates.</p>
+					<p>Product impact remains unmeasured because CueUp has not been launched.</p>
 				</section>
 			</div>
 		</article>
@@ -104,13 +87,17 @@
 		color: #1f2937;
 		font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 	}
-	dialog::backdrop { background: rgb(0 0 0 / 60%); backdrop-filter: blur(8px); }
+	dialog::backdrop {
+		background: rgb(0 0 0 / 60%);
+		backdrop-filter: blur(8px);
+		animation: backdrop-in 280ms ease-out both;
+	}
 	/* Native dialogs sit above the custom cursor, so keep a visible pointer here. */
 	:global(html.has-custom-cursor) dialog,
 	:global(html.has-custom-cursor) dialog :global(*) { cursor: auto !important; }
 	:global(html.has-custom-cursor) dialog .close,
 	:global(html.has-custom-cursor) dialog .close :global(*) { cursor: pointer !important; }
-	dialog[open] .popup { animation: boom 650ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+	dialog[open] .popup { animation: popup-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both; }
 	.popup { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 	.close {
 		display: grid;
@@ -166,10 +153,13 @@
 	section p, li { color: #636a73; font-size: 16px; line-height: 1.8; }
 	ul, ol { padding-left: 24px; display: grid; gap: 8px; }
 	blockquote { padding: 20px 24px; border-left: 3px solid #059669; background: #f2f8f5; border-radius: 0 12px 12px 0; font-size: 17px; line-height: 1.7; }
-	@keyframes boom {
-		0% { opacity: 0; transform: translateY(70vh) scale(0.82); }
-		70% { opacity: 1; transform: translateY(-10px) scale(1.015); }
-		100% { opacity: 1; transform: translateY(0) scale(1); }
+	@keyframes popup-in {
+		0% { opacity: 0; transform: scale(0.94); }
+		100% { opacity: 1; transform: scale(1); }
+	}
+	@keyframes backdrop-in {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		dialog[open] .popup { animation: none; }
