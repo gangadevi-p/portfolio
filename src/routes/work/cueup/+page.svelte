@@ -293,7 +293,7 @@
 		<section class="sec cu-wrap" use:scrollFade id="future-scope">
 			<h2 class="cu-head" use:reveal>Future scope</h2>
 			<p class="cu-note" use:reveal>{futureScope.note}</p>
-			<div class="outcome-grid" use:revealScale>
+			<div class="outcome-grid outcome-grid--future" use:revealScale>
 				{#each futureScope.items as item}
 					<article class="outcome-card">
 						<h3>{item.title}</h3>
@@ -307,7 +307,7 @@
 		<section class="sec cu-wrap" use:scrollFade id="learnings">
 			<h2 class="cu-head" use:reveal>Learnings</h2>
 			<p class="cu-note" use:reveal>{learnings.note}</p>
-			<div class="outcome-grid" use:revealScale>
+			<div class="outcome-grid outcome-grid--learnings" use:revealScale>
 				{#each learnings.items as item}
 					<article class="outcome-card">
 						<h3>{item.title}</h3>
@@ -665,21 +665,32 @@
 	}
 	.outcome-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: 24px;
 		margin-top: 30px;
 	}
 	.outcome-card {
+		--outcome-tone: var(--cu-rule);
+		--outcome-stroke: color-mix(in srgb, var(--outcome-tone) 55%, transparent);
 		min-height: 188px;
 		box-sizing: border-box;
 		padding: 28px;
 		background: #fff;
+		border: 0.5px solid var(--outcome-stroke);
 		border-radius: var(--cu-radius);
 		box-shadow: var(--cu-shadow);
 	}
+	.outcome-grid--future .outcome-card:nth-child(1) { --outcome-tone: #0f766e; }
+	.outcome-grid--future .outcome-card:nth-child(2) { --outcome-tone: #c026d3; }
+	.outcome-grid--future .outcome-card:nth-child(3) { --outcome-tone: #65a30d; }
+	.outcome-grid--future .outcome-card:nth-child(4) { --outcome-tone: #8b5cf6; }
+	.outcome-grid--learnings .outcome-card:nth-child(1) { --outcome-tone: #9333ea; }
+	.outcome-grid--learnings .outcome-card:nth-child(2) { --outcome-tone: #fb923c; }
+	.outcome-grid--learnings .outcome-card:nth-child(3) { --outcome-tone: #1d4ed8; }
+	.outcome-grid--learnings .outcome-card:nth-child(4) { --outcome-tone: #db2777; }
 	.outcome-card h3 {
 		margin: 0;
-		color: var(--cu-ink);
+		color: var(--outcome-tone);
 		font-size: 20px;
 		line-height: 1.3;
 	}

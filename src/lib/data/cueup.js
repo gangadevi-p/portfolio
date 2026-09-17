@@ -440,16 +440,20 @@ export const futureScope = {
 		'Future iterations can strengthen coordination and trust while preserving CueUp’s focused rent-and-repairs boundary.',
 	items: [
 		{
-			title: 'Smart reminders',
-			text: 'Timely, status-aware prompts for rent due dates, proof review, repair updates, and unresolved next steps.'
+			title: 'Validate core flows',
+			text: 'Test payment verification and repair tracking with landlords and tenants to identify usability gaps.'
 		},
 		{
-			title: 'Shared activity history',
-			text: 'A simple timeline for payment proof, verification, repair assignment, progress, and resolution.'
+			title: 'Smarter reminders',
+			text: 'Customise reminder timing and exclude tenants who have already paid or submitted proof.'
 		},
 		{
-			title: 'Property-level oversight',
-			text: 'A clearer multi-property view for landlords to spot overdue rent, open repairs, and items requiring attention.'
+			title: 'Payment exceptions',
+			text: 'Support rejected proofs, resubmissions, partial payments, and corrections without processing payments inside CueUp.'
+		},
+		{
+			title: 'Stronger repair tracking',
+			text: 'Add priority, completion dates, photos, and issue reopening for better repair visibility.'
 		}
 	]
 };
@@ -459,16 +463,20 @@ export const learnings = {
 		'CueUp showed that everyday coordination problems are often visibility problems before they become feature problems.',
 	items: [
 		{
-			title: 'Make status shared',
-			text: 'Both people need the same reliable answer to what is paid, pending, open, or resolved.'
+			title: 'Shared status reduces confusion',
+			text: 'One shared view makes completed, pending, and action-required tasks clear without searching through conversations.'
 		},
 		{
-			title: 'Make ownership explicit',
-			text: 'Each moment in a rent or repair flow should make clear who needs to act next.'
+			title: 'Payment needs confirmation',
+			text: 'Landlord verification gives both sides closure and creates a dependable record after payment proof is submitted.'
 		},
 		{
-			title: 'Protect the product boundary',
-			text: 'Focusing on proof, progress, and accountability kept the concept useful without becoming a full property-management suite.'
+			title: 'Attention guides hierarchy',
+			text: 'Overdue rent, unverified proofs, and active repairs should receive greater visibility than completed items.'
+		},
+		{
+			title: 'Focus creates clarity',
+			text: 'Limiting CueUp to rent and repairs kept the product simple, relevant, and easier to understand.'
 		}
 	]
 };
