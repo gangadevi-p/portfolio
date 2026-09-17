@@ -37,7 +37,7 @@
 		<p>{context}</p>
 
 		{#if stats}
-			<h3 class="props-head">Property Status:</h3>
+			<h3 class="props-head">Status</h3>
 			<div class="stats">
 				{#each stats as s (s.label)}
 					<div class="stat">

@@ -61,6 +61,20 @@
 					<ul><li>One shared status for rent and repairs</li><li>Payment-proof submission and verification</li><li>Clear repair ownership and progress</li></ul>
 				</section>
 				<section>
+					<h2>Design</h2>
+					<div class="design-grid">
+						<div class="design-stack">
+							<figure class="mock-rent-overview"><img src="/img/CueUp/Rentoverview.png" alt="CueUp tenant rent-overview screen" /></figure>
+							<figure class="mock-open-resolved"><img src="/img/CueUp/openandresolvedtenant.png" alt="CueUp tenant open and resolved repairs screens" /></figure>
+							<figure class="mock-update-left"><img src="/img/CueUp/Update.png" alt="CueUp tenant update screen" /></figure>
+						</div>
+						<div class="design-stack">
+							<figure class="mock-pay-rent"><img src="/img/CueUp/Payrent.png" alt="CueUp tenant pay-rent screen" /></figure>
+							<figure class="mock-issue"><img src="/img/CueUp/Issue.png" alt="CueUp tenant issue-reporting screen" /></figure>
+						</div>
+					</div>
+				</section>
+				<section>
 					<h2>Result</h2>
 					<p>A focused end-to-end concept built around visibility, accountability, and trust.</p>
 					<p>Product impact remains unmeasured because the concept has not been launched.</p>
@@ -115,7 +129,7 @@
 		width: 100%;
 		overflow: hidden;
 		border-radius: 28px;
-		background: #fff;
+		background: #f2f5f8;
 		box-shadow: 0 24px 80px rgb(0 0 0 / 25%);
 	}
 	.card-shell::after {
@@ -123,7 +137,7 @@
 		position: absolute;
 		inset: auto 0 0;
 		height: 64px;
-		background: linear-gradient(transparent, #fff);
+		background: linear-gradient(transparent, #f2f5f8);
 		pointer-events: none;
 		opacity: 0;
 		transition: opacity 180ms ease;
@@ -141,6 +155,14 @@
 	.details { display: grid; gap: 36px; margin-top: 28px; }
 	.details section { display: grid; gap: 14px; }
 	.details h2 { margin: 0; font-size: 23px; line-height: 1.3; font-weight: 600; }
+	.design-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 8px 6px; }
+	.design-stack { display: grid; align-content: start; gap: 24px; }
+	.design-grid figure { margin: 0; }
+	.design-grid img { display: block; width: 100%; height: auto; }
+	.mock-rent-overview, .mock-open-resolved, .mock-update-left { transform: rotate(-4deg); }
+	.mock-pay-rent { transform: translateX(2px) rotate(2deg); }
+	.mock-issue { transform: translateX(-2px) rotate(2deg); }
+	.mock-issue { width: 94%; justify-self: center; }
 	section p, li { color: #636a73; font-size: 16px; line-height: 1.8; }
 	ul, ol { padding-left: 24px; display: grid; gap: 8px; }
 	blockquote { padding: 20px 24px; border-left: 3px solid #059669; background: #f2f8f5; border-radius: 0 12px 12px 0; font-size: 17px; line-height: 1.7; }

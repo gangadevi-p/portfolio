@@ -228,7 +228,7 @@ export const personas = {
 		context:
 			'Manages Rental Units Directly And Coordinates Rent And Repairs Through Notebooks, WhatsApp, Calls, And Payment Screenshots.',
 		stats: [
-			{ n: '25', label: 'Pending', color: '#1e40af' },
+			{ n: '25', label: 'Properties', color: '#1e40af' },
 			{ n: '22', label: 'Occupied', color: '#2e7d32' },
 			{ n: '3', label: 'Vacant', color: '#991b1b' }
 		],
