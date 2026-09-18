@@ -24,7 +24,7 @@ export const work = [
 	},
 	{
 		title: 'Student App',
-		logo: '/img/work/kiet.png',
+		logo: '/img/KIET/kiet%20logo.png',
 		blurb: 'A student companion app for academic updates, attendance, and campus essentials—live on Google Play.',
 		period: 'Jan 2024 – April 2024',
 		href: '/work/kiet-student-app',
