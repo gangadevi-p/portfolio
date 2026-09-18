@@ -28,7 +28,7 @@ export const row2 = [
 
 export const row3 = [
 	{ src: '/img/me/dmbl.jpg', alt: 'Holding a dumbbell at the gym', ratio: 810 / 1080 },
-	{ src: '/img/me/pencil%201.jpg', alt: 'Pencil portrait sketch', ratio: 632 / 1120 },
 	{ src: '/img/me/im%20fine%201.jpg', alt: '"I’m fine" flaming-skeleton sticker', ratio: 444 / 593 },
+	{ src: '/img/me/pencil%201.jpg', alt: 'Pencil portrait sketch', ratio: 632 / 1120 },
 	{ src: '/img/me/love%201.jpg', alt: 'Illustration of a person hugging themselves', ratio: 632 / 611 }
 ];

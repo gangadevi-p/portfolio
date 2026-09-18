@@ -68,9 +68,14 @@
 	}
 	.videos {
 		display: grid;
+		width: 100%;
+		box-sizing: border-box;
 		grid-template-columns: auto auto minmax(0, 1fr);
-		gap: 24px;
+		gap: 32px;
 		align-items: stretch;
+		padding: 16px 24px 16px 16px;
+		background: #fff;
+		border-radius: 16px;
 	}
 	.video {
 		height: clamp(88px, 9.5vw, 136px);
@@ -103,6 +108,7 @@
 		.videos {
 			grid-template-columns: 1fr;
 			gap: 16px;
+			padding: 12px;
 		}
 		.video {
 			height: auto;
