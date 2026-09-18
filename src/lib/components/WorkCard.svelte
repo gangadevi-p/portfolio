@@ -17,15 +17,17 @@
 	target={item.href && !internal ? '_blank' : undefined}
 	rel={item.href && !internal ? 'noreferrer' : undefined}
 	use:reveal={{ delay: (index % 2) * 0.08 }}
-	use:cursorLabel={{ label: 'Read case study', variant: 'view' }}
+	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'view' }}
 >
-	<div class="visual" class:framed={item.framed}>
-		{#if item.logo && !broken}
-			<img src={item.logo} alt={item.title} loading="lazy" onerror={() => (broken = true)} />
-		{:else}
-			<span class="mono" aria-hidden="true">{item.title.charAt(0)}</span>
-		{/if}
-	</div>
+	{#if !item.hideLogo}
+		<div class="visual" class:framed={item.framed}>
+			{#if item.logo && !broken}
+				<img src={item.logo} alt={item.title} loading="lazy" onerror={() => (broken = true)} />
+			{:else}
+				<span class="mono" aria-hidden="true">{item.title.charAt(0)}</span>
+			{/if}
+		</div>
+	{/if}
 
 	<div class="body">
 		<h3>{item.title}</h3>

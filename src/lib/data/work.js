@@ -33,16 +33,9 @@ export const work = [
 	},
 	{
 		title: 'Athera',
-		logo: '/img/work/athera.png',
+		hideLogo: true,
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
 		period: 'Apr 2026 – Jun 2026',
-		href: ''
-	},
-	{
-		title: 'Fitbit',
-		logo: '/img/work/fitbit.png',
-		blurb: 'A motivating fitness experience for tracking daily activity and building healthier habits.',
-		period: 'Jan 2024 – April 2024',
 		href: ''
 	}
 ];
