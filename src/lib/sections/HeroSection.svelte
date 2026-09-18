@@ -199,6 +199,8 @@
 		/* 219px drawn height, stretched ×1.092 below. */
 		height: 239px;
 		rotate: -3deg;
+		/* extra clearance from the name text above it */
+		translate: 0 24px;
 	}
 	.skills-slot :global(.deck) {
 		height: auto;
@@ -247,51 +249,20 @@
 
 	}
 
-	@media (max-width: 760px) {
-		.frame {
-			min-height: 82svh;
-			/* the anchor maths follow the smaller display size automatically */
-			--name-fs: clamp(3.5rem, 23vw, 6.5rem);
-		}
-		.hero-photo {
-			width: 66%;
-			max-width: 360px;
-		}
-		.deck-row {
-			bottom: 2rem;
-			flex-direction: column;
-			align-items: flex-start;
-		}
-		.skills-slot {
-			height: auto;
-		}
-		.skills-slot :global(.deck) {
-			transform: none;
-		}
-		.tools-slot {
-			width: min(220px, 52vw);
-			height: auto;
-			translate: none;
-		}
-		.tools-slot :global(.deck) {
-			--deck-stretch: 1;
-			height: auto;
-			aspect-ratio: 300 / 249;
-			transform: none;
-		}
-	}
-
-	/* Below ~600px the nav pill itself wraps onto two lines (not enough room
-	   for brand + 5 links + the assistant launcher on one row), which makes
-	   the nav taller than the collage's fixed overlap math assumes — the
-	   photo would ride up over the wrapped nav. Simplest fix: stop
-	   absolutely-positioning the photo and the deck cards here and just
-	   stack everything in normal document flow instead. */
-	@media (max-width: 600px) {
+	/* SiteNav wraps onto two lines below 900px (not enough room for brand +
+	   5 links + the assistant launcher on one row), which makes the nav
+	   taller than the collage's fixed overlap math assumes — the photo and
+	   the deck cards would ride up over the wrapped nav and the name text.
+	   Simplest fix: stop absolutely-positioning them below that same 900px
+	   point and just stack everything in normal document flow instead, so
+	   the layout never depends on knowing the nav's exact height. */
+	@media (max-width: 900px) {
 		.frame {
 			display: flex;
 			flex-direction: column;
 			min-height: 0;
+			/* the anchor maths above no longer apply once stacked */
+			--name-fs: clamp(3.5rem, 15vw, 6.5rem);
 		}
 		.headline {
 			margin-top: 1.25rem;
@@ -314,6 +285,25 @@
 			margin-top: 1.75rem;
 			left: auto;
 			bottom: auto;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.skills-slot {
+			height: auto;
+		}
+		.skills-slot :global(.deck) {
+			transform: none;
+		}
+		.tools-slot {
+			width: min(220px, 52vw);
+			height: auto;
+			translate: none;
+		}
+		.tools-slot :global(.deck) {
+			--deck-stretch: 1;
+			height: auto;
+			aspect-ratio: 300 / 249;
+			transform: none;
 		}
 	}
 </style>
