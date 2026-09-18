@@ -60,9 +60,6 @@
 		   company name explicit so it cannot inherit the home page's dark ink. */
 		color: #f4f1ea;
 	}
-	:global(html:is(.dark, [data-theme='dark'])) .head h1 {
-		color: #f5f5f7;
-	}
 	.role {
 		font-size: calc(1rem + 4px);
 		font-weight: 700;

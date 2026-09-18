@@ -20,10 +20,6 @@
 		background: #1d1d1f;
 		color: #fff;
 	}
-	:global(html.dark) a:hover {
-		background: #f5f5f7;
-		color: #1d1d1f;
-	}
 	a.wide {
 		padding-inline: 1.65rem;
 	}

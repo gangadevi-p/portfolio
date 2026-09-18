@@ -501,16 +501,6 @@
 		background: var(--guide-action-hover);
 	}
 	.spark { color: currentColor; }
-	:global(html.dark) .portfolio-assistant,
-	:global(html.dark) .chat-card {
-		--guide-ink: #f5f5f7;
-		--guide-surface: #1c1c1e;
-		--guide-subtle: #2c2c2e;
-		--guide-border: #48484a;
-		--guide-action: #f5f5f7;
-		--guide-action-hover: #ffffff;
-		--guide-action-ink: #1d1d1f;
-	}
 	.sr-only {
 		position: absolute;
 		width: 1px;

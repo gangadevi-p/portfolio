@@ -89,14 +89,6 @@
 		background: var(--chart-surface);
 		border: 1px solid rgb(11 11 11 / 8%);
 	}
-	:global(html:is(.dark, [data-theme='dark'])) .chart-block {
-		--chart-surface: #1a1a19;
-		--chart-ink: #ffffff;
-		--chart-ink-soft: #c3c2b7;
-		--chart-muted: #898781;
-		--chart-track: #2c2c2a;
-		border-color: rgb(255 255 255 / 10%);
-	}
 	figcaption {
 		font-size: 0.7rem;
 		font-weight: 700;
