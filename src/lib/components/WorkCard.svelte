@@ -54,15 +54,20 @@
 		align-items: stretch;
 		gap: 24px;
 		min-height: 304px;
-		background: #ffffff;
+		/* Frosted project tiles make the grid feel raised without competing with
+		   the project marks and copy. */
+		background: linear-gradient(145deg, rgb(255 255 255 / 84%), rgb(255 255 255 / 56%));
 		color: #1d1d1f;
 		text-decoration: none;
 		border-radius: 24px;
 		padding: 24px;
 		box-shadow:
-			0 1px 2px rgb(0 0 0 / 4%),
-			0 16px 42px -28px rgb(0 0 0 / 24%);
-		border: 1px solid #ebebed;
+			inset 0 1px 0 rgb(255 255 255 / 74%),
+			0 14px 34px rgb(29 29 31 / 8%),
+			0 2px 5px rgb(29 29 31 / 4%);
+		border: 1px solid rgb(255 255 255 / 76%);
+		backdrop-filter: blur(18px) saturate(135%);
+		-webkit-backdrop-filter: blur(18px) saturate(135%);
 		transition:
 			transform var(--dur-fast) var(--ease-out),
 			box-shadow var(--dur-fast) var(--ease-out),
@@ -84,8 +89,8 @@
 		object-fit: contain;
 	}
 	.visual.framed {
-		background: #fff;
-		border: 1px solid #f0ddd0;
+		background: rgb(255 255 255 / 58%);
+		border: 1px solid rgb(255 255 255 / 72%);
 		box-shadow: 0 14px 32px -16px rgba(255, 106, 61, 0.4);
 		padding: 16px;
 	}
@@ -128,7 +133,8 @@
 		justify-content: space-between;
 		gap: 16px;
 		width: 100%;
-		background: #f5f5f7;
+		background: rgb(255 255 255 / 54%);
+		border: 1px solid rgb(255 255 255 / 64%);
 		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 8px 16px;
@@ -145,10 +151,12 @@
 	}
 	.card:hover {
 		transform: translateY(-4px);
-		border-color: #d2d2d7;
+		border-color: rgb(255 255 255 / 94%);
+		background: linear-gradient(145deg, rgb(255 255 255 / 94%), rgb(255 255 255 / 70%));
 		box-shadow:
-			0 5px 12px rgb(0 0 0 / 6%),
-			0 28px 52px -28px rgb(0 0 0 / 26%);
+			inset 0 1px 0 rgb(255 255 255 / 88%),
+			0 22px 46px rgb(29 29 31 / 12%),
+			0 5px 12px rgb(29 29 31 / 5%);
 	}
 
 </style>

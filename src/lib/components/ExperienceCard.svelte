@@ -98,16 +98,23 @@
 		--logo-size: clamp(96px, 12vw, 150px);
 		display: flex;
 		gap: clamp(1rem, 2.5vw, 1.75rem);
-		background: rgb(255 255 255 / 88%);
+		/* A lightly frosted surface lets the page colour breathe through while
+		   the bright top edge keeps the card distinct from the background. */
+		background: linear-gradient(145deg, rgb(255 255 255 / 82%), rgb(255 255 255 / 58%));
 		color: #1d1d1f;
 		/* white card inside the dark section — flip the cursor back to dark ink,
 		   otherwise the light heart the dark page sets is invisible on it */
 		--c-cursor: #1c1c1c;
 		--c-cursor-ink: #f7f5f0;
-		border: 1px solid rgb(0 0 0 / 6%);
+		border: 1px solid rgb(255 255 255 / 72%);
 		border-radius: 28px;
 		padding: var(--card-pad);
-		box-shadow: 0 8px 30px rgb(0 0 0 / 5%);
+		box-shadow:
+			inset 0 1px 0 rgb(255 255 255 / 70%),
+			0 12px 32px rgb(29 29 31 / 8%),
+			0 2px 5px rgb(29 29 31 / 4%);
+		backdrop-filter: blur(18px) saturate(135%);
+		-webkit-backdrop-filter: blur(18px) saturate(135%);
 	}
 	.xp.featured {
 		height: 100%;
@@ -198,7 +205,8 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: #f5f5f7;
+		background: rgb(255 255 255 / 54%);
+		border: 1px solid rgb(255 255 255 / 64%);
 		box-shadow: none;
 		color: #1d1d1f;
 		font-size: var(--fs-small);
@@ -218,11 +226,18 @@
 		color: #5f5f5f;
 	}
 	.xp.linked {
-		transition: background var(--dur-fast) var(--ease-out);
+		transition:
+			background var(--dur-fast) var(--ease-out),
+			transform var(--dur-fast) var(--ease-out),
+			box-shadow var(--dur-fast) var(--ease-out);
 	}
 	.xp.linked:hover {
-		background: #ffffff;
-		box-shadow: 0 14px 34px rgb(0 0 0 / 8%);
+		transform: translateY(-4px);
+		background: linear-gradient(145deg, rgb(255 255 255 / 92%), rgb(255 255 255 / 68%));
+		box-shadow:
+			inset 0 1px 0 rgb(255 255 255 / 82%),
+			0 20px 42px rgb(29 29 31 / 12%),
+			0 4px 10px rgb(29 29 31 / 5%);
 	}
 
 	@media (max-width: 560px) {
