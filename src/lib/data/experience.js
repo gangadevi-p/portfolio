@@ -17,11 +17,14 @@ export const experience = [
 		status: 'Under development · Freelance',
 		logo: '/img/experience/manino.png',
 		points: [
-			'Simplified complex findings into clear insights',
-			'Streamlined expense-adding flow, cutting friction',
-			'Cut 239 tags to 21 for simpler categorization',
-			'Built clean, scalable information architecture',
-			'Prioritized core needs, trimmed the rest'
+			'Audited an existing messy app',
+			'Researched Reddit for real pain points',
+			'Cut 200+ tags to 20',
+			'Simplified core expense and spending flows',
+			'Reduced steps in everyday actions',
+			'Proposed new Goals and Budgets features',
+			'Defined logic for each feature',
+			'Scoped work to UX only'
 		],
 		period: '',
 		href: ''
