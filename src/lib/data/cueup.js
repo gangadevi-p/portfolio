@@ -26,7 +26,6 @@ export const contents = [
 	{ id: 'ia-landlord', label: 'Information Architecture' },
 	{ id: 'flow-landlord', label: 'User Flow' },
 	{ id: 'design-landlord', label: 'Design' },
-	{ id: 'design-system', label: 'Design System' },
 	{ id: 'future-scope', label: 'Future Scope' },
 	{ id: 'learnings', label: 'Learnings' }
 ];
@@ -478,23 +477,5 @@ export const learnings = {
 			title: 'Focus creates clarity',
 			text: 'Limiting CueUp to rent and repairs kept the product simple, relevant, and easier to understand.'
 		}
-	]
-};
-
-export const designSystem = {
-	note:
-		'A compact system built around calm surfaces, clear hierarchy, and status colours that make rental coordination easy to scan.',
-	colors: [
-		{ name: 'Canvas', hex: '#F2F5F8', value: '#f2f5f8' },
-		{ name: 'Surface', hex: '#FFFFFF', value: '#ffffff' },
-		{ name: 'Ink', hex: '#1F2937', value: '#1f2937' },
-		{ name: 'Success', hex: '#2E7D32', value: '#2e7d32' },
-		{ name: 'Attention', hex: '#D97706', value: '#d97706' },
-		{ name: 'Overdue', hex: '#991B1B', value: '#991b1b' }
-	],
-	components: [
-		{ title: 'Status tags', text: 'Short, high-contrast states make rent and repair progress instantly scannable.' },
-		{ title: 'Action cards', text: 'Raised, rounded surfaces bring the next action to the front without clutter.' },
-		{ title: 'Role-aware navigation', text: 'Simple bottom navigation keeps Home, Rent, and Repairs accessible in context.' }
 	]
 };

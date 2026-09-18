@@ -31,7 +31,6 @@
 		iaTenant,
 		flowLandlord,
 		flowTenant,
-		designSystem,
 		futureScope,
 		learnings
 	} from '$data/cueup.js';
@@ -49,7 +48,6 @@
 		{ section: 'ia-tenant', nav: 'ia-landlord' },
 		{ section: 'flow-tenant', nav: 'flow-landlord' },
 		{ section: 'design-landlord', nav: 'design-landlord' },
-		{ section: 'design-system', nav: 'design-system' },
 		{ section: 'future-scope', nav: 'future-scope' },
 		{ section: 'learnings', nav: 'learnings' }
 	];
@@ -255,41 +253,7 @@
 			</div>
 		</section>
 
-		<!-- 13 · DESIGN SYSTEM -->
-		<section class="sec cu-wrap" use:scrollFade id="design-system">
-			<h2 class="cu-head" use:reveal>Design system</h2>
-			<p class="cu-note" use:reveal>{designSystem.note}</p>
-			<div class="system-board" use:revealScale>
-				<div class="system-block system-colors">
-					<p class="system-label">Colour</p>
-					<div class="swatches">
-						{#each designSystem.colors as color}
-							<div class="swatch">
-								<span style={`background:${color.value}`}></span>
-								<b>{color.name}</b>
-								<small>{color.hex}</small>
-							</div>
-						{/each}
-					</div>
-				</div>
-				<div class="system-block system-type">
-					<p class="system-label">Typography</p>
-					<p class="type-sample">Clear next steps, at a glance.</p>
-					<p class="type-meta">Plus Jakarta Sans · Semibold headings · Readable supporting copy</p>
-				</div>
-				<div class="system-block system-components">
-					<p class="system-label">Components</p>
-					{#each designSystem.components as component}
-						<div class="component-item">
-							<b>{component.title}</b>
-							<span>{component.text}</span>
-						</div>
-					{/each}
-				</div>
-			</div>
-		</section>
-
-		<!-- 14 · FUTURE SCOPE -->
+		<!-- 13 · FUTURE SCOPE -->
 		<section class="sec cu-wrap" use:scrollFade id="future-scope">
 			<h2 class="cu-head" use:reveal>Future scope</h2>
 			<p class="cu-note" use:reveal>{futureScope.note}</p>
@@ -303,7 +267,7 @@
 			</div>
 		</section>
 
-		<!-- 15 · LEARNINGS -->
+		<!-- 14 · LEARNINGS -->
 		<section class="sec cu-wrap" use:scrollFade id="learnings">
 			<h2 class="cu-head" use:reveal>Learnings</h2>
 			<p class="cu-note" use:reveal>{learnings.note}</p>
@@ -560,8 +524,6 @@
 		:global(.cueup .grid) { grid-template-columns: 1fr; gap: 14px; }
 		.outcome-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 20px; }
 		.outcome-card { min-height: 0; padding: 20px; border-radius: 18px; }
-		.system-board { grid-template-columns: 1fr; padding: 20px; border-radius: 18px; }
-		.swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 	}
 
 	.shot {
@@ -699,97 +661,6 @@
 		color: var(--cu-ink-soft);
 		font-size: 16px;
 		line-height: 1.65;
-	}
-	.system-board {
-		display: grid;
-		grid-template-columns: 0.95fr 1.05fr;
-		gap: 24px;
-		margin-top: 30px;
-		padding: 32px;
-		background: #fff;
-		border-radius: var(--cu-radius);
-		box-shadow: var(--cu-shadow);
-	}
-	.system-block {
-		min-width: 0;
-		padding: 22px;
-		border: 1px solid var(--cu-rule);
-		border-radius: var(--cu-radius-sm);
-	}
-	.system-colors {
-		grid-column: 1 / -1;
-	}
-	.system-label {
-		margin: 0;
-		color: var(--cu-ink);
-		font-size: 13px;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-	.swatches {
-		display: grid;
-		grid-template-columns: repeat(6, minmax(0, 1fr));
-		gap: 14px;
-		margin-top: 18px;
-	}
-	.swatch {
-		display: grid;
-		gap: 7px;
-	}
-	.swatch > span {
-		display: block;
-		aspect-ratio: 1.35;
-		border: 1px solid rgb(31 41 55 / 10%);
-		border-radius: 12px;
-	}
-	.swatch b {
-		color: var(--cu-ink);
-		font-size: 14px;
-	}
-	.swatch small,
-	.type-meta,
-	.component-item span {
-		color: var(--cu-ink-soft);
-		font-size: 13px;
-		line-height: 1.5;
-	}
-	.type-sample {
-		margin: 18px 0 12px;
-		color: var(--cu-ink);
-		font-size: 28px;
-		font-weight: 600;
-		line-height: 1.25;
-	}
-	.type-meta {
-		margin: 0;
-	}
-	.component-item {
-		display: grid;
-		gap: 5px;
-		padding: 14px 0;
-		border-bottom: 1px solid var(--cu-rule);
-	}
-	.component-item:first-of-type {
-		margin-top: 8px;
-	}
-	.component-item:last-child {
-		padding-bottom: 0;
-		border-bottom: 0;
-	}
-	.component-item b {
-		color: var(--cu-ink);
-		font-size: 15px;
-	}
-	@media (max-width: 999px) {
-		.system-board {
-			grid-template-columns: 1fr;
-			padding: 20px;
-			border-radius: 18px;
-		}
-		.swatches {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
 	}
 
 </style>
