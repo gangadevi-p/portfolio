@@ -23,5 +23,5 @@ export const resume = {
 		}
 	],
 	skills: ['Product design', 'Design systems', 'Prototyping', 'User research', 'Motion', 'Front-end basics'],
-	resumeUrl: '/files/gangadevi-resume.pdf'
+	resumeUrl: '/files/GangaResume.pdf'
 };
