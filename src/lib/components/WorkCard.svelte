@@ -34,7 +34,7 @@
 		<p class="blurb">{item.blurb}</p>
 
 		<span class="period">
-			<span>{item.period}</span>
+			{#if item.period}<span>{item.period}</span>{/if}
 			<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
 				<path
 					fill="none"

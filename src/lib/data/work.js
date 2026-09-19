@@ -1,7 +1,7 @@
 /**
  * Projects grid (light band — see ProjectsSection.svelte).
  *
- * Each card has a logo, title, short description, and date.
+ * Each card has a logo, title, short description, and duration.
  * Drop a square-ish logo in /static/img/work/ (PNG or SVG) and point `logo`
  * at it. Until the file exists the card shows a monogram fallback.
  *
@@ -17,7 +17,7 @@ export const work = [
 		title: 'CueUp',
 		logo: '/img/work/cueup-clean.png',
 		blurb: 'A calmer, clearer experience that helps landlords and tenants manage their rental relationship.',
-		period: 'Apr 2026 – Jun 2026',
+		period: '2 months',
 		href: '/work/cueup',
 		slug: 'cueup',
 		bespoke: true
@@ -26,7 +26,7 @@ export const work = [
 		title: 'Student App',
 		logo: '/img/KIET/kiet%20logo.png',
 		blurb: 'A student companion app for academic updates, attendance, and campus essentials—live on Google Play.',
-		period: 'Jan 2024 – April 2024',
+		period: '4 months',
 		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
@@ -35,7 +35,6 @@ export const work = [
 		title: 'Athera',
 		hideLogo: true,
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
-		period: 'Apr 2026 – Jun 2026',
 		href: ''
 	}
 ];
