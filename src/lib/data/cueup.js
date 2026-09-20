@@ -1,5 +1,5 @@
 /**
- * CueUp — case study content.
+ * Relay — case study content.
  *
  * This mirrors /static/files/cueup reference.png section for section. The
  * diagram coordinates below are measured off the source deck: both flows are
@@ -9,7 +9,7 @@
 
 export const cueupMeta = {
 	slug: 'cueup',
-	title: 'CueUp',
+	title: 'Relay',
 	role: 'Product Designer',
 	year: '2026',
 	summary: 'A shared view of rent and repairs for self-managing landlords and their tenants.',
@@ -31,9 +31,9 @@ export const contents = [
 ];
 
 export const hero = {
-	phone: { src: '/cueup/landlord-home.png', alt: 'CueUp landlord home screen' },
+	phone: { src: '/cueup/landlord-home.png', alt: 'Relay landlord home screen' },
 	/** looping walkthrough shown inside the phone frame at the top of the page */
-	video: { src: '/cueup/landlord-demo.mp4', alt: 'CueUp landlord app walkthrough' }
+	video: { src: '/cueup/landlord-demo.mp4', alt: 'Relay landlord app walkthrough' }
 };
 
 export const overview = {
@@ -43,7 +43,7 @@ export const overview = {
 		}
 	],
 	facts: [
-		{ label: 'Title', values: ['CueUp'] },
+		{ label: 'Title', values: ['Relay'] },
 		{ label: 'Target audience', values: ['Self-managing landlords', 'Tenants'] },
 		{ label: 'Focus', values: ['Rent', 'Repair coordination'] },
 		{ label: 'Time line', values: ['Apr 2026 –Jul 2026'] },
@@ -60,14 +60,14 @@ export const overview = {
 };
 
 export const solution = [
-	{ text: 'CueUp gives landlords and tenants a ' },
+	{ text: 'Relay gives landlords and tenants a ' },
 	{ text: 'shared view', bold: true },
 	{ text: ' of rent and repairs, making every status, update, and next responsibility clear.' }
 ];
 
 export const findings = {
 	note: 'I reviewed nine public Reddit posts and comments to understand how landlords and tenants currently coordinate rent and repairs.',
-	callout: 'CueUp Focuses On Payment Verification And Repair Progress.',
+	callout: 'Relay Focuses On Payment Verification And Repair Progress.',
 	tracks: [
 		{
 			title: 'Rent Coordination',
@@ -195,7 +195,7 @@ export const constraints = {
 			title: 'External Payments',
 			tone: 'pink',
 			icon: '/cueup/icon-payments.png',
-			text: 'Rent Is Paid Through UPI, Bank Transfer, Or Cash. CueUp Records Proof And Status.'
+			text: 'Rent Is Paid Through UPI, Bank Transfer, Or Cash. Relay Records Proof And Status.'
 		},
 		{
 			title: 'Manual Accountability',
@@ -436,7 +436,7 @@ export const flowTenant = {
 
 export const futureScope = {
 	note:
-		'Future iterations can strengthen coordination and trust while preserving CueUp’s focused rent-and-repairs boundary.',
+		'Future iterations can strengthen coordination and trust while preserving Relay’s focused rent-and-repairs boundary.',
 	items: [
 		{
 			title: 'Validate core flows',
@@ -448,7 +448,7 @@ export const futureScope = {
 		},
 		{
 			title: 'Payment exceptions',
-			text: 'Support rejected proofs, resubmissions, partial payments, and corrections without processing payments inside CueUp.'
+			text: 'Support rejected proofs, resubmissions, partial payments, and corrections without processing payments inside Relay.'
 		},
 		{
 			title: 'Stronger repair tracking',
@@ -459,7 +459,7 @@ export const futureScope = {
 
 export const learnings = {
 	note:
-		'CueUp showed that everyday coordination problems are often visibility problems before they become feature problems.',
+		'Relay showed that everyday coordination problems are often visibility problems before they become feature problems.',
 	items: [
 		{
 			title: 'Shared status reduces confusion',
@@ -475,7 +475,7 @@ export const learnings = {
 		},
 		{
 			title: 'Focus creates clarity',
-			text: 'Limiting CueUp to rent and repairs kept the product simple, relevant, and easier to understand.'
+			text: 'Limiting Relay to rent and repairs kept the product simple, relevant, and easier to understand.'
 		}
 	]
 };

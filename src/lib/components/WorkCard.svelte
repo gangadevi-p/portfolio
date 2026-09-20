@@ -20,17 +20,25 @@
 	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'view' }}
 >
 	{#if !item.hideLogo}
-		<div class="visual" class:framed={item.framed}>
+		<div class="visual" class:framed={item.framed} class:named={Boolean(item.logoName)}>
 			{#if item.logo && !broken}
-				<img src={item.logo} alt={item.title} loading="lazy" onerror={() => (broken = true)} />
+				<img
+					src={item.logo}
+					alt={item.logoName ? '' : item.title}
+					loading="lazy"
+					style={item.logoHeight ? `width: auto; height: ${item.logoHeight}px; justify-self: start;` : undefined}
+					onerror={() => (broken = true)}
+				/>
 			{:else}
 				<span class="mono" aria-hidden="true">{item.title.charAt(0)}</span>
+			{/if}
+			{#if item.logoName}<span class="logo-name">{item.logoName}</span>
 			{/if}
 		</div>
 	{/if}
 
 	<div class="body">
-		<h3>{item.title}</h3>
+		<h3>{item.heading ?? item.title}</h3>
 		<p class="blurb">{item.blurb}</p>
 
 		<span class="period">
@@ -90,6 +98,19 @@
 		height: 100%;
 		object-fit: contain;
 	}
+	/* logo with the project name written beside it */
+	.visual.named {
+		width: auto;
+		grid-auto-flow: column;
+		justify-content: start;
+		gap: 10px;
+	}
+	.logo-name {
+		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: #1d1d1f;
+	}
 	.visual.framed {
 		background: rgb(255 255 255 / 58%);
 		border: 1px solid rgb(255 255 255 / 72%);
@@ -135,13 +156,15 @@
 		justify-content: space-between;
 		gap: 16px;
 		width: 100%;
-		background: rgb(255 255 255 / 54%);
-		border: 1px solid rgb(255 255 255 / 64%);
+		background: #fff;
+		border: 1px solid rgb(255 255 255 / 80%);
 		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 8px 16px;
 		border-radius: 999px;
-		box-shadow: none;
+		box-shadow:
+			0 1px 2px rgb(29 29 31 / 6%),
+			0 6px 14px -6px rgb(29 29 31 / 16%);
 		white-space: nowrap;
 	}
 	.period > span:first-child {
@@ -150,6 +173,10 @@
 	.period .ic {
 		flex: none;
 		color: inherit;
+	}
+	/* no arrow until the card actually opens something */
+	.card:not(.linked) .period .ic {
+		display: none;
 	}
 	.card:hover {
 		transform: translateY(-4px);

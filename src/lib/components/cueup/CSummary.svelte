@@ -31,12 +31,12 @@
 			</svg>
 		</button>
 		<div class="card-shell" class:more-below={moreBelow}>
-		<article class="card" bind:this={card} onscroll={updateScrollHint} aria-label="CueUp summary content">
-			<p class="eyebrow" id="cueup-summary-title">CUEUP · THE QUICK READ</p>
+		<article class="card" bind:this={card} onscroll={updateScrollHint} aria-label="Relay summary content">
+			<p class="eyebrow" id="cueup-summary-title">RELAY · THE QUICK READ</p>
 			<div class="details">
 				<section>
 					<h2>Overview</h2>
-					<p>CueUp is a focused coordination concept for self-managing landlords and their tenants. It brings rent verification and repair progress into one shared view.</p>
+					<p>Relay is a focused coordination concept for self-managing landlords and their tenants. It brings rent verification and repair progress into one shared view.</p>
 				</section>
 				<section>
 					<h2>Problem</h2>
@@ -51,20 +51,20 @@
 					<h2>Design</h2>
 					<div class="design-grid">
 						<div class="design-stack">
-							<figure class="mock-rent-overview"><img src="/img/CueUp/Rentoverview.png" alt="CueUp tenant rent-overview screen" /></figure>
-							<figure class="mock-open-resolved"><img src="/img/CueUp/openandresolvedtenant.png" alt="CueUp tenant open and resolved repairs screens" /></figure>
-							<figure class="mock-update-left"><img src="/img/CueUp/Update.png" alt="CueUp tenant update screen" /></figure>
+							<figure class="mock-rent-overview"><img src="/img/CueUp/Rentoverview.png" alt="Relay tenant rent-overview screen" /></figure>
+							<figure class="mock-open-resolved"><img src="/img/CueUp/openandresolvedtenant.png" alt="Relay tenant open and resolved repairs screens" /></figure>
+							<figure class="mock-update-left"><img src="/img/CueUp/Update.png" alt="Relay tenant update screen" /></figure>
 						</div>
 						<div class="design-stack">
-							<figure class="mock-pay-rent"><img src="/img/CueUp/Payrent.png" alt="CueUp tenant pay-rent screen" /></figure>
-							<figure class="mock-issue"><img src="/img/CueUp/Issue.png" alt="CueUp tenant issue-reporting screen" /></figure>
+							<figure class="mock-pay-rent"><img src="/img/CueUp/Payrent.png" alt="Relay tenant pay-rent screen" /></figure>
+							<figure class="mock-issue"><img src="/img/CueUp/Issue.png" alt="Relay tenant issue-reporting screen" /></figure>
 						</div>
 					</div>
 				</section>
 				<section>
 					<h2>Result</h2>
 					<p>A complete landlord and tenant concept, including role-specific flows and interfaces for payment proof, verification, repair reporting, and updates.</p>
-					<p>Product impact remains unmeasured because CueUp has not been launched.</p>
+					<p>Product impact remains unmeasured because Relay has not been launched.</p>
 				</section>
 			</div>
 		</article>

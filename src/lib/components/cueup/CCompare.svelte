@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="row">
-		<span class="lead"><span class="tag on">Cueup</span></span>
+		<span class="lead"><span class="tag on">Relay</span></span>
 		{#each columns as c (c.logo.alt)}
 			<p>{c.cueup}</p>
 		{/each}

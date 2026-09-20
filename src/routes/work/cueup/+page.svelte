@@ -238,18 +238,18 @@
 			<h2 class="cu-head" use:reveal>Design</h2>
 			<p class="design-subhead" use:reveal>Landlord Experience</p>
 			<div class="design-showcase" use:revealScale>
-				<img src="/img/CueUp/LandlordHomeSo%201.png" alt="CueUp landlord home screen design" loading="lazy" />
-				<img src="/img/CueUp/Landlord%20repairsSo.png" alt="CueUp landlord repairs screen design" loading="lazy" />
-				<img src="/img/CueUp/Landlord%20Tenant%20So.png" alt="CueUp landlord tenants screen design" loading="lazy" />
-				<img src="/img/CueUp/LandlordupdatesSo.png" alt="CueUp landlord updates screen design" loading="lazy" />
-				<img src="/img/CueUp/landlordRent%20So.png" alt="CueUp landlord rent screen design" loading="lazy" />
+				<img src="/img/CueUp/LandlordHomeSo%201.png" alt="Relay landlord home screen design" loading="lazy" />
+				<img src="/img/CueUp/Landlord%20repairsSo.png" alt="Relay landlord repairs screen design" loading="lazy" />
+				<img src="/img/CueUp/Landlord%20Tenant%20So.png" alt="Relay landlord tenants screen design" loading="lazy" />
+				<img src="/img/CueUp/LandlordupdatesSo.png" alt="Relay landlord updates screen design" loading="lazy" />
+				<img src="/img/CueUp/landlordRent%20So.png" alt="Relay landlord rent screen design" loading="lazy" />
 			</div>
 			<p class="design-subhead tenant-subhead" use:reveal>Tenants Experience</p>
 			<div class="tenant-showcase" use:revealScale>
-				<img src="/img/CueUp/TenantHomeSo.png" alt="CueUp tenant home screen design" loading="lazy" />
-				<img src="/img/CueUp/TenantRentSo.png?v=20260917002746" alt="CueUp tenant rent screen design" loading="lazy" />
-				<img src="/img/CueUp/TenantRepairsSo.png" alt="CueUp tenant repairs screen design" loading="lazy" />
-				<img src="/img/CueUp/TenantUpdateso.png" alt="CueUp tenant updates screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantHomeSo.png" alt="Relay tenant home screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantRentSo.png?v=20260917002746" alt="Relay tenant rent screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantRepairsSo.png" alt="Relay tenant repairs screen design" loading="lazy" />
+				<img src="/img/CueUp/TenantUpdateso.png" alt="Relay tenant updates screen design" loading="lazy" />
 			</div>
 		</section>
 

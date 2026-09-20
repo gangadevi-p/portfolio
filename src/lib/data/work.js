@@ -9,13 +9,19 @@
  *           any other URL opens in a new tab. Omit it and the pill is static.
  * `size`  — 'lg' makes a taller bento tile; anything else is the short tile.
  *           Order the list so each column gets one tall + one short.
+ * `logoHeight` — optional. Fixes the logo's height in px (width follows).
+ * `logoName` — optional. Writes the name beside the logo.
+ * `heading` — optional. Replaces the title text shown under the logo.
  * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
  * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
  */
 export const work = [
 	{
-		title: 'CueUp',
-		logo: '/img/work/cueup-clean.png',
+		title: 'Relay',
+		logo: '/img/CueUp/logo.png',
+		logoHeight: 32,
+		logoName: 'Relay',
+		heading: 'Rent & Repair',
 		blurb: 'A calmer, clearer experience that helps landlords and tenants manage their rental relationship.',
 		period: '2 months',
 		href: '/work/cueup',
@@ -33,8 +39,12 @@ export const work = [
 	},
 	{
 		title: 'Athera',
-		hideLogo: true,
+		logo: '/img/work/athera.png',
+		logoHeight: 32,
+		logoName: 'Athera',
+		heading: 'Premium furniture',
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
+		period: 'Building',
 		href: ''
 	}
 ];

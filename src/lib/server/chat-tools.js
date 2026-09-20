@@ -231,7 +231,7 @@ const handlers = {
 			period: base?.period || card?.period,
 			summary: base?.text,
 			highlights: card?.points || (card?.blurb ? [card.blurb] : undefined),
-			status: card?.status
+			status: [card?.status, card?.tag].filter(Boolean).join(' · ') || undefined
 		};
 	},
 

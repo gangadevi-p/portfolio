@@ -14,7 +14,8 @@ export const experience = [
 		role: 'Product & UX Designer',
 		project: '(Expense Tracker)',
 		summary: 'Focused on core UX flows and experience.',
-		status: 'Under development · Freelance',
+		status: 'Under development',
+		tag: 'Freelance',
 		logo: '/img/experience/manino.png',
 		points: [
 			'Audited an existing messy app',

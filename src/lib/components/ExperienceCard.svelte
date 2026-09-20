@@ -23,7 +23,7 @@
 	use:cursorLabel={job.href
 		? { label: 'Open my work', variant: 'view' }
 		: job.status
-			? { label: job.status, variant: 'view' }
+			? { label: [job.status, job.tag].filter(Boolean).join(' · '), variant: 'view' }
 			: undefined}
 >
 	<div class="top">
@@ -77,6 +77,7 @@
 
 		<span class="period">
 			{#if job.status}<span class="status">{job.status}</span>{/if}
+			{#if job.tag}<span class="tag">{job.tag}</span>{/if}
 			<span class="period-date">{job.period}</span>
 			<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
 				<path
@@ -205,9 +206,11 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: rgb(255 255 255 / 54%);
-		border: 1px solid rgb(255 255 255 / 64%);
-		box-shadow: none;
+		background: #fff;
+		border: 1px solid rgb(255 255 255 / 80%);
+		box-shadow:
+			0 1px 2px rgb(29 29 31 / 6%),
+			0 6px 14px -6px rgb(29 29 31 / 16%);
 		color: #1d1d1f;
 		font-size: var(--fs-small);
 		padding: 0.6rem 1rem;
@@ -224,6 +227,18 @@
 	.status {
 		font-weight: 600;
 		color: #5f5f5f;
+	}
+	/* "Freelance" sits on the right, just left of the arrow */
+	.tag {
+		margin-left: auto;
+		color: #1d1d1f;
+	}
+	.period-date:empty {
+		display: none;
+	}
+	/* no arrow until the card actually opens something */
+	.xp:not(.linked) .period svg {
+		display: none;
 	}
 	.xp.linked {
 		transition:
