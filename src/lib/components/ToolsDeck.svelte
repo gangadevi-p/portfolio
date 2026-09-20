@@ -85,7 +85,7 @@
 	aria-label="Tools"
 	onclick={toggle}
 	onkeydown={onKeydown}
-	use:cursorLabel={{ label: 'Explore tools', variant: 'view' }}
+	use:cursorLabel={{ label: 'Tools I use', variant: 'view' }}
 >
 	<svg class="shell shell--back" viewBox="0 0 300 249" aria-hidden="true">
 		<defs>

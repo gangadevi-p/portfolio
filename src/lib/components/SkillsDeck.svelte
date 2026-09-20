@@ -48,7 +48,7 @@
 	aria-label="Skills"
 	onclick={toggle}
 	onkeydown={onKeydown}
-	use:cursorLabel={{ label: 'Explore skills', variant: 'view' }}
+	use:cursorLabel={{ label: 'Work I do', variant: 'view' }}
 >
 	<svg class="shell shell--back" viewBox="0 0 300 298" aria-hidden="true">
 		<defs>
