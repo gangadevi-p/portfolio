@@ -30,7 +30,8 @@
 					onerror={() => (broken = true)}
 				/>
 			{:else}
-				<span class="mono" aria-hidden="true">{item.title.charAt(0)}</span>
+				{@const mono = item.monogram ?? item.title.charAt(0)}
+					<span class="mono" class:long={mono.length > 1} aria-hidden="true">{mono}</span>
 			{/if}
 			{#if item.logoName}<span class="logo-name">{item.logoName}</span>
 			{/if}
@@ -121,6 +122,11 @@
 		font-family: var(--font-display);
 		font-size: clamp(2.25rem, 7vw, 3.5rem);
 		color: #c8c2bb;
+	}
+	/* multi-letter monograms (e.g. "GDS") shrink to fit the 80px logo slot */
+	.mono.long {
+		font-size: 2.25rem;
+		white-space: nowrap;
 	}
 
 	/* Project details */

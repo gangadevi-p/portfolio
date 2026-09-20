@@ -46,5 +46,12 @@ export const work = [
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
 		period: 'Building',
 		href: ''
+	},
+	{
+		title: 'Gani Design Space',
+		monogram: 'GDS',
+		blurb: 'A design space showcasing my work, experiments, and creative process.',
+		period: 'Coming soon',
+		href: ''
 	}
 ];
