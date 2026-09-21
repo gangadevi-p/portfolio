@@ -164,6 +164,12 @@
 			<p class="cu-note cu-note--surface" use:reveal>
 				{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}
 			</p>
+			<img
+				class="solution-visual"
+				src="/img/CueUp/repair-process-3d.png"
+				alt="A repair process moving from request to completion"
+				loading="lazy"
+			/>
 		</section>
 
 		<!-- 4 · RESEARCH -->
@@ -560,6 +566,13 @@
 		border-radius: 27px;
 		background: #0d0d0f;
 		display: block;
+	}
+	.solution-visual {
+		display: block;
+		width: min(100%, 460px);
+		height: auto;
+		margin: 22px auto 0;
+		opacity: 0.82;
 	}
 
 	/* ---------- sections ---------- */
