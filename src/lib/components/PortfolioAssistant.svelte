@@ -167,7 +167,7 @@
 
 	<button class="launcher" type="button" aria-expanded={open} onclick={() => (open = !open)}>
 		<span class="spark" aria-hidden="true">✦</span>
-		<span>{open ? 'Close guide' : 'Ask about my work'}</span>
+		<span>{open ? 'Close guide' : 'I’m Gani’s Assistant'}</span>
 	</button>
 </div>
 

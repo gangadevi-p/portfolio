@@ -39,7 +39,7 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
-		<ThemeToggle />
+		{#if onHome}<ThemeToggle />{/if}
 		<PortfolioAssistant placement="nav" />
 	</div>
 </nav>

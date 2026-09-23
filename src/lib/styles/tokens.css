@@ -62,9 +62,10 @@
 	--parallax-range: 130px;
 }
 
-/* Kept at the document level so every route, including case studies, can
-   share the same accessible foundation. */
-html[data-theme='dark'] {
+/* The palette switch belongs to the portfolio home page only. Case studies
+   retain their authored light palettes, even when a visitor has picked dark
+   mode on the home screen. */
+html[data-theme='dark']:has(body main.home-route) {
 	color-scheme: dark;
 	--c-bg: #121212;
 	--c-surface: #202020;

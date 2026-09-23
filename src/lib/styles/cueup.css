@@ -134,38 +134,3 @@
 	line-height: 1.1;
 	white-space: nowrap;
 }
-
-html[data-theme='dark'] .cueup {
-	--c-cursor: #f5f7fb;
-	--c-cursor-ink: #121417;
-	--cu-bg: #151515;
-	--cu-card: #242424;
-	--cu-ink: #f4f4f4;
-	--cu-ink-soft: #cccccc;
-	--cu-head: #f1f1f1;
-	--cu-dot: #aaaaaa;
-	--cu-rule: #5f5f5f;
-	--cu-violet-50: #281743;
-	--cu-violet-100: #372057;
-	--cu-sky-50: #0e2b3b;
-	--cu-sky-100: #123c54;
-	--cu-blue-100: #182f58;
-	--cu-pink-50: #3b172b;
-	--cu-amber-50: #3c2b10;
-	--cu-amber-100: #4a350e;
-	--cu-orange-200: #4b2b12;
-	--cu-emerald-50: #10372d;
-	--cu-fuchsia-50: #39173f;
-	--cu-lime-50: #293a15;
-	--cu-green-band: #123a29;
-	--cu-green-band-ink: #7ee2aa;
-	--cu-orange-band: #422511;
-	--cu-orange-band-ink: #ffc28e;
-	--cu-shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 18px 40px -28px rgb(0 0 0 / 78%);
-}
-
-html[data-theme='dark'] .cueup .cu-note--surface,
-html[data-theme='dark'] .cueup .outcome-card,
-html[data-theme='dark'] .cueup .root {
-	background: var(--cu-card) !important;
-}
