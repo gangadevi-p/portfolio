@@ -145,6 +145,45 @@
 	padding-block: 30px;
 }
 
+html[data-theme='dark'] .kiet {
+	--c-cursor: #f5f7fb;
+	--c-cursor-ink: #121417;
+	--k-bg: #151820;
+	--k-rule: #363c49;
+	--k-card: #202530;
+	--k-orange: #ff9b73;
+	--k-orange-deep: #ffb394;
+	--k-ink: #e5e9f0;
+	--k-ink-strong: #f7f9fc;
+	--k-ink-soft: #c6ccd6;
+	--t-green-bg: #153a2b;
+	--t-blue-bg: #1a315a;
+	--t-teal-bg: #133c3b;
+	--t-amber-bg: #443510;
+	--t-rose-bg: #481f34;
+	--t-violet-bg: #35234e;
+	--t-brown-bg: #3d2b22;
+	--t-dark-bg: #343b46;
+	--t-orange-bg: #4b271c;
+	--n-sky: #264557;
+	--n-blush: #4a2c3e;
+	--n-mint: #284b35;
+	--n-butter: #4a431d;
+	--k-shadow: 0 1px 2px rgb(0 0 0 / 32%), 0 18px 40px -24px rgb(0 0 0 / 76%);
+	--k-shadow-lift: 0 2px 4px rgb(0 0 0 / 40%), 0 34px 60px -30px rgb(0 0 0 / 82%);
+}
+
+html[data-theme='dark'] .kiet .node:not(.solid),
+html[data-theme='dark'] .kiet .cell:not(.outcome),
+html[data-theme='dark'] .kiet .note {
+	background: var(--k-card) !important;
+	color: var(--k-ink) !important;
+}
+
+html[data-theme='dark'] .kiet .note p {
+	color: var(--k-ink-soft) !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	.kiet.scroll-focus-ready .k-section {
 		opacity: 0.78;

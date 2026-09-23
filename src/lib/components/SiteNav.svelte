@@ -4,6 +4,7 @@
 	import { navigation } from '$motion/navigation.svelte.js';
 	import { base } from '$app/paths';
 	import PortfolioAssistant from './PortfolioAssistant.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 	import { page } from '$app/state';
 	let onHome = $derived(page.route.id === '/');
 	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
@@ -38,6 +39,7 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
+		<ThemeToggle />
 		<PortfolioAssistant placement="nav" />
 	</div>
 </nav>

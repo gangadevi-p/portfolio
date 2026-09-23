@@ -7,9 +7,13 @@
 	--c-coffee: #1d1d1f;
 	--c-bg: #fbfbfd;
 	--c-surface: #ffffff;
+	--c-surface-subtle: #f1f2f4;
+	--c-surface-strong: #1d1d1f;
 	--c-ink: #1d1d1f;
 	--c-ink-soft: #6e6e73;
+	--c-ink-inverse: #ffffff;
 	--c-line: #d2d2d7;
+	--c-line-strong: #8b8b92;
 	--c-accent: #0071e3;
 	/* a deeper accent for light backgrounds, where #ff6a3d is too pale to read */
 	--c-accent-deep: #0066cc;
@@ -56,4 +60,27 @@
 
 	/* parallax strength (px travelled at full pointer deflection) */
 	--parallax-range: 130px;
+}
+
+/* Kept at the document level so every route, including case studies, can
+   share the same accessible foundation. */
+html[data-theme='dark'] {
+	color-scheme: dark;
+	--c-bg: #121417;
+	--c-surface: #1c2026;
+	--c-surface-subtle: #2b313a;
+	--c-surface-strong: #050607;
+	--c-ink: #f5f7fb;
+	--c-ink-soft: #c7ccd5;
+	--c-ink-inverse: #ffffff;
+	--c-line: #68707d;
+	--c-line-strong: #99a3b2;
+	--c-accent: #9bc4ff;
+	--c-accent-deep: #b7d4ff;
+	--c-coffee: #f5f7fb;
+	--c-ink-rgb: 245, 247, 251;
+	--c-cursor: #f5f7fb;
+	--c-cursor-ink: #121417;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 28%), 0 16px 42px -28px rgb(0 0 0 / 72%);
+	--shadow-card-lift: 0 6px 18px rgb(0 0 0 / 34%), 0 30px 58px -30px rgb(0 0 0 / 76%);
 }

@@ -25,13 +25,8 @@
 		   visible width matches the hero frame's — see WorkExperienceSection. */
 		padding-inline: var(--pad-x);
 		/* light band — the rest of the page is dark, so opt back into light ink */
-		background: #ffffff;
-		color: #1d1d1f;
-		--c-ink: #1d1d1f;
-		--c-ink-soft: #6e6e73;
-		--c-line: #d2d2d7;
-		--c-cursor: #1d1d1f;
-		--c-cursor-ink: #ffffff;
+		background: var(--c-bg);
+		color: var(--c-ink);
 	}
 	.section :global(.wide-container) {
 		padding-inline: 0;

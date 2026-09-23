@@ -67,8 +67,8 @@
 		min-height: 304px;
 		/* Frosted project tiles make the grid feel raised without competing with
 		   the project marks and copy. */
-		background: linear-gradient(145deg, rgb(255 255 255 / 84%), rgb(255 255 255 / 56%));
-		color: #1d1d1f;
+		background: var(--c-surface);
+		color: var(--c-ink);
 		text-decoration: none;
 		border-radius: 24px;
 		padding: 24px;
@@ -76,9 +76,7 @@
 			inset 0 1px 0 rgb(255 255 255 / 74%),
 			0 14px 34px rgb(29 29 31 / 8%),
 			0 2px 5px rgb(29 29 31 / 4%);
-		border: 1px solid rgb(255 255 255 / 76%);
-		backdrop-filter: blur(18px) saturate(135%);
-		-webkit-backdrop-filter: blur(18px) saturate(135%);
+		border: 1px solid var(--c-line);
 		transition:
 			transform var(--dur-fast) var(--ease-out),
 			box-shadow var(--dur-fast) var(--ease-out),
@@ -110,11 +108,11 @@
 		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
 		font-weight: 700;
 		letter-spacing: -0.01em;
-		color: #1d1d1f;
+		color: var(--c-ink);
 	}
 	.visual.framed {
-		background: rgb(255 255 255 / 58%);
-		border: 1px solid rgb(255 255 255 / 72%);
+		background: var(--c-surface-subtle);
+		border: 1px solid var(--c-line);
 		box-shadow: 0 14px 32px -16px rgba(255, 106, 61, 0.4);
 		padding: 16px;
 	}
@@ -145,7 +143,7 @@
 	.blurb {
 		margin-top: 8px;
 		max-width: 26ch;
-		color: #6e6e73;
+		color: var(--c-ink-soft);
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
 		line-height: 1.45;
 		display: -webkit-box;
@@ -162,9 +160,9 @@
 		justify-content: space-between;
 		gap: 16px;
 		width: 100%;
-		background: #fff;
-		border: 1px solid rgb(255 255 255 / 80%);
-		color: #1d1d1f;
+		background: var(--c-surface-subtle);
+		border: 1px solid var(--c-line);
+		color: var(--c-ink);
 		font-size: var(--fs-small);
 		padding: 8px 16px;
 		border-radius: 999px;
@@ -186,8 +184,8 @@
 	}
 	.card:hover {
 		transform: translateY(-4px);
-		border-color: rgb(255 255 255 / 94%);
-		background: linear-gradient(145deg, rgb(255 255 255 / 94%), rgb(255 255 255 / 70%));
+		border-color: var(--c-line-strong);
+		background: var(--c-surface-subtle);
 		box-shadow:
 			inset 0 1px 0 rgb(255 255 255 / 88%),
 			0 22px 46px rgb(29 29 31 / 12%),

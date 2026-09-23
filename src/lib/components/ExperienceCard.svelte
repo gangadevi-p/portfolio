@@ -101,21 +101,17 @@
 		gap: clamp(1rem, 2.5vw, 1.75rem);
 		/* A lightly frosted surface lets the page colour breathe through while
 		   the bright top edge keeps the card distinct from the background. */
-		background: linear-gradient(145deg, rgb(255 255 255 / 82%), rgb(255 255 255 / 58%));
-		color: #1d1d1f;
+		background: var(--c-surface);
+		color: var(--c-ink);
 		/* white card inside the dark section — flip the cursor back to dark ink,
 		   otherwise the light heart the dark page sets is invisible on it */
-		--c-cursor: #1c1c1c;
-		--c-cursor-ink: #f7f5f0;
-		border: 1px solid rgb(255 255 255 / 72%);
+		border: 1px solid var(--c-line);
 		border-radius: 28px;
 		padding: var(--card-pad);
 		box-shadow:
 			inset 0 1px 0 rgb(255 255 255 / 70%),
 			0 12px 32px rgb(29 29 31 / 8%),
 			0 2px 5px rgb(29 29 31 / 4%);
-		backdrop-filter: blur(18px) saturate(135%);
-		-webkit-backdrop-filter: blur(18px) saturate(135%);
 	}
 	.xp.featured {
 		height: 100%;
@@ -137,7 +133,7 @@
 		aspect-ratio: 1;
 		border-radius: 20px;
 		overflow: hidden;
-		background: #f4f4f4;
+		background: var(--c-surface-subtle);
 		display: grid;
 		place-items: center;
 	}
@@ -178,13 +174,13 @@
 		letter-spacing: -0.02em;
 	}
 	.blurb {
-		color: #6e6e73;
+		color: var(--c-ink-soft);
 		max-width: 34ch;
 	}
 	.points {
 		list-style: none;
 		padding: 0;
-		color: #6e6e73;
+		color: var(--c-ink-soft);
 		display: grid;
 		gap: 0.35rem;
 	}
@@ -194,10 +190,10 @@
 	.project-name {
 		margin-left: 0.45rem;
 		font-weight: 500;
-		color: #6e6e73;
+		color: var(--c-ink-soft);
 	}
 	.featured-summary {
-		color: #5f5f5f;
+		color: var(--c-ink-soft);
 		max-width: 34ch;
 	}
 
@@ -206,12 +202,12 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.6rem;
-		background: #fff;
-		border: 1px solid rgb(255 255 255 / 80%);
+		background: var(--c-surface-subtle);
+		border: 1px solid var(--c-line);
 		box-shadow:
 			0 1px 2px rgb(29 29 31 / 6%),
 			0 6px 14px -6px rgb(29 29 31 / 16%);
-		color: #1d1d1f;
+		color: var(--c-ink);
 		font-size: var(--fs-small);
 		padding: 0.6rem 1rem;
 		border-radius: 999px;
@@ -226,12 +222,12 @@
 	}
 	.status {
 		font-weight: 600;
-		color: #5f5f5f;
+		color: var(--c-ink-soft);
 	}
 	/* "Freelance" sits on the right, just left of the arrow */
 	.tag {
 		margin-left: auto;
-		color: #1d1d1f;
+		color: var(--c-ink);
 	}
 	.period-date:empty {
 		display: none;

@@ -17,15 +17,15 @@
 			color var(--dur-fast) var(--ease-out);
 	}
 	a:hover {
-		background: #1d1d1f;
-		color: #fff;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
 	}
 	a.wide {
 		padding-inline: 1.65rem;
 	}
 	a[aria-current] {
-		background: var(--c-coffee);
-		color: #fff;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
 	}
 	@media (max-width: 560px) {
 		a {

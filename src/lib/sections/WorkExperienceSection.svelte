@@ -54,8 +54,8 @@
 		   visible width matches the hero frame's — which insets the same way,
 		   on the section itself rather than on the maxw wrapper inside it. */
 		padding-inline: var(--pad-x);
-		background: #f5f5f7;
-		color: #1d1d1f;
+		background: var(--c-bg);
+		color: var(--c-ink);
 	}
 	.xp-section :global(.xp-container) {
 		padding-inline: 0;
@@ -79,8 +79,8 @@
 		gap: 0.5rem;
 		border: none;
 		cursor: pointer;
-		background: #1d1d1f;
-		color: #fff;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
 		/* white pill on the dark section — see ExperienceCard */
 		--c-cursor: #1c1c1c;
 		--c-cursor-ink: #f7f5f0;

@@ -32,8 +32,8 @@
 		/* horizontal inset moved here (off the Container) so the section's
 		   visible width matches the hero frame's — see WorkExperienceSection. */
 		padding-inline: var(--pad-x);
-		background: #f5f5f7;
-		color: #1d1d1f;
+		background: var(--c-bg);
+		color: var(--c-ink);
 	}
 	.section :global(.wide-container) {
 		padding-inline: 0;
@@ -58,8 +58,8 @@
 		justify-self: end;
 		display: inline-flex;
 		align-items: center;
-		background: #1d1d1f;
-		color: #fff;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
 		font-size: var(--fs-small);
 		font-weight: 600;
 		line-height: 1;
@@ -74,7 +74,8 @@
 		gap: 32px;
 		align-items: stretch;
 		padding: 16px 24px 16px 16px;
-		background: #fff;
+		background: var(--c-surface-subtle);
+		border: 1px solid var(--c-line);
 		border-radius: 16px;
 	}
 	.video {

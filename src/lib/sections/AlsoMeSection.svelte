@@ -36,10 +36,8 @@
 		/* horizontal inset moved here (off .inner) so the section's visible
 		   width matches the hero frame's — see WorkExperienceSection. */
 		padding-inline: var(--pad-x);
-		background: #ffffff;
-		color: #1d1d1f;
-		--c-cursor: #1d1d1f;
-		--c-cursor-ink: #fff;
+		background: var(--c-bg);
+		color: var(--c-ink);
 	}
 	.inner {
 		width: 100%;
@@ -65,7 +63,7 @@
 		display: grid;
 		gap: 1.1rem;
 		margin-top: clamp(1.75rem, 3vw, 2.5rem);
-		color: #6e6e73;
+		color: var(--c-ink-soft);
 		font-size: clamp(1.2rem, 2.1vw, 1.65rem);
 		font-weight: 600;
 		letter-spacing: -0.015em;
