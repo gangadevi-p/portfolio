@@ -45,7 +45,7 @@
 	}
 	.back:hover,
 	.back:focus-visible {
-		color: #f7f5f0;
+		color: var(--c-ink);
 		outline: none;
 	}
 
@@ -56,14 +56,14 @@
 		font-size: clamp(1.9rem, 5vw, 3.25rem);
 		font-weight: 800;
 		letter-spacing: -0.02em;
-		/* These pages retain a dark canvas in either site theme. Keep the
-		   company name explicit so it cannot inherit the home page's dark ink. */
-		color: #f4f1ea;
+		/* Case studies stay on the light palette; use the ink token so the
+		   heading is always dark and readable. */
+		color: var(--c-ink);
 	}
 	.role {
 		font-size: calc(1rem + 4px);
 		font-weight: 700;
-		color: #f7f5f0;
+		color: var(--c-ink);
 	}
 	.role-row {
 		display: flex;
@@ -74,7 +74,7 @@
 	}
 	.period {
 		margin: 0;
-		color: var(--c-ink-soft);
+		color: #48484d;
 		font-size: var(--fs-small);
 		font-weight: 600;
 		white-space: nowrap;
@@ -85,7 +85,7 @@
 	.summary {
 		margin-top: 1rem;
 		font-size: var(--fs-lead);
-		color: var(--c-ink-soft);
+		color: #48484d;
 		max-width: none;
 	}
 	@media (max-width: 480px) {

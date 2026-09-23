@@ -43,7 +43,7 @@
 	}
 	.back:hover,
 	.back:focus-visible {
-		color: #f7f5f0;
+		color: var(--c-ink);
 		outline: none;
 	}
 
@@ -56,12 +56,12 @@
 		letter-spacing: -0.02em;
 		/* These pages retain a dark canvas in either site theme. Keep the
 		   company name explicit so it cannot inherit the home page's dark ink. */
-		color: #f4f1ea;
+		color: var(--c-ink);
 	}
 	.role {
 		font-size: calc(1rem + 4px);
 		font-weight: 700;
-		color: #f7f5f0;
+		color: var(--c-ink);
 	}
 	.role-row {
 		display: flex;
