@@ -97,16 +97,7 @@
 <div class="cueup">
 				<nav class="toc" aria-label="Case study contents">
 					<a class="back" href="/#projects" use:cursorLabel={'All work'}>
-						<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-							<path
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M19 12H5m0 0 6-6m-6 6 6 6"
-							/>
-						</svg>
+						<span aria-hidden="true">←</span>
 						Back
 					</a>
 					<ul>
