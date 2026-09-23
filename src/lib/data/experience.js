@@ -34,6 +34,7 @@ export const experience = [
 		company: 'Geekbull Consultancy — Hyderabad (Onsite)',
 		role: 'UIUX Design Intern',
 		logo: '/img/experience/geekbull-hd.png',
+		logoOnLight: true,
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
 		period: 'Nov 2024 – Feb 2025',
 		href: '/work/geekbull'
@@ -42,6 +43,7 @@ export const experience = [
 		company: 'ADM Educational Welfare Society (Remote)',
 		role: 'Graphic Design Intern',
 		logo: '/img/experience/adm-clean.png',
+		logoOnLight: true,
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
 		href: '/work/adm-education-society'

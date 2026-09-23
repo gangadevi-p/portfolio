@@ -27,7 +27,7 @@
 			: undefined}
 >
 	<div class="top">
-		<div class="logo">
+		<div class="logo" class:on-light={job.logoOnLight}>
 			{#if job.logo && !broken}
 				<img src={job.logo} alt={job.company} loading="lazy" onerror={() => (broken = true)} />
 			{:else}
@@ -136,6 +136,15 @@
 		background: var(--c-surface-subtle);
 		display: grid;
 		place-items: center;
+	}
+	/* These logos are drawn for a white page (dark text, transparent or white
+	   backgrounds). In dark theme give them a white tile that the image fills,
+	   so the dark lettering stays readable. */
+	:global(html[data-theme='dark']) .logo.on-light {
+		background: #fff;
+	}
+	:global(html[data-theme='dark']) .logo.on-light img {
+		object-fit: cover;
 	}
 	.logo img {
 		width: 100%;
