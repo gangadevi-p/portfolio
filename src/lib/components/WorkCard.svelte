@@ -20,15 +20,32 @@
 	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'view' }}
 >
 	{#if !item.hideLogo}
-		<div class="visual" class:framed={item.framed} class:named={Boolean(item.logoName)}>
+		<div
+			class="visual"
+			class:framed={item.framed}
+			class:named={Boolean(item.logoName)}
+			class:visual--kiet={item.logoVariant === 'kiet'}
+		>
 			{#if item.logo && !broken}
 				<img
+					class:theme-logo={Boolean(item.darkLogo)}
+					class:theme-logo--light={Boolean(item.darkLogo)}
 					src={item.logo}
 					alt={item.logoName ? '' : item.title}
 					loading="lazy"
 					style={item.logoHeight ? `width: auto; height: ${item.logoHeight}px; justify-self: start;` : undefined}
 					onerror={() => (broken = true)}
 				/>
+				{#if item.darkLogo}
+					<img
+						class="theme-logo theme-logo--dark"
+						src={item.darkLogo}
+						alt=""
+						aria-hidden="true"
+						loading="lazy"
+						style={item.logoHeight ? `width: auto; height: ${item.logoHeight}px; justify-self: start;` : undefined}
+					/>
+				{/if}
 			{:else}
 				{@const mono = item.monogram ?? item.title.charAt(0)}
 					<span class="mono" class:long={mono.length > 1} aria-hidden="true">{mono}</span>
@@ -96,6 +113,9 @@
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
+	}
+	.theme-logo--dark {
+		display: none;
 	}
 	/* logo with the project name written beside it */
 	.visual.named {

@@ -138,13 +138,13 @@
 html[data-theme='dark'] .cueup {
 	--c-cursor: #f5f7fb;
 	--c-cursor-ink: #121417;
-	--cu-bg: #12171c;
-	--cu-card: #1c242c;
-	--cu-ink: #f4f7fb;
-	--cu-ink-soft: #c9d1da;
-	--cu-head: #f1f5f9;
-	--cu-dot: #9aa7b5;
-	--cu-rule: #56616d;
+	--cu-bg: #151515;
+	--cu-card: #242424;
+	--cu-ink: #f4f4f4;
+	--cu-ink-soft: #cccccc;
+	--cu-head: #f1f1f1;
+	--cu-dot: #aaaaaa;
+	--cu-rule: #5f5f5f;
 	--cu-violet-50: #281743;
 	--cu-violet-100: #372057;
 	--cu-sky-50: #0e2b3b;

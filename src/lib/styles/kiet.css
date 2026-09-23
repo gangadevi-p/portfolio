@@ -148,14 +148,14 @@
 html[data-theme='dark'] .kiet {
 	--c-cursor: #f5f7fb;
 	--c-cursor-ink: #121417;
-	--k-bg: #151820;
-	--k-rule: #363c49;
-	--k-card: #202530;
+	--k-bg: #151515;
+	--k-rule: #404040;
+	--k-card: #252525;
 	--k-orange: #ff9b73;
 	--k-orange-deep: #ffb394;
-	--k-ink: #e5e9f0;
-	--k-ink-strong: #f7f9fc;
-	--k-ink-soft: #c6ccd6;
+	--k-ink: #e7e7e7;
+	--k-ink-strong: #f8f8f8;
+	--k-ink-soft: #c9c9c9;
 	--t-green-bg: #153a2b;
 	--t-blue-bg: #1a315a;
 	--t-teal-bg: #133c3b;

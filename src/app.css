@@ -61,16 +61,17 @@ html[data-theme='dark'] body:has(main.home-route) .download {
 }
 html[data-theme='dark'] body:has(main.home-route) :is(.hero, .xp-section, .section, .footer) {
 	color: var(--c-ink) !important;
-	--c-ink: #f5f7fb !important;
-	--c-ink-soft: #c7ccd5 !important;
-	--c-line: #68707d !important;
-	--c-surface: #1c2026 !important;
-	--c-ink-rgb: 245, 247, 251 !important;
-	--c-cursor: #f5f7fb !important;
-	--c-cursor-ink: #121417 !important;
+	--c-ink: #f5f5f5 !important;
+	--c-ink-soft: #c9c9c9 !important;
+	--c-line: #666666 !important;
+	--c-surface: #202020 !important;
+	--c-surface-subtle: #303030 !important;
+	--c-ink-rgb: 245, 245, 245 !important;
+	--c-cursor: #f5f5f5 !important;
+	--c-cursor-ink: #121212 !important;
 }
 html[data-theme='dark'] body:has(main.home-route) .hero .frame {
-	background: linear-gradient(145deg, #20252c, #171a1f) !important;
+	background: linear-gradient(145deg, #292929, #1a1a1a) !important;
 	box-shadow: 0 20px 60px rgb(0 0 0 / 44%) !important;
 }
 html[data-theme='dark'] body:has(main.home-route) .card :is(h2, h3, p, span),
@@ -90,10 +91,10 @@ html[data-theme='dark'] body:has(main.home-route) .section .intro {
    rather than inheriting the card colour. White copy keeps the compact labels
    comfortably above the required contrast ratio. */
 html[data-theme='dark'] body:has(main.home-route) :is(.card, .xp) .period {
-	background: #3b424d !important;
-	border-color: #707a89 !important;
+	background: #4a4a4a !important;
+	border-color: #8a8a8a !important;
 	color: #ffffff !important;
-	box-shadow: none !important;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%), 0 5px 14px rgb(0 0 0 / 28%) !important;
 }
 html[data-theme='dark'] body:has(main.home-route) :is(.card, .xp) .period :is(.period-date, .status, .tag, .ic, svg) {
 	color: #ffffff !important;
@@ -107,6 +108,12 @@ html[data-theme='dark'] body:has(main.home-route) .pill a[aria-current] {
 }
 html[data-theme='dark'] body:has(main.home-route) .video {
 	border-color: var(--c-line) !important;
+}
+html[data-theme='dark'] body:has(main.home-route) .card .theme-logo--light {
+	display: none;
+}
+html[data-theme='dark'] body:has(main.home-route) .card .theme-logo--dark {
+	display: block;
 }
 img,
 svg {

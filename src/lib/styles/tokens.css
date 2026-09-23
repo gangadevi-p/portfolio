@@ -66,21 +66,21 @@
    share the same accessible foundation. */
 html[data-theme='dark'] {
 	color-scheme: dark;
-	--c-bg: #121417;
-	--c-surface: #1c2026;
-	--c-surface-subtle: #2b313a;
-	--c-surface-strong: #050607;
-	--c-ink: #f5f7fb;
-	--c-ink-soft: #c7ccd5;
+	--c-bg: #121212;
+	--c-surface: #202020;
+	--c-surface-subtle: #303030;
+	--c-surface-strong: #050505;
+	--c-ink: #f5f5f5;
+	--c-ink-soft: #c9c9c9;
 	--c-ink-inverse: #ffffff;
-	--c-line: #68707d;
-	--c-line-strong: #99a3b2;
-	--c-accent: #9bc4ff;
-	--c-accent-deep: #b7d4ff;
-	--c-coffee: #f5f7fb;
-	--c-ink-rgb: 245, 247, 251;
-	--c-cursor: #f5f7fb;
-	--c-cursor-ink: #121417;
+	--c-line: #666666;
+	--c-line-strong: #9a9a9a;
+	--c-accent: #eeeeee;
+	--c-accent-deep: #ffffff;
+	--c-coffee: #f5f5f5;
+	--c-ink-rgb: 245, 245, 245;
+	--c-cursor: #f5f5f5;
+	--c-cursor-ink: #121212;
 	--shadow-card: 0 1px 2px rgb(0 0 0 / 28%), 0 16px 42px -28px rgb(0 0 0 / 72%);
 	--shadow-card-lift: 0 6px 18px rgb(0 0 0 / 34%), 0 30px 58px -30px rgb(0 0 0 / 76%);
 }

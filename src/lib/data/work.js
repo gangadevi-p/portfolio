@@ -19,6 +19,7 @@ export const work = [
 	{
 		title: 'Relay',
 		logo: '/img/CueUp/logo.png',
+		darkLogo: '/img/CueUp/dark%20theme%20logo.png',
 		logoHeight: 32,
 		logoName: 'Relay',
 		heading: 'Rent & Repair',
@@ -31,6 +32,8 @@ export const work = [
 	{
 		title: 'Student App',
 		logo: '/img/KIET/kiet%20logo.png',
+		darkLogo: '/kiet/Kietdarkthemelogo.png',
+		logoVariant: 'kiet',
 		blurb: 'A student companion app for academic updates, attendance, and campus essentials—live on Google Play.',
 		period: '4 months',
 		href: '/work/kiet-student-app',
@@ -40,6 +43,7 @@ export const work = [
 	{
 		title: 'Athera',
 		logo: '/img/work/athera.png',
+		darkLogo: '/img/AtheraDarkthemelogo.png',
 		logoHeight: 32,
 		logoName: 'Athera',
 		heading: 'Premium furniture',
