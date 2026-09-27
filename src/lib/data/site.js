@@ -18,8 +18,8 @@ export const site = {
 /** @type {NavLink[]} */
 export const nav = [
 	{ label: 'Me', href: '#me' },
-	{ label: 'Work', href: '#work' },
 	{ label: 'Projects', href: '#projects' },
+	{ label: 'Work', href: '#work' },
 	{ label: 'I Play', href: '#playground' },
 	{ label: 'Also me', href: '#also-me' }
 ];

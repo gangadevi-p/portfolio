@@ -8,8 +8,8 @@
 
 <div class="home-page">
 	<HeroSection />
-	<WorkExperienceSection />
 	<ProjectsSection />
+	<WorkExperienceSection />
 	<PlaygroundSection />
 	<AlsoMeSection />
 </div>
