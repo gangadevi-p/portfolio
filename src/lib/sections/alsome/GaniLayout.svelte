@@ -1,90 +1,124 @@
 <script>
 	/**
-	 * "Also me" gallery — three rows, each the same total occupied width as the
-	 * top row. Every row still lays out at one shared height (equal heights
-	 * within itself, images unstretched/uncropped) — but rows with a smaller or
-	 * larger combined ratio+gap footprint than the top row get their own height
-	 * solved for algebraically, so `rowWidth = height * sumRatio + gaps` comes
-	 * out equal for all three rows without ever exceeding the top row's width.
+	 * "Also me" layout — an L of framed photos wrapping the intro copy.
+	 *
+	 *   ┌──────────────────────┐ ┌──┐
+	 *   │  heading + story     │ │  │   right column: 2 photos
+	 *   │  (children)          │ │  │
+	 *   └──────────────────────┘ │  │
+	 *   ┌──┐ ┌──┐ ┌──┐           ├──┤   corner photo
+	 *   └──┘ └──┘ └──┘           └──┘   bottom row: 3 photos
+	 *
+	 * Every photo sits in the same even white frame, cropped to a shared
+	 * landscape tile, each at its own slight tilt; hovering straightens it.
+	 * On narrow screens the copy stacks on top and photos flow in two columns.
 	 */
-	import { row1, row2, row3 } from '$data/also-me.js';
+	import { gallery } from '$data/also-me.js';
 
-	const rows = [row1, row2, row3];
+	let { children } = $props();
 
-	const footprint = (row) => ({
-		sumRatio: row.reduce((sum, img) => sum + img.ratio, 0),
-		gaps: row.length - 1
-	});
-	const base = footprint(row1);
-
-	// height_i = (base.sumRatio / sumRatio_i) * baseHeight + ((base.gaps - gaps_i) * 24 / sumRatio_i)
-	const coefficients = rows.map((row) => {
-		const { sumRatio, gaps } = footprint(row);
-		return {
-			k1: base.sumRatio / sumRatio,
-			k2: ((base.gaps - gaps) * 24) / sumRatio
-		};
-	});
+	// 2 down the right, the corner, then 3 along the bottom (right → left).
+	const slots = [
+		{ col: 4, row: 1 },
+		{ col: 4, row: 2 },
+		{ col: 4, row: 3 },
+		{ col: 3, row: 3 },
+		{ col: 2, row: 3 },
+		{ col: 1, row: 3 }
+	];
+	const tilts = [3, -4, 4, -2, 5, -4];
+	const photos = gallery.slice(0, slots.length);
 </script>
 
-<div class="gani-layout" aria-label="Personal gallery">
-	{#each rows as row, i (i)}
-		<div class="row" style="--k1: {coefficients[i].k1}; --k2: {coefficients[i].k2}px">
-			{#each row as image (image.src)}
-				<img
-					src={image.src}
-					alt={image.alt}
-					style="aspect-ratio: {image.ratio}; --image-rotation: {image.rotation ?? 0}deg; object-position: {image.position ?? 'center'}"
-					loading="lazy"
-					decoding="async"
-				/>
-			{/each}
-		</div>
+<div class="gani-layout">
+	<div class="copy">
+		{@render children?.()}
+	</div>
+
+	{#each photos as photo, i (photo.src)}
+		<figure
+			class="frame"
+			style="--col: {slots[i].col}; --row: {slots[i].row}; --tilt: {tilts[i]}deg"
+		>
+			<img
+				src={photo.src}
+				alt={photo.alt}
+				style="object-position: {photo.position ?? 'center'}"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
 	{/each}
 </div>
 
 <style>
 	.gani-layout {
-		--row-h-base: clamp(140px, 19vw, 260px);
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: clamp(16px, 2.2vw, 28px);
+		align-items: start;
 	}
-	.row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		justify-content: center;
-		gap: 24px;
-		width: 100%;
+	.copy {
+		grid-column: 1 / 4;
+		grid-row: 1 / 3;
+		align-self: center;
+		padding-right: clamp(0px, 3vw, 48px);
 	}
-	.row img {
-		height: calc(var(--k1, 1) * var(--row-h-base) + var(--k2, 0px));
-		width: auto;
-		display: block;
-		object-fit: cover; /* only the intentionally-cropped images (custom `position`) lose any edge */
-		rotate: var(--image-rotation);
-		border-radius: 20px;
+	.frame {
+		grid-column: var(--col);
+		grid-row: var(--row);
+		margin: 0;
+		padding: 8px;
+		background: #ffffff;
+		border-radius: 6px;
+		box-shadow:
+			0 1px 2px rgb(0 0 0 / 12%),
+			0 12px 26px -12px rgb(0 0 0 / 34%);
+		rotate: var(--tilt);
 		transition:
-			transform var(--dur-med) var(--ease-out),
-			filter var(--dur-med) var(--ease-out);
+			rotate var(--dur-med) var(--ease-out),
+			scale var(--dur-med) var(--ease-out),
+			box-shadow var(--dur-med) var(--ease-out);
 	}
-	.row img:hover {
-		transform: scale(1.02);
-		filter: brightness(1.04) saturate(1.05);
+	.frame:hover {
+		position: relative;
+		z-index: 2;
+		rotate: 0deg;
+		scale: 1.05;
+		box-shadow:
+			0 2px 4px rgb(0 0 0 / 14%),
+			0 24px 44px -14px rgb(0 0 0 / 42%);
 	}
-	@media (prefers-reduced-motion: reduce) {
-		.row img,
-		.row img:hover {
-			transform: none;
-			filter: none;
-			transition: none;
-		}
+	.frame img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 7 / 5;
+		object-fit: cover;
+		border-radius: 2px;
 	}
 	@media (max-width: 760px) {
 		.gani-layout {
-			--row-h-base: clamp(110px, 26vw, 160px);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.copy {
+			grid-column: 1 / -1;
+			grid-row: auto;
+			padding-right: 0;
+			margin-bottom: 8px;
+		}
+		.frame {
+			grid-column: auto;
+			grid-row: auto;
+			padding: 6px;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.frame {
+			transition: none;
+		}
+		.frame:hover {
+			rotate: var(--tilt);
+			scale: 1;
 		}
 	}
 </style>

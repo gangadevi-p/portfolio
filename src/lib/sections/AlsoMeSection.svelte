@@ -1,7 +1,7 @@
 <script>
 	/**
-	 * "Also me" — the big layout. It owns the section chrome (heading, spacing,
-	 * light palette) and selects the original Gani gallery composition.
+	 * "Also me" — the big layout. It owns the section chrome (spacing, palette)
+	 * and the heading + story, which GaniLayout wraps in its L of photos.
 	 */
 	import GaniLayout from '$sections/alsome/GaniLayout.svelte';
 	import { reveal } from '$motion/reveal.js';
@@ -9,23 +9,34 @@
 
 <section id="also-me" class="section">
 	<div class="inner">
-		<header class="head" use:reveal>
-			<h2>If I were a moodboard, this would be me.</h2>
-			<div class="intro">
-				<p>
-					If I'm not designing in <strong>Figma</strong>, you'll probably find me at the
-					<strong>gym</strong>, fueled by <strong>coffee</strong>, or sketching ideas with
-					<strong>pencils, paper, and paint</strong>.
-				</p>
-				<p>
-					I graduated in <strong>Cybersecurity</strong>, but my creative mind chose
-					<strong>crafting experiences</strong> over chasing vulnerabilities.
-				</p>
-			</div>
-		</header>
-
 		<div use:reveal={{ y: 24 }}>
-			<GaniLayout />
+			<GaniLayout>
+				<header class="head">
+					<h2 class="visually-hidden">Also me</h2>
+					<div class="intro">
+						<p>
+							I graduated in <strong>Cybersecurity</strong>, but my curiosity and constant
+							<strong>“why?”</strong> questions somehow pulled me into design. I started learning in
+							college, thinking <strong>Figma</strong> was all I needed — until my first internship,
+							where I worked on <strong>UI and poster designs</strong>.
+						</p>
+						<p>
+							My second internship as a <strong>UI/UX Design Intern</strong> made me realise there was
+							a lot more to design than Figma. I reviewed an ongoing product from a
+							<strong>fresh user perspective</strong>, pointed out <strong>usability issues</strong>,
+							and worked on a few <strong>landing pages</strong>.
+						</p>
+						<p>
+							Since then, I’ve been learning by doing, questioning, experimenting, and figuring out my
+							way into <strong>product design</strong>.
+						</p>
+						<p>
+							When I’m not designing, you’ll probably find me at the <strong>gym</strong>, having
+							<strong>caffeine</strong>, or with a <strong>pen and paper</strong>.
+						</p>
+					</div>
+				</header>
+			</GaniLayout>
 		</div>
 	</div>
 </section>
@@ -47,24 +58,30 @@
 	/* Match the Work Experience and Projects heading alignment. */
 	.head {
 		width: 100%;
-		margin: 0 0 32px;
+		margin: 0;
 		text-align: left;
 	}
-	.head h2 {
-		max-width: 20ch;
-		font-size: clamp(2.5rem, 5vw, 4.5rem);
-		font-weight: 700;
-		letter-spacing: -0.06em;
-		line-height: 1.02;
+	/* no visible heading — the story leads — but screen readers still get a
+	   named section */
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 	/* Apple-style editorial copy: large semibold text in a muted coffee tone,
 	   with the key phrases stepping up to the full coffee brown. */
 	.intro {
 		display: grid;
 		gap: 1.1rem;
-		margin-top: clamp(1.75rem, 3vw, 2.5rem);
+		/* four paragraphs of story — a readable measure and a slightly smaller
+		   size keep it editorial rather than a wall of display text */
+		max-width: 62ch;
 		color: var(--c-ink-soft);
-		font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+		font-size: clamp(1.1rem, 1.8vw, 1.45rem);
 		font-weight: 600;
 		letter-spacing: -0.015em;
 		line-height: 1.35;
