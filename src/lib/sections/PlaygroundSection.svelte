@@ -11,6 +11,13 @@
 			<span class="tool">Figma</span>
 		</div>
 
+		<div class="shot" use:reveal>
+			<img src="/files/Todomockup.png" alt="Gani's Work Space to-do app mockup" width="1236" height="848" loading="lazy" />
+			<div class="shot-crop">
+				<img src="/files/Todocode.png" alt="TaskCreator.jsx source code for the to-do app" width="1289" height="1280" loading="lazy" />
+			</div>
+		</div>
+
 		<div class="videos" use:reveal>
 			<div class="video">
 				<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
@@ -66,6 +73,42 @@
 		padding: 0.7rem 1.25rem;
 		border-radius: 999px;
 	}
+	/* standalone mockup row — the to-do mockup and its code sit above the
+	   animation strip at one shared height, left-aligned, leaving open space
+	   to the right */
+	.shot {
+		--shot-h: clamp(200px, 26vw, 380px);
+		display: flex;
+		gap: 24px;
+		padding: 16px;
+		margin-bottom: 24px;
+		background: var(--c-surface-subtle);
+		border-radius: 16px;
+	}
+	.shot > img {
+		display: block;
+		height: var(--shot-h);
+		width: auto;
+		border-radius: 10px;
+	}
+	/* the code screenshot is zoomed to a 940×630 px window starting at y=650
+	   (the TaskCreator doc comment + onCreate component body, lines 19–39) —
+	   the imports above and the empty right edge are cropped away.
+	   margin-top % resolves against the crop's width, hence the 650/940. */
+	.shot-crop {
+		height: var(--shot-h);
+		aspect-ratio: 940 / 630;
+		overflow: hidden;
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+	.shot-crop img {
+		display: block;
+		width: calc(100% * 1289 / 940);
+		max-width: none;
+		height: auto;
+		margin-top: calc(-100% * 650 / 940);
+	}
 	.videos {
 		display: grid;
 		width: 100%;
@@ -75,7 +118,6 @@
 		align-items: stretch;
 		padding: 16px 24px 16px 16px;
 		background: var(--c-surface-subtle);
-		border: 1px solid var(--c-line);
 		border-radius: 16px;
 	}
 	.video {
@@ -106,6 +148,20 @@
 		object-fit: contain;
 	}
 	@media (max-width: 720px) {
+		.shot {
+			flex-direction: column;
+			gap: 16px;
+			padding: 12px;
+			margin-bottom: 16px;
+		}
+		.shot > img {
+			width: 100%;
+			height: auto;
+		}
+		.shot-crop {
+			width: 100%;
+			height: auto;
+		}
 		.videos {
 			grid-template-columns: 1fr;
 			gap: 16px;
