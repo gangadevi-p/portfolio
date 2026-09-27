@@ -105,11 +105,9 @@
 		color: var(--c-ink);
 		/* white card inside the dark section — flip the cursor back to dark ink,
 		   otherwise the light heart the dark page sets is invisible on it */
-		border: 1px solid var(--c-line);
 		border-radius: 28px;
 		padding: var(--card-pad);
 		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 70%),
 			0 12px 32px rgb(29 29 31 / 8%),
 			0 2px 5px rgb(29 29 31 / 4%);
 	}
@@ -212,7 +210,6 @@
 		align-items: center;
 		gap: 0.6rem;
 		background: var(--c-surface-subtle);
-		border: 1px solid var(--c-line);
 		box-shadow:
 			0 1px 2px rgb(29 29 31 / 6%),
 			0 6px 14px -6px rgb(29 29 31 / 16%);
@@ -255,7 +252,6 @@
 		transform: translateY(-4px);
 		background: linear-gradient(145deg, rgb(255 255 255 / 92%), rgb(255 255 255 / 68%));
 		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 82%),
 			0 20px 42px rgb(29 29 31 / 12%),
 			0 4px 10px rgb(29 29 31 / 5%);
 	}

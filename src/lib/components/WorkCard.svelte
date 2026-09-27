@@ -90,14 +90,11 @@
 		border-radius: 24px;
 		padding: 24px;
 		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 74%),
 			0 14px 34px rgb(29 29 31 / 8%),
 			0 2px 5px rgb(29 29 31 / 4%);
-		border: 1px solid var(--c-line);
 		transition:
 			transform var(--dur-fast) var(--ease-out),
-			box-shadow var(--dur-fast) var(--ease-out),
-			border-color var(--dur-fast) var(--ease-out);
+			box-shadow var(--dur-fast) var(--ease-out);
 	}
 	/* Project logo */
 	.visual {
@@ -132,7 +129,6 @@
 	}
 	.visual.framed {
 		background: var(--c-surface-subtle);
-		border: 1px solid var(--c-line);
 		box-shadow: 0 14px 32px -16px rgba(255, 106, 61, 0.4);
 		padding: 16px;
 	}
@@ -181,7 +177,6 @@
 		gap: 16px;
 		width: 100%;
 		background: var(--c-surface-subtle);
-		border: 1px solid var(--c-line);
 		color: var(--c-ink);
 		font-size: var(--fs-small);
 		padding: 8px 16px;
@@ -204,10 +199,8 @@
 	}
 	.card:hover {
 		transform: translateY(-4px);
-		border-color: var(--c-line-strong);
 		background: var(--c-surface-subtle);
 		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 88%),
 			0 22px 46px rgb(29 29 31 / 12%),
 			0 5px 12px rgb(29 29 31 / 5%);
 	}
