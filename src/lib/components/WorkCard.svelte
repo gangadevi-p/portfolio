@@ -7,6 +7,7 @@
 
 	let broken = $state(false);
 	const internal = $derived(item.href?.startsWith('/'));
+	const openInNewTab = $derived(item.openInNewTab ?? !internal);
 </script>
 
 <svelte:element
@@ -14,8 +15,8 @@
 	class="card"
 	class:linked={Boolean(item.href)}
 	href={item.href || undefined}
-	target={item.href && !internal ? '_blank' : undefined}
-	rel={item.href && !internal ? 'noreferrer' : undefined}
+	target={item.href && openInNewTab ? '_blank' : undefined}
+	rel={item.href && openInNewTab ? 'noreferrer' : undefined}
 	use:reveal={{ delay: (index % 2) * 0.08 }}
 	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'view' }}
 >

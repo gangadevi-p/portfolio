@@ -52,10 +52,12 @@ export const work = [
 		href: ''
 	},
 	{
-		title: 'Gani Design Space',
-		monogram: 'GDS',
-		blurb: 'A design space showcasing my work, experiments, and creative process.',
-		period: 'Coming soon',
-		href: ''
+		title: 'Design System',
+		monogram: 'DS',
+		blurb: 'A practical reference for design tokens, components, motion, and product principles.',
+		period: 'Live reference',
+		href: 'https://gangadevi-p.github.io/design-system/',
+		openInNewTab: false,
+		hoverLabel: 'Open Design System'
 	}
 ];
