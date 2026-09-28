@@ -142,6 +142,15 @@ html.theme-switching :is(*, *::before, *::after) {
 	transition-timing-function: var(--ease-out);
 }
 
+.page-transition-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	pointer-events: none;
+	background: #050505;
+	will-change: clip-path, opacity;
+}
+
 /* A deliberately unhurried theme reveal: the incoming palette blooms from
    the top-left corner and travels diagonally to the bottom-right. */
 ::view-transition-old(root) {
@@ -152,6 +161,50 @@ html.theme-switching :is(*, *::before, *::after) {
 }
 html.theme-to-light::view-transition-new(root) {
 	animation-name: theme-diagonal-reveal-reverse;
+}
+
+/* Opening a case study blooms from one point at the bottom centre. The circle
+   reaches both top corners at the same time, keeping navigation connected to
+   the portfolio rather than feeling like a full-page replacement. */
+html.page-transitioning::view-transition-old(root) {
+	animation: portfolio-page-out 240ms ease-in both;
+}
+html.page-transitioning::view-transition-new(root) {
+	animation: portfolio-page-open 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+	will-change: clip-path, filter;
+}
+html.page-returning::view-transition-new(root) {
+	animation: none;
+}
+html.page-returning::view-transition-old(root) {
+	animation: portfolio-page-return 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+	will-change: clip-path, filter;
+}
+@keyframes portfolio-page-out {
+	to { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes portfolio-page-open {
+	from {
+		opacity: 1;
+		clip-path: circle(0% at 50% 100%);
+		filter: brightness(0);
+	}
+	22% {
+		opacity: 1;
+		clip-path: circle(40% at 50% 100%);
+		filter: brightness(0);
+	}
+	42% {
+		clip-path: circle(88% at 50% 100%);
+		filter: brightness(1);
+	}
+	to { clip-path: circle(160% at 50% 100%); filter: none; }
+}
+@keyframes portfolio-page-return {
+	from { clip-path: circle(160% at 50% 100%); filter: none; }
+	58% { clip-path: circle(88% at 50% 100%); filter: brightness(1); }
+	78% { clip-path: circle(40% at 50% 100%); filter: brightness(0); }
+	to { clip-path: circle(0% at 50% 100%); filter: brightness(0); }
 }
 @keyframes theme-diagonal-reveal {
 	from { clip-path: circle(0% at 0 0); }
@@ -187,6 +240,14 @@ html.theme-to-light::view-transition-new(root) {
 		backdrop-filter: none !important;
 		-webkit-backdrop-filter: none !important;
 		background: var(--c-surface) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.page-transitioning::view-transition-old(root),
+	html.page-transitioning::view-transition-new(root),
+	html.page-returning::view-transition-old(root) {
+		animation: none;
 	}
 }
 
