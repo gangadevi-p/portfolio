@@ -1,0 +1,87 @@
+/* -------------------------------------------------------------------------- */
+/*  Design tokens — edit the whole look of the site from here.                 */
+/* -------------------------------------------------------------------------- */
+
+:root {
+	/* palette */
+	--c-coffee: #1d1d1f;
+	--c-bg: #fbfbfd;
+	--c-surface: #ffffff;
+	--c-surface-subtle: #f1f2f4;
+	--c-surface-strong: #1d1d1f;
+	--c-ink: #1d1d1f;
+	--c-ink-soft: #6e6e73;
+	--c-ink-inverse: #ffffff;
+	--c-line: #d2d2d7;
+	--c-line-strong: #8b8b92;
+	--c-accent: #0071e3;
+	/* a deeper accent for light backgrounds, where #ff6a3d is too pale to read */
+	--c-accent-deep: #0066cc;
+
+	/* the "Gangadevi" display colour, as tokens the cursor reuses */
+	--c-ink-rgb: 29, 29, 31;
+
+	/* ---- custom cursor ---------------------------------------------------- */
+	/* The cursor is mounted in the layout, OUTSIDE every section, so it can't
+	   inherit a section's palette — it reads these two off whatever element is
+	   under the pointer instead. Every section that changes its background has
+	   to set BOTH: `--c-cursor` is the heart / label pill, `--c-cursor-ink` is
+	   the text on that pill, so the pair always has to contrast. */
+	--c-cursor: #1d1d1f;
+	--c-cursor-ink: #ffffff;
+
+	/* typography */
+	--font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', sans-serif;
+	--font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+
+	--fs-display: clamp(4.5rem, 14vw, 11rem);
+	--fs-h2: clamp(2rem, 4vw, 3.5rem);
+	--fs-lead: clamp(1rem, 2vw, 1.5rem);
+	--fs-body: 1rem;
+	--fs-small: 0.875rem;
+	--fs-label: 0.75rem;
+	--lh-body: 1.5;
+	--lh-tight: 1.08;
+
+	/* layout */
+	--maxw: 1200px;
+	--pad-x: clamp(1.25rem, 4vw, 3.5rem);
+	--pad-y: clamp(1.25rem, 3vw, 2.5rem);
+	--radius: 28px;
+	--radius-card: 28px;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 4%), 0 16px 42px -28px rgb(0 0 0 / 24%);
+	--shadow-card-lift: 0 6px 18px rgb(0 0 0 / 8%), 0 30px 58px -30px rgb(0 0 0 / 30%);
+
+	/* motion */
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--dur-fast: 0.35s;
+	--dur-med: 0.6s;
+
+	/* parallax strength (px travelled at full pointer deflection) */
+	--parallax-range: 130px;
+}
+
+/* The palette switch belongs to the portfolio home page only. Case studies
+   retain their authored light palettes, even when a visitor has picked dark
+   mode on the home screen. */
+html[data-theme='dark']:has(body main.home-route) {
+	color-scheme: dark;
+	--c-bg: #121212;
+	--c-surface: #202020;
+	--c-surface-subtle: #303030;
+	--c-surface-strong: #050505;
+	--c-ink: #f5f5f5;
+	--c-ink-soft: #c9c9c9;
+	--c-ink-inverse: #ffffff;
+	--c-line: #666666;
+	--c-line-strong: #9a9a9a;
+	--c-accent: #eeeeee;
+	--c-accent-deep: #ffffff;
+	--c-coffee: #f5f5f5;
+	--c-ink-rgb: 245, 245, 245;
+	--c-cursor: #f5f5f5;
+	--c-cursor-ink: #121212;
+	--shadow-card: 0 1px 2px rgb(0 0 0 / 28%), 0 16px 42px -28px rgb(0 0 0 / 72%);
+	--shadow-card-lift: 0 6px 18px rgb(0 0 0 / 34%), 0 30px 58px -30px rgb(0 0 0 / 76%);
+}
