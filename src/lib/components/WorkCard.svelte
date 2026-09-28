@@ -58,6 +58,7 @@
 
 	<div class="body" class:body--logo-hidden={item.hideLogo}>
 		<h3>{item.heading ?? item.title}</h3>
+		{#if item.subheading}<p class="subheading">{item.subheading}</p>{/if}
 		<p class="blurb">{item.blurb}</p>
 
 		<span class="period">
@@ -159,6 +160,12 @@
 		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
 		font-weight: 700;
 		letter-spacing: -0.01em;
+	}
+	.subheading {
+		margin-top: 4px;
+		color: var(--c-ink);
+		font-size: clamp(0.92rem, 1.25vw, 1rem);
+		font-weight: 600;
 	}
 	.blurb {
 		margin-top: 8px;
