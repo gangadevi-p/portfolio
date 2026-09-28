@@ -53,8 +53,7 @@ export const work = [
 	},
 	{
 		title: 'Design System',
-		monogram: 'DS',
-		logoName: 'Design System',
+		hideLogo: true,
 		blurb: 'A practical reference for design tokens, components, motion, and product principles.',
 		period: 'Live reference',
 		href: 'https://gangadevi-p.github.io/design-system/',
