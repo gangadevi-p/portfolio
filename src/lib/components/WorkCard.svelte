@@ -58,8 +58,10 @@
 
 	<div class="body" class:body--logo-hidden={item.hideLogo}>
 		<h3>{item.heading ?? item.title}</h3>
-		{#if item.subheading}<p class="subheading">{item.subheading}</p>{/if}
-		<p class="blurb">{item.blurb}</p>
+		<div class="details" class:details--logo-hidden={item.hideLogo}>
+			{#if item.subheading}<p class="subheading">{item.subheading}</p>{/if}
+			<p class="blurb">{item.blurb}</p>
+		</div>
 
 		<span class="period">
 			{#if item.period}<span>{item.period}</span>{/if}
@@ -154,7 +156,13 @@
 		min-width: 0;
 	}
 	.body--logo-hidden {
-		justify-content: flex-end;
+		justify-content: initial;
+	}
+	.details--logo-hidden {
+		margin-top: auto;
+	}
+	.body--logo-hidden .period {
+		margin-top: 16px;
 	}
 	h3 {
 		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
