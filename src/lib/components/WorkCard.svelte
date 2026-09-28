@@ -56,7 +56,7 @@
 		</div>
 	{/if}
 
-	<div class="body">
+	<div class="body" class:body--logo-hidden={item.hideLogo}>
 		<h3>{item.heading ?? item.title}</h3>
 		<p class="blurb">{item.blurb}</p>
 
@@ -151,6 +151,9 @@
 		flex-direction: column;
 		align-items: flex-start;
 		min-width: 0;
+	}
+	.body--logo-hidden {
+		justify-content: flex-end;
 	}
 	h3 {
 		font-size: clamp(1.2rem, 1.75vw, 1.45rem);
