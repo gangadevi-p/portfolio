@@ -1,0 +1,136 @@
+/* ==========================================================================
+   CueUp case study — a 1:1 rebuild of /static/files/cueup reference.png
+
+   The deck is laid out on a 1200px page with a 1020px content column, and
+   every colour below is sampled from that export (a Tailwind palette).
+   All sizes are the reference's own px values, so the page reads at 1:1 on
+   a desktop and scales down through --c-scale on narrower screens.
+   ========================================================================== */
+
+.cueup {
+	/* the custom cursor has to flip to dark ink over this light page */
+	--c-cursor: #1f2937;
+	--c-cursor-ink: #f2f5f8;
+
+	--cu-bg: #f2f5f8;
+	--cu-card: #ffffff;
+	--cu-ink: #1f2937;
+	--cu-ink-soft: #636a73;
+	--cu-head: #49525e;
+	--cu-dot: #bfc4ca;
+	--cu-rule: #e5e7eb;
+
+	/* accents, all Tailwind */
+	--cu-violet: #9333ea;
+	--cu-violet-50: #faf5ff;
+	--cu-violet-100: #ede9fe;
+	--cu-violet-500: #8b5cf6;
+	--cu-violet-700: #6d28d9;
+	--cu-sky: #0284c7;
+	--cu-sky-50: #f0f9ff;
+	--cu-sky-100: #e0f2fe;
+	--cu-sky-700: #0369a1;
+	--cu-blue-100: #dbeafe;
+	--cu-blue-700: #1d4ed8;
+	--cu-pink: #db2777;
+	--cu-pink-50: #fdf2f8;
+	--cu-amber: #92400e;
+	--cu-amber-50: #fef7ed;
+	--cu-amber-500: #d97706;
+	--cu-amber-100: #fffbeb;
+	--cu-orange-200: #ffedd5;
+	--cu-orange-400: #fb923c;
+	--cu-emerald: #059669;
+	--cu-emerald-50: #ecfdf5;
+	--cu-teal-700: #0f766e;
+	--cu-fuchsia: #c026d3;
+	--cu-fuchsia-50: #fdf4ff;
+	--cu-lime: #65a30d;
+	--cu-lime-50: #f7fee7;
+
+	/* findings tints */
+	--cu-green-band: #eaf7ef;
+	--cu-green-band-ink: #17864b;
+	--cu-orange-band: #fff0e6;
+	--cu-orange-band-ink: #e97822;
+
+	--cu-radius: 24px;
+	--cu-radius-sm: 16px;
+	--cu-shadow: 0 1px 2px rgba(31, 41, 55, 0.03), 0 18px 40px -28px rgba(31, 41, 55, 0.28);
+
+	background: var(--cu-bg);
+	color: var(--cu-ink-soft);
+	font-family: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+.cueup h1,
+.cueup h2,
+.cueup h3,
+.cueup h4 {
+	margin: 0;
+	font-weight: 600;
+	line-height: 1.25;
+}
+.cueup p {
+	margin: 0;
+}
+
+/* --- the 1020px content column ------------------------------------------ */
+.cueup .cu-wrap {
+	width: 1020px;
+	margin-inline: auto;
+}
+
+/* --- white paper card ---------------------------------------------------- */
+.cueup .cu-card {
+	background: var(--cu-card);
+	border-radius: var(--cu-radius);
+	box-shadow: var(--cu-shadow);
+}
+
+/* --- section heading: grey dot + uppercase label -------------------------- */
+.cueup .cu-head {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	font-size: 26px;
+	font-weight: 600;
+	color: var(--cu-head);
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+}
+.cueup .cu-head::before {
+	content: '';
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--cu-dot);
+	flex: none;
+}
+.cueup .cu-note {
+	margin-top: 16px;
+	font-size: 20px;
+	/* the deck's body copy sits on a 32px baseline */
+	line-height: 32px;
+	color: var(--cu-ink-soft);
+}
+.cueup .cu-note b {
+	font-weight: 700;
+	color: var(--cu-ink);
+}
+
+/* --- pill node shared by the IA + user-flow diagrams --------------------- */
+.cueup .cu-node {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 999px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.1;
+	white-space: nowrap;
+}
