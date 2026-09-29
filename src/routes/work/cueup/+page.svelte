@@ -95,19 +95,6 @@
 </svelte:head>
 
 <div class="cueup">
-				<nav class="toc" aria-label="Case study contents">
-					<a class="back" href="/#projects" use:cursorLabel={'All work'}>
-						<span aria-hidden="true">←</span>
-						Back
-					</a>
-					<ul>
-						{#each contents as c (c.id)}
-							<li class:active={active === c.id} class:muted={pending.has(c.id)}>
-								<a href={'#' + c.id} onclick={(e) => go(e, c.id)}>{c.label}</a>
-							</li>
-						{/each}
-					</ul>
-				</nav>
 	<CSummary bind:this={summary} />
 	<div class="summary-dock">
 		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
@@ -117,28 +104,29 @@
 			</svg>
 		</button>
 	</div>
+	<nav class="toc" aria-label="Case study contents">
+		<a class="back" href="/#projects" use:cursorLabel={'All work'}>
+			<span aria-hidden="true">←</span> Back
+		</a>
+		<ul>
+			{#each contents as c (c.id)}
+				<li class:active={active === c.id} class:muted={pending.has(c.id)}>
+					<a href={'#' + c.id} onclick={(e) => go(e, c.id)}>{c.label}</a>
+				</li>
+			{/each}
+		</ul>
+	</nav>
+	<header class="hero-preview" id="relay-preview" aria-label="Relay app preview">
+		<div class="shot">
+			{#each hero.phones as phone (phone.src)}
+				<figure class="phone-card" class:home-screen={phone.highlight} style:--phone-ratio={phone.width / phone.height}>
+					<img class="phone" src={phone.src} alt={phone.alt} width={phone.width} height={phone.height} fetchpriority="high" />
+					{#if phone.highlight}<figcaption>{phone.highlight}</figcaption>{/if}
+				</figure>
+			{/each}
+		</div>
+	</header>
 	<div class="page">
-		<!-- 1 · BACK + CONTENTS + HERO SHOT — the sidebar stays put, no fade -->
-		<header class="top cu-wrap">
-			<div class="top-grid">
-
-
-				<div class="shot" use:revealScale>
-					<div class="phone">
-						<span class="notch" aria-hidden="true"></span>
-						<video
-							src={hero.video.src}
-							autoplay
-							loop
-							muted
-							playsinline
-							preload="auto"
-							aria-label={hero.video.alt}
-						></video>
-					</div>
-				</div>
-			</div>
-		</header>
 
 		<!-- 2 · OVERVIEW -->
 		<section class="sec cu-wrap" use:scrollFade id="overview">
@@ -397,12 +385,6 @@
 		outline: none;
 	}
 
-	.top-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		align-items: start;
-		margin-top: 40px;
-	}
 	.toc {
 		position: fixed;
 		left: 20px;
@@ -495,7 +477,6 @@
 			border-right: 0;
 		}
 		.toc ul { flex-direction: row; gap: 10px 20px; flex-wrap: wrap; }
-		.top-grid { margin-top: 8px; }
 		.sec { margin-top: 48px; }
 		.pad { margin-top: 20px; }
 		.cueup .cu-head { font-size: 24px; gap: 9px; }
@@ -523,40 +504,72 @@
 		.outcome-card { min-height: 0; padding: 20px; border-radius: 18px; }
 	}
 
+	.hero-preview {
+		min-height: 85svh;
+		/* Equal margins match the centred case-study content without resizing phones. */
+		margin-inline: 133px;
+		padding: 60px clamp(20px, 2vw, 40px) 48px;
+		display: grid;
+		place-items: center;
+	}
 	.shot {
+		--original-gap: clamp(12px, 1.5vw, 28px);
+		--phone-width: calc((100% - 3 * var(--original-gap)) / 4);
+		--home-width: calc(var(--phone-width) + var(--original-gap) * 0.65);
+		--phone-height: calc(85svh - 108px);
 		display: flex;
+		align-items: center;
 		justify-content: center;
+		gap: 4px;
+		width: 100%;
+		margin-inline: auto;
 	}
-	/* iPhone 16 frame wrapping the looping walkthrough video */
-	.phone {
+	.phone-card {
 		position: relative;
-		width: clamp(160px, 45vw, 208px);
-		aspect-ratio: 9 / 19.5;
-		padding: 7px;
-		border-radius: 34px;
-		background: #0d0d0f;
-		box-shadow:
-			0 0 0 1.5px rgba(255, 255, 255, 0.06) inset,
-			0 30px 55px rgba(31, 41, 55, 0.22);
+		flex: 0 0 auto;
+		/* Fit the visible phone when height-limited, without empty image padding. */
+		width: min(var(--phone-width), calc(var(--phone-height) * var(--phone-ratio)));
+		margin: 0;
 	}
-	.phone .notch {
+	.home-screen {
+		width: min(var(--home-width), calc(var(--phone-height) * var(--phone-ratio)));
+		translate: 0 -20px;
+	}
+	.home-screen figcaption {
 		position: absolute;
-		top: 13px;
+		top: calc(100% + 14px);
 		left: 50%;
 		translate: -50% 0;
-		width: 32%;
-		height: 16px;
-		background: #000;
-		border-radius: 999px;
-		z-index: 2;
+		white-space: nowrap;
+		font-size: 12px;
+		font-weight: 600;
+		color: #365c4b;
 	}
-	.phone video {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		border-radius: 27px;
-		background: #0d0d0f;
+	.phone {
 		display: block;
+		width: 100%;
+		height: auto;
+		max-height: calc(85svh - 108px);
+		object-fit: contain;
+	}
+	@media (min-width: 1000px) and (max-width: 1479px) {
+		/* Keep the fixed contents sidebar clear on smaller desktop windows. */
+		.hero-preview { margin-left: 266px; margin-right: 0; }
+	}
+	@media (max-width: 999px) {
+		.hero-preview { min-height: auto; margin-inline: 0; padding: 24px 16px 48px; }
+	}
+	@media (max-width: 600px) {
+		.shot {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, calc((100% - 16px) / 2)));
+			gap: 40px 4px;
+		}
+		.home-screen { translate: none; }
+		.phone-card { width: 100%; }
+		.phone { max-height: calc((100svh - 144px) / 2); }
+		.phone-card:nth-child(2) { grid-column: 1; grid-row: 1; }
+		.phone-card:nth-child(3) { grid-column: 2; grid-row: 1; }
 	}
 	.solution-visual {
 		display: block;
