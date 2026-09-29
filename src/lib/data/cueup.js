@@ -31,9 +31,12 @@ export const contents = [
 ];
 
 export const hero = {
-	phone: { src: '/cueup/landlord-home.png', alt: 'Relay landlord home screen' },
-	/** looping walkthrough shown inside the phone frame at the top of the page */
-	video: { src: '/cueup/landlord-demo.mp4', alt: 'Relay landlord app walkthrough' }
+	phones: [
+		{ src: '/img/CueUp/Landlord%20repairsSo.png', alt: 'Relay landlord repairs screen', width: 1540, height: 3200 },
+		{ src: '/img/CueUp/LandlordHomeSo%201.png', alt: 'Relay landlord home screen', width: 387, height: 800, highlight: 'Landlord' },
+		{ src: '/img/CueUp/TenantHomeSo.png', alt: 'Relay tenant home screen', width: 1546, height: 3200, highlight: 'Tenant' },
+		{ src: '/img/CueUp/TenantRepairsSo.png', alt: 'Relay tenant repairs screen', width: 1552, height: 3200 }
+	]
 };
 
 export const overview = {
