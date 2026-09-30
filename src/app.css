@@ -14,7 +14,7 @@
 html {
 	-webkit-text-size-adjust: 100%;
 	scroll-behavior: smooth;
-	color-scheme: light dark;
+	color-scheme: light;
 	/* hide the native page scrollbar — Lenis drives scrolling, and the wheel,
 	   trackpad, keyboard and drag all still work without the track showing */
 	scrollbar-width: none;
