@@ -52,7 +52,7 @@ export const work = [
 		href: ''
 	},
 	{
-		title: 'Design System',
+		title: "Designer's Tool-Kit",
 		hideLogo: true,
 		subheading: 'Digital Notes',
 		blurb: 'We design what others use. This is what we use to design.',
