@@ -15,11 +15,6 @@
 		const applyTheme = () => {
 			theme = nextTheme;
 			root.dataset.theme = nextTheme;
-			try {
-				localStorage.setItem('gani-theme', nextTheme);
-			} catch {
-				// Theme switching should still work when storage is unavailable.
-			}
 		};
 
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
