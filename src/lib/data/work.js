@@ -54,8 +54,8 @@ export const work = [
 	{
 		title: 'Design System',
 		hideLogo: true,
-		subheading: 'Digital notes',
-		blurb: 'A practical reference for design tokens, components, motion, and product principles.',
+		subheading: 'Digital Notes',
+		blurb: 'We design what others use. This is what we use to design.',
 		period: 'Live reference',
 		href: 'https://gangadevi-p.github.io/design-system/',
 		openInNewTab: false,
