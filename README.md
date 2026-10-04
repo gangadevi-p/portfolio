@@ -44,7 +44,7 @@ Replace the placeholders in `static/` — keep the filenames or update the paths
 | `static/img/portrait.svg` | `portrait.png` — transparent cut-out of the photo. Update `hero.js → photo.src` to `/img/portrait.png`. |
 | `static/img/work-1…4.svg` | `work-1.png` … real case-study covers (4 : 3). |
 | `static/icons/*.svg` | your real app-logo SVGs (Figma, XD, Notion, …). |
-| `static/files/GangaResume.pdf` | your real résumé PDF. |
+| `static/files/GangadeviCv.pdf` | your real résumé PDF. |
 
 Photo is greyscaled in CSS (`ParallaxImage` `grayscale` prop) — export it in colour.
 
