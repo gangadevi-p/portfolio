@@ -48,8 +48,10 @@ export const work = [
 		logoName: 'Athera',
 		heading: 'Premium furniture',
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
-		period: 'Building',
-		href: ''
+		period: '1 week · Vibe coded',
+		href: 'https://gangadevi-p.github.io/athera/',
+		openInNewTab: false,
+		hoverLabel: 'Open Athera'
 	},
 	{
 		title: "Designer's Tool-Kit",
