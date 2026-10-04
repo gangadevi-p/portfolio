@@ -11,23 +11,29 @@
 			<span class="tool">Figma</span>
 		</div>
 
-		<div class="shot" use:reveal>
+		<div class="card" use:reveal>
+		<div class="shot">
 			<img src="/files/Todomockup.png" alt="Gani's Work Space to-do app mockup" width="1236" height="848" loading="lazy" />
 			<div class="shot-crop">
 				<img src="/files/Todocode.png" alt="TaskCreator.jsx source code for the to-do app" width="1289" height="1280" loading="lazy" />
 			</div>
 		</div>
 
-		<div class="videos" use:reveal>
-			<div class="video">
-				<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
+		<div class="videos">
+			<div class="anims">
+				<div class="anim">
+					<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
+				</div>
+				<div class="anim">
+					<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
+				</div>
 			</div>
-			<div class="video video--contain">
-				<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
+			<img class="vector" src="/img/vector.png" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
+			<div class="vector-note">
+				<h3 class="note-heading">Have a look</h3>
+				<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>
 			</div>
-			<div class="video video--slider">
-				<img src="/files/slider.gif" alt="Slider interaction preview" loading="lazy" />
-			</div>
+		</div>
 		</div>
 
 	</Container>
@@ -76,14 +82,25 @@
 	/* standalone mockup row — the to-do mockup and its code sit above the
 	   animation strip at one shared height, left-aligned, leaving open space
 	   to the right */
+	/* one raised card holds the whole playground, like the project and work cards;
+	   rows are centred inside it */
+	.card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		background: var(--c-surface);
+		border-radius: 24px;
+		padding: 24px;
+		box-shadow:
+			0 14px 34px rgb(29 29 31 / 8%),
+			0 2px 5px rgb(29 29 31 / 4%);
+	}
 	.shot {
+		justify-content: center;
 		--shot-h: clamp(200px, 26vw, 380px);
 		display: flex;
 		gap: 24px;
-		padding: 16px;
-		margin-bottom: 24px;
-		background: var(--c-surface-subtle);
-		border-radius: 16px;
 	}
 	.shot > img {
 		display: block;
@@ -109,50 +126,77 @@
 		height: auto;
 		margin-top: calc(-100% * 650 / 940);
 	}
+	/* second row — the vector image matches the mockup/code height; the two
+	   animations stack in a column beside it, sharing that same height */
 	.videos {
-		display: grid;
-		width: 100%;
-		box-sizing: border-box;
-		grid-template-columns: auto auto minmax(0, 1fr);
-		gap: 32px;
-		align-items: stretch;
-		padding: 16px 24px 16px 16px;
-		background: var(--c-surface-subtle);
-		border-radius: 16px;
+		--shot-h: clamp(200px, 26vw, 380px);
+		display: flex;
+		justify-content: flex-start;
+		align-self: flex-start;
+		gap: 24px;
 	}
-	.video {
-		height: clamp(88px, 9.5vw, 136px);
-		min-width: 0;
-		background: transparent;
+	.vector {
+		display: block;
+		height: var(--shot-h);
+		width: auto;
+		border-radius: 10px;
 	}
-	.video img {
+	.vector-note {
+		align-self: flex-start;
+		max-width: 32ch;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+		gap: 16px;
+	}
+	.vector-note p {
+		margin: 0;
+		font-size: var(--fs-lead);
+		line-height: 1.4;
+		color: var(--c-ink);
+	}
+	/* filled pill heading — same fill as the "Figma" tag in the section head */
+	.note-heading {
+		margin: 0;
+		display: inline-flex;
+		align-items: center;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
+		font-size: var(--fs-small);
+		font-weight: 600;
+		line-height: 1;
+		padding: 0.7rem 1.25rem;
+		border-radius: 999px;
+	}
+	.anims {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		height: var(--shot-h);
+		/* two stacked 348:244 tiles — width follows the tile height */
+		width: calc((var(--shot-h) - 24px) / 2 * 348 / 244);
+		flex-shrink: 0;
+	}
+	.anim {
+		flex: 1;
+		min-height: 0;
+	}
+	.anim img {
 		display: block;
 		width: 100%;
 		height: 100%;
-	}
-	/* Each animation uses the same height. The square progress GIF stays compact
-	   while the wide slider receives the remaining space instead of being
-	   compressed into a square tile. */
-	.videos .video {
-		aspect-ratio: 348 / 244;
-	}
-	.videos .video--contain { aspect-ratio: 1; }
-	.videos .video--slider { aspect-ratio: auto; }
-	.videos .video img {
-		object-fit: cover;
-	}
-	/* the progress clip is square — contain it so the circle stays whole
-	   inside the shared tile size instead of being cropped top and bottom */
-	.videos .video--contain img,
-	.videos .video--slider img {
 		object-fit: contain;
+		object-position: center;
 	}
 	@media (max-width: 720px) {
+		.card {
+			padding: 16px;
+			gap: 16px;
+		}
 		.shot {
 			flex-direction: column;
 			gap: 16px;
-			padding: 12px;
-			margin-bottom: 16px;
 		}
 		.shot > img {
 			width: 100%;
@@ -163,17 +207,18 @@
 			height: auto;
 		}
 		.videos {
-			grid-template-columns: 1fr;
+			flex-direction: column;
 			gap: 16px;
-			padding: 12px;
 		}
-		.video {
+		.vector {
+			width: 100%;
 			height: auto;
 		}
-		.videos .video,
-		.videos .video--contain,
-		.videos .video--slider {
-			aspect-ratio: 348 / 244;
+		.vector-note {
+			max-width: none;
+		}
+		.anims {
+			height: auto;
 		}
 	}
 </style>
