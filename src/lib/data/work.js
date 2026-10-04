@@ -48,14 +48,16 @@ export const work = [
 		logoName: 'Athera',
 		heading: 'Premium furniture',
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
-		period: 'Building',
-		href: ''
+		period: '1 week · Vibe coded',
+		href: 'https://gangadevi-p.github.io/athera/',
+		openInNewTab: false,
+		hoverLabel: 'Open Athera'
 	},
 	{
-		title: 'Design System',
+		title: "Designer's Tool-Kit",
 		hideLogo: true,
-		subheading: 'Digital notes',
-		blurb: 'A practical reference for design tokens, components, motion, and product principles.',
+		subheading: 'Digital Notes',
+		blurb: 'We design what others use. This is what we use to design.',
 		period: 'Live reference',
 		href: 'https://gangadevi-p.github.io/design-system/',
 		openInNewTab: false,
