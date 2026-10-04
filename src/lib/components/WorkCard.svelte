@@ -158,8 +158,14 @@
 	.body--logo-hidden {
 		justify-content: initial;
 	}
+	.body--logo-hidden > h3 {
+		display: flex;
+		align-items: center;
+		min-height: 80px;
+	}
 	.details--logo-hidden {
 		margin-top: auto;
+		margin-bottom: 16px;
 	}
 	.body--logo-hidden .period {
 		margin-top: 16px;
@@ -169,11 +175,24 @@
 		font-weight: 700;
 		letter-spacing: -0.01em;
 	}
+	.body:not(.body--logo-hidden) > h3 {
+		color: #626262;
+		font-size: clamp(1.075rem, calc(1.75vw - 2px), 1.325rem);
+		opacity: 1;
+	}
 	.subheading {
 		margin-top: 4px;
 		color: var(--c-ink);
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
 		font-weight: 600;
+	}
+	.details--logo-hidden .subheading {
+		margin-top: 0;
+		color: #626262;
+		font-size: clamp(1.075rem, calc(1.75vw - 2px), 1.325rem);
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		opacity: 1;
 	}
 	.blurb {
 		margin-top: 8px;
