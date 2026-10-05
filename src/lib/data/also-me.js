@@ -1,8 +1,7 @@
 /**
  * Images for the "Also me" layout (GaniLayout.svelte), in display order.
  *
- * The layout has 6 frames: the first 2 run down the right-hand column, the
- * 3rd is the corner, and the 4th–6th run along the bottom row right → left.
+ * The layout has 6 frames, shown as 3 columns × 2 rows below the copy, in order.
  * Anything after the 6th is kept here but not shown — move a photo into the
  * first 6 to use it.
  *

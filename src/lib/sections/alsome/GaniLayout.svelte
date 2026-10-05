@@ -1,45 +1,20 @@
 <script>
 	/**
-	 * "Also me" layout — an L of framed photos wrapping the intro copy.
-	 *
-	 *   ┌──────────────────────┐ ┌──┐
-	 *   │  heading + story     │ │  │   right column: 2 photos
-	 *   │  (children)          │ │  │
-	 *   └──────────────────────┘ │  │
-	 *   ┌──┐ ┌──┐ ┌──┐           ├──┤   corner photo
-	 *   └──┘ └──┘ └──┘           └──┘   bottom row: 3 photos
+	 * "Also me" photo grid — six framed photos in 3 columns × 2 rows below the copy.
 	 *
 	 * Every photo sits in the same even white frame, cropped to a shared
 	 * landscape tile, each at its own slight tilt; hovering straightens it.
-	 * On narrow screens the copy stacks on top and photos flow in two columns.
+	 * On phones it drops to 2 columns.
 	 */
 	import { gallery } from '$data/also-me.js';
 
-	let { children } = $props();
-
-	// 2 down the right, the corner, then 3 along the bottom (right → left).
-	const slots = [
-		{ col: 4, row: 1 },
-		{ col: 4, row: 2 },
-		{ col: 4, row: 3 },
-		{ col: 3, row: 3 },
-		{ col: 2, row: 3 },
-		{ col: 1, row: 3 }
-	];
 	const tilts = [3, -4, 4, -2, 5, -4];
-	const photos = gallery.slice(0, slots.length);
+	const photos = gallery.slice(0, tilts.length);
 </script>
 
 <div class="gani-layout">
-	<div class="copy">
-		{@render children?.()}
-	</div>
-
 	{#each photos as photo, i (photo.src)}
-		<figure
-			class="frame"
-			style="--col: {slots[i].col}; --row: {slots[i].row}; --tilt: {tilts[i]}deg"
-		>
+		<figure class="frame" style="--tilt: {tilts[i]}deg">
 			<img
 				src={photo.src}
 				alt={photo.alt}
@@ -54,19 +29,12 @@
 <style>
 	.gani-layout {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: clamp(16px, 2.2vw, 28px);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(14px, 1.8vw, 24px);
 		align-items: start;
-	}
-	.copy {
-		grid-column: 1 / 4;
-		grid-row: 1 / 3;
-		align-self: center;
-		padding-right: clamp(0px, 3vw, 48px);
+		margin-top: clamp(2.5rem, 5vw, 4rem);
 	}
 	.frame {
-		grid-column: var(--col);
-		grid-row: var(--row);
 		margin: 0;
 		padding: 8px;
 		background: #ffffff;
@@ -100,15 +68,7 @@
 		.gani-layout {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
-		.copy {
-			grid-column: 1 / -1;
-			grid-row: auto;
-			padding-right: 0;
-			margin-bottom: 8px;
-		}
 		.frame {
-			grid-column: auto;
-			grid-row: auto;
 			padding: 6px;
 		}
 	}
