@@ -12,7 +12,7 @@ export const experience = [
 	{
 		company: 'Manino',
 		role: 'Product & UX Designer',
-		project: '(Expense Tracker)',
+		project: '(Finance Tool)',
 		summary: 'Focused on core UX flows and experience.',
 		status: 'Under development',
 		tag: 'Freelance',
