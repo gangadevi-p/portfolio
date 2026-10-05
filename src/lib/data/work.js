@@ -48,7 +48,7 @@ export const work = [
 		logoName: 'Athera',
 		heading: 'Premium furniture',
 		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
-		period: 'Designed myself, built by Claude',
+		period: 'Des - me & Dev - claude',
 		href: 'https://gangadevi-p.github.io/athera/',
 		openInNewTab: false,
 		hoverLabel: 'Open Athera'
