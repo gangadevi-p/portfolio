@@ -85,7 +85,7 @@ export const toolDefinitions = [
 		function: {
 			name: 'get_project_details',
 			description:
-				'Get full details on one specific project by name (e.g. "KIET Student App", "CueUp", "Athera", "Fitbit", or a smaller playground item like "motion study"): problem, her contribution, the solution, and the outcome/metrics.',
+				'Get full details on one specific project by name (e.g. "KIET Student App", "Relay", "Athera", "Fitbit", or a smaller playground item like "motion study"): problem, her contribution, the solution, and the outcome/metrics.',
 			parameters: {
 				type: 'object',
 				properties: {

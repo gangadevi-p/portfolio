@@ -19,10 +19,15 @@ export const hero = {
 	badge: 'KIET Student App • Case study',
 	titleLead: 'One App For Everything At',
 	titleAccent: 'KIET Campus.',
-	stats: [
+	scope: [
 		{ n: '9+', label: 'Core Modules', tone: 'blue' },
 		{ n: '2', label: 'User Roles', tone: 'green' },
 		{ n: '1', label: 'Unified Platform', tone: 'orange' }
+	],
+	stats: [
+		{ n: '6,061', label: 'Google Play downloads', tone: 'green' },
+		{ n: '1.8k', label: 'Monthly active users', tone: 'blue' },
+		{ n: '600', label: 'Daily active users', tone: 'orange' }
 	],
 	lead: 'I faced this myself, so I brought scattered campus information and daily tasks into one place.'
 };
@@ -49,7 +54,7 @@ export const overview = {
 export const team = {
 	facts: [
 		{ label: 'Users:', value: 'Students + Admin', tone: 'teal' },
-		{ label: 'Timeline :', value: '4 Months', tone: 'dark' }
+		{ label: 'Timeline:', value: '4 Months', tone: 'dark' }
 	],
 	download: {
 		label: 'Download App',
@@ -133,7 +138,7 @@ export const personas = [
 ];
 
 export const existing = [
-	{ label: 'Whatsapp', tone: 'teal' },
+	{ label: 'WhatsApp', tone: 'teal' },
 	{ label: 'College website', tone: 'blue' },
 	{ label: 'ERP portal', tone: 'rose' }
 ];
@@ -212,7 +217,7 @@ export const iterated = {
 	permissions: {
 		title: 'Permissions',
 		reason: 'Students had limited visibility into their permission requests, making it difficult to understand their status and know when follow-up was required.',
-		outcome: 'Current iteration Created a clearer request lifecycle, helping students quickly understand approval status, responsible authorities, and the next action required.',
+		outcome: 'The current iteration creates a clearer request lifecycle, helping students quickly understand approval status, responsible authorities, and the next action required.',
 		screens: [
 			{ src: '/img/KIET/Permissions Old.png', alt: 'Old permissions screen', label: 'Old' },
 			{ src: '/img/KIET/Permissions so.png', alt: 'New permissions screen', label: 'New' }
@@ -223,7 +228,7 @@ export const iterated = {
 		reason:
 			'Project information was spread across different areas, making it difficult for students to understand overall progress, deadlines, and individual responsibilities.',
 		outcome:
-			'Current iteration brought important project context together, helping students understand progress, track responsibilities, and stay aware of upcoming deadlines.',
+			'The current iteration brings important project context together, helping students understand progress, track responsibilities, and stay aware of upcoming deadlines.',
 		screens: [
 			{ src: '/img/KIET/Project Old.png', alt: 'Old projects screen', label: 'Old' },
 			{ src: '/img/KIET/Projects So.png', alt: 'New projects screen', label: 'New' }

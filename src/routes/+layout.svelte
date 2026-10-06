@@ -8,8 +8,34 @@
 	import StickyNav from '$components/StickyNav.svelte';
 	import SiteFooter from '$components/SiteFooter.svelte';
 	import { page } from '$app/state';
+	import { site } from '$data/site.js';
 
 	let { children } = $props();
+
+	// Link-preview text per page; anything not listed falls back to the home copy.
+	const pageMeta = {
+		'/work/kiet-student-app': {
+			title: 'KIET Student App — Case study',
+			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
+		},
+		'/work/cueup': {
+			title: 'Relay — Case study',
+			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
+		},
+		'/work/geekbull': {
+			title: 'Geekbull — UI/UX internship work',
+			description: 'An HRMS platform, a chatbot and a data product designed during a UI/UX internship.'
+		},
+		'/work/adm-education-society': {
+			title: 'ADM Education Society — Poster series',
+			description: 'A daily social-media poster series, one idea per issue.'
+		}
+	};
+	let meta = $derived(
+		pageMeta[page.route.id] ?? { title: `${site.name} — ${site.role}`, description: site.description }
+	);
+	// crawlers want an absolute image URL; site.url is set once the site is deployed
+	const ogImage = `${site.url}/og-image.png`;
 	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-education-society/']);
 	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
 	let homeFooter = $derived(page.route.id === '/');
@@ -109,10 +135,18 @@
 
 <svelte:head>
 	<title>Gangadevi — Product & UX Designer</title>
-	<meta
-		name="description"
-		content="Portfolio of Gangadevi, a product and UX designer based in Bengaluru."
-	/>
+	<meta name="description" content={meta.description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Gangadevi — Product & UX Designer" />
+	<meta property="og:title" content={meta.title} />
+	<meta property="og:description" content={meta.description} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={meta.title} />
+	<meta name="twitter:description" content={meta.description} />
+	<meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
 <CustomCursor />

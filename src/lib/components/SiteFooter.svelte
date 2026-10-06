@@ -44,7 +44,12 @@
 	.footer.compact { padding-top: 4rem; }
 	.footer.home {
 		--pad-x: clamp(1.25rem, 3vw, 2.5rem);
-		padding-block: 40px;
+		padding-block: 180px 40px; /* extra air above, between Also me and the footer */
+		/* inset on the footer itself, like the home sections, so its content is as wide as theirs */
+		padding-inline: var(--pad-x);
+	}
+	.footer.home :global(.container) {
+		padding-inline: 0;
 	}
 	.footer-shell {
 		display: grid;

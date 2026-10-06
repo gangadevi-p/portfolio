@@ -13,6 +13,7 @@
  * `logoName` — optional. Writes the name beside the logo.
  * `heading` — optional. Replaces the title text shown under the logo.
  * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
+ * `outcome` — optional. One-line result shown in bold under the blurb.
  * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
  */
 export const work = [
@@ -23,8 +24,8 @@ export const work = [
 		logoHeight: 32,
 		logoName: 'Relay',
 		heading: 'Rent & Repair',
-		blurb: 'A calmer, clearer experience that helps landlords and tenants manage their rental relationship.',
-		period: '2 months',
+		outcome: 'Rent and repairs in one shared view',
+		period: '4 months',
 		href: '/work/cueup',
 		slug: 'cueup',
 		bespoke: true
@@ -34,7 +35,7 @@ export const work = [
 		logo: '/img/KIET/kiet%20logo.png',
 		darkLogo: '/kiet/Kietdarkthemelogo.png',
 		logoVariant: 'kiet',
-		blurb: 'A student companion app for academic updates, attendance, and campus essentials—live on Google Play.',
+		outcome: 'Live on Google Play · 6,061 acquisitions',
 		period: '4 months',
 		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
@@ -47,8 +48,8 @@ export const work = [
 		logoHeight: 32,
 		logoName: 'Athera',
 		heading: 'Premium furniture',
-		blurb: 'A furniture-shopping web app designed to make browsing, choosing, and buying feel effortless.',
-		period: 'Des - me & Dev - claude',
+		outcome: 'Designed by me, built with Claude',
+		period: 'Live prototype',
 		href: 'https://gangadevi-p.github.io/athera/',
 		openInNewTab: false,
 		hoverLabel: 'Open Athera'
@@ -57,7 +58,7 @@ export const work = [
 		title: "Designer's Tool-Kit",
 		hideLogo: true,
 		subheading: 'Digital Notes',
-		blurb: 'We design what others use. This is what we use to design.',
+		outcome: 'We design what others use. This is what we use to design.',
 		period: 'Live reference',
 		href: 'https://gangadevi-p.github.io/design-system/',
 		openInNewTab: false,

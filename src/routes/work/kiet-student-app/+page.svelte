@@ -133,11 +133,15 @@
 						<span class="accent">{hero.titleAccent}</span>
 					</h1>
 
-					<div class="stat-card">
-						{#each hero.stats as s}
-							<div class="stat" style={toneVars(s.tone)}>
-								<b>{s.n}</b>
-								<span>{s.label}</span>
+					<div class="stat-row">
+						{#each [hero.scope, hero.stats] as group}
+							<div class="stat-card">
+								{#each group as s}
+									<div class="stat" style={toneVars(s.tone)}>
+										<b>{s.n}</b>
+										<span>{s.label}</span>
+									</div>
+								{/each}
 							</div>
 						{/each}
 					</div>
@@ -325,7 +329,7 @@
 	</KSection>
 
 	<!-- 12 · PLAYSTORE REVIEW -->
-	<KSection id="reviews" title="Playstore Review">
+	<KSection id="reviews" title="Play Store Reviews">
 		<div class="reviews">
 			{#each reviews as r}
 				<div use:revealScale><KReview {...r} /></div>
@@ -463,11 +467,13 @@
 		align-items: center;
 	}
 	.hero-copy {
-		max-width: 760px;
+		max-width: 1040px;
 		margin-inline: auto;
 		text-align: center;
 	}
 	.hero-copy h1 {
+		max-width: 760px;
+		margin-inline: auto;
 		font-size: clamp(2.6rem, 5.5vw, 4.375rem);
 		font-weight: 700;
 		color: #8f8f8f;
@@ -476,14 +482,21 @@
 	.hero-copy h1 .accent {
 		color: var(--k-orange);
 	}
+	/* scope and results cards sit side by side, wrapping on narrow screens */
+	.stat-row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+		margin: 1.75rem auto 1.5rem;
+	}
 	.stat-card {
 		display: flex;
-		gap: clamp(1rem, 4vw, 2.75rem);
+		gap: clamp(0.9rem, 2vw, 1.5rem);
 		background: #fff;
 		border-radius: 16px;
 		box-shadow: var(--k-shadow);
-		padding: 1.1rem 1.5rem;
-		margin: 1.75rem auto 1.5rem;
+		padding: 1rem 1.25rem;
 		width: fit-content;
 	}
 	.stat b {
@@ -494,7 +507,7 @@
 		text-align: center;
 	}
 	.stat span {
-		font-size: 0.9rem;
+		font-size: 0.82rem;
 		font-weight: 600;
 		color: #5a5a5a;
 	}
@@ -857,6 +870,7 @@
 	@media (max-width: 520px) {
 		.stat-card {
 			width: 100%;
+			justify-content: space-between;
 		}
 	}
 </style>
