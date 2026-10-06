@@ -110,22 +110,22 @@
 		display: inline-grid;
 		grid-template-columns: repeat(3, 1fr);
 		padding: var(--pad);
-		background: var(--c-surface-subtle);
-		border: 1px solid var(--c-line);
+		/* Same surface as every other card: pure white, no border, soft card shadow. */
+		background: var(--c-surface);
 		border-radius: 999px;
+		box-shadow:
+			0 12px 32px rgb(29 29 31 / 8%),
+			0 2px 5px rgb(29 29 31 / 4%);
 	}
-	/* The sliding white thumb — one tab-width wide, shifted by the active index. */
+	/* The sliding highlight — one tab-width wide, shifted by the active index. */
 	.thumb {
 		position: absolute;
 		inset-block: var(--pad);
 		left: var(--pad);
 		width: calc((100% - var(--pad) * 2) / 3);
 		translate: calc(var(--i) * 100%) 0;
-		background: var(--c-surface);
+		background: var(--c-surface-subtle);
 		border-radius: 999px;
-		box-shadow:
-			0 1px 2px rgb(0 0 0 / 10%),
-			0 4px 12px -4px rgb(0 0 0 / 14%);
 		transition: translate var(--dur-fast) var(--ease-out);
 	}
 	.tab {
