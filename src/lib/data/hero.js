@@ -20,7 +20,7 @@ export const hero = {
 	photo: {
 		src: '/img/portrait.png', // transparent grayscale cut-out
 		alt: 'Gangadevi, smiling, in a floral top',
-		label: "That's me"
+		label: 'Me'
 	},
 	speech: {
 		title: 'What do I do?',

@@ -49,7 +49,7 @@ export const overview = {
 		{ label: 'Title', values: ['Relay'] },
 		{ label: 'Target audience', values: ['Self-managing landlords', 'Tenants'] },
 		{ label: 'Focus', values: ['Rent', 'Repair coordination'] },
-		{ label: 'Time line', values: ['Apr 2026 –Jul 2026'] },
+		{ label: 'Timeline', values: ['Apr 2026 – Jul 2026'] },
 		{
 			label: 'Tools',
 			tools: [
@@ -58,7 +58,7 @@ export const overview = {
 				{ src: '/cueup/tool-chatgpt.png', alt: 'ChatGPT' }
 			]
 		},
-		{ label: 'My Role', values: ['Product design', 'Research synthesis', 'UI Excecution'] }
+		{ label: 'My Role', values: ['Product design', 'Research synthesis', 'UI Execution'] }
 	]
 };
 
@@ -84,7 +84,7 @@ export const findings = {
 				{
 					title: 'Proof Shared',
 					today: 'shares screenshots or asks for a receipt',
-					gap: 'proof gets buried inside chat or dispured',
+					gap: 'proof gets buried inside chat or disputed',
 					highlight: true
 				},
 				{
@@ -106,7 +106,7 @@ export const findings = {
 				{
 					title: 'Assigned & Resolved',
 					today: 'Follows up repeatedly to understand repair progress',
-					gap: 'Tracks vendors , promises and closure manually',
+					gap: 'Tracks vendors, promises and closure manually',
 					highlight: true
 				}
 			]
@@ -125,7 +125,7 @@ export const findings = {
 				label: 'User 01',
 				href: 'https://www.reddit.com/',
 				posts: [
-					'Building A Tool To Track Trent Payment After My Owner Disputed On Rent Payment – Anyone Else Dealt With This?'
+					'Building A Tool To Track Rent Payment After My Owner Disputed On Rent Payment – Anyone Else Dealt With This?'
 				]
 			},
 			{
@@ -136,14 +136,14 @@ export const findings = {
 			{
 				label: 'User 03',
 				href: 'https://www.reddit.com/',
-				posts: ['How Do You Handle Tenant Repair Requests & Track Issues Oer Time']
+				posts: ['How Do You Handle Tenant Repair Requests & Track Issues Over Time']
 			},
 			{
 				label: 'User 04',
 				href: 'https://www.reddit.com/',
 				posts: [
-					'I Always Sent A Message On WhatsAapp To Confirm That I Had Made This Month’s Payment. Until I Received Yes From Him.',
-					'More Over I Sent Payment Online With Message “So And So Month’s Rent”'
+					'I Always Sent A Message On WhatsApp To Confirm That I Had Made This Month’s Payment. Until I Received Yes From Him.',
+					'Moreover I Sent Payment Online With Message “So And So Month’s Rent”'
 				]
 			},
 			{
@@ -301,7 +301,7 @@ export const iaLandlord = {
 			tone: 'sky',
 			x: 269,
 			width: 201,
-			children: ['Rent status', 'Payments Verify', 'Paid', 'Late& Due']
+			children: ['Rent status', 'Payments Verify', 'Paid', 'Late & Due']
 		},
 		{
 			root: 'Tenants',

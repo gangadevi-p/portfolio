@@ -9,10 +9,10 @@
 	const [featured, ...rest] = experience;
 </script>
 
-<section id="work" class="xp-section">
+<section id="experience" class="xp-section">
 	<Container class="xp-container">
 		<header class="head" use:reveal>
-			<h2>Work Experience</h2>
+			<h2>Experience</h2>
 			<a
 				href={resume.resumeUrl}
 				target="_blank"

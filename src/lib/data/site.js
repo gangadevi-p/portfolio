@@ -8,6 +8,10 @@ export const site = {
 	role: 'Product & UX Designer',
 	location: 'Bengaluru',
 	email: 'gangadevi.ponna@gmail.com',
+	/** Public address of the live site (no trailing slash). Link-preview images need an absolute URL, so set this once it's deployed. */
+	url: '',
+	description:
+		'Product & UX designer in Bengaluru. Live on Google Play: KIET Student App. Open to internships and entry-level roles.',
 	socials: [
 		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/pgangadevi/' },
 		{ label: 'Behance', href: 'https://www.behance.net/gangadevip12' },
@@ -18,8 +22,8 @@ export const site = {
 /** @type {NavLink[]} */
 export const nav = [
 	{ label: 'Me', href: '#me' },
-	{ label: 'Projects', href: '#projects' },
 	{ label: 'Work', href: '#work' },
+	{ label: 'Experience', href: '#experience' },
 	{ label: 'I Play', href: '#playground' },
 	{ label: 'Also me', href: '#also-me' }
 ];

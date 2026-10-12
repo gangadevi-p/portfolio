@@ -17,11 +17,11 @@ export const identity = {
 	name: 'Gangadevi',
 	title: 'Product & UX Designer',
 	location: 'Bengaluru, India',
-	email: 'hello@gangadevi.design',
+	email: 'gangadevi.ponna@gmail.com',
 	links: [
-		{ label: 'Dribbble', href: 'https://dribbble.com/' },
-		{ label: 'LinkedIn', href: 'https://linkedin.com/' },
-		{ label: 'Read.cv', href: 'https://read.cv/' }
+		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/pgangadevi/' },
+		{ label: 'Behance', href: 'https://www.behance.net/gangadevip12' },
+		{ label: 'Medium', href: 'https://medium.com/@Gangadevi12' }
 	],
 	/** one line, use this when someone just wants the gist */
 	oneLiner:
@@ -60,7 +60,7 @@ export const designerIdentity = {
 
 /**
  * How she works — a repeatable process, pulled from the KIET case study and
- * the CueUp method.
+ * the Relay method.
  */
 export const process = [
 	{
@@ -92,19 +92,19 @@ export const process = [
 export const skills = [
 	{
 		name: 'Product design (end to end)',
-		evidence: 'Owned product design at Manino; designed the KIET Student App and CueUp from problem to UI.'
+		evidence: 'Owned product design at Manino; designed the KIET Student App and Relay from problem to UI.'
 	},
 	{
 		name: 'User research and synthesis',
-		evidence: 'Student interviews for the KIET app; reviewed nine public Reddit threads to map how landlords and tenants coordinate rent and repairs for CueUp.'
+		evidence: 'Student interviews for the KIET app; reviewed nine public Reddit threads to map how landlords and tenants coordinate rent and repairs for Relay.'
 	},
 	{
 		name: 'Information architecture',
-		evidence: 'A 9-module IA with two roles for the KIET app; separate landlord and tenant IA maps for CueUp.'
+		evidence: 'A 9-module IA with two roles for the KIET app; separate landlord and tenant IA maps for Relay.'
 	},
 	{
 		name: 'User flows and interaction design',
-		evidence: 'Multi-role flows for both KIET (student + admin) and CueUp (landlord + tenant).'
+		evidence: 'Multi-role flows for both KIET (student + admin) and Relay (landlord + tenant).'
 	},
 	{
 		name: 'Prototyping',
@@ -148,7 +148,7 @@ export const projects = [
 			'6,061 total acquisitions, about 600 daily and 1.8k monthly active users, and 5-star Play Store reviews. Usage rose around exam and academic periods, when campus information mattered most.'
 	},
 	{
-		name: 'CueUp',
+		name: 'Relay',
 		slug: 'cueup',
 		year: '2026',
 		role: 'Product Designer',
@@ -220,7 +220,7 @@ export const experience = [
  */
 export const forAudience = {
 	hiringManager:
-		'She ships. The KIET Student App is live on the Play Store with real adoption (6,061 acquisitions, ~600 DAU), and she designed it end to end, carrying research, IA, flows, and UI with minimal hand-off. She scopes tightly — CueUp is defined as much by what it refuses to do as by what it does — and she communicates decisions through structured case studies. Her work ranges across mobile apps, B2B tools, e-commerce, and communication design.',
+		'She ships. The KIET Student App is live on the Play Store with real adoption (6,061 acquisitions, ~600 DAU), and she designed it end to end, carrying research, IA, flows, and UI with minimal hand-off. She scopes tightly — Relay is defined as much by what it refuses to do as by what it does — and she communicates decisions through structured case studies. Her work ranges across mobile apps, B2B tools, e-commerce, and communication design.',
 	designer:
 		'Research-led and systems-minded. She shows the IA, the flows, and the before/after iterations, not just the final shots. She thinks in reusable components, treats motion as part of the craft, and grounds choices in real user language (student interviews, forum research). Comfortable pairing with engineers — the KIET app was built with an Android developer.',
 	recruiter:
@@ -252,12 +252,12 @@ export const knowledge = [
 	{
 		id: 'skills',
 		tags: ['skill', 'skills', 'strength', 'strengths', 'strongest', 'expertise', 'good', 'best', 'ux', 'ui', 'capabilities', 'do'],
-		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, nine Reddit threads synthesised for CueUp, and a daily poster series for ADM.'
+		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, nine Reddit threads synthesised for Relay, and a daily poster series for ADM.'
 	},
 	{
 		id: 'tools',
 		tags: ['tool', 'tools', 'figma', 'software', 'stack', 'ai', 'claude', 'chatgpt', 'canva', 'notion', 'xd'],
-		text: 'Figma is her core tool, with Adobe XD, Canva, and Notion alongside it. She also uses AI tools — Claude and ChatGPT — for research synthesis and drafting, which is how CueUp’s forum research was pulled together.'
+		text: 'Figma is her core tool, with Adobe XD, Canva, and Notion alongside it. She also uses AI tools — Claude and ChatGPT — for research synthesis and drafting, which is how Relay’s forum research was pulled together.'
 	},
 	{
 		id: 'kiet',
@@ -267,7 +267,7 @@ export const knowledge = [
 	{
 		id: 'cueup',
 		tags: ['cueup', 'landlord', 'tenant', 'rent', 'repair', 'repairs', 'property', 'housing', 'whatsapp'],
-		text: 'CueUp is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi reviewed nine public Reddit threads, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
+		text: 'Relay is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi reviewed nine public Reddit threads, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
 	},
 	{
 		id: 'athera',
@@ -317,7 +317,7 @@ export const knowledge = [
 	{
 		id: 'contact',
 		tags: ['contact', 'reach', 'email', 'hire', 'talk', 'connect', 'linkedin', 'dribbble', 'message', 'resume', 'cv'],
-		text: 'You can reach Gangadevi at hello@gangadevi.design, or through the Dribbble, LinkedIn, and Read.cv links on the site. The Resume link on the page has her full profile.'
+		text: 'You can reach Gangadevi at gangadevi.ponna@gmail.com, or through the LinkedIn, Behance, and Medium links on the site. The Resume link on the page has her full profile.'
 	},
 	{
 		id: 'location',
@@ -337,13 +337,13 @@ export const knowledge = [
 	{
 		id: 'work-overview',
 		tags: ['work', 'works', 'project', 'projects', 'case', 'study', 'studies', 'portfolio', 'built', 'made', 'shipped'],
-		text: 'The portfolio highlights four projects: the KIET Student App (a unified campus app, live on the Play Store), CueUp (rent and repair coordination for landlords and tenants), Athera (a furniture e-commerce web app), and Fitbit. KIET and CueUp are the two detailed case studies — they show her research, structure, flows, interfaces, and iteration.'
+		text: 'The portfolio highlights four projects: the KIET Student App (a unified campus app, live on the Play Store), Relay (rent and repair coordination for landlords and tenants), Athera (a furniture e-commerce web app), and Fitbit. KIET and Relay are the two detailed case studies — they show her research, structure, flows, interfaces, and iteration.'
 	}
 ];
 
 /** Fallback when nothing scores — still useful, still points somewhere. */
 export const fallback =
-	'Gangadevi is a Product & UX Designer in Bengaluru, focused on calm, useful digital experiences. She takes work from research and flows through to polished, animated interfaces. Try asking about her design approach, her skills, the KIET Student App, CueUp, her experience, or why she could be a good fit for your team.';
+	'Gangadevi is a Product & UX Designer in Bengaluru, focused on calm, useful digital experiences. She takes work from research and flows through to polished, animated interfaces. Try asking about her design approach, her skills, the KIET Student App, Relay, her experience, or why she could be a good fit for your team.';
 
 export const profile = {
 	identity,

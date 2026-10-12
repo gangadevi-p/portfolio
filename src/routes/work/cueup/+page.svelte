@@ -105,7 +105,7 @@
 		</button>
 	</div>
 	<nav class="toc" aria-label="Case study contents">
-		<a class="back" href="/#projects" use:cursorLabel={'All work'}>
+		<a class="back" href="/#work" use:cursorLabel={'All work'}>
 			<span aria-hidden="true">←</span> Back
 		</a>
 		<ul>

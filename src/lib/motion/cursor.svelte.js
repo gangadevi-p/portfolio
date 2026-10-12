@@ -8,6 +8,9 @@
  * component bails out and the native cursor is left alone.
  */
 
+/** what the heart says over empty space (anywhere that isn't tagged) */
+export const DEFAULT_LABEL = 'You';
+
 class Cursor {
 	/** current hover label, '' when not over a tagged element */
 	label = $state('');

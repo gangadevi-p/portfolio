@@ -50,9 +50,11 @@ Photo is greyscaled in CSS (`ParallaxImage` `grayscale` prop) — export it in c
 
 ## Custom cursor
 
-An orange dot (`CustomCursor.svelte`, mounted once in the layout) trails the
-pointer and expands into a labelled pill over any element tagged with the
-`use:cursorLabel` action:
+A heart (`CustomCursor.svelte`, mounted once in the layout) is the **only**
+pointer: the native cursor is hidden site-wide (`html.has-custom-cursor` in
+`app.css`). A pill beside it says where the visitor is — **"You"** over empty
+space, or the label of any element tagged with the `use:cursorLabel` action
+(e.g. **"Me"** over the portrait):
 
 ```svelte
 <script>
@@ -60,13 +62,14 @@ pointer and expands into a labelled pill over any element tagged with the
 </script>
 
 <a use:cursorLabel={'Nudge — Fintech App'}>…</a>
-<div use:cursorLabel={{ label: "That's me", variant: 'view' }}>…</div>
+<div use:cursorLabel={{ label: 'Me', variant: 'view' }}>…</div>
 ```
 
-Already tagged: the hero photo (`hero.js → photo.label`), each floating icon
-(its `name`), every work-card cover (project title), the project rows, and the
-case-study hero image. Mouse / trackpad only — touch devices keep the native
-cursor.
+Already tagged: the hero photo (`hero.js → photo.label`), the "Also me" photos
+that show you (`also-me.js → label`), each floating icon (its `name`), every
+work-card cover (project title), the project rows, and the case-study hero
+image. Mouse / trackpad only — touch devices keep the native cursor. The heart
+is a top-layer popover so it also stays above the case-study summary dialogs.
 
 The cursor is a **heart** (`--c-cursor` = `--c-ink`, the "Gangadevi" colour). As
 it moves it drops a sparse **path of tiny falling hearts** on a full-screen

@@ -1,10 +1,9 @@
 <script>
 	import { nav, site } from '$data/site.js';
+	import { resume } from '$data/resume.js';
 	import NavButton from './NavButton.svelte';
 	import { navigation } from '$motion/navigation.svelte.js';
 	import { base } from '$app/paths';
-	import PortfolioAssistant from './PortfolioAssistant.svelte';
-	import ThemeToggle from './ThemeToggle.svelte';
 	import { page } from '$app/state';
 	let onHome = $derived(page.route.id === '/');
 	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
@@ -39,8 +38,19 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
-		{#if onHome}<ThemeToggle />{/if}
-		<PortfolioAssistant placement="nav" />
+		<a class="resume" href={resume.resumeUrl} target="_blank" rel="noopener">
+			<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+				<path
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M7 3h7l4 4v14H7zM14 3v5h5M9 12h6M9 16h6"
+				/>
+			</svg>
+			Resume
+		</a>
 	</div>
 </nav>
 
@@ -79,6 +89,22 @@
 		align-items: center;
 		gap: 0.8rem;
 		justify-self: end;
+	}
+	.resume {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: var(--c-surface-strong);
+		color: var(--c-ink-inverse);
+		font-weight: 600;
+		font-size: var(--fs-small);
+		padding: 0.7rem 1.25rem;
+		border-radius: 999px;
+		white-space: nowrap;
+		transition: transform var(--dur-fast) var(--ease-out);
+	}
+	.resume:hover {
+		transform: translateY(-2px);
 	}
 	/* the single pill that holds the whole menu */
 	.pill {

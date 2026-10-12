@@ -41,7 +41,7 @@ export const admPosters = [
 		alt: 'Social-media poster on the Uniform Civil Code'
 	},
 	{
-		title: 'Recission',
+		title: 'Recession',
 		src: '/img/Day04-%20%20Recission.png',
 		alt: 'Social-media poster on recission'
 	}

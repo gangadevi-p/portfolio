@@ -1,6 +1,6 @@
 # Gangadevi — Product & UX Designer
 
-Bengaluru, India · hello@gangadevi.design · [Dribbble](https://dribbble.com/) · [LinkedIn](https://linkedin.com/) · [Read.cv](https://read.cv/)
+Bengaluru, India · gangadevi.ponna@gmail.com · [LinkedIn](https://www.linkedin.com/in/pgangadevi/) · [Behance](https://www.behance.net/gangadevip12) · [Medium](https://medium.com/@Gangadevi12)
 
 > Product & UX designer who takes work from research and user flows through to
 > polished, animated interfaces — focused on calm, useful products.
@@ -59,10 +59,10 @@ internship experience spans B2B tools, product design, and communication design.
 
 | Skill | Where I've done it |
 | --- | --- |
-| Product design, end to end | Owned product design at Manino; designed the KIET Student App and CueUp from problem to UI. |
-| User research and synthesis | Student interviews for the KIET app; nine public Reddit threads reviewed to map how landlords and tenants coordinate rent and repairs for CueUp. |
-| Information architecture | A 9-module IA with two roles for the KIET app; separate landlord and tenant IA maps for CueUp. |
-| User flows and interaction design | Multi-role flows for KIET (student + admin) and CueUp (landlord + tenant). |
+| Product design, end to end | Owned product design at Manino; designed the KIET Student App and Relay from problem to UI. |
+| User research and synthesis | Student interviews for the KIET app; nine public Reddit threads reviewed to map how landlords and tenants coordinate rent and repairs for Relay. |
+| Information architecture | A 9-module IA with two roles for the KIET app; separate landlord and tenant IA maps for Relay. |
+| User flows and interaction design | Multi-role flows for KIET (student + admin) and Relay (landlord + tenant). |
 | Prototyping | Interactive flows reviewed with students and refined before build. |
 | Design systems | Reusable components for the KIET app; design-system and platform work at Geekbull. |
 | Motion and micro-interactions | A weekly motion-study series; animated interfaces in the portfolio itself. |
@@ -92,7 +92,7 @@ Google Play Store.**
   users, and 5-star Play Store reviews. Usage rose around exam and academic
   periods, when campus information mattered most.
 
-### CueUp — Product Designer, 2026
+### Relay — Product Designer, 2026
 
 A self-directed product concept for self-managing landlords and their tenants.
 
@@ -150,7 +150,7 @@ day, each carried by a single idea.
 
 **If you're hiring:** I ship. The KIET Student App is live with real adoption, and
 I designed it end to end, so I need less hand-off across research, IA, flows, and
-UI. I scope tightly — CueUp is defined as much by what it refuses to do as by
+UI. I scope tightly — Relay is defined as much by what it refuses to do as by
 what it does — and I communicate decisions through structured case studies. My
 range covers mobile apps, B2B tools, e-commerce, and communication design.
 
@@ -169,4 +169,4 @@ tool is Figma, working alongside AI tools for research and drafting.
 
 ## Contact
 
-hello@gangadevi.design — or the Dribbble, LinkedIn, and Read.cv links above.
+gangadevi.ponna@gmail.com — or the LinkedIn, Behance, and Medium links above.

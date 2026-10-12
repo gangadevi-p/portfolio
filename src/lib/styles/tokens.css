@@ -14,9 +14,9 @@
 	--c-ink-inverse: #ffffff;
 	--c-line: #d2d2d7;
 	--c-line-strong: #8b8b92;
-	--c-accent: #0071e3;
+	--c-accent: #1d1d1f;
 	/* a deeper accent for light backgrounds, where #ff6a3d is too pale to read */
-	--c-accent-deep: #0066cc;
+	--c-accent-deep: #1d1d1f;
 
 	/* the "Gangadevi" display colour, as tokens the cursor reuses */
 	--c-ink-rgb: 29, 29, 31;

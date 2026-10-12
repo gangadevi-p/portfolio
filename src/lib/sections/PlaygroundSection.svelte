@@ -1,6 +1,7 @@
 <script>
 	import Container from '$components/Container.svelte';
 	import SectionHeading from '$components/SectionHeading.svelte';
+	import PomodoroTimer from '$components/PomodoroTimer.svelte';
 	import { reveal } from '$motion/reveal.js';
 </script>
 
@@ -28,11 +29,21 @@
 					<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
 				</div>
 			</div>
-			<img class="vector" src="/img/vector.png" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
-			<div class="vector-note">
-				<h3 class="note-heading">Have a look</h3>
-				<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>
-			</div>
+			<figure class="piece piece--vector">
+				<img class="vector" src="/img/vector.png" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
+				<figcaption class="vector-note">
+					<h3 class="note-heading">Have a look</h3>
+					<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>
+				</figcaption>
+			</figure>
+
+			<figure class="piece piece--pomodoro">
+				<PomodoroTimer />
+				<figcaption class="vector-note">
+					<h3 class="note-heading">Try it</h3>
+					<p>A working Pomodoro timer. Focus for 25 minutes, take a break, repeat.</p>
+				</figcaption>
+			</figure>
 		</div>
 		</div>
 
@@ -126,14 +137,35 @@
 		height: auto;
 		margin-top: calc(-100% * 650 / 940);
 	}
-	/* second row — the vector image matches the mockup/code height; the two
-	   animations stack in a column beside it, sharing that same height */
+	/* second row — the two animations stack in a column, then the vector image
+	   and the timer; the vector image matches the mockup/code height */
 	.videos {
 		--shot-h: clamp(200px, 26vw, 380px);
 		display: flex;
-		justify-content: flex-start;
-		align-self: flex-start;
+		justify-content: center;
+		align-self: center;
 		gap: 24px;
+	}
+	/* the vector image and the timer each carry their note underneath; the
+	   figure is as wide as the media so a long caption wraps instead of widening it */
+	.piece {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+		flex-shrink: 0;
+	}
+	.piece--vector {
+		width: calc(var(--shot-h) * 1155 / 1362);
+	}
+	.piece--pomodoro {
+		width: min(100%, 340px);
+	}
+	/* tile matches the vector image's height (grows if it ever needs more room) */
+	.piece--pomodoro > :global(.pomo) {
+		min-height: var(--shot-h);
+		justify-content: space-between;
 	}
 	.vector {
 		display: block;
@@ -142,8 +174,7 @@
 		border-radius: 10px;
 	}
 	.vector-note {
-		align-self: flex-start;
-		max-width: 32ch;
+		align-self: stretch;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -152,7 +183,7 @@
 	}
 	.vector-note p {
 		margin: 0;
-		font-size: var(--fs-lead);
+		font-size: clamp(1rem, 1.3vw, 1.2rem);
 		line-height: 1.4;
 		color: var(--c-ink);
 	}
@@ -208,14 +239,16 @@
 		}
 		.videos {
 			flex-direction: column;
+			align-self: stretch;
 			gap: 16px;
+		}
+		.piece--vector,
+		.piece--pomodoro {
+			width: 100%;
 		}
 		.vector {
 			width: 100%;
 			height: auto;
-		}
-		.vector-note {
-			max-width: none;
 		}
 		.anims {
 			height: auto;

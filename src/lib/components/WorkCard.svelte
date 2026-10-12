@@ -60,7 +60,7 @@
 		<h3>{item.heading ?? item.title}</h3>
 		<div class="details" class:details--logo-hidden={item.hideLogo}>
 			{#if item.subheading}<p class="subheading">{item.subheading}</p>{/if}
-			<p class="blurb">{item.blurb}</p>
+			{#if item.outcome}<p class="outcome">{item.outcome}</p>{/if}
 		</div>
 
 		<span class="period">
@@ -194,16 +194,13 @@
 		letter-spacing: -0.01em;
 		opacity: 1;
 	}
-	.blurb {
+	.outcome {
 		margin-top: 8px;
 		max-width: 26ch;
 		color: var(--c-ink-soft);
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
-		line-height: 1.45;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
+		font-weight: 600;
+		line-height: 1.4;
 	}
 
 	/* date pill — pushed to the bottom of the card */
