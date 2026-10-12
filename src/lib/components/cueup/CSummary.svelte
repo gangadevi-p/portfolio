@@ -92,11 +92,6 @@
 		backdrop-filter: blur(8px);
 		animation: backdrop-in 280ms ease-out both;
 	}
-	/* Native dialogs sit above the custom cursor, so keep a visible pointer here. */
-	:global(html.has-custom-cursor) dialog,
-	:global(html.has-custom-cursor) dialog :global(*) { cursor: auto !important; }
-	:global(html.has-custom-cursor) dialog .close,
-	:global(html.has-custom-cursor) dialog .close :global(*) { cursor: pointer !important; }
 	dialog[open] .popup { animation: popup-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both; }
 	.popup { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 	.close {

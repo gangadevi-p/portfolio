@@ -1,11 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
-	import { cursor } from '$motion/cursor.svelte.js';
+	import { cursor, DEFAULT_LABEL } from '$motion/cursor.svelte.js';
 
 	/**
 	 * Custom cursor: a heart that follows the pointer and drops a falling path of
-	 * mini hearts (they sway, spin and fade). Over elements tagged with
-	 * `use:cursorLabel` the heart shrinks and a labelled pill appears.
+	 * mini hearts (they sway, spin and fade). It is the ONLY pointer — the native
+	 * cursor is hidden site-wide (see app.css) — and a pill beside it says where
+	 * the visitor is: "You" over empty space, or the label of the element tagged
+	 * with `use:cursorLabel` (e.g. "Me" over the portrait).
 	 * Mouse / trackpad only; the mini-heart trail is skipped for reduced motion.
 	 */
 
@@ -94,6 +96,27 @@
 		window.addEventListener('pointerup', onUp, { passive: true });
 		document.addEventListener('pointerenter', onEnter);
 		document.addEventListener('pointerout', onOut);
+
+		/* A modal <dialog> opens in the browser's top layer, above any z-index —
+		   so the heart would vanish behind it and the visitor would be left with
+		   no pointer at all. Make the heart a manual popover (also top layer) and
+		   re-show it whenever a dialog opens, which puts it back on top. */
+		const promote = () => {
+			if (!dotEl?.showPopover) return;
+			try {
+				if (dotEl.matches(':popover-open')) dotEl.hidePopover();
+				dotEl.showPopover();
+			} catch {
+				/* older engines: the heart just stays in normal flow */
+			}
+		};
+		promote();
+		const dialogWatch = new MutationObserver(promote);
+		dialogWatch.observe(document.body, {
+			subtree: true,
+			attributes: true,
+			attributeFilter: ['open']
+		});
 
 		/** filled heart centred on (cx, cy), pointing down as it falls */
 		const drawHeart = (cx, cy, size, rot, color, alpha) => {
@@ -185,6 +208,7 @@
 
 		return () => {
 			cancelAnimationFrame(raf);
+			dialogWatch.disconnect();
 			window.removeEventListener('resize', resize);
 			window.removeEventListener('pointermove', onMove);
 			window.removeEventListener('pointerdown', onDown);
@@ -200,6 +224,7 @@
 
 <div
 	bind:this={dotEl}
+	popover="manual"
 	class="cursor"
 	class:visible
 	class:pressed
@@ -213,9 +238,10 @@
 			d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
 		/>
 	</svg>
-	{#if cursor.label}
-		<span class="label">{cursor.label}</span>
-	{/if}
+	<!-- keyed so the pill pops again each time the place changes -->
+	{#key cursor.label || DEFAULT_LABEL}
+		<span class="label">{cursor.label || DEFAULT_LABEL}</span>
+	{/key}
 </div>
 
 <style>
@@ -232,6 +258,15 @@
 	}
 
 	.cursor {
+		/* it is a popover (top layer, to clear dialogs) — undo the UA box */
+		inset: auto;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		overflow: visible;
+		width: auto;
+		height: auto;
 		position: fixed;
 		top: 0;
 		left: 0;

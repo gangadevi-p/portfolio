@@ -127,6 +127,15 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
+
+/* The heart (CustomCursor.svelte) is the only pointer. The class is added by
+   the component itself, so touch devices and no-JS keep the native cursor. */
+html.has-custom-cursor,
+html.has-custom-cursor *,
+html.has-custom-cursor *::before,
+html.has-custom-cursor *::after {
+	cursor: none !important;
+}
 button {
 	font: inherit;
 	color: inherit;

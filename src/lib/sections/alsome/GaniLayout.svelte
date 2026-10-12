@@ -7,6 +7,7 @@
 	 * On phones it drops to 2 columns.
 	 */
 	import { gallery } from '$data/also-me.js';
+	import { cursorLabel } from '$motion/cursor.svelte.js';
 
 	const tilts = [3, -4, 4, -2, 5, -4];
 	const photos = gallery.slice(0, tilts.length);
@@ -14,7 +15,7 @@
 
 <div class="gani-layout">
 	{#each photos as photo, i (photo.src)}
-		<figure class="frame" style="--tilt: {tilts[i]}deg">
+		<figure class="frame" style="--tilt: {tilts[i]}deg" use:cursorLabel={photo.label ?? ''}>
 			<img
 				src={photo.src}
 				alt={photo.alt}

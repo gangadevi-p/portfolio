@@ -11,10 +11,10 @@
  */
 
 export const gallery = [
-	{ src: '/img/me/paragliding%201.jpg', alt: 'Paragliding over a green valley' },
+	{ src: '/img/me/paragliding%201.jpg', alt: 'Paragliding over a green valley', label: 'Me' },
 	{ src: '/img/me/drawing%201.jpg', alt: 'Hand-drawn swan sketch' },
-	{ src: '/img/me/dmbl.jpg', alt: 'Holding a dumbbell at the gym' },
-	{ src: '/img/me/mirrorimg%201.jpg', alt: 'Mirror selfie' },
+	{ src: '/img/me/dmbl.jpg', alt: 'Holding a dumbbell at the gym', label: 'Me' },
+	{ src: '/img/me/mirrorimg%201.jpg', alt: 'Mirror selfie', label: 'Me' },
 	{ src: '/img/me/kitten.jpg', alt: 'Two kittens cuddling outdoors' },
 	{ src: '/img/me/pencil%201.jpg', alt: 'Pencil portrait sketch', position: 'center 14%' },
 
