@@ -108,7 +108,7 @@
 </svelte:head>
 
 <div class="kiet">
-	<KSideNav {sections} back={{ href: '/#work', label: 'All work' }} />
+	<KSideNav {sections} back={{ href: '/#work', label: 'All projects' }} />
 	<KSummary {overview} {impact} {usage} {learnings} {designs} bind:this={summary} />
 	<div class="summary-dock">
 		<button class="summary-cta" onclick={() => summary.open()} aria-haspopup="dialog">
@@ -120,7 +120,7 @@
 	</div>
 
 	<div class="topbar">
-		<a class="back" href="/#work" use:cursorLabel={'All work'}>← All work</a>
+		<a class="back" href="/#work" use:cursorLabel={'All projects'}>← All projects</a>
 	</div>
 
 	<!-- 1 · HERO -->
