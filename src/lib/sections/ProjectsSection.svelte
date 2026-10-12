@@ -8,7 +8,7 @@
 
 <section id="work" class="section">
 	<Container class="wide-container">
-		<h2 class="title" use:reveal>Work</h2>
+		<h2 class="title" use:reveal>Projects</h2>
 
 		<div class="grid">
 			{#each work as item, index (item.title)}

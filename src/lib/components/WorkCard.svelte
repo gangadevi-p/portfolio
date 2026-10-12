@@ -18,7 +18,7 @@
 	target={item.href && openInNewTab ? '_blank' : undefined}
 	rel={item.href && openInNewTab ? 'noreferrer' : undefined}
 	use:reveal={{ delay: (index % 2) * 0.08 }}
-	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'view' }}
+	use:cursorLabel={{ label: item.hoverLabel ?? (item.href ? 'Read case study' : 'Under development'), variant: 'card' }}
 >
 	{#if !item.hideLogo}
 		<div
@@ -232,12 +232,39 @@
 	.card:not(.linked) .period .ic {
 		display: none;
 	}
-	.card:hover {
+	/* Only cards that actually open a page react to hover; static ones (no
+	   link, "Under development") stay flat. The highlight is a lift, a thin
+	   light ring and a bright top edge — it never changes the surface colour,
+	   since swapping to --c-surface-subtle read as a grey/dark wash. */
+	.card.linked:hover,
+	.card.linked:focus-visible {
 		transform: translateY(-4px);
-		background: var(--c-surface-subtle);
 		box-shadow:
-			0 22px 46px rgb(29 29 31 / 12%),
-			0 5px 12px rgb(29 29 31 / 5%);
+			0 0 0 1px rgba(var(--c-ink-rgb), 0.07),
+			inset 0 1px 0 rgb(255 255 255 / 70%),
+			0 18px 40px rgb(29 29 31 / 8%),
+			0 4px 10px rgb(29 29 31 / 4%);
+	}
+	/* the arrow in the date pill nudges toward its corner */
+	.period .ic {
+		transition: transform var(--dur-fast) var(--ease-out);
+	}
+	.card.linked:hover .period .ic,
+	.card.linked:focus-visible .period .ic {
+		transform: translate(2px, -2px);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.card.linked:hover,
+		.card.linked:focus-visible {
+			transform: none;
+		}
+		.period .ic {
+			transition: none;
+		}
+		.card.linked:hover .period .ic,
+		.card.linked:focus-visible .period .ic {
+			transform: none;
+		}
 	}
 
 </style>

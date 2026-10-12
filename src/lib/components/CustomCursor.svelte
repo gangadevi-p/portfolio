@@ -325,6 +325,16 @@
 		animation: cursor-pop 0.28s var(--ease-back);
 	}
 
+	/* project cards: a light pill with dark text, so hovering a card never drops
+	   a dark blob on it (the heart itself keeps the section's ink) */
+	.cursor[data-variant='card'] .label {
+		background: #ffffff;
+		color: #1d1d1f;
+		box-shadow:
+			0 0 0 1px rgba(29, 29, 31, 0.1),
+			0 4px 14px rgba(0, 0, 0, 0.12);
+	}
+
 	@keyframes cursor-pop {
 		from {
 			opacity: 0;
