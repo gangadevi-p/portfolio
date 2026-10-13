@@ -60,8 +60,8 @@ export const work = [
 		subheading: 'Digital Notes',
 		outcome: 'We design what others use. This is what we use to design.',
 		period: 'Live reference',
-		href: 'https://gangadevi-p.github.io/design-system/',
+		href: 'https://gangadevi-p.github.io/toolkit/',
 		openInNewTab: false,
-		hoverLabel: 'Open Design System'
+		hoverLabel: 'Open Toolkit'
 	}
 ];
