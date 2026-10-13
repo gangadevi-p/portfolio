@@ -16,7 +16,7 @@ export const experience = [
 		summary: 'Focused on core UX flows and experience.',
 		status: 'Under development',
 		tag: 'Freelance',
-		logo: '/img/experience/manino.png',
+		logo: '/img/experience/manino.avif',
 		points: [
 			'Audited an existing messy app',
 			'Researched Reddit for real pain points',
@@ -33,7 +33,7 @@ export const experience = [
 	{
 		company: 'Geekbull Consultancy — Hyderabad (Onsite)',
 		role: 'UIUX Design Intern',
-		logo: '/img/experience/geekbull-hd.png',
+		logo: '/img/experience/geekbull-hd.avif',
 		logoOnLight: true,
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
 		period: 'Nov 2024 – Feb 2025',
@@ -42,10 +42,10 @@ export const experience = [
 	{
 		company: 'ADM Educational Welfare Society (Remote)',
 		role: 'Graphic Design Intern',
-		logo: '/img/experience/adm-clean.png',
+		logo: '/img/experience/adm-clean.avif',
 		logoOnLight: true,
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
-		href: '/work/adm-education-society'
+		href: '/work/adm-educational-welfare-society'
 	}
 ];

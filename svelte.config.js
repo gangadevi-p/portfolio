@@ -8,7 +8,7 @@ const config = {
 		// Node server — every page is still prerendered to plain HTML/CSS/JS,
 		// but a Node server is needed to run the /api/chat endpoint (it calls
 		// OpenAI with a server-only key, which a static host can't do).
-		adapter: adapter(),
+		adapter: adapter({ precompress: true }),
 		alias: {
 			$components: 'src/lib/components',
 			$sections: 'src/lib/sections',

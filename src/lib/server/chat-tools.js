@@ -109,7 +109,7 @@ export const toolDefinitions = [
 		function: {
 			name: 'get_experience_details',
 			description:
-				'Get full detail on one specific job by company name (e.g. "Manino", "Geekbull", "ADM Education Society"), including what she actually worked on there.',
+				'Get full detail on one specific job by company name (e.g. "Manino", "Geekbull", "ADM Educational Welfare Society"), including what she actually worked on there.',
 			parameters: {
 				type: 'object',
 				properties: {
@@ -149,7 +149,7 @@ export const toolDefinitions = [
 		type: 'function',
 		function: {
 			name: 'get_playground',
-			description: 'List her smaller side experiments (the "I Play" section) — motion studies, type, icons, colour tools.',
+			description: 'List her smaller side experiments (the "Play" section) — motion studies, type, icons, colour tools.',
 			parameters: { type: 'object', properties: {}, additionalProperties: false }
 		}
 	},

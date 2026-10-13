@@ -51,13 +51,13 @@
 					<h2>Design</h2>
 					<div class="design-grid">
 						<div class="design-stack">
-							<figure class="mock-rent-overview"><img src="/img/CueUp/Rentoverview.png" alt="Relay tenant rent-overview screen" /></figure>
-							<figure class="mock-open-resolved"><img src="/img/CueUp/openandresolvedtenant.png" alt="Relay tenant open and resolved repairs screens" /></figure>
-							<figure class="mock-update-left"><img src="/img/CueUp/Update.png" alt="Relay tenant update screen" /></figure>
+							<figure class="mock-rent-overview"><img decoding="async" src="/img/CueUp/Rentoverview.avif" alt="Relay tenant rent-overview screen" /></figure>
+							<figure class="mock-open-resolved"><img decoding="async" src="/img/CueUp/openandresolvedtenant.png" alt="Relay tenant open and resolved repairs screens" /></figure>
+							<figure class="mock-update-left"><img decoding="async" src="/img/CueUp/Update.avif" alt="Relay tenant update screen" /></figure>
 						</div>
 						<div class="design-stack">
-							<figure class="mock-pay-rent"><img src="/img/CueUp/Payrent.png" alt="Relay tenant pay-rent screen" /></figure>
-							<figure class="mock-issue"><img src="/img/CueUp/Issue.png" alt="Relay tenant issue-reporting screen" /></figure>
+							<figure class="mock-pay-rent"><img decoding="async" src="/img/CueUp/Payrent.avif" alt="Relay tenant pay-rent screen" /></figure>
+							<figure class="mock-issue"><img decoding="async" src="/img/CueUp/Issue.avif" alt="Relay tenant issue-reporting screen" /></figure>
 						</div>
 					</div>
 				</section>

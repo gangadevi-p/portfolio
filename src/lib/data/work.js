@@ -26,8 +26,8 @@ export const work = [
 		heading: 'Rent & Repair',
 		outcome: 'Rent and repairs in one shared view',
 		period: '4 months',
-		href: '/work/cueup',
-		slug: 'cueup',
+		href: '/work/relay',
+		slug: 'relay',
 		bespoke: true
 	},
 	{

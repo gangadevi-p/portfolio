@@ -12,7 +12,7 @@ export const kietMeta = {
 	role: 'Product Designer',
 	year: '2024',
 	summary: 'One app for everything at KIET campus — announcements, academics and student services.',
-	cover: '/kiet/hero-phone-home.png'
+	cover: '/kiet/hero-phone-home.avif'
 };
 
 export const hero = {
@@ -33,9 +33,9 @@ export const hero = {
 };
 
 export const mockups = [
-	{ src: '/img/KIET/Home so.png', alt: 'KIET Student App home screen mockup' },
-	{ src: '/img/KIET/Attedance So.png', alt: 'KIET Student App attendance screen mockup' },
-	{ src: '/img/KIET/Materials so.png', alt: 'KIET Student App materials screen mockup' }
+	{ src: '/img/KIET/Home so.avif', alt: 'KIET Student App home screen mockup' },
+	{ src: '/img/KIET/Attedance So.avif', alt: 'KIET Student App attendance screen mockup' },
+	{ src: '/img/KIET/Materials so.avif', alt: 'KIET Student App materials screen mockup' }
 ];
 
 export const overview = {
@@ -107,7 +107,7 @@ export const personas = [
 		roll: '216Q1A4601',
 		name: 'Sharmista',
 		branch: 'CSC',
-		photo: '/kiet/persona-sharmista.png',
+		photo: '/kiet/persona-sharmista.avif',
 		pains: [
 			'Important notices get buried in WhatsApp.',
 			'Request status is unclear after submission.',
@@ -123,7 +123,7 @@ export const personas = [
 		roll: '216Q1A4371',
 		name: 'Rahul',
 		branch: 'CAI',
-		photo: '/kiet/persona-rahul.png',
+		photo: '/kiet/persona-rahul.avif',
 		pains: [
 			'Academic progress is difficult to understand quickly.',
 			'Materials and schedules are scattered.',
@@ -210,7 +210,7 @@ export const flow = {
 };
 
 export const studentExperience = {
-	phone: { src: '/kiet/student-home.png', alt: 'Student home screen' }
+	phone: { src: '/kiet/student-home.avif', alt: 'Student home screen' }
 };
 
 export const iterated = {
@@ -219,8 +219,8 @@ export const iterated = {
 		reason: 'Students had limited visibility into their permission requests, making it difficult to understand their status and know when follow-up was required.',
 		outcome: 'The current iteration creates a clearer request lifecycle, helping students quickly understand approval status, responsible authorities, and the next action required.',
 		screens: [
-			{ src: '/img/KIET/Permissions Old.png', alt: 'Old permissions screen', label: 'Old' },
-			{ src: '/img/KIET/Permissions so.png', alt: 'New permissions screen', label: 'New' }
+			{ src: '/img/KIET/Permissions Old.avif', alt: 'Old permissions screen', label: 'Old' },
+			{ src: '/img/KIET/Permissions so.avif', alt: 'New permissions screen', label: 'New' }
 		]
 	},
 	projects: {
@@ -230,8 +230,8 @@ export const iterated = {
 		outcome:
 			'The current iteration brings important project context together, helping students understand progress, track responsibilities, and stay aware of upcoming deadlines.',
 		screens: [
-			{ src: '/img/KIET/Project Old.png', alt: 'Old projects screen', label: 'Old' },
-			{ src: '/img/KIET/Projects So.png', alt: 'New projects screen', label: 'New' }
+			{ src: '/img/KIET/Project Old.avif', alt: 'Old projects screen', label: 'Old' },
+			{ src: '/img/KIET/Projects So.avif', alt: 'New projects screen', label: 'New' }
 		]
 	}
 };
@@ -240,13 +240,13 @@ export const iterations = [
 	{
 		caption:
 			'Reorganised the home screen to prioritise important updates, frequent actions, and daily classes',
-		before: { src: '/kiet/iter-home-before.png', alt: 'Old home screen' },
-		after: { src: '/kiet/iter-home-after.png', alt: 'New home screen' }
+		before: { src: '/kiet/iter-home-before.avif', alt: 'Old home screen' },
+		after: { src: '/kiet/iter-home-after.avif', alt: 'New home screen' }
 	},
 	{
 		caption: 'Simplified permission requests to make their status easier to scan and follow.',
-		before: { src: '/kiet/iter-perm-before.png', alt: 'Old permissions screen' },
-		after: { src: '/img/KIET/Permissions so.png', alt: 'New permissions screen' }
+		before: { src: '/kiet/iter-perm-before.avif', alt: 'Old permissions screen' },
+		after: { src: '/img/KIET/Permissions so.avif', alt: 'New permissions screen' }
 	}
 ];
 
@@ -258,8 +258,8 @@ export const admin = [
 		newReason:
 			'The iteration focused on making student information easier to scan and navigate, improving efficiency for everyday administrative tasks.',
 		screens: [
-			{ src: '/img/KIET/Students old so.png', alt: 'Old admin student details screen', label: 'Old' },
-			{ src: '/img/KIET/Student So.png', alt: 'New admin student details screen', label: 'New' }
+			{ src: '/img/KIET/Students old so.avif', alt: 'Old admin student details screen', label: 'Old' },
+			{ src: '/img/KIET/Student So.avif', alt: 'New admin student details screen', label: 'New' }
 		]
 	},
 	{
@@ -269,8 +269,8 @@ export const admin = [
 		newReason:
 			'The iteration focused on improving clarity around complaint handling, making it easier for admins to manage issues at a glance.',
 		screens: [
-			{ src: '/img/KIET/Complaints old So.png', alt: 'Old admin complaints screen', label: 'Old' },
-			{ src: '/img/KIET/Complaints So.png', alt: 'New admin complaints screen', label: 'New' }
+			{ src: '/img/KIET/Complaints old So.avif', alt: 'Old admin complaints screen', label: 'Old' },
+			{ src: '/img/KIET/Complaints So.avif', alt: 'New admin complaints screen', label: 'New' }
 		]
 	}
 ];
@@ -327,7 +327,7 @@ export const impact = {
 	],
 	caption:
 		'The app saw strong adoption after launch, with students continuing to discover and install it over time.',
-	image: { src: '/kiet/impact-acquisitions.png', alt: 'Google Play acquisitions over time' }
+	image: { src: '/kiet/impact-acquisitions.avif', alt: 'Google Play acquisitions over time' }
 };
 
 export const usage = {
@@ -337,7 +337,7 @@ export const usage = {
 	],
 	caption:
 		'Usage increased around key academic periods, showing that students returned to the app when campus information mattered most',
-	image: { src: '/kiet/impact-usage.png', alt: 'Daily and monthly active users over time' }
+	image: { src: '/kiet/impact-usage.avif', alt: 'Daily and monthly active users over time' }
 };
 
 export const learnings = {

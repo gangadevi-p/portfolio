@@ -66,7 +66,7 @@ internship experience spans B2B tools, product design, and communication design.
 | Prototyping | Interactive flows reviewed with students and refined before build. |
 | Design systems | Reusable components for the KIET app; design-system and platform work at Geekbull. |
 | Motion and micro-interactions | A weekly motion-study series; animated interfaces in the portfolio itself. |
-| Visual and communication design | A daily social-media poster series for ADM Education Society. |
+| Visual and communication design | A daily social-media poster series for ADM Educational Welfare Society. |
 | Front-end basics | Comfortable reading and tweaking the front end of what I design. |
 
 **Tools:** Figma (core), Adobe XD, Canva, Notion, Claude, ChatGPT.
@@ -140,7 +140,7 @@ Designed an end-to-end product — flows, visuals, UX, and problem-solving.
 **Geekbull** — UI/UX Design Intern — Nov 2024 – Feb 2025
 Worked on three products: Vyaasa (an HRMS platform), a chatbot, and Pixer data.
 
-**ADM Education Society** — Graphic Design Intern — May 2024 – June 2024
+**ADM Educational Welfare Society** — Graphic Design Intern — May 2024 – June 2024
 A daily social-media poster series for the organisation's channels — one issue a
 day, each carried by a single idea.
 

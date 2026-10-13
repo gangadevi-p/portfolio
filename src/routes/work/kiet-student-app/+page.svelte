@@ -151,7 +151,7 @@
 
 				<div class="hero-mockups" use:revealScale>
 					{#each mockups as mockup}
-						<img src={mockup.src} alt={mockup.alt} />
+						<img src={mockup.src} alt={mockup.alt} decoding="async" />
 					{/each}
 				</div>
 			</div>
@@ -214,7 +214,7 @@
 	<KSection id="process" title="Design Process">
 		<div class="process-shot" use:revealScale>
 			<img
-				src="/img/design-process-kiet.png"
+				src="/img/design-process-kiet.avif"
 				alt="Design process for the KIET Student App — ground the problem, set priorities, build structure, test, then design and refine."
 				loading="lazy"
 			/>

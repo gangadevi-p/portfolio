@@ -13,17 +13,17 @@ export const geekbullMeta = {
 export const geekbullShots = [
 	{
 		title: 'Vyaasa — HRMS platform',
-		src: '/img/vyaasa.png',
+		src: '/img/vyaasa.avif',
 		alt: 'Vyaasa HRMS platform interface'
 	},
 	{
 		title: 'Chatbot',
-		src: '/img/chatbot.png',
+		src: '/img/chatbot.avif',
 		alt: 'Chatbot interface'
 	},
 	{
 		title: 'Pixer data',
-		src: '/img/pixer.png',
+		src: '/img/pixer.avif',
 		alt: 'Pixer data interface'
 	}
 ];

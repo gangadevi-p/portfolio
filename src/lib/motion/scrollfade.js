@@ -1,4 +1,4 @@
-import { loadGsap, prefersReducedMotion } from './gsap.js';
+import { loadGsap, prefersReducedMotion, refreshScrollTriggers } from './gsap.js';
 
 /**
  * Svelte action: fade-in + scale-up (+ a small rise) tied to the scrollbar
@@ -60,7 +60,7 @@ export function scrollFade(node, options = {}) {
 			outTrig.scrollTrigger?.kill();
 			inTrig.kill();
 			outTrig.kill();
-			ScrollTrigger.refresh();
+			refreshScrollTriggers(ScrollTrigger);
 		};
 	});
 
