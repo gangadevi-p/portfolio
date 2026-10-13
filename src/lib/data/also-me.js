@@ -11,13 +11,13 @@
  */
 
 export const gallery = [
-	{ src: '/img/me/paragliding%201.jpg', alt: 'Paragliding over a green valley', label: 'Me' },
-	{ src: '/img/me/drawing%201.jpg', alt: 'Hand-drawn swan sketch' },
+	{ src: '/img/me/paragliding%201.avif', alt: 'Paragliding over a green valley', label: 'Me' },
+	{ src: '/img/me/drawing%201.avif', alt: 'Hand-drawn swan sketch' },
 	{ src: '/img/me/dmbl.jpg', alt: 'Holding a dumbbell at the gym', label: 'Me' },
-	{ src: '/img/me/mirrorimg%201.jpg', alt: 'Mirror selfie', label: 'Me' },
+	{ src: '/img/me/mirrorimg%201.avif', alt: 'Mirror selfie', label: 'Me' },
 	{ src: '/img/me/kitten.jpg', alt: 'Two kittens cuddling outdoors' },
-	{ src: '/img/me/pencil%201.jpg', alt: 'Pencil portrait sketch', position: 'center 14%' },
+	{ src: '/img/me/pencil%201.avif', alt: 'Pencil portrait sketch', position: 'center 14%' },
 
 	// not shown — the layout has 6 frames (sideways source, needs rotating first)
-	{ src: '/img/me/draing2.jpeg', alt: 'Drawing 2' }
+	{ src: '/img/me/draing2.avif', alt: 'Drawing 2' }
 ];

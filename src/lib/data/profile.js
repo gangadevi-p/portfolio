@@ -120,7 +120,7 @@ export const skills = [
 	},
 	{
 		name: 'Visual and communication design',
-		evidence: 'A daily social-media poster series for ADM Education Society, one idea per issue.'
+		evidence: 'A daily social-media poster series for ADM Educational Welfare Society, one idea per issue.'
 	},
 	{ name: 'Front-end basics', evidence: 'Comfortable reading and tweaking the front end of what she designs.' }
 ];
@@ -149,7 +149,7 @@ export const projects = [
 	},
 	{
 		name: 'Relay',
-		slug: 'cueup',
+		slug: 'relay',
 		year: '2026',
 		role: 'Product Designer',
 		detailed: true,
@@ -181,7 +181,7 @@ export const projects = [
 	}
 ];
 
-/** Smaller experiments — the "I Play" / playground list. */
+/** Smaller experiments — the "Play" / playground list. */
 export const playground = [
 	{ name: 'Motion study — micro-interactions', year: '2025', note: 'A weekly set of interface animation experiments.' },
 	{ name: 'Type specimen — Anton / Archivo', year: '2024', note: 'An editorial layout system for heavy display type.' },
@@ -208,7 +208,7 @@ export const experience = [
 		text: 'Worked on three products across the internship: Vyaasa (an HRMS platform), a chatbot, and Pixer data.'
 	},
 	{
-		company: 'ADM Education Society',
+		company: 'ADM Educational Welfare Society',
 		role: 'Graphic Design Intern',
 		period: 'May 2024 – June 2024',
 		text: 'A daily social-media poster series for the organisation’s channels — one issue a day, each carried by a single idea.'
@@ -297,12 +297,12 @@ export const knowledge = [
 	{
 		id: 'adm',
 		tags: ['adm', 'poster', 'posters', 'graphic', 'social', 'media', 'campaign', 'communication'],
-		text: 'At ADM Education Society (Graphic Design Intern, May – June 2024) she ran a daily poster series for the organisation’s social channels — one issue a day, each poster carried by a single idea, covering topics from animal welfare to pollution.'
+		text: 'At ADM Educational Welfare Society (Graphic Design Intern, May – June 2024) she ran a daily poster series for the organisation’s social channels — one issue a day, each poster carried by a single idea, covering topics from animal welfare to pollution.'
 	},
 	{
 		id: 'experience',
 		tags: ['experience', 'intern', 'internship', 'internships', 'job', 'jobs', 'history', 'employment', 'career', 'roles', 'worked', 'background'],
-		text: 'Recent roles: Product Designer at Manino (2026), designing an end-to-end product — flows, visuals, UX, and problem-solving; UI/UX Design Intern at Geekbull (2024–25), working on an HRMS platform, a chatbot, and Pixer data; and Graphic Design Intern at ADM Education Society (2024), running a daily social-media poster series.'
+		text: 'Recent roles: Product Designer at Manino (2026), designing an end-to-end product — flows, visuals, UX, and problem-solving; UI/UX Design Intern at Geekbull (2024–25), working on an HRMS platform, a chatbot, and Pixer data; and Graphic Design Intern at ADM Educational Welfare Society (2024), running a daily social-media poster series.'
 	},
 	{
 		id: 'hire',

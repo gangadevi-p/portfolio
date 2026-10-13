@@ -1,6 +1,6 @@
 /**
- * ADM Education Society — the social-media posters from the internship.
- * Rendered by /work/adm-education-society.
+ * ADM Educational Welfare Society — the social-media posters from the internship.
+ * Rendered by /work/adm-educational-welfare-society.
  *
  * `src` paths are URL-encoded because the files in /static/img/ have spaces in
  * their names; keep them encoded (%20) if you swap a file in, or rename the
@@ -17,17 +17,17 @@ export const admMeta = {
 export const admPosters = [
 	{
 		title: 'Animals',
-		src: '/img/Day-1%20Animals.png',
+		src: '/img/Day-1%20Animals.avif',
 		alt: 'Social-media poster on animal welfare'
 	},
 	{
 		title: 'No Nasha',
-		src: '/img/Day-1%20NoNasha.png',
+		src: '/img/Day-1%20NoNasha.avif',
 		alt: 'Social-media poster for the No Nasha anti-addiction campaign'
 	},
 	{
 		title: 'Pollution',
-		src: '/img/Day-2%20Pollution.png',
+		src: '/img/Day-2%20Pollution.avif',
 		alt: 'Social-media poster on pollution'
 	},
 	{
@@ -37,12 +37,12 @@ export const admPosters = [
 	},
 	{
 		title: 'Uniform Civil Code',
-		src: '/img/Day-3%20uniform%20civil%20code.png',
+		src: '/img/Day-3%20uniform%20civil%20code.avif',
 		alt: 'Social-media poster on the Uniform Civil Code'
 	},
 	{
 		title: 'Recession',
-		src: '/img/Day04-%20%20Recission.png',
+		src: '/img/Day04-%20%20Recission.avif',
 		alt: 'Social-media poster on recission'
 	}
 ];

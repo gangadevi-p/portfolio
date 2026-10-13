@@ -18,7 +18,7 @@ export const hero = {
 	kicker: 'Hi, I am designer',
 	name: 'Gangadevi',
 	photo: {
-		src: '/img/portrait.png', // transparent grayscale cut-out
+		src: '/img/portrait.avif', // transparent grayscale cut-out
 		alt: 'Gangadevi, smiling, in a floral top',
 		label: 'Me'
 	},
@@ -33,8 +33,8 @@ export const hero = {
 		{ name: 'Claude', src: '/icons/claude.png', x: 40, y: 71, size: 52, depth: 0.16, trim: [0.03, 0.045, 0, 0.02] },
 		{ name: 'Notion', src: '/icons/notion.png', x: 35, y: 83, size: 48, depth: 0.09, trim: [0.1, 0.095, 0.045, 0.095] },
 		{ name: 'Adobe XD', src: '/icons/xd.png', x: 51, y: 74, size: 60, depth: 0.07, trim: [0.065, 0.065, 0.065, 0.065] },
-		{ name: 'Canva', src: '/icons/canva.png', x: 46, y: 91, size: 54, depth: 0.13, trim: [0.08, 0.14, 0.06, 0.085] },
-		{ name: 'Codex', src: '/icons/codex.png', x: 50, y: 52, size: 62, depth: 0.11, z: 7, trim: [0.09, 0.1, 0.09, 0.1] },
+		{ name: 'Canva', src: '/icons/canva.avif', x: 46, y: 91, size: 54, depth: 0.13, trim: [0.08, 0.14, 0.06, 0.085] },
+		{ name: 'Codex', src: '/icons/codex.avif', x: 50, y: 52, size: 62, depth: 0.11, z: 7, trim: [0.09, 0.1, 0.09, 0.1] },
 		{ name: 'Coffee', src: '/icons/coffee.png', x: 38, y: 56, size: 58, depth: 0.12, trim: [0.135, 0, 0.14, 0.03] },
 		{ name: 'Dumbbell', src: '/icons/dumbell.png', x: 27, y: 55, size: 50, depth: 0.1, trim: [0.14, 0.03, 0.175, 0.045] }
 	]

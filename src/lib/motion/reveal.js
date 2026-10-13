@@ -1,4 +1,4 @@
-import { loadGsap, prefersReducedMotion } from './gsap.js';
+import { loadGsap, prefersReducedMotion, refreshScrollTriggers } from './gsap.js';
 
 /**
  * Svelte action: subtle fade-in + scale-in (+ tiny rise) as the element scrolls
@@ -40,7 +40,7 @@ export function reveal(node, options = {}) {
 		cleanup = () => {
 			anim.scrollTrigger?.kill();
 			anim.kill();
-			ScrollTrigger.refresh();
+			refreshScrollTriggers(ScrollTrigger);
 		};
 	});
 

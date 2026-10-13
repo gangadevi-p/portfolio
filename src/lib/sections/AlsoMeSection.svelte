@@ -10,7 +10,7 @@
 	const timelineItems = [
 		{ when: 'May 2026 – Jul 2026', what: 'Product Designer', where: 'Manino' },
 		{ when: 'Nov 2024 – Feb 2025', what: 'UI/UX Design Intern', where: 'Geekbull' },
-		{ when: 'May 2024 – Jun 2024', what: 'Graphic Design Intern', where: 'ADM Education Society' },
+		{ when: 'May 2024 – Jun 2024', what: 'Graphic Design Intern', where: 'ADM Educational Welfare Society' },
 		{ when: 'College', what: 'Graduated in Cybersecurity, started learning design', where: '' }
 	];
 </script>

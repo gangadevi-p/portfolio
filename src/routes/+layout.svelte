@@ -1,9 +1,10 @@
 <script>
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import { onNavigate } from '$app/navigation';
+	import { onNavigate, afterNavigate } from '$app/navigation';
 	import { prefersReducedMotion } from '$motion/gsap.js';
-	import { setLenis } from '$motion/smoothscroll.js';
+	import { setLenis, scrollToTop } from '$motion/smoothscroll.js';
+	import { prewarmWorkPages } from '$motion/prewarm.js';
 	import CustomCursor from '$components/CustomCursor.svelte';
 	import StickyNav from '$components/StickyNav.svelte';
 	import SiteFooter from '$components/SiteFooter.svelte';
@@ -18,7 +19,7 @@
 			title: 'KIET Student App — Case study',
 			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
 		},
-		'/work/cueup': {
+		'/work/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
 		},
@@ -26,8 +27,8 @@
 			title: 'Geekbull — UI/UX internship work',
 			description: 'An HRMS platform, a chatbot and a data product designed during a UI/UX internship.'
 		},
-		'/work/adm-education-society': {
-			title: 'ADM Education Society — Poster series',
+		'/work/adm-educational-welfare-society': {
+			title: 'ADM Educational Welfare Society — Poster series',
 			description: 'A daily social-media poster series, one idea per issue.'
 		}
 	};
@@ -36,7 +37,7 @@
 	);
 	// crawlers want an absolute image URL; site.url is set once the site is deployed
 	const ogImage = `${site.url}/og-image.png`;
-	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-education-society/']);
+	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-educational-welfare-society/']);
 	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
 	let homeFooter = $derived(page.route.id === '/');
 	let homeRoute = $derived(page.route.id === '/');
@@ -85,6 +86,14 @@
 		});
 	}
 
+	// A different page always opens at its top. Same-page hash links and the
+	// browser's back/forward (which restore their own position) are left alone.
+	afterNavigate((navigation) => {
+		if (navigation.type === 'popstate') return;
+		if (navigation.from?.url.pathname === navigation.to?.url.pathname) return;
+		scrollToTop();
+	});
+
 	onNavigate((navigation) => {
 		const opensSubpage = navigation.type === 'link' && navigation.to?.route.id && navigation.to.route.id !== '/';
 		const returnsHome = navigation.to?.url.pathname === '/' && navigation.from?.url.pathname !== '/';
@@ -94,15 +103,20 @@
 		return new Promise((resolve) => {
 			const transitionClass = returnsHome ? 'page-returning' : 'page-transitioning';
 			document.documentElement.classList.add(transitionClass);
-			const transition = document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
+				const transition = document.startViewTransition(async () => {
+					resolve();
+					await navigation.complete;
+				// the new page must be at its top before the transition snapshots it
+				if (navigation.type !== 'popstate') scrollToTop();
 			});
 			transition.finished.finally(() => document.documentElement.classList.remove(transitionClass));
 		});
 	});
 
 	onMount(() => {
+		// on the home page, get the case studies' first-screen images ready
+		if (page.route.id === '/') prewarmWorkPages();
+
 		if (prefersReducedMotion()) return;
 
 		let lenis;

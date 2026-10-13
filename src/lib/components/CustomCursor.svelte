@@ -83,6 +83,7 @@
 			ty = e.clientY;
 			if (!visible) visible = true;
 			samplePalette(e.clientX, e.clientY);
+			wake();
 		};
 		const onDown = () => (pressed = true);
 		const onUp = () => (pressed = false);
@@ -139,7 +140,17 @@
 			ctx.restore();
 		};
 
+		/* The loop only runs while there is something to animate (the heart is
+		   still easing toward the pointer, or mini hearts are falling). Once
+		   everything has settled it stops, so an idle page costs no frames. */
+		const wake = () => {
+			if (raf) return;
+			prevT = performance.now();
+			raf = requestAnimationFrame(tick);
+		};
+
 		const tick = (now) => {
+			raf = 0;
 			const dt = Math.min(48, now - prevT);
 			prevT = now;
 			const step = dt / 16; // ~1 at 60fps
@@ -150,7 +161,7 @@
 			if (dotEl) dotEl.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
 
 			if (reduce) {
-				raf = requestAnimationFrame(tick);
+				if (Math.abs(tx - rx) > 0.1 || Math.abs(ty - ry) > 0.1) raf = requestAnimationFrame(tick);
 				return;
 			}
 
@@ -202,12 +213,13 @@
 			}
 			ctx.globalAlpha = 1;
 
-			raf = requestAnimationFrame(tick);
+			const settled = Math.abs(tx - rx) < 0.1 && Math.abs(ty - ry) < 0.1;
+			if (!settled || hearts.length > 0) raf = requestAnimationFrame(tick);
 		};
-		raf = requestAnimationFrame(tick);
+		wake();
 
 		return () => {
-			cancelAnimationFrame(raf);
+			if (raf) cancelAnimationFrame(raf);
 			dialogWatch.disconnect();
 			window.removeEventListener('resize', resize);
 			window.removeEventListener('pointermove', onMove);

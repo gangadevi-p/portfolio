@@ -8,13 +8,13 @@
 <section class="section">
 	<Container class="wide-container">
 		<div class="section-head">
-			<SectionHeading id="playground" title="I Play" />
+			<SectionHeading id="playground" title="Play" />
 			<span class="tool">Figma</span>
 		</div>
 
 		<div class="card" use:reveal>
 		<div class="shot">
-			<img src="/files/Todomockup.png" alt="Gani's Work Space to-do app mockup" width="1236" height="848" loading="lazy" />
+			<img src="/files/Todomockup.avif" alt="Gani's Work Space to-do app mockup" width="1236" height="848" loading="lazy" />
 			<div class="shot-crop">
 				<img src="/files/Todocode.png" alt="TaskCreator.jsx source code for the to-do app" width="1289" height="1280" loading="lazy" />
 			</div>
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<figure class="piece piece--vector">
-				<img class="vector" src="/img/vector.png" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
+				<img class="vector" src="/img/vector.avif" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
 				<figcaption class="vector-note">
 					<h3 class="note-heading">Have a look</h3>
 					<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>

@@ -25,7 +25,7 @@
 		class:float
 		style="transform: translate3d({px}px, {py}px, 0);"
 	>
-		<img {src} {alt} class:grayscale draggable="false" />
+		<img {src} {alt} class:grayscale draggable="false" decoding="async" fetchpriority="high" />
 	</div>
 </div>
 

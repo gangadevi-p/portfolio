@@ -20,6 +20,22 @@ export function loadGsap() {
 	return promise;
 }
 
+let refreshQueued = false;
+
+/**
+ * Refresh ScrollTrigger measurements once per frame, however many animations
+ * ask for it. Tearing down a page kills dozens of triggers at once; refreshing
+ * after each one meant dozens of full-page layout passes in a single task.
+ */
+export function refreshScrollTriggers(ScrollTrigger) {
+	if (refreshQueued) return;
+	refreshQueued = true;
+	requestAnimationFrame(() => {
+		refreshQueued = false;
+		ScrollTrigger.refresh();
+	});
+}
+
 /** True when the visitor asked for reduced motion. Safe to call on the server. */
 export function prefersReducedMotion() {
 	return (
