@@ -4,5 +4,5 @@ import { redirect } from '@sveltejs/kit';
 export const prerender = true;
 
 export function load() {
-	redirect(308, '/work/adm-educational-welfare-society/');
+	redirect(308, '/projects/adm-educational-welfare-society/');
 }

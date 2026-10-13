@@ -1,7 +1,7 @@
 /**
  * KIET Student App — case study content (Project 1).
  *
- * Every string / list below drives the page at /work/kiet-student-app.
+ * Every string / list below drives the page at /projects/kiet-student-app.
  * App screenshots live in /static/kiet — swap the files (keep the names) with
  * your own exports. `persona` photos are transparent cut-outs.
  */

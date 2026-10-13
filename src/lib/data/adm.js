@@ -1,6 +1,6 @@
 /**
  * ADM Educational Welfare Society — the social-media posters from the internship.
- * Rendered by /work/adm-educational-welfare-society.
+ * Rendered by /projects/adm-educational-welfare-society.
  *
  * `src` paths are URL-encoded because the files in /static/img/ have spaces in
  * their names; keep them encoded (%20) if you swap a file in, or rename the

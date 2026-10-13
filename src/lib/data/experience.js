@@ -37,7 +37,7 @@ export const experience = [
 		logoOnLight: true,
 		points: ['HRMS Platform', 'Pixer data', 'Chatbot'],
 		period: 'Nov 2024 – Feb 2025',
-		href: '/work/geekbull'
+		href: '/projects/geekbull'
 	},
 	{
 		company: 'ADM Educational Welfare Society (Remote)',
@@ -46,6 +46,6 @@ export const experience = [
 		logoOnLight: true,
 		blurb: 'Social-media poster designing for their organization.',
 		period: 'May 2024 – June 2024',
-		href: '/work/adm-educational-welfare-society'
+		href: '/projects/adm-educational-welfare-society'
 	}
 ];

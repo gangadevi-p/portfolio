@@ -14,7 +14,7 @@
  * `heading` — optional. Replaces the title text shown under the logo.
  * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
  * `outcome` — optional. One-line result shown in bold under the blurb.
- * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
+ * `slug` + `bespoke` — only for projects that have their own /projects/<slug> route.
  */
 export const work = [
 	{
@@ -26,7 +26,7 @@ export const work = [
 		heading: 'Rent & Repair',
 		outcome: 'Rent and repairs in one shared view',
 		period: '4 months',
-		href: '/work/relay',
+		href: '/projects/relay',
 		slug: 'relay',
 		bespoke: true
 	},
@@ -37,7 +37,7 @@ export const work = [
 		logoVariant: 'kiet',
 		outcome: 'Live on Google Play · 6,061 acquisitions',
 		period: '4 months',
-		href: '/work/kiet-student-app',
+		href: '/projects/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
 	},

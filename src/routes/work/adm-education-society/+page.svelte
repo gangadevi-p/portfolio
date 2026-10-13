@@ -1,1 +1,1 @@
-<!-- redirects to /work/adm-educational-welfare-society/ (see +page.js) -->
+<!-- redirects to /projects/adm-educational-welfare-society/ (see +page.js) -->

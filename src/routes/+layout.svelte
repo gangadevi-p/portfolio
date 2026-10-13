@@ -15,19 +15,19 @@
 
 	// Link-preview text per page; anything not listed falls back to the home copy.
 	const pageMeta = {
-		'/work/kiet-student-app': {
+		'/projects/kiet-student-app': {
 			title: 'KIET Student App — Case study',
 			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
 		},
-		'/work/relay': {
+		'/projects/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
 		},
-		'/work/geekbull': {
+		'/projects/geekbull': {
 			title: 'Geekbull — UI/UX internship work',
 			description: 'An HRMS platform, a chatbot and a data product designed during a UI/UX internship.'
 		},
-		'/work/adm-educational-welfare-society': {
+		'/projects/adm-educational-welfare-society': {
 			title: 'ADM Educational Welfare Society — Poster series',
 			description: 'A daily social-media poster series, one idea per issue.'
 		}
@@ -37,7 +37,7 @@
 	);
 	// crawlers want an absolute image URL; site.url is set once the site is deployed
 	const ogImage = `${site.url}/og-image.png`;
-	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-educational-welfare-society/']);
+	const compactFooterPaths = new Set(['/projects/geekbull/', '/projects/adm-educational-welfare-society/']);
 	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
 	let homeFooter = $derived(page.route.id === '/');
 	let homeRoute = $derived(page.route.id === '/');

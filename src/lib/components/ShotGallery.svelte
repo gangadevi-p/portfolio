@@ -1,6 +1,6 @@
 <script>
 	/**
-	 * A regular grid of work shots, used by the /work/* gallery pages.
+	 * A regular grid of work shots, used by the /projects/* gallery pages.
 	 *
 	 * `cell`  — the target width of one image, in px. Cells never grow past it;
 	 *           they shrink instead once the container is narrower.

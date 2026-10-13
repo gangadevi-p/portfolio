@@ -1,6 +1,6 @@
 /**
  * "Projects" / playground — smaller experiments and side work.
- * Lightweight list; each row can link out or to a /work/[slug] page.
+ * Lightweight list; each row can link out or to a /projects/[slug] page.
  */
 export const projects = [
 	{
