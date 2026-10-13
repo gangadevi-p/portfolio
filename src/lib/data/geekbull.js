@@ -1,6 +1,6 @@
 /**
  * Geekbull — the work from the UIUX design internship.
- * Rendered by /work/geekbull.
+ * Rendered by /projects/geekbull.
  */
 export const geekbullMeta = {
 	company: 'Geekbull Consultancy — Hyderabad (Onsite)',

@@ -14,7 +14,7 @@ description: >
 
 The "Projects" section is a grid of case-study cards. Each card is one entry in
 `src/lib/data/work.js`, and **each entry automatically builds its own page** at
-`/work/<slug>`. Add an entry → the page appears. Remove it → the page is gone.
+`/projects/<slug>`. Add an entry → the page appears. Remove it → the page is gone.
 
 One project — **KIET Student App** — has a full custom-designed page. All of its
 content is in `src/lib/data/kiet.js`.
@@ -38,7 +38,7 @@ and edit every field:
 
 ```js
 {
-  slug: 'nova-bank-app',        // lowercase-with-dashes, no spaces — becomes the URL /work/nova-bank-app
+  slug: 'nova-bank-app',        // lowercase-with-dashes, no spaces — becomes the URL /projects/nova-bank-app
   title: 'Nova Bank App',
   year: '2025',
   role: 'Product Designer',
@@ -105,7 +105,7 @@ here, use `replace-images`.
 
 1. Preview it: use the running dev server, or start one with `npm run dev`
    (`http://localhost:5173`). Check the Projects grid and, for a new project,
-   open `http://localhost:5173/work/<slug>`.
+   open `http://localhost:5173/projects/<slug>`.
 2. Summarise what changed in plain language — no code — and offer to publish.
 
 ## Gotchas

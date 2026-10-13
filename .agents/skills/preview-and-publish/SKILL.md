@@ -35,7 +35,7 @@ Then give the person this link: **http://localhost:5173**
 Always look at the running preview and confirm:
 
 - the section that changed looks right,
-- for a new project, `http://localhost:5173/work/<slug>` opens,
+- for a new project, `http://localhost:5173/projects/<slug>` opens,
 - no broken-image icons.
 
 ## Publish (make it live)

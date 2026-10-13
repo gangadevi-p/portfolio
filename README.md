@@ -19,7 +19,7 @@ src/
 │  ├─ data/            ← ALL copy & content. Edit these, not the components.
 │  │  ├─ site.js       ·  name, location, nav links, socials
 │  │  ├─ hero.js       ·  headline, portrait, speech card, floating icons
-│  │  ├─ work.js       ·  case-study grid (drives /work/[slug] too)
+│  │  ├─ work.js       ·  case-study grid (drives /projects/[slug] too)
 │  │  └─ resume.js     ·  about text, experience, skills, PDF link
 │  ├─ styles/
 │  │  └─ tokens.css    ← colours, fonts, spacing, motion — the whole look

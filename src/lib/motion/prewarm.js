@@ -2,7 +2,7 @@
  * Quietly fetch what a case-study page needs for its first screen while the
  * visitor is still on the home page, so opening it doesn't wait on the network.
  *
- * For each internal /work/* link it pulls the (prerendered) page HTML and warms
+ * For each internal /projects/* link it pulls the (prerendered) page HTML and warms
  * the browser cache with the images that load straight away (not the lazy ones).
  * Runs when the browser is idle, one page at a time, and backs off on slow or
  * data-saver connections.
@@ -42,7 +42,7 @@ export function prewarmWorkPages() {
 
 	const hrefs = [
 		...new Set(
-			[...document.querySelectorAll('a[href^="/work/"]')].map((a) => a.getAttribute('href'))
+			[...document.querySelectorAll('a[href^="/projects/"]')].map((a) => a.getAttribute('href'))
 		)
 	];
 	const next = () => {
