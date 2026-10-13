@@ -12,17 +12,51 @@
 	import SiteNav from './SiteNav.svelte';
 	import { nav } from '$data/site.js';
 	import { navigation } from '$motion/navigation.svelte.js';
+	import { replaceState } from '$app/navigation';
+	import { page } from '$app/state';
 
 	/** px from the top of the page inside which the hero's own nav is showing */
 	const TOP_GUARD = 140;
 	/** ignore jitter smaller than this, so the bar doesn't flicker */
 	const THRESHOLD = 6;
+	/** how long scrolling must pause before the address bar follows it */
+	const HASH_DELAY = 120;
+	/** anchors from before the sections were renamed, so shared links still land */
+	const LEGACY = { '#work': '#projects', '#playground': '#play' };
 
 	let shown = $state(false);
+
+	/** Show the section in view in the address bar (#me, #projects, …) without adding history entries. */
+	let hashTimer;
+	function syncHash(href) {
+		clearTimeout(hashTimer);
+		hashTimer = setTimeout(() => {
+			if (page.route.id !== '/' || location.hash === href) return;
+			try {
+				replaceState(`${location.pathname}${location.search}${href}`, page.state);
+			} catch {
+				// router not ready yet — the next scroll will try again
+			}
+		}, HASH_DELAY);
+	}
 
 	onMount(() => {
 		let lastY = window.scrollY;
 		let queued = false;
+		// the first update() runs before anything has scrolled — leave a deep-linked
+		// hash alone until the visitor actually moves
+		let scrolled = false;
+
+		const legacy = LEGACY[location.hash];
+		if (legacy) {
+			// after the router's own initial scroll reset, which can't find the old id
+			setTimeout(() => {
+				document.getElementById(legacy.slice(1))?.scrollIntoView({ behavior: 'instant' });
+			}, HASH_DELAY);
+			syncHash(legacy);
+		} else if (!location.hash && window.scrollY <= TOP_GUARD) {
+			syncHash('#me');
+		}
 
 		const update = () => {
 			queued = false;
@@ -38,6 +72,7 @@
 					if (sectionLink?.href !== link.href) sectionLink = link;
 				}
 			}
+			if (sectionLink && scrolled) syncHash(sectionLink.href);
 			if (sectionLink && current?.href !== sectionLink.href) {
 				navigation.active = sectionLink.label;
 			}
@@ -54,6 +89,7 @@
 		};
 
 		const onScroll = () => {
+			scrolled = true;
 			if (queued) return;
 			queued = true;
 			requestAnimationFrame(update);
@@ -64,7 +100,10 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 		update();
 
-		return () => window.removeEventListener('scroll', onScroll);
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			clearTimeout(hashTimer);
+		};
 	});
 </script>
 

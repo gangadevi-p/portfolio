@@ -22,9 +22,9 @@ export const site = {
 /** @type {NavLink[]} */
 export const nav = [
 	{ label: 'Me', href: '#me' },
-	{ label: 'Projects', href: '#work' },
+	{ label: 'Projects', href: '#projects' },
 	{ label: 'Experience', href: '#experience' },
-	{ label: 'Play', href: '#playground' },
+	{ label: 'Play', href: '#play' },
 	{ label: 'Also me', href: '#also-me' }
 ];
 
