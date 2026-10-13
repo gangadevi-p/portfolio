@@ -8,7 +8,7 @@
 <section class="section">
 	<Container class="wide-container">
 		<div class="section-head">
-			<SectionHeading id="playground" title="Play" />
+			<SectionHeading id="play" title="Play" />
 			<span class="tool">Figma</span>
 		</div>
 
@@ -63,7 +63,7 @@
 		padding-inline: 0;
 	}
 	/* Match the Work Experience and Projects heading alignment. */
-	.section :global(#playground) {
+	.section :global(#play) {
 		text-align: left;
 		align-items: flex-start;
 	}

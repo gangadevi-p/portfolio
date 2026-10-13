@@ -6,7 +6,7 @@
 
 </script>
 
-<section id="work" class="section">
+<section id="projects" class="section">
 	<Container class="wide-container">
 		<h2 class="title" use:reveal>Projects</h2>
 
