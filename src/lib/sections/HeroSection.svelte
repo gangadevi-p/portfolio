@@ -7,6 +7,43 @@
 	import ParallaxImage from '$components/ParallaxImage.svelte';
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
+
+	// Typewriter cycling through the roles: types one, holds, deletes, moves on.
+	// Starts once the kicker has faded in. Under reduced motion the first role
+	// shows straight away and stays.
+	let typed = $state('');
+	$effect(() => {
+		const roles = hero.roles;
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			typed = roles[0];
+			return;
+		}
+		let r = 0;
+		let i = 0;
+		let deleting = false;
+		let timer;
+		const tick = () => {
+			const role = roles[r];
+			let delay = deleting ? 35 : 70;
+			if (!deleting) {
+				typed = role.slice(0, ++i);
+				if (i === role.length) {
+					deleting = true;
+					delay = 1800;
+				}
+			} else {
+				typed = role.slice(0, --i);
+				if (i === 0) {
+					deleting = false;
+					r = (r + 1) % roles.length;
+					delay = 350;
+				}
+			}
+			timer = setTimeout(tick, delay);
+		};
+		timer = setTimeout(tick, 700);
+		return () => clearTimeout(timer);
+	});
 </script>
 
 <section id="me" class="hero" use:pointer.track>
@@ -14,7 +51,10 @@
 		<SiteNav />
 
 		<div class="headline">
-			<span class="kicker">{hero.kicker}</span>
+			<span class="kicker" aria-label="{hero.kicker} {hero.roles[0]}">
+				<span aria-hidden="true">{hero.kicker}
+					<span class="role">{typed}</span><span class="caret"></span></span>
+			</span>
 			<span class="name-mask">
 				<h1 class="name">{hero.name}</h1>
 			</span>
@@ -74,6 +114,20 @@
 	}
 	.kicker {
 		animation: hero-in 0.45s ease-out 0.2s both;
+	}
+	.caret {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		margin-left: 2px;
+		vertical-align: -0.12em;
+		background: currentColor;
+		animation: caret-blink 0.9s steps(1) infinite;
+	}
+	@keyframes caret-blink {
+		50% {
+			opacity: 0;
+		}
 	}
 	.name {
 		animation: hero-in 0.6s ease-out 0.3s both;

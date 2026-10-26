@@ -22,7 +22,7 @@
 	.section {
 		padding-block: 40px;
 		/* horizontal inset moved here (off the Container) so the section's
-		   visible width matches the hero frame's — see WorkExperienceSection. */
+		   visible width matches the hero frame's — see HeroSection. */
 		padding-inline: var(--pad-x);
 		/* light band — the rest of the page is dark, so opt back into light ink */
 		background: var(--c-bg);

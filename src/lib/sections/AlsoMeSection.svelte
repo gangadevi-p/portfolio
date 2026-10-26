@@ -95,7 +95,7 @@
 	.section {
 		padding-block: 40px;
 		/* horizontal inset moved here (off .inner) so the section's visible
-		   width matches the hero frame's — see WorkExperienceSection. */
+		   width matches the hero frame's — see HeroSection. */
 		padding-inline: var(--pad-x);
 		background: var(--c-bg);
 		color: var(--c-ink);

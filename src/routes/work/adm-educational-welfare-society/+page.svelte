@@ -13,7 +13,7 @@
 
 <div class="page">
 	<Container>
-		<a class="back" href="/#experience" use:cursorLabel={'Experience'}>← Experience</a>
+		<a class="back" href="/#work" use:cursorLabel={'Projects'}>← Projects</a>
 
 		<header class="head" use:reveal>
 			<h1>{admMeta.company}</h1>

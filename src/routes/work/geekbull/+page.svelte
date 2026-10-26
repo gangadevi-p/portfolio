@@ -12,7 +12,7 @@
 
 <div class="page">
 	<Container>
-		<a class="back" href="/#experience">← Experience</a>
+		<a class="back" href="/#work">← Projects</a>
 
 		<header class="head" use:reveal>
 			<h1>{geekbullMeta.company}</h1>

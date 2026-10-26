@@ -15,7 +15,8 @@
  */
 
 export const hero = {
-	kicker: 'Hi, I am designer',
+	kicker: 'Hi, I am',
+	roles: ['Product & UX designer', 'Aspiring Product Designer'],
 	name: 'Gangadevi',
 	photo: {
 		src: '/img/portrait.avif', // transparent grayscale cut-out
