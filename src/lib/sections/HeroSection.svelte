@@ -8,38 +8,20 @@
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
 
-	// Typewriter cycling through the roles: types one, holds, deletes, moves on.
-	// Starts once the kicker has faded in. Under reduced motion the first role
-	// shows straight away and stays.
+	// Typewriter for the role: starts once the kicker has faded in. Under
+	// reduced motion the full role shows straight away.
 	let typed = $state('');
 	$effect(() => {
-		const roles = hero.roles;
+		const role = hero.role;
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			typed = roles[0];
+			typed = role;
 			return;
 		}
-		let r = 0;
 		let i = 0;
-		let deleting = false;
 		let timer;
 		const tick = () => {
-			const role = roles[r];
-			let delay = deleting ? 35 : 70;
-			if (!deleting) {
-				typed = role.slice(0, ++i);
-				if (i === role.length) {
-					deleting = true;
-					delay = 1800;
-				}
-			} else {
-				typed = role.slice(0, --i);
-				if (i === 0) {
-					deleting = false;
-					r = (r + 1) % roles.length;
-					delay = 350;
-				}
-			}
-			timer = setTimeout(tick, delay);
+			typed = role.slice(0, ++i);
+			if (i < role.length) timer = setTimeout(tick, 70);
 		};
 		timer = setTimeout(tick, 700);
 		return () => clearTimeout(timer);
@@ -51,7 +33,7 @@
 		<SiteNav />
 
 		<div class="headline">
-			<span class="kicker" aria-label="{hero.kicker} {hero.roles[0]}">
+			<span class="kicker" aria-label="{hero.kicker} {hero.role}">
 				<span aria-hidden="true">{hero.kicker}
 					<span class="role">{typed}</span><span class="caret"></span></span>
 			</span>
