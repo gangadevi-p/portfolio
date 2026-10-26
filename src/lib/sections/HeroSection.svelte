@@ -8,20 +8,38 @@
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
 
-	// Typewriter for the role: starts once the kicker has faded in. Under
-	// reduced motion the full role shows straight away.
+	// Typewriter cycling through the roles: types one, holds, deletes, moves on.
+	// Starts once the kicker has faded in. Under reduced motion the first role
+	// shows straight away and stays.
 	let typed = $state('');
 	$effect(() => {
-		const role = hero.role;
+		const roles = hero.roles;
 		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			typed = role;
+			typed = roles[0];
 			return;
 		}
+		let r = 0;
 		let i = 0;
+		let deleting = false;
 		let timer;
 		const tick = () => {
-			typed = role.slice(0, ++i);
-			if (i < role.length) timer = setTimeout(tick, 70);
+			const role = roles[r];
+			let delay = deleting ? 35 : 70;
+			if (!deleting) {
+				typed = role.slice(0, ++i);
+				if (i === role.length) {
+					deleting = true;
+					delay = 1800;
+				}
+			} else {
+				typed = role.slice(0, --i);
+				if (i === 0) {
+					deleting = false;
+					r = (r + 1) % roles.length;
+					delay = 350;
+				}
+			}
+			timer = setTimeout(tick, delay);
 		};
 		timer = setTimeout(tick, 700);
 		return () => clearTimeout(timer);
@@ -33,9 +51,9 @@
 		<SiteNav />
 
 		<div class="headline">
-			<span class="kicker" aria-label="{hero.kicker} {hero.role}">
+			<span class="kicker" aria-label="{hero.kicker} {hero.roles[0]}">
 				<span aria-hidden="true">{hero.kicker}
-					<span class="role">{typed}</span><span class="caret" class:done={typed === hero.role}></span></span>
+					<span class="role">{typed}</span><span class="caret"></span></span>
 			</span>
 			<span class="name-mask">
 				<h1 class="name">{hero.name}</h1>
@@ -106,16 +124,8 @@
 		background: currentColor;
 		animation: caret-blink 0.9s steps(1) infinite;
 	}
-	.caret.done {
-		animation: caret-blink 0.9s steps(1) 3, caret-hide 0s 2.7s forwards;
-	}
 	@keyframes caret-blink {
 		50% {
-			opacity: 0;
-		}
-	}
-	@keyframes caret-hide {
-		to {
 			opacity: 0;
 		}
 	}
