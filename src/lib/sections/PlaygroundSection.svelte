@@ -25,9 +25,6 @@
 				<div class="anim">
 					<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
 				</div>
-				<div class="anim">
-					<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
-				</div>
 			</div>
 			<figure class="piece piece--vector">
 				<img class="vector" src="/img/vector.avif" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
@@ -203,10 +200,11 @@
 	.anims {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		gap: 24px;
 		height: var(--shot-h);
-		/* two stacked 348:244 tiles — width follows the tile height */
-		width: calc((var(--shot-h) - 24px) / 2 * 348 / 244);
+		/* one 348:244 tile at the full row height — width follows it */
+		width: calc(var(--shot-h) * 348 / 244);
 		flex-shrink: 0;
 	}
 	.anim {

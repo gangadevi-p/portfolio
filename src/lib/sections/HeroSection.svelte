@@ -7,6 +7,25 @@
 	import ParallaxImage from '$components/ParallaxImage.svelte';
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
+
+	// Typewriter for the role: starts once the kicker has faded in. Under
+	// reduced motion the full role shows straight away.
+	let typed = $state('');
+	$effect(() => {
+		const role = hero.role;
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			typed = role;
+			return;
+		}
+		let i = 0;
+		let timer;
+		const tick = () => {
+			typed = role.slice(0, ++i);
+			if (i < role.length) timer = setTimeout(tick, 70);
+		};
+		timer = setTimeout(tick, 700);
+		return () => clearTimeout(timer);
+	});
 </script>
 
 <section id="me" class="hero" use:pointer.track>
@@ -14,7 +33,10 @@
 		<SiteNav />
 
 		<div class="headline">
-			<span class="kicker">{hero.kicker}</span>
+			<span class="kicker" aria-label="{hero.kicker} {hero.role}">
+				<span aria-hidden="true">{hero.kicker}
+					<span class="role">{typed}</span><span class="caret" class:done={typed === hero.role}></span></span>
+			</span>
 			<span class="name-mask">
 				<h1 class="name">{hero.name}</h1>
 			</span>
@@ -74,6 +96,28 @@
 	}
 	.kicker {
 		animation: hero-in 0.45s ease-out 0.2s both;
+	}
+	.caret {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		margin-left: 2px;
+		vertical-align: -0.12em;
+		background: currentColor;
+		animation: caret-blink 0.9s steps(1) infinite;
+	}
+	.caret.done {
+		animation: caret-blink 0.9s steps(1) 3, caret-hide 0s 2.7s forwards;
+	}
+	@keyframes caret-blink {
+		50% {
+			opacity: 0;
+		}
+	}
+	@keyframes caret-hide {
+		to {
+			opacity: 0;
+		}
 	}
 	.name {
 		animation: hero-in 0.6s ease-out 0.3s both;
