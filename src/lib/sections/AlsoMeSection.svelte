@@ -13,14 +13,8 @@
 		<p>
 			I graduated in <strong>Cybersecurity</strong>, but my curiosity and constant
 			<strong>“why?”</strong> questions somehow pulled me into design. I started learning in college,
-			thinking <strong>Figma</strong> was all I needed — until my first internship, where I worked on
-			<strong>UI and poster designs</strong>.
-		</p>
-		<p>
-			My second internship as a <strong>UI/UX Design Intern</strong> made me realise there was a lot
-			more to design than Figma. I reviewed an ongoing product from a
-			<strong>fresh user perspective</strong>, pointed out <strong>usability issues</strong>, and
-			worked on a few <strong>landing pages</strong>.
+			thinking <strong>Figma</strong> was all I needed — until I realised there was a lot more to
+			design than Figma.
 		</p>
 		<p>
 			Since then, I’ve been learning by doing, questioning, experimenting, and figuring out my way
@@ -28,7 +22,7 @@
 		</p>
 		<p>
 			When I’m not designing, you’ll probably find me at the <strong>gym</strong>, having
-			<strong>caffeine</strong>, or with a <strong>pen and paper</strong>.
+			<strong>caffeine</strong>, or with a <strong>pencil and paper</strong>.
 		</p>
 	</div>
 {/snippet}
@@ -41,14 +35,7 @@
 			<mark>“why?”</mark>
 			<s>questions somehow pulled me into design. I started learning in college, thinking</s>
 			<mark>Figma</mark>
-			<s>was all I needed — until my first internship, where I worked on</s>
-			<mark>UI and poster designs</mark>.
-		</p>
-		<p>
-			<s>My second internship as a</s> <mark>UI/UX Design Intern</mark>
-			<s>made me realise there was a lot more to design than Figma. I reviewed an ongoing product from a</s>
-			<mark>fresh user perspective</mark>, <s>pointed out</s> <mark>usability issues</mark>,
-			<s>and worked on a few</s> <mark>landing pages</mark>.
+			<s>was all I needed — until I realised there was a lot more to design than Figma.</s>
 		</p>
 		<p>
 			<s>Since then, I’ve been learning by doing, questioning, experimenting, and figuring out my way
@@ -57,7 +44,7 @@
 		</p>
 		<p>
 			<s>When I’m not designing, you’ll probably find me at the</s> <mark>gym</mark>, <s>having</s>
-			<mark>caffeine</mark>, <s>or with a</s> <mark>pen and paper</mark>.
+			<mark>caffeine</mark>, <s>or with a</s> <mark>pencil and paper</mark>.
 		</p>
 	</div>
 {/snippet}
