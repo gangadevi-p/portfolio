@@ -2,12 +2,11 @@
  * chat-tools.js — the toolset the LLM-backed portfolio assistant can call.
  *
  * Each tool reads from the same canonical data files the site itself renders
- * from (profile.js, site.js, data/experience.js, data/resume.js) so the
+ * from (profile.js, site.js, data/resume.js) so the
  * assistant can never say something the portfolio doesn't already show.
  */
 import { profile } from '$data/profile.js';
 import { site } from '$data/site.js';
-import { experience as experienceCards } from '$data/experience.js';
 import { resume } from '$data/resume.js';
 
 const { identity, designerIdentity, process, skills, tools, projects, playground, experience, knowledge, fallback } =
@@ -37,12 +36,6 @@ function findExperience(company) {
 	const q = norm(company);
 	if (!q) return null;
 	return experience.find((e) => norm(e.company).includes(q) || q.includes(norm(e.company))) || null;
-}
-
-function findExperienceCard(company) {
-	const q = norm(company);
-	if (!q) return null;
-	return experienceCards.find((e) => norm(e.company).includes(q) || q.includes(norm(e.company))) || null;
 }
 
 /** words too common to carry meaning when scoring a search query */
@@ -222,16 +215,13 @@ const handlers = {
 
 	get_experience_details: ({ company } = {}) => {
 		const base = findExperience(company);
-		const card = findExperienceCard(company);
-		if (!base && !card) return { found: false, available: experience.map((e) => e.company) };
+		if (!base) return { found: false, available: experience.map((e) => e.company) };
 		return {
 			found: true,
-			company: base?.company || card?.company,
-			role: base?.role || card?.role,
-			period: base?.period || card?.period,
-			summary: base?.text,
-			highlights: card?.points || (card?.blurb ? [card.blurb] : undefined),
-			status: [card?.status, card?.tag].filter(Boolean).join(' · ') || undefined
+			company: base.company,
+			role: base.role,
+			period: base.period,
+			summary: base.text
 		};
 	},
 
