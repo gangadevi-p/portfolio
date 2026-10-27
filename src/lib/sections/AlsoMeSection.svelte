@@ -6,13 +6,6 @@
 	import AboutTabs from '$sections/alsome/AboutTabs.svelte';
 	import { reveal } from '$motion/reveal.js';
 
-	// Timeline entries, newest first. Dates match the Work Experience section.
-	const timelineItems = [
-		{ when: 'May 2026 – Jul 2026', what: 'Product Designer', where: 'Manino' },
-		{ when: 'Nov 2024 – Feb 2025', what: 'UI/UX Design Intern', where: 'Geekbull' },
-		{ when: 'May 2024 – Jun 2024', what: 'Graphic Design Intern', where: 'ADM Educational Welfare Society' },
-		{ when: 'College', what: 'Graduated in Cybersecurity, started learning design', where: '' }
-	];
 </script>
 
 {#snippet story()}
@@ -69,23 +62,10 @@
 	</div>
 {/snippet}
 
-{#snippet timeline()}
-	<ol class="intro timeline">
-		{#each timelineItems as item (item.when)}
-			<li>
-				<span class="when">{item.when}</span>
-				<span class="what">
-					<strong>{item.what}</strong>{#if item.where}, {item.where}{/if}
-				</span>
-			</li>
-		{/each}
-	</ol>
-{/snippet}
-
 <section id="also-me" class="section">
 	<div class="inner">
 		<div use:reveal={{ y: 24 }}>
-			<AboutTabs title="Also me" {story} {tldr} {timeline} />
+			<AboutTabs title="Also me" {story} {tldr} />
 			<GaniLayout />
 		</div>
 	</div>
@@ -133,37 +113,5 @@
 		background: none;
 		color: var(--c-coffee);
 		font-weight: 700;
-	}
-
-	/* Timeline — a vertical rule with a dot per entry */
-	.timeline {
-		margin: 0;
-		padding: 0 0 0 1.4rem;
-		list-style: none;
-		gap: 1.2rem;
-		border-left: 2px solid var(--c-line);
-	}
-	.timeline li {
-		position: relative;
-		display: grid;
-		gap: 0.15rem;
-	}
-	.timeline li::before {
-		content: '';
-		position: absolute;
-		left: calc(-1.4rem - 6px);
-		top: 0.45em;
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		background: var(--c-accent);
-		border: 2px solid var(--c-bg);
-		box-sizing: content-box;
-	}
-	.timeline .when {
-		font-size: 0.8em;
-		font-weight: 500;
-		letter-spacing: 0;
-		color: var(--c-line-strong);
 	}
 </style>

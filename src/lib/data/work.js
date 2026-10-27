@@ -25,7 +25,7 @@ export const work = [
 		logoName: 'Relay',
 		heading: 'Rent & Repair',
 		outcome: 'Rent and repairs in one shared view',
-		period: '4 months',
+		period: 'Jun 2026 – Aug 2026',
 		href: '/work/relay',
 		slug: 'relay',
 		bespoke: true
@@ -36,7 +36,7 @@ export const work = [
 		darkLogo: '/kiet/Kietdarkthemelogo.png',
 		logoVariant: 'kiet',
 		outcome: 'Live on Google Play · 6,061 acquisitions',
-		period: '4 months',
+		period: 'Feb 2026 – Mar 2026',
 		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
@@ -49,7 +49,7 @@ export const work = [
 		logoName: 'Athera',
 		heading: 'Premium furniture',
 		outcome: 'Designed by me, built with Claude',
-		period: 'Live prototype',
+		period: 'Sep 2026 · 2 weeks',
 		href: 'https://gangadevi-p.github.io/athera/',
 		openInNewTab: false,
 		hoverLabel: 'Open Athera'
@@ -59,7 +59,7 @@ export const work = [
 		hideLogo: true,
 		subheading: 'Digital Notes',
 		outcome: 'We design what others use. This is what we use to design.',
-		period: 'Live reference',
+		period: 'Oct 2026 · 2 weeks',
 		href: 'https://gangadevi-p.github.io/toolkit/',
 		openInNewTab: false,
 		hoverLabel: 'Open Toolkit'

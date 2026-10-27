@@ -2,14 +2,14 @@
 	import { site } from '$data/site.js';
 	import Container from './Container.svelte';
 
-	let { compact = false, home = false } = $props();
+	let { home = false } = $props();
 	const contactCtas = [
 		{ label: 'Gmail', href: `mailto:${site.email}`, external: false },
 		...site.socials.map((social) => ({ ...social, external: true }))
 	];
 </script>
 
-<footer id="contact" class="footer" class:compact class:home>
+<footer id="contact" class="footer" class:home>
 	<Container>
 		<div class="footer-shell">
 			<div class="intro">
@@ -41,7 +41,6 @@
 		background: var(--c-bg);
 		color: var(--c-ink);
 	}
-	.footer.compact { padding-top: 4rem; }
 	.footer.home {
 		--pad-x: clamp(1.25rem, 3vw, 2.5rem);
 		padding-block: 180px 40px; /* extra air above, between Also me and the footer */

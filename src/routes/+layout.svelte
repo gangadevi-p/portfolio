@@ -22,14 +22,6 @@
 		'/work/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
-		},
-		'/work/geekbull': {
-			title: 'Geekbull — UI/UX internship work',
-			description: 'An HRMS platform, a chatbot and a data product designed during a UI/UX internship.'
-		},
-		'/work/adm-educational-welfare-society': {
-			title: 'ADM Educational Welfare Society — Poster series',
-			description: 'A daily social-media poster series, one idea per issue.'
 		}
 	};
 	let meta = $derived(
@@ -37,8 +29,6 @@
 	);
 	// crawlers want an absolute image URL; site.url is set once the site is deployed
 	const ogImage = `${site.url}/og-image.png`;
-	const compactFooterPaths = new Set(['/work/geekbull/', '/work/adm-educational-welfare-society/']);
-	let compactFooter = $derived(compactFooterPaths.has(page.url.pathname));
 	let homeFooter = $derived(page.route.id === '/');
 	let homeRoute = $derived(page.route.id === '/');
 
@@ -170,4 +160,4 @@
 	{@render children()}
 </main>
 
-<SiteFooter compact={compactFooter} home={homeFooter} />
+<SiteFooter home={homeFooter} />

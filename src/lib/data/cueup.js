@@ -49,7 +49,7 @@ export const overview = {
 		{ label: 'Title', values: ['Relay'] },
 		{ label: 'Target audience', values: ['Self-managing landlords', 'Tenants'] },
 		{ label: 'Focus', values: ['Rent', 'Repair coordination'] },
-		{ label: 'Timeline', values: ['Apr 2026 – Jul 2026'] },
+		{ label: 'Timeline', values: ['Jun 2026 – Aug 2026'] },
 		{
 			label: 'Tools',
 			tools: [

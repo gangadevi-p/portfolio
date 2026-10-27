@@ -5,8 +5,8 @@
  * on-site "Portfolio guide" (portfolio-assistant.js reads `knowledge` below)
  * and the written PROFILE.md at the repo root.
  *
- * Everything here is drawn from the real project data (work.js, experience.js,
- * kiet.js, cueup.js, geekbull.js, adm.js, projects.js, site.js). If a project,
+ * Everything here is drawn from the real project data (work.js, kiet.js,
+ * cueup.js, projects.js, site.js) and her CV. If a project,
  * date, or metric changes in those files, update it here too.
  *
  * Voice: third person ("Gangadevi", "she") so the assistant can quote it
@@ -135,10 +135,10 @@ export const projects = [
 	{
 		name: 'KIET Student App',
 		slug: 'kiet-student-app',
-		year: '2024',
+		year: '2026',
 		role: 'Product Designer',
 		detailed: true,
-		context: 'Team of two (designer + Android developer), roughly four months. Live on the Google Play Store.',
+		context: 'Team of two (designer + Android developer), Feb 2026 – Mar 2026. Live on the Google Play Store.',
 		problem:
 			'Students relied on WhatsApp, PDFs, and several separate websites for college information, so updates were hard to find and easy to miss.',
 		contribution: 'Research, user personas, UX design, UI design, user flows, and iteration.',
@@ -193,7 +193,7 @@ export const playground = [
 	}
 ];
 
-/** Work history — from experience.js. */
+/** Work history — from her CV. Only the portfolio guide uses this; the site has no Experience section. */
 export const experience = [
 	{
 		company: 'Manino',
@@ -327,7 +327,7 @@ export const knowledge = [
 	{
 		id: 'experience-length',
 		tags: ['years', 'experience', 'long', 'senior', 'junior', 'level', 'much', 'old', 'fresher', 'graduate'],
-		text: 'She has around two years of design experience across product roles and internships — Manino (2026), Geekbull (2024–25), and ADM (2024) — plus the KIET Student App, which she designed and shipped to the Play Store in 2024.'
+		text: 'She has around two years of design experience across product roles and internships — Manino (2026), Geekbull (2024–25), and ADM (2024) — plus the KIET Student App, which she designed and shipped to the Play Store in 2026.'
 	},
 	/**
 	 * Kept last on purpose: its tags ("work", "project") are generic, so any
