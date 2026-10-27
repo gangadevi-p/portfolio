@@ -2,10 +2,10 @@
 name: replace-images
 description: >
   Use to swap any picture or file on the portfolio — the portrait photo,
-  case-study cover images, floating tool icons, company logos, the résumé PDF,
-  the favicon, and the KIET app screenshots. Triggers: "replace my photo",
+  case-study cover images, floating tool icons, the résumé PDF, the favicon,
+  and the KIET app screenshots. Triggers: "replace my photo",
   "update the portrait", "add a cover image for the Nova project", "swap the
-  Figma icon", "add the Manino logo", "upload my new résumé", "change the
+  Figma icon", "upload my new résumé", "change the
   screenshots on the KIET page", "the icons are placeholders, here are the real
   ones". For the words next to an image use `edit-text` or `manage-projects`.
 ---
@@ -39,7 +39,6 @@ Two ways to swap a picture:
 | Portrait photo | `static/img/` | `hero.js` → `hero.photo.src` | Transparent cut-out PNG, **in colour** (the site greyscales it). Current: `portrait.png`. |
 | Case-study cover images | `static/img/` | `work.js` → each `cover` | Roughly **4 : 3**. Current placeholders: `work-1.svg`…`work-4.svg`. |
 | Floating tool icons (Figma, XD, Notion…) | `static/icons/` | `hero.js` → `hero.icons[].src` | Square **SVG** logos. Current: `figma.svg`, `xd.svg`, `asterisk.svg`, `notion.svg`, `chatgpt.svg`, `framer.svg`. |
-| Company logos (work experience) | `static/img/experience/` | `experience.js` → each `logo` | Square PNG or SVG. Current: `manino.svg`, `geekbull.svg`, `adm.svg`. If the file is missing the card shows a letter monogram instead. |
 | Résumé PDF | `static/files/` | `resume.js` → `resume.resumeUrl` | Current: `gangadevi-resume.pdf`. Keep the name to change nothing else. |
 | Favicon (browser-tab icon) | `static/` | `src/app.html` | `favicon.svg`. |
 | KIET app screenshots | `static/kiet/` | `kiet.js` (many fields) | Phone screenshots and charts. Keep the existing filenames (`hero-phone-home.png`, `student-home.png`, `iter-home-before.png`, `admin-a.png`, `impact-usage.png`, …) to swap with zero code changes. |

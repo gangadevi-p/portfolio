@@ -59,7 +59,7 @@
 	.section :global(.wide-container) {
 		padding-inline: 0;
 	}
-	/* Match the Work Experience and Projects heading alignment. */
+	/* Match the Projects heading alignment. */
 	.section :global(#playground) {
 		text-align: left;
 		align-items: flex-start;

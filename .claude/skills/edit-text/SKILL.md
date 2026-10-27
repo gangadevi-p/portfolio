@@ -3,11 +3,11 @@ name: edit-text
 description: >
   Use whenever someone wants to change words/copy/text shown on the portfolio
   site — the greeting or headline, name, job title, location, email, the "What do
-  I do?" card, navigation labels, social links, work-experience blurbs and dates,
-  the About / résumé intro, the skills list, or the small "Playground" list.
+  I do?" card, navigation labels, social links, the About / résumé intro, the
+  skills list, or the small "Playground" list.
   Triggers: "change my headline", "update my job title", "fix this typo",
   "reword my about section", "add a LinkedIn link", "update my email",
-  "change the dates on my Geekbull job", "rename a nav item".
+  "rename a nav item".
   For adding/removing case-study projects use `manage-projects`; for photos and
   the résumé PDF use `replace-images`; for colours and fonts use `restyle`.
 ---
@@ -24,7 +24,6 @@ the person can see the change, then offer to publish.
 - "Fix the typo in the speech card — both lines say the same thing."
 - "My email is now gangadevi@example.com."
 - "Add a Behance link to my socials: behance.net/gangadevi"
-- "Update the Geekbull dates to Nov 2024 – Mar 2025."
 - "Reword my about paragraph to mention 3 years, not six."
 - "Rename the *Resume* menu item to *CV*."
 
@@ -39,14 +38,14 @@ the person can see the change, then offer to publish.
 | "What do I do?" card title + lines | `src/lib/data/hero.js` | `hero.speech.title` / `hero.speech.lines[]` |
 | Photo caption ("That's me") | `src/lib/data/hero.js` | `hero.photo.label` / `hero.photo.alt` |
 | Floating tool-icon names (Figma, Notion…) | `src/lib/data/hero.js` | `hero.icons[].name` (rename only — to swap the picture use `replace-images`) |
-| Work-experience cards (company, role, dates, blurb, bullet points) | `src/lib/data/experience.js` | `experience[]` — `company` / `role` / `period` / `blurb` **or** `points[]` / optional `href` |
 | About / résumé intro paragraph | `src/lib/data/resume.js` | `resume.intro` |
 | Skills chips | `src/lib/data/resume.js` | `resume.skills[]` |
 | Résumé "experience" list in the Resume section | `src/lib/data/resume.js` | `resume.experience[]` — `company` / `role` / `period` / `notes` |
 | "Playground" experiments list | `src/lib/data/projects.js` | `projects[]` — `title` / `year` / `href` / `note` |
 
-Not sure which section they mean? The site sections are: **ME** (hero), **Work
-Experience**, **Projects** (the case-study grid), **Playground**, **Resume**.
+Not sure which section they mean? The site sections are: **ME** (hero),
+**Projects** (the case-study grid), **Playground**, **Also me**. There is no
+Experience section; it was removed on purpose.
 
 ## Steps
 
