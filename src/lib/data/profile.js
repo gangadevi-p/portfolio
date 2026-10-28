@@ -177,6 +177,20 @@ export const projects = [
 			'Concept only — not yet tested. The plan is to test it with active groups to see whether people can follow conversations and find messages more easily.'
 	},
 	{
+		name: 'Spot your ride (Uber)',
+		slug: 'uber-pickup',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for Uber’s rider and driver apps, focused on autos in crowded places.',
+		problem:
+			'At busy spots like metro exits, the ride has arrived but neither side can find the other: every auto looks the same, and the driver sees only a pin in a crowd. Everyone ends up calling “where are you?”.',
+		contribution: 'Problem framing, interaction design, privacy rules, and an interactive rider/driver prototype on the portfolio.',
+		solution:
+			'Riders see a real photo of their vehicle, showing the side they will actually see (front when it is coming toward them, side when it pulls up). Drivers can see an optional photo of the pickup spot, which shows the place, never the person, with faces blurred. Drivers upload four sides of the vehicle at onboarding. A 3D model from the photos was considered and dropped.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time from arrival to pickup, “where are you?” calls, and cancellations at pickup in crowded places.'
+	},
+	{
 		name: 'Athera',
 		year: '2026',
 		role: 'Designer',

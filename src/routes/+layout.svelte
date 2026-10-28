@@ -27,6 +27,10 @@
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
 		},
+		'/work/uber-pickup': {
+			title: 'Spot your ride — Concept',
+			description: 'Riders see a real photo of their auto; drivers see a photo of the pickup spot.'
+		},
 		'/work/whatsapp-threads': {
 			title: 'WhatsApp Threads — Concept',
 			description: 'Optional, Reddit-style reply threads so big WhatsApp groups stay easy to follow.'

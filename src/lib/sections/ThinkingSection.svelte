@@ -21,7 +21,7 @@
 					use:cursorLabel={{ label: 'Read concept', variant: 'card' }}
 				>
 					<div class="copy">
-						<span class="app">{c.app}</span>
+						<span class="app" style:--app-ink={c.tone.ink} style:--app-bg={c.tone.bg}>{c.app}</span>
 						<h3>{c.title}</h3>
 						<p class="problem">{c.problem}</p>
 						<p class="idea">{c.idea}</p>
@@ -55,6 +55,20 @@
 								<div class="bar">
 									<span class="count">23 replies</span>
 									<span class="last">· 5m</span>
+								</div>
+							</div>
+						</div>
+					{:else if c.preview === 'pickup'}
+						<div class="preview preview--pickup" aria-hidden="true">
+							<div class="ride">
+								<div class="ride-photo">
+									<img src="/uber/auto-front.avif" alt="" loading="lazy" />
+									<span>Look for the front</span>
+								</div>
+								<div class="ride-cues"><em>“LAVANYA” sign</em><em>Red tassels</em></div>
+								<div class="ride-row">
+									<b>Arriving · 1 min</b>
+									<span class="ride-plate">KA 02 9275</span>
 								</div>
 							</div>
 						</div>
@@ -117,8 +131,13 @@
 			transform var(--dur-fast) var(--ease-out),
 			box-shadow var(--dur-fast) var(--ease-out);
 	}
+	/* side by side, the copy stretches so both previews sit on the same line */
 	.card:not(:only-child) {
 		grid-template-columns: 1fr;
+		grid-template-rows: 1fr auto;
+	}
+	.card:not(:only-child) .preview {
+		min-height: 300px;
 	}
 	.card:hover,
 	.card:focus-visible {
@@ -139,8 +158,8 @@
 	.app {
 		padding: 5px 12px;
 		border-radius: 999px;
-		background: #e7f6f1;
-		color: #008069;
+		background: var(--app-bg);
+		color: var(--app-ink);
 		font-size: var(--fs-small);
 		font-weight: 600;
 	}
@@ -293,6 +312,72 @@
 		color: #111b21;
 		font-size: 13.5px;
 		box-shadow: 0 1px 0.5px rgb(11 20 26 / 10%);
+	}
+
+	/* ---- the little Uber ride card ---- */
+	.preview--pickup {
+		align-items: center;
+		background: #eceef1;
+	}
+	.ride {
+		width: min(100%, 300px);
+		padding: 12px;
+		border-radius: 16px;
+		background: #fff;
+		box-shadow: 0 8px 24px -12px rgb(0 0 0 / 25%);
+	}
+	.ride-photo {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+	.ride-photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.ride-photo span {
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		padding: 4px 9px;
+		border-radius: 999px;
+		background: #000;
+		color: #fff;
+		font-size: 11px;
+		font-weight: 600;
+	}
+	.ride-cues {
+		display: flex;
+		gap: 6px;
+		margin-top: 8px;
+	}
+	.ride-cues em {
+		padding: 3px 8px;
+		border-radius: 999px;
+		background: #eef6f0;
+		color: #05944f;
+		font-size: 11px;
+		font-style: normal;
+		font-weight: 600;
+	}
+	.ride-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 10px;
+		color: #000;
+		font-size: 14px;
+	}
+	.ride-plate {
+		padding: 3px 7px;
+		border: 1.5px solid #222;
+		border-radius: 5px;
+		background: #f7d117;
+		color: #111;
+		font-size: 11px;
+		font-weight: 800;
 	}
 
 	@media (max-width: 1024px) {
