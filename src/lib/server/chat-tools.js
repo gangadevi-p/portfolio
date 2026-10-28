@@ -233,7 +233,8 @@ const handlers = {
 		email: site.email,
 		location: site.location,
 		socials: site.socials,
-		resumeUrl: resume.resumeUrl
+		resumeUrl: resume.resumeUrl,
+		resumePage: resume.pageUrl
 	}),
 
 	get_playground: () => ({ playground }),

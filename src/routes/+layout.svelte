@@ -19,6 +19,10 @@
 			title: 'KIET Student App — Case study',
 			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
 		},
+		'/resume': {
+			title: 'Résumé — Gangadevi P',
+			description: 'UX & Product Designer — selected projects, skills and education, with the PDF to download.'
+		},
 		'/work/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
