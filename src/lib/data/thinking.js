@@ -3,7 +3,7 @@
  *
  * Each entry is one card in ThinkingSection.svelte and links to its own
  * /work/<slug> page. Keep `problem` to one sentence; the card is a teaser.
- * `preview` picks the little illustration on the card ('threads' or 'pickup').
+ * `preview` picks the little illustration on the card ('threads', 'pickup' or 'compare').
  * `tone` colours the app label: its text and background.
  */
 export const thinkingIntro = 'Problems I notice in apps I use every day, and how I’d fix them.';
@@ -28,5 +28,15 @@ export const concepts = [
 		href: '/work/uber-pickup',
 		preview: 'pickup',
 		tone: { ink: '#ffffff', bg: '#000000' }
+	},
+	{
+		title: 'One biryani, two apps',
+		app: 'Swiggy vs Zomato',
+		problem: 'Before every order I add the same dish on both apps and apply coupons, just to see which final bill is lower.',
+		idea: 'A Google Flights-style comparison: final price, delivery time and rating, side by side.',
+		period: 'Oct 2026 · Concept',
+		href: '/work/food-compare',
+		preview: 'compare',
+		tone: { ink: '#1a73e8', bg: '#e8f0fe' }
 	}
 ];

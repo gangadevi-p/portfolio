@@ -191,6 +191,20 @@ export const projects = [
 			'Concept only, not yet tested. The plan is to measure time from arrival to pickup, “where are you?” calls, and cancellations at pickup in crowded places.'
 	},
 	{
+		name: 'One biryani, two apps (Swiggy vs Zomato)',
+		slug: 'food-compare',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept, built from her own habit of checking both food apps before ordering.',
+		problem:
+			'To find the cheaper app for one meal, people add the same dish on Swiggy and Zomato and apply coupons on both, because the real price only appears at checkout. Dish names differ between apps, coupons are personal, and delivery time and rating matter too.',
+		contribution: 'Problem framing, interaction design, and an interactive Google-style comparison on the portfolio.',
+		solution:
+			'A Google Flights-style comparison in Google Search and Assistant: one row per app with the final price after fees and the best coupon, delivery time and rating. Rows sort by cheapest, fastest or top rated, each opens its full bill, and ordering opens the chosen app with the dish in the cart and the coupon applied. It lives with Google because the two apps are rivals.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time to order, money saved, and how often people still check both apps by hand.'
+	},
+	{
 		name: 'Athera',
 		year: '2026',
 		role: 'Designer',

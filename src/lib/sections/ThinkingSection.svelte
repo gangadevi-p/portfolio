@@ -72,6 +72,22 @@
 								</div>
 							</div>
 						</div>
+					{:else if c.preview === 'compare'}
+						<div class="preview preview--compare" aria-hidden="true">
+							<div class="cmp">
+								<b class="cmp-head">Chicken Dum Biryani</b>
+								<div class="cmp-row">
+									<i style:background="#fc8019">S</i>
+									<span><b>Swiggy</b><small>35 min · ★ 4.5</small><em>Cheapest</em></span>
+									<strong>₹360</strong>
+								</div>
+								<div class="cmp-row">
+									<i style:background="#e23744">Z</i>
+									<span><b>Zomato</b><small>28 min · ★ 4.4</small><em class="fast">Fastest</em></span>
+									<strong>₹376</strong>
+								</div>
+							</div>
+						</div>
 					{/if}
 				</a>
 			{/each}
@@ -105,9 +121,10 @@
 		font-weight: 500;
 	}
 
+	/* as many 320px+ columns as fit: three across on a wide screen */
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 		gap: 24px;
 	}
 	/* a lone concept takes the full row rather than leaving half of it empty */
@@ -379,6 +396,55 @@
 		font-size: 11px;
 		font-weight: 800;
 	}
+
+	/* ---- the little Google comparison ---- */
+	.preview--compare {
+		align-items: center;
+		background: #f1f3f4;
+	}
+	.cmp {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: min(100%, 300px);
+		padding: 14px;
+		border-radius: 16px;
+		background: #fff;
+		box-shadow: 0 8px 24px -12px rgb(0 0 0 / 25%);
+	}
+	.cmp-head {
+		color: #202124;
+		font-size: 15px;
+	}
+	.cmp-row {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 9px;
+		border: 1px solid #e8eaed;
+		border-radius: 12px;
+	}
+	.cmp-row > span {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: flex-start;
+		line-height: 1.3;
+	}
+	.cmp-row b { color: #202124; font-size: 13.5px; }
+	.cmp-row small { color: #5f6368; font-size: 11.5px; }
+	.cmp-row em {
+		margin-top: 3px;
+		padding: 1px 6px;
+		border-radius: 5px;
+		background: #e6f4ea;
+		color: #137333;
+		font-size: 10px;
+		font-style: normal;
+		font-weight: 700;
+	}
+	.cmp-row em.fast { background: #e8f0fe; color: #1967d2; }
+	.cmp-row strong { color: #202124; font-size: 16px; }
 
 	@media (max-width: 1024px) {
 		.grid {

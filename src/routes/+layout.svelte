@@ -15,6 +15,10 @@
 
 	// Link-preview text per page; anything not listed falls back to the home copy.
 	const pageMeta = {
+		'/work/food-compare': {
+			title: 'One biryani, two apps — Concept',
+			description: 'Compare the same dish on Swiggy and Zomato by final price, delivery time and rating.'
+		},
 		'/work/kiet-student-app': {
 			title: 'KIET Student App — Case study',
 			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
