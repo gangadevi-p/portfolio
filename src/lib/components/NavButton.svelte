@@ -36,4 +36,23 @@
 			padding-inline: 1.25rem;
 		}
 	}
+	/* five links have to share one line on a phone */
+	@media (max-width: 430px) {
+		a {
+			padding-inline: 0.45rem;
+			font-size: 0.8125rem;
+		}
+		a.wide {
+			padding-inline: 0.75rem;
+		}
+	}
+	@media (max-width: 370px) {
+		a {
+			padding-inline: 0.35rem;
+			font-size: 0.75rem;
+		}
+		a.wide {
+			padding-inline: 0.6rem;
+		}
+	}
 </style>

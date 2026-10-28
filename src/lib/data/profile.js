@@ -163,6 +163,20 @@ export const projects = [
 			'Competitive analysis (RentOk, RentRovio, Rent Maa), landlord and tenant personas, information architecture and user flows for both roles, and the UI.'
 	},
 	{
+		name: 'WhatsApp Threads',
+		slug: 'whatsapp-threads',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for WhatsApp group chats.',
+		problem:
+			'In large groups (say 50 friends), several conversations run at once — a trip plan, match talk, a birthday gift — and they get mixed up in one flat stream, so it is hard to follow any one of them.',
+		contribution: 'Problem framing, interaction design, and an interactive prototype on the portfolio.',
+		solution:
+			'Optional, Reddit-style reply threads: people reply under a specific message instead of in the main chat. Each thread collapses to one line with a reply count, avatars, and last activity, and expands inline. Normal chatting is unchanged, so smaller groups are not affected.',
+		outcome:
+			'Concept only — not yet tested. The plan is to test it with active groups to see whether people can follow conversations and find messages more easily.'
+	},
+	{
 		name: 'Athera',
 		year: '2026',
 		role: 'Designer',

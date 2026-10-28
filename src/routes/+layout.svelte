@@ -26,6 +26,10 @@
 		'/work/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
+		},
+		'/work/whatsapp-threads': {
+			title: 'WhatsApp Threads — Concept',
+			description: 'Optional, Reddit-style reply threads so big WhatsApp groups stay easy to follow.'
 		}
 	};
 	let meta = $derived(
