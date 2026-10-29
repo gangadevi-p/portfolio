@@ -21,16 +21,18 @@
 					use:cursorLabel={{ label: 'Read concept', variant: 'card' }}
 				>
 					<div class="copy">
-						<span class="app" style:--app-ink={c.tone.ink} style:--app-bg={c.tone.bg}>{c.app}</span>
+						<div class="meta">
+							<span class="app" style:--app-ink={c.tone.ink} style:--app-bg={c.tone.bg}>{c.app}</span>
+							<span class="period">
+								<span>{c.period}</span>
+								<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+									<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+								</svg>
+							</span>
+						</div>
 						<h3>{c.title}</h3>
 						<p class="problem">{c.problem}</p>
 						<p class="idea">{c.idea}</p>
-						<span class="period">
-							<span>{c.period}</span>
-							<svg class="ic" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-								<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-							</svg>
-						</span>
 					</div>
 
 					{#if c.preview === 'threads'}
@@ -153,8 +155,10 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr auto;
 	}
+	/* every preview is the same size, whatever the illustration inside */
 	.card:not(:only-child) .preview {
-		min-height: 300px;
+		height: 340px;
+		overflow: hidden;
 	}
 	.card:hover,
 	.card:focus-visible {
@@ -180,7 +184,20 @@
 		font-size: var(--fs-small);
 		font-weight: 600;
 	}
+	/* Each text block is held to a fixed number of lines — reserved when the
+	   copy is shorter, clamped when it's longer — so all the cards match. */
+	h3,
+	.problem,
+	.idea {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: var(--lines);
+		line-clamp: var(--lines);
+		overflow: hidden;
+		min-height: calc(var(--lines) * 1lh);
+	}
 	h3 {
+		--lines: 2;
 		margin-top: 20px;
 		font-size: clamp(1.4rem, 2.2vw, 1.9rem);
 		font-weight: 700;
@@ -188,26 +205,32 @@
 		line-height: 1.15;
 	}
 	.problem {
+		--lines: 3;
 		margin-top: 12px;
 		max-width: 44ch;
 		color: var(--c-ink-soft);
 		line-height: 1.5;
 	}
 	.idea {
-		margin: 10px 0 24px;
+		--lines: 3;
+		margin-top: 10px;
 		max-width: 44ch;
 		font-weight: 600;
 		line-height: 1.45;
 	}
-	.period {
-		margin-top: auto;
-		display: inline-flex;
+	/* app tag on the left, date at the opposite end of the same row */
+	.meta {
+		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 16px;
+		gap: 12px;
 		width: 100%;
-		max-width: 320px;
-		padding: 8px 16px;
+	}
+	.period {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 5px 12px;
 		border-radius: 999px;
 		background: var(--c-surface-subtle);
 		color: var(--c-ink);
