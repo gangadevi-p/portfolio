@@ -38,7 +38,7 @@
 		{/each}
 	</ul>
 	<div class="nav-actions">
-		<a class="resume" href={resume.resumeUrl} target="_blank" rel="noopener">
+		<a class="resume" href={`${base}${resume.pageUrl}`}>
 			<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
 				<path
 					fill="none"

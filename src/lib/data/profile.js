@@ -163,6 +163,48 @@ export const projects = [
 			'Competitive analysis (RentOk, RentRovio, Rent Maa), landlord and tenant personas, information architecture and user flows for both roles, and the UI.'
 	},
 	{
+		name: 'WhatsApp Threads',
+		slug: 'whatsapp-threads',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for WhatsApp group chats.',
+		problem:
+			'In large groups (say 50 friends), several conversations run at once — a trip plan, match talk, a birthday gift — and they get mixed up in one flat stream, so it is hard to follow any one of them.',
+		contribution: 'Problem framing, interaction design, and an interactive prototype on the portfolio.',
+		solution:
+			'Optional, Reddit-style reply threads: people reply under a specific message instead of in the main chat. Each thread collapses to one line with a reply count, avatars, and last activity, and expands inline. Normal chatting is unchanged, so smaller groups are not affected.',
+		outcome:
+			'Concept only — not yet tested. The plan is to test it with active groups to see whether people can follow conversations and find messages more easily.'
+	},
+	{
+		name: 'Spot your ride (Uber)',
+		slug: 'uber-pickup',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for Uber’s rider and driver apps, focused on autos in crowded places.',
+		problem:
+			'At busy spots like metro exits, the ride has arrived but neither side can find the other: every auto looks the same, and the driver sees only a pin in a crowd. Everyone ends up calling “where are you?”.',
+		contribution: 'Problem framing, interaction design, privacy rules, and an interactive rider/driver prototype on the portfolio.',
+		solution:
+			'Riders see a real photo of their vehicle, showing the side they will actually see (front when it is coming toward them, side when it pulls up). Drivers can see an optional photo of the pickup spot, which shows the place, never the person, with faces blurred. Drivers upload four sides of the vehicle at onboarding. A 3D model from the photos was considered and dropped.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time from arrival to pickup, “where are you?” calls, and cancellations at pickup in crowded places.'
+	},
+	{
+		name: 'One biryani, two apps (Swiggy vs Zomato)',
+		slug: 'food-compare',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept, built from her own habit of checking both food apps before ordering.',
+		problem:
+			'To find the cheaper app for one meal, people add the same dish on Swiggy and Zomato and apply coupons on both, because the real price only appears at checkout. Dish names differ between apps, coupons are personal, and delivery time and rating matter too.',
+		contribution: 'Problem framing, interaction design, and an interactive Siri comparison on the portfolio, built on real screenshots of her own order.',
+		solution:
+			'Ask Siri for a dish and it compares it on both apps, the way Google Flights compares airlines: one row per app with the final price after fees and the best coupon, delivery time and rating. Rows sort by cheapest, fastest or top rated, each opens its full bill, and ordering opens the chosen app with the dish in the cart and the coupon applied. It lives in Siri because the two apps are rivals and Apple has no delivery app of its own. Today Siri answers the same request with Maps directions.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time to order, money saved, and how often people still check both apps by hand.'
+	},
+	{
 		name: 'Athera',
 		year: '2026',
 		role: 'Designer',
