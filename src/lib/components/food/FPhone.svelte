@@ -2,11 +2,12 @@
 	import { flip } from 'svelte/animate';
 	import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
-	import { order, apps } from '$data/food.js';
+	import { order, apps, rupees } from '$data/food.js';
 
 	/**
-	 * A Google result that compares one dish across delivery apps, the way
-	 * Google Flights compares airlines. Rows sort; tapping one opens its bill.
+	 * A Siri answer that compares one dish across delivery apps, the way
+	 * Google Flights compares airlines. It sits on a real Siri screenshot (the
+	 * request goes in Siri's own bubble); rows sort, and tapping one opens its bill.
 	 */
 	const sorts = [
 		{ id: 'price', label: 'Cheapest', by: (a, b) => a.total - b.total },
@@ -22,74 +23,76 @@
 
 	const rows = $derived([...apps].sort(sorts.find((s) => s.id === sort).by));
 	const fastest = Math.min(...apps.map((a) => a.minutes));
-	/** what the cheaper app saves over the dearest one */
-	const saving = Math.max(...apps.map((a) => a.total)) - cheapest;
+	/** what the cheaper app saves over the dearest one, to the nearest rupee */
+	const saving = Math.round(Math.max(...apps.map((a) => a.total)) - cheapest);
 
-	const rupees = (n) => (n < 0 ? '−₹' : '₹') + Math.abs(n);
+	/** the coloured line under each app, like Siri's "Hours Unavailable" */
+	const status = (a) =>
+		[a.total === cheapest ? `Cheapest · ₹${saving} less` : `₹${saving} more`, a.minutes === fastest && 'Fastest']
+			.filter(Boolean)
+			.join(' · ');
 </script>
 
 <div class="fp">
 	<div class="device">
-		<div class="screen" data-lenis-prevent>
-			<div class="search">
-				<span class="g" aria-hidden="true">G</span>
-				<span class="q">chicken biryani Biryani House</span>
-				<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0M12 17v3" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" /></svg>
-			</div>
-			<p class="voice">“{order.query}”</p>
-
-			<div class="result">
+		<div class="screen">
+			<!-- laid out like Siri's own answer cards (see /food/siri-today.webp) -->
+			<div class="card" data-lenis-prevent>
 				<div class="head">
 					<b>{order.restaurant}</b>
-					<small>{order.area} · {order.dish}</small>
-				</div>
-
-				<div class="sorts" role="group" aria-label="Sort by">
-					{#each sorts as s (s.id)}
-						<button class:on={sort === s.id} aria-pressed={sort === s.id} onclick={() => (sort = s.id)}>{s.label}</button>
-					{/each}
+					<small>{order.dish} · on 2 apps</small>
+					<div class="sorts" role="group" aria-label="Sort by">
+						{#each sorts as s (s.id)}
+							<button class:on={sort === s.id} aria-pressed={sort === s.id} onclick={() => (sort = s.id)}>{s.label}</button>
+						{/each}
+					</div>
 				</div>
 
 				<ul class="rows">
 					{#each rows as a (a.id)}
 						<li animate:flip={{ duration: 320, easing: cubicOut }}>
-							<button class="row" aria-expanded={open === a.id} onclick={() => (open = open === a.id ? null : a.id)}>
-								<span class="badge" style:background={a.color} aria-hidden="true">{a.name.charAt(0)}</span>
-								<span class="mid">
-									<b>{a.name}</b>
-									<small>{a.minutes} min · ★ {a.rating} ({a.ratings})</small>
-									<span class="tags">
-										{#if a.total === cheapest}<em class="tag tag--price">Cheapest · saves ₹{saving}</em>{/if}
-										{#if a.minutes === fastest}<em class="tag tag--time">Fastest</em>{/if}
+							<div class="row">
+								<button class="row-main" aria-expanded={open === a.id} onclick={() => (open = open === a.id ? null : a.id)}>
+									<span class="icon" style:background={a.color} aria-hidden="true">{a.name.charAt(0)}</span>
+									<span class="text">
+										<b>{a.name}</b>
+										<span class="sub">{rupees(a.total)} · {a.eta} · ★ {a.rating}</span>
+										<span class="status" class:good={a.total === cheapest}>{status(a)}</span>
 									</span>
+								</button>
+								<span class="action" aria-hidden="true">
+									<span class="action-circle">
+										<svg viewBox="0 0 24 24"><path d="M5.5 8.5h13l-1 10.6a2 2 0 0 1-2 1.9h-7a2 2 0 0 1-2-1.9l-1-10.6ZM9 11V7a3 3 0 0 1 6 0v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+									</span>
+									Order
 								</span>
-								<span class="price">
-									<b>₹{a.total}</b>
-									<small>menu ₹{a.menu}</small>
-								</span>
-							</button>
+							</div>
 
 							{#if open === a.id}
 								<div class="bill" transition:slide={{ duration: 240, easing: cubicOut }}>
-									<p class="match">Matched dish: “{a.dishName}”</p>
 									{#each a.bill as line (line.label)}
-										<div class="line" class:off={line.amount < 0}>
-											<span>{line.label}</span><span>{rupees(line.amount)}</span>
+										<div class="line" class:off={line.amount <= 0}>
+											<span>{line.label}</span><span>{line.amount === 0 ? `Free with ${line.note}` : rupees(line.amount)}</span>
 										</div>
 									{/each}
-									<div class="line line--total"><span>To pay</span><span>₹{a.total}</span></div>
-									<span class="go" style:background={a.color}>Order on {a.name}</span>
-									<small class="handoff">Opens {a.name} with the dish in your cart and the coupon applied</small>
+									<div class="line line--total"><span>To pay</span><span>{rupees(a.total)}</span></div>
 								</div>
 							{/if}
 						</li>
 					{/each}
 				</ul>
-				<p class="fine">Prices include your coupons · checked just now</p>
+
+				<div class="foot">
+					<span class="icon icon--sm" style:background={rows[0].color} aria-hidden="true">{rows[0].name.charAt(0)}</span>
+					Open {rows[0].name} with this in your cart
+				</div>
 			</div>
+
+			<!-- what was said, in Siri's own bubble -->
+			<p class="ask">{order.query}</p>
 		</div>
 	</div>
-	<p class="hint">Sort the rows, or tap one to see its bill</p>
+	<p class="hint">Sort the apps, or tap one to see its bill</p>
 </div>
 
 <style>
@@ -107,207 +110,202 @@
 		background: #1f1f1f;
 		box-shadow: 0 30px 60px -30px rgb(0 0 0 / 55%);
 	}
+	/* the real Siri screenshot; the card and the request are laid on top */
 	.screen {
-		height: 640px;
-		padding: 40px 14px 20px;
+		position: relative;
+		container-type: inline-size;
+		aspect-ratio: 1179 / 2556;
 		border-radius: 37px;
+		overflow: hidden;
+		background: #111 url('/food/siri.webp') center / cover no-repeat;
+		color: #fff;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	}
+
+	/* Siri's answer card, measured off a real one: solid black, near the top */
+	.card {
+		position: absolute;
+		inset: 7% 2.2% 23.4%;
+		border-radius: 6cqw;
+		background: #000;
+		box-shadow: 0 0 0 1px rgb(255 255 255 / 6%);
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-width: none;
-		background: #fff;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	}
-	.screen::-webkit-scrollbar { display: none; }
+	.card::-webkit-scrollbar { display: none; }
 
-	.search {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 10px 14px;
-		border-radius: 999px;
-		background: #f1f3f4;
-	}
-	.g {
-		color: #4285f4;
-		font-weight: 800;
-		font-size: 16px;
-	}
-	.q {
-		flex: 1;
-		color: #202124;
-		font-size: 14px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	.voice {
-		margin: 10px 4px 0;
-		color: #5f6368;
-		font-size: 12.5px;
-		font-style: italic;
+	/* "Good afternoon." was cleared from the screenshot; this fills the bubble */
+	.ask {
+		position: absolute;
+		top: 78.25%;
+		left: 2.1%;
+		width: 95.8%;
+		height: 7.1%;
+		display: grid;
+		place-items: center;
+		margin: 0;
+		padding: 0 6%;
+		box-sizing: border-box;
+		color: #fff;
+		font-size: 4.3cqw;
+		font-weight: 600;
+		text-align: center;
 	}
 
-	.result {
-		margin-top: 14px;
-		padding: 14px 12px;
-		border: 1px solid #e3e3e3;
-		border-radius: 18px;
+	/* stands where Siri's map sits */
+	.head {
+		margin: 2cqw;
+		padding: 4cqw;
+		border-radius: 4.5cqw;
+		background: #1c1c1e;
 	}
 	.head b {
 		display: block;
-		color: #202124;
-		font-size: 17px;
+		font-size: 4.8cqw;
 	}
 	.head small {
-		color: #5f6368;
-		font-size: 12.5px;
+		color: rgb(235 235 245 / 60%);
+		font-size: 3.6cqw;
 	}
-
 	.sorts {
 		display: flex;
-		gap: 6px;
-		margin-top: 12px;
+		margin-top: 3.5cqw;
+		padding: 0.6cqw;
+		border-radius: 2.6cqw;
+		background: rgb(118 118 128 / 24%);
 	}
 	.sorts button {
-		padding: 6px 11px;
-		border: 1px solid #dadce0;
-		border-radius: 8px;
-		background: #fff;
-		color: #3c4043;
+		flex: 1;
+		padding: 1.6cqw 0;
+		border: 0;
+		border-radius: 2cqw;
+		background: none;
+		color: #fff;
 		font: inherit;
-		font-size: 12.5px;
+		font-size: 3.4cqw;
 		font-weight: 600;
 	}
-	.sorts button.on {
-		border-color: #d2e3fc;
-		background: #e8f0fe;
-		color: #1967d2;
-	}
+	.sorts button.on { background: #636366; }
 
 	.rows {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		margin: 12px 0 0;
+		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
-	.rows li {
-		border: 1px solid #e8eaed;
-		border-radius: 14px;
-		overflow: hidden;
-	}
+	.rows li + li .row { border-top: 1px solid rgb(84 84 88 / 65%); }
 	.row {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		width: 100%;
-		padding: 11px 10px;
+		gap: 2cqw;
+		/* dividers start under the text, as in Siri */
+		margin-left: 22.9cqw;
+		padding: 3.4cqw 3.6cqw 3.4cqw 0;
+	}
+	.row-main {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		gap: 3.7cqw;
+		min-width: 0;
+		margin-left: -18.9cqw;
+		padding: 0;
 		border: 0;
-		background: #fff;
+		background: none;
+		color: inherit;
 		font: inherit;
 		text-align: left;
 		cursor: pointer;
 	}
-	.badge {
+	.icon {
 		display: grid;
 		place-items: center;
 		flex: none;
-		width: 32px;
-		height: 32px;
-		border-radius: 9px;
+		width: 15.2cqw;
+		height: 15.2cqw;
+		border-radius: 3.6cqw;
 		color: #fff;
+		font-size: 7cqw;
 		font-weight: 800;
 	}
-	.mid {
+	.icon--sm {
+		width: 5.4cqw;
+		height: 5.4cqw;
+		border-radius: 1.4cqw;
+		font-size: 3cqw;
+	}
+	.text {
 		display: flex;
-		flex: 1;
 		flex-direction: column;
 		min-width: 0;
 		line-height: 1.3;
 	}
-	.mid b { color: #202124; font-size: 14.5px; }
-	.mid small { color: #5f6368; font-size: 12px; }
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4px;
-		margin-top: 4px;
+	.text b { font-size: 4.8cqw; }
+	.sub {
+		color: rgb(235 235 245 / 60%);
+		font-size: 3.8cqw;
 	}
-	.tag {
-		padding: 2px 7px;
-		border-radius: 6px;
-		font-size: 10.5px;
-		font-style: normal;
-		font-weight: 700;
+	.status {
+		color: #ff9f0a;
+		font-size: 3.8cqw;
 	}
-	.tag--price { background: #e6f4ea; color: #137333; }
-	.tag--time { background: #e8f0fe; color: #1967d2; }
-	.price {
+	.status.good { color: #30d158; }
+	.action {
 		display: flex;
+		flex: none;
 		flex-direction: column;
-		align-items: flex-end;
-		line-height: 1.2;
+		align-items: center;
+		gap: 1cqw;
+		color: #0a84ff;
+		font-size: 3.2cqw;
+		font-weight: 600;
 	}
-	.price b { color: #202124; font-size: 18px; }
-	.price small {
-		color: #80868b;
-		font-size: 11px;
+	.action-circle {
+		display: grid;
+		place-items: center;
+		width: 9.4cqw;
+		height: 9.4cqw;
+		border-radius: 50%;
+		background: #1c1c2e;
 	}
+	.action-circle svg { width: 4.6cqw; height: 4.6cqw; }
 
 	.bill {
-		padding: 4px 12px 14px;
-		border-top: 1px dashed #e3e3e3;
-	}
-	.match {
-		margin: 8px 0;
-		color: #5f6368;
-		font-size: 11.5px;
+		margin: 0 3.6cqw 3cqw 22.9cqw;
+		padding: 2.4cqw 3cqw;
+		border-radius: 3cqw;
+		background: #1c1c1e;
 	}
 	.line {
 		display: flex;
 		justify-content: space-between;
-		padding: 3px 0;
-		color: #3c4043;
-		font-size: 13px;
+		gap: 2cqw;
+		padding: 0.6cqw 0;
+		color: rgb(235 235 245 / 86%);
+		font-size: 3.3cqw;
 	}
-	.line.off { color: #137333; }
+	.line.off { color: #30d158; }
 	.line--total {
-		margin-top: 6px;
-		padding-top: 8px;
-		border-top: 1px solid #e8eaed;
-		color: #202124;
-		font-weight: 700;
-	}
-	.go {
-		display: block;
-		margin-top: 12px;
-		padding: 11px;
-		border-radius: 10px;
+		margin-top: 1.4cqw;
+		padding-top: 1.8cqw;
+		border-top: 1px solid rgb(84 84 88 / 65%);
 		color: #fff;
-		font-size: 14px;
 		font-weight: 700;
-		text-align: center;
 	}
-	.handoff {
-		display: block;
-		margin-top: 6px;
-		color: #5f6368;
-		font-size: 11px;
-		text-align: center;
-	}
-	.fine {
-		margin: 10px 2px 0;
-		color: #80868b;
-		font-size: 11px;
+
+	/* like Siri's "Open Maps" footer */
+	.foot {
+		display: flex;
+		align-items: center;
+		gap: 3cqw;
+		padding: 4cqw;
+		background: #0e0e0f;
+		color: rgb(235 235 245 / 72%);
+		font-size: 3.9cqw;
 	}
 	.hint {
 		margin: 0;
 		font-size: 13px;
 		color: #5f6368;
-	}
-
-	@media (max-width: 400px) {
-		.screen { height: 600px; }
 	}
 </style>

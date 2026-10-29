@@ -198,9 +198,9 @@ export const projects = [
 		context: 'A self-directed feature concept, built from her own habit of checking both food apps before ordering.',
 		problem:
 			'To find the cheaper app for one meal, people add the same dish on Swiggy and Zomato and apply coupons on both, because the real price only appears at checkout. Dish names differ between apps, coupons are personal, and delivery time and rating matter too.',
-		contribution: 'Problem framing, interaction design, and an interactive Google-style comparison on the portfolio.',
+		contribution: 'Problem framing, interaction design, and an interactive Siri comparison on the portfolio, built on real screenshots of her own order.',
 		solution:
-			'A Google Flights-style comparison in Google Search and Assistant: one row per app with the final price after fees and the best coupon, delivery time and rating. Rows sort by cheapest, fastest or top rated, each opens its full bill, and ordering opens the chosen app with the dish in the cart and the coupon applied. It lives with Google because the two apps are rivals.',
+			'Ask Siri for a dish and it compares it on both apps, the way Google Flights compares airlines: one row per app with the final price after fees and the best coupon, delivery time and rating. Rows sort by cheapest, fastest or top rated, each opens its full bill, and ordering opens the chosen app with the dish in the cart and the coupon applied. It lives in Siri because the two apps are rivals and Apple has no delivery app of its own. Today Siri answers the same request with Maps directions.',
 		outcome:
 			'Concept only, not yet tested. The plan is to measure time to order, money saved, and how often people still check both apps by hand.'
 	},

@@ -33,7 +33,7 @@ export const concepts = [
 		title: 'One biryani, two apps',
 		app: 'Swiggy vs Zomato',
 		problem: 'Before every order I add the same dish on both apps and apply coupons, just to see which final bill is lower.',
-		idea: 'A Google Flights-style comparison: final price, delivery time and rating, side by side.',
+		idea: 'Ask Siri, and it compares both apps like Google Flights: final price, delivery time and rating.',
 		period: 'Oct 2026 · Concept',
 		href: '/work/food-compare',
 		preview: 'compare',

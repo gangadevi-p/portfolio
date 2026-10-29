@@ -75,16 +75,16 @@
 					{:else if c.preview === 'compare'}
 						<div class="preview preview--compare" aria-hidden="true">
 							<div class="cmp">
-								<b class="cmp-head">Chicken Dum Biryani</b>
-								<div class="cmp-row">
-									<i style:background="#fc8019">S</i>
-									<span><b>Swiggy</b><small>35 min · ★ 4.5</small><em>Cheapest</em></span>
-									<strong>₹360</strong>
-								</div>
+								<b class="cmp-head">Single Chicken Biryani Bowl</b>
 								<div class="cmp-row">
 									<i style:background="#e23744">Z</i>
-									<span><b>Zomato</b><small>28 min · ★ 4.4</small><em class="fast">Fastest</em></span>
-									<strong>₹376</strong>
+									<span><b>Zomato</b><small>15–20 min</small><em>Cheapest · Fastest</em></span>
+									<strong>₹219</strong>
+								</div>
+								<div class="cmp-row">
+									<i style:background="#fc8019">S</i>
+									<span><b>Swiggy</b><small>25–30 min</small></span>
+									<strong>₹252</strong>
 								</div>
 							</div>
 						</div>

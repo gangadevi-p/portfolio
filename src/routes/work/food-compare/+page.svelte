@@ -15,12 +15,11 @@
 		constraints,
 		measure,
 		openQuestions,
-		credits
+		credits,
+		rupees
 	} from '$data/food.js';
 
-	const lowMenu = Math.min(...apps.map((a) => a.menu));
 	const lowTotal = Math.min(...apps.map((a) => a.total));
-	const rupees = (n) => (n < 0 ? '−₹' : '₹') + Math.abs(n);
 </script>
 
 <svelte:head>
@@ -61,10 +60,19 @@
 		<div class="screens" use:reveal>
 			{#each problem.screens as s (s.src)}
 				<figure>
-					<img src={s.src} alt={s.alt} width="600" height="1067" loading="lazy" />
+					<img src={s.src} alt={s.alt} width="1179" height="2556" loading="lazy" />
+					<figcaption>{s.caption}</figcaption>
 				</figure>
 			{/each}
 			<p class="screens-note">{problem.screensNote}</p>
+		</div>
+
+		<div class="today" use:reveal>
+			<img src={problem.siriToday.src} alt={problem.siriToday.alt} width="1179" height="2556" loading="lazy" />
+			<div>
+				<h3>{problem.siriToday.title}</h3>
+				<p>{problem.siriToday.text}</p>
+			</div>
 		</div>
 
 		<div class="routine" use:reveal>
@@ -101,17 +109,15 @@
 				<article class="receipt" use:reveal={{ delay: i * 0.06 }}>
 					<header style:--app={a.color}>
 						<b>{a.name}</b>
-						<span class="menu" class:low={a.menu === lowMenu}>
-							Menu ₹{a.menu}{#if a.menu === lowMenu} · lower{/if}
-						</span>
+						<span class="menu">Menu {rupees(a.menu)} · {a.eta}</span>
 					</header>
 					{#each a.bill as line (line.label)}
-						<div class="line" class:off={line.amount < 0}>
-							<span>{line.label}</span><span>{rupees(line.amount)}</span>
+						<div class="line" class:off={line.amount <= 0}>
+							<span>{line.label}</span><span>{line.amount === 0 ? `Free with ${line.note}` : rupees(line.amount)}</span>
 						</div>
 					{/each}
 					<div class="line line--total" class:win={a.total === lowTotal}>
-						<span>To pay</span><span>₹{a.total}</span>
+						<span>To pay</span><span>{rupees(a.total)}</span>
 					</div>
 				</article>
 			{/each}
@@ -355,31 +361,62 @@
 	}
 
 	/* ---------- the two apps ---------- */
+	/* four real screenshots in a row, the takeaway underneath */
 	.screens {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 220px)) minmax(0, 1fr);
-		align-items: center;
-		gap: 20px;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 16px;
 		margin-top: 28px;
 	}
 	.screens figure {
 		margin: 0;
-		border-radius: 20px;
-		overflow: hidden;
-		box-shadow: var(--fc-shadow);
 	}
 	.screens img {
 		display: block;
 		width: 100%;
 		height: auto;
+		border-radius: 18px;
+		box-shadow: var(--fc-shadow);
+	}
+	.screens figcaption {
+		margin-top: 10px;
+		color: var(--fc-ink);
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
 	}
 	.fc .screens-note {
-		padding-left: 12px;
+		grid-column: 1 / -1;
+		margin-top: 12px;
 		color: var(--fc-ink);
-		font-size: clamp(20px, 2.4vw, 28px);
+		font-size: clamp(20px, 2.4vw, 26px);
 		font-weight: 700;
 		letter-spacing: -0.01em;
-		line-height: 1.3;
+		line-height: 1.35;
+	}
+
+	.today {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 1fr);
+		align-items: center;
+		gap: 36px;
+		margin-top: 28px;
+		padding: 28px;
+		border-radius: 24px;
+		background: var(--fc-card);
+		box-shadow: var(--fc-shadow);
+	}
+	.today img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 18px;
+	}
+	.today h3 { font-size: 22px; }
+	.fc .today p {
+		margin-top: 12px;
+		font-size: 18px;
+		line-height: 1.65;
 	}
 
 	.routine {
@@ -499,7 +536,6 @@
 		font-size: 13px;
 		font-weight: 600;
 	}
-	.menu.low { background: #fdecea; color: #c5221f; }
 	.line {
 		display: flex;
 		justify-content: space-between;
@@ -572,7 +608,6 @@
 		}
 		.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 		.screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-		.fc .screens-note { grid-column: 1 / -1; padding-left: 0; }
 	}
 	@media (max-width: 700px) {
 		.sec { margin-top: 64px; }
@@ -585,5 +620,7 @@
 		.steps { grid-template-columns: 1fr; }
 		.card, .receipt, .routine { padding: 22px; }
 		.lane { flex-direction: column; align-items: flex-start; gap: 8px; }
+		.today { grid-template-columns: 1fr; padding: 22px; gap: 20px; }
+		.today img { max-width: 240px; margin-inline: auto; }
 	}
 </style>
