@@ -251,6 +251,18 @@ export const journey = {
 			text: 'Quick actions → Projects. Course progress, modules and team in a single view.',
 			tap: { x: 50, y: 41 },
 			screen: { src: '/img/KIET/hd/projects.avif', alt: 'Projects screen with course progress' }
+		},
+		{
+			title: 'Raise a complaint',
+			text: 'Quick actions → Complaint. Fill the details, submit, then track it as New, Pending or Resolved.',
+			tap: { x: 75, y: 41 },
+			screen: { src: '/img/KIET/hd/complaints.avif', alt: 'Complaints screen with status filters' }
+		},
+		{
+			title: 'Ask for permission',
+			text: 'Quick actions → Permission. Send a request and see who approved, rejected or is still reviewing.',
+			tap: { x: 75, y: 34 },
+			screen: { src: '/img/KIET/hd/permissions.avif', alt: 'Permissions screen with request statuses' }
 		}
 	]
 };
