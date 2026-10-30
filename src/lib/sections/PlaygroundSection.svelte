@@ -24,7 +24,7 @@
 		<div class="videos">
 			<div class="anims">
 				<div class="anim">
-					<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
+					<img src="/files/heartbloom.png" alt="Heartbloom interaction preview" width="348" height="244" loading="lazy" />
 				</div>
 			</div>
 			<figure class="piece piece--vector">
