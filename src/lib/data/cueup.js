@@ -31,11 +31,29 @@ export const contents = [
 ];
 
 export const hero = {
+	eyebrow: 'Relay',
+	title: 'Rent and repairs, with a status.',
+	text: 'Relay is a shared view for self-managing landlords and their tenants. Every payment reads paid, pending or overdue, and every repair shows who has it and what happens next, so nobody has to chase anyone over WhatsApp.',
+	// two apps cropped in a stage, the same way the Relay card in the project grid shows them
 	phones: [
-		{ src: '/img/CueUp/Landlord%20repairsSo.avif', alt: 'Relay landlord repairs screen', width: 1540, height: 3200 },
-		{ src: '/img/CueUp/LandlordHomeSo%201.avif', alt: 'Relay landlord home screen', width: 387, height: 800, highlight: 'Landlord' },
-		{ src: '/img/CueUp/TenantHomeSo.avif', alt: 'Relay tenant home screen', width: 1546, height: 3200, highlight: 'Tenant' },
-		{ src: '/img/CueUp/TenantRepairsSo.avif', alt: 'Relay tenant repairs screen', width: 1552, height: 3200 }
+		{
+			src: '/Relay/LandlordHome.png',
+			alt: 'Relay landlord home screen',
+			width: 1572,
+			height: 3408,
+			// what each persona opens the app for is lifted off the screen as a larger copy floating in front of the
+			// phone: `crop` is the card's place in the screen image (percentages, inset a touch so no background
+			// shows at the corners), `top` is where the copy sits on the phone (in stage-width units)
+			popouts: [{ crop: { left: 5.1, top: 54.9, width: 89.7, height: 32.5 }, top: 52.2 }]
+		},
+		{
+			src: '/Relay/TenantHome.png',
+			alt: 'Relay tenant home screen',
+			width: 1572,
+			height: 3408,
+			// the rent card with Pay & Submit
+			popouts: [{ crop: { left: 5.2, top: 14.3, width: 89.6, height: 38.7 }, top: 14.6 }]
+		}
 	]
 };
 
