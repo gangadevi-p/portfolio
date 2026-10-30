@@ -235,28 +235,16 @@ export const journey = {
 			}
 		},
 		{
-			title: 'Check attendance',
-			text: 'From Home, one tap on Attendance shows days present, absent and the overall percentage.',
-			tap: { x: 83, y: 94.5 },
-			screen: { src: '/img/KIET/hd/attendance.avif', alt: 'Attendance screen with monthly calendar' }
-		},
-		{
 			title: 'See academics',
 			text: 'Academics keeps semester-wise results, CGPA and backlogs in one list.',
 			tap: { x: 61, y: 94.5 },
 			screen: { src: '/img/KIET/hd/academics.avif', alt: 'Academics screen with semester results' }
 		},
 		{
-			title: 'Raise a complaint',
-			text: 'Quick actions → Complaint. Fill the details, submit, then track it as New, Pending or Resolved.',
-			tap: { x: 75, y: 41 },
-			screen: { src: '/img/KIET/hd/complaints.avif', alt: 'Complaints screen with status filters' }
-		},
-		{
-			title: 'Ask for permission',
-			text: 'Quick actions → Permission. Send a request and see who approved, rejected or is still reviewing.',
-			tap: { x: 75, y: 34 },
-			screen: { src: '/img/KIET/hd/permissions.avif', alt: 'Permissions screen with request statuses' }
+			title: 'Check attendance',
+			text: 'From Home, one tap on Attendance shows days present, absent and the overall percentage.',
+			tap: { x: 83, y: 94.5 },
+			screen: { src: '/img/KIET/hd/attendance.avif', alt: 'Attendance screen with monthly calendar' }
 		},
 		{
 			title: 'Track projects',

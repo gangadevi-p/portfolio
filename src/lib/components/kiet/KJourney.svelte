@@ -36,19 +36,18 @@
 			opened = true;
 			return;
 		}
-		// a chapter with a banner gets a lead-in so the banner lands on Home before the tap
-		const pre = chapters[index].banner ? 900 : 0;
-		if (pre) timers.push(setTimeout(() => (banner = true), 150));
-		timers.push(setTimeout(() => (aimed = true), pre + 120));
-		timers.push(setTimeout(() => (pressed = true), pre + TAP_AT));
+		// every chapter runs the same beat so the loop keeps an even rhythm
+		if (chapters[index].banner) timers.push(setTimeout(() => (banner = true), 80));
+		timers.push(setTimeout(() => (aimed = true), 120));
+		timers.push(setTimeout(() => (pressed = true), TAP_AT));
 		timers.push(
 			setTimeout(() => {
 				opened = true;
 				banner = false;
-			}, pre + OPEN_AT)
+			}, OPEN_AT)
 		);
-		timers.push(setTimeout(() => (pressed = false), pre + OPEN_AT + 250));
-		timers.push(setTimeout(() => play((index + 1) % chapters.length), pre + TOTAL));
+		timers.push(setTimeout(() => (pressed = false), OPEN_AT + 250));
+		timers.push(setTimeout(() => play((index + 1) % chapters.length), TOTAL));
 	}
 
 	// run only while visible and not hovered; resume from the current chapter
