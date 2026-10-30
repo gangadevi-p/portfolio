@@ -19,7 +19,7 @@ export const cueupMeta = {
 /** the deck's left-hand contents list — order matches the sections below */
 export const contents = [
 	{ id: 'overview', label: 'Overview' },
-	{ id: 'research', label: 'Research' },
+	{ id: 'research', label: 'Primary Findings' },
 	{ id: 'competitive-analysis', label: 'Competitive Analysis' },
 	{ id: 'user-persona', label: 'User Persona' },
 	{ id: 'constraints', label: 'Constraints' },

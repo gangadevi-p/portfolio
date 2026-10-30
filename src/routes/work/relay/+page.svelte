@@ -165,20 +165,23 @@
 		<!-- 3 · SOLUTION -->
 		<section class="sec cu-wrap" use:scrollFade>
 			<h2 class="cu-head" use:reveal>Solution</h2>
-			<p class="cu-note cu-note--surface" use:reveal>
-				{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}
-			</p>
-			<img
-				class="solution-visual"
-				src="/img/CueUp/repair-process-3d.avif"
-				alt="A repair process moving from request to completion"
-				loading="lazy"
-			/>
+			<div class="solution-row">
+				<p class="cu-note cu-note--surface" use:reveal>
+					<span>{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}</span>
+				</p>
+				<div class="solution-visual">
+					<img
+						src="/img/CueUp/repair-process-3d.avif"
+						alt="A repair process moving from request to completion"
+						loading="lazy"
+					/>
+				</div>
+			</div>
 		</section>
 
 		<!-- 4 · RESEARCH -->
 		<section class="sec cu-wrap" use:scrollFade id="research">
-			<h2 class="cu-head" use:reveal>Research</h2>
+			<h2 class="cu-head" use:reveal>Primary findings</h2>
 			<p class="cu-note" use:reveal>{findings.note}</p>
 
 			<div class="pad"><CFindings tracks={findings.tracks} callout={findings.callout} /></div>
@@ -672,12 +675,34 @@
 		.hero-title { font-size: 38px; }
 		.hero-text { font-size: 16px; }
 	}
+	/* the solution statement and its picture sit side by side as two cards of the same height */
+	.solution-row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 24px;
+		align-items: stretch;
+		margin-top: 16px;
+	}
+	.solution-row .cu-note {
+		display: flex;
+		align-items: center;
+		margin-top: 0;
+		padding: 28px;
+	}
 	.solution-visual {
+		display: grid;
+		place-items: center;
+		padding: 20px 24px;
+		background: #fff;
+		border-radius: 24px;
+	}
+	.solution-visual img {
 		display: block;
-		width: min(100%, 460px);
+		width: 100%;
 		height: auto;
-		margin: 22px auto 0;
-		opacity: 0.82;
+	}
+	@media (max-width: 999px) {
+		.solution-row { grid-template-columns: 1fr; gap: 20px; }
 	}
 
 	/* ---------- sections ---------- */
