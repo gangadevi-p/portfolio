@@ -34,6 +34,8 @@ export function reveal(node, options = {}) {
 				duration,
 				delay,
 				ease: 'power2.out',
+				// once settled, drop the transform so text is drawn crisp, not from a scaled layer
+				clearProps: 'transform,willChange',
 				scrollTrigger: { trigger: node, start, once: true }
 			}
 		);
