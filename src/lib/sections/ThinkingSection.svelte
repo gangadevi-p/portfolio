@@ -18,7 +18,7 @@
 <section id="product-thinking" class="section">
 	<Container class="wide-container">
 		<header class="head" use:reveal>
-			<h2 class="title">Product Thinking</h2>
+			<h2 class="title">UX</h2>
 			<p class="intro">{thinkingIntro}</p>
 		</header>
 
