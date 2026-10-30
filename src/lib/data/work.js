@@ -57,7 +57,7 @@ export const work = [
 		period: 'Feb 2026 – Mar 2026',
 		preview: {
 			kind: 'screens',
-			shots: ['/img/KIET/Home%20so.avif', '/img/KIET/Projects%20So.avif'],
+			shots: ['/img/KIET/hd/home.avif', '/img/KIET/hd/projects.avif'],
 			// these exports have a phone frame baked in (4.64% of the width on every side);
 			// it is trimmed so they sit in the same zoomed frame as Relay's bare screens
 			trim: 0.0464,

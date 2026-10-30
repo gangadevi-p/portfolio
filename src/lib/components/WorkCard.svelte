@@ -197,7 +197,6 @@
 			inset 0 0 0 0.22cqw rgb(255 255 255 / 16%),
 			0 0 0 0.28cqw #2b2b30,
 			0 3cqw 6cqw -1.5cqw rgb(15 30 60 / 45%);
-		animation: float 7s ease-in-out infinite alternate;
 	}
 	/* the island */
 	.zoom-phone::before {
@@ -244,11 +243,6 @@
 		top: 17.5cqw;
 		animation-delay: -3.5s;
 	}
-	@keyframes float {
-		from { translate: 0 0; }
-		to { translate: 0 -1.3cqw; }
-	}
-
 	/* The devices stand on one baseline, a laptop and a phone, each card in its
 	   own finish: Athera is a silver laptop seen front-on, with the phone on the
 	   right; Tool-Kit is a dark laptop turned a little, with the phone on the left. */
@@ -497,7 +491,7 @@
 		letter-spacing: -0.01em;
 	}
 	.body:not(.body--logo-hidden) > h3 {
-		color: #626262;
+		color: color-mix(in srgb, var(--c-ink) 88%, var(--c-bg));
 		font-size: clamp(1.075rem, calc(1.75vw - 2px), 1.325rem);
 		opacity: 1;
 	}
@@ -509,7 +503,7 @@
 	}
 	.details--logo-hidden .subheading {
 		margin-top: 0;
-		color: #626262;
+		color: color-mix(in srgb, var(--c-ink) 88%, var(--c-bg));
 		font-size: clamp(1.075rem, calc(1.75vw - 2px), 1.325rem);
 		font-weight: 700;
 		letter-spacing: -0.01em;
@@ -518,7 +512,7 @@
 	.outcome {
 		margin-top: 8px;
 		max-width: 44ch;
-		color: var(--c-ink-soft);
+		color: color-mix(in srgb, var(--c-ink) 78%, var(--c-bg));
 		font-size: clamp(0.92rem, 1.25vw, 1rem);
 		font-weight: 600;
 		line-height: 1.4;
