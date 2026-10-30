@@ -74,10 +74,10 @@ html[data-theme='dark'] body:has(main.home-route) .hero .frame {
 	background: linear-gradient(145deg, #292929, #1a1a1a) !important;
 	box-shadow: 0 20px 60px rgb(0 0 0 / 44%) !important;
 }
-html[data-theme='dark'] body:has(main.home-route) .card :is(h2, h3, p, span),
+html[data-theme='dark'] body:has(main.home-route) .card :is(h2, h3, p, span):not(:is(.shot, .preview) *),
 html[data-theme='dark'] body:has(main.home-route) .xp :is(h2, h3, p, span),
 html[data-theme='dark'] body:has(main.home-route) .footer :is(h2, p, a),
-html[data-theme='dark'] body:has(main.home-route) .section :is(h2, h3, p, li, a),
+html[data-theme='dark'] body:has(main.home-route) .section :is(h2, h3, p, li, a):not(:is(.shot, .preview) *),
 html[data-theme='dark'] body:has(main.home-route) .hero :is(h1, p, span, a) {
 	color: var(--c-ink) !important;
 }

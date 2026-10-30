@@ -1,7 +1,7 @@
 <script>
 	import { onDestroy } from 'svelte';
 
-	/** A small working Pomodoro timer for the "Play" section. Durations are in minutes. */
+	/** A small working Pomodoro timer for the "Micros" section. Durations are in minutes. */
 	const modes = [
 		{ id: 'focus', label: 'Focus', minutes: 25 },
 		{ id: 'short', label: 'Short break', minutes: 5 },

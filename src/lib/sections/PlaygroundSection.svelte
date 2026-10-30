@@ -2,13 +2,14 @@
 	import Container from '$components/Container.svelte';
 	import SectionHeading from '$components/SectionHeading.svelte';
 	import PomodoroTimer from '$components/PomodoroTimer.svelte';
+	import GlyphEditor from '$components/glyph/GlyphEditor.svelte';
 	import { reveal } from '$motion/reveal.js';
 </script>
 
 <section class="section">
 	<Container class="wide-container">
 		<div class="section-head">
-			<SectionHeading id="playground" title="Play" />
+			<SectionHeading id="playground" title="Micros" />
 			<span class="tool">Figma</span>
 		</div>
 
@@ -27,7 +28,7 @@
 				</div>
 			</div>
 			<figure class="piece piece--vector">
-				<img class="vector" src="/img/vector.avif" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
+				<GlyphEditor />
 				<figcaption class="vector-note">
 					<h3 class="note-heading">Have a look</h3>
 					<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>
@@ -167,12 +168,6 @@
 		min-height: var(--shot-h);
 		justify-content: space-between;
 	}
-	.vector {
-		display: block;
-		height: var(--shot-h);
-		width: auto;
-		border-radius: 10px;
-	}
 	.vector-note {
 		align-self: stretch;
 		display: flex;
@@ -247,10 +242,6 @@
 		.piece--vector,
 		.piece--pomodoro {
 			width: 100%;
-		}
-		.vector {
-			width: 100%;
-			height: auto;
 		}
 		.anims {
 			height: auto;

@@ -2,7 +2,17 @@
 	import Container from '$components/Container.svelte';
 	import { reveal } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
+	import SiriWave from '$components/SiriWave.svelte';
 	import { thinkingIntro, concepts } from '$data/thinking.js';
+
+	/* The previews play short loops. Off screen they pause. */
+	let grid;
+	let idle = $state(false);
+	$effect(() => {
+		const observer = new IntersectionObserver(([entry]) => (idle = !entry.isIntersecting));
+		observer.observe(grid);
+		return () => observer.disconnect();
+	});
 </script>
 
 <section id="product-thinking" class="section">
@@ -12,7 +22,7 @@
 			<p class="intro">{thinkingIntro}</p>
 		</header>
 
-		<div class="grid">
+		<div class="grid" class:idle bind:this={grid}>
 			{#each concepts as c, i (c.href)}
 				<a
 					class="card"
@@ -37,25 +47,29 @@
 
 					{#if c.preview === 'threads'}
 						<div class="preview" aria-hidden="true">
-							<div class="bubble">
+							<div class="bubble t-a">
 								<b>Arjun</b>
 								<p>Goa trip — Dec 20 to 24? Who’s in?</p>
 								<div class="bar">
 									<span class="stack"><i style:background="#c2410c">P</i><i style:background="#4d7c0f">N</i><i style:background="#be185d">S</i></span>
-									<span class="count">14 replies</span>
+									<span class="count roll roll-a"><span class="r0">14 replies</span><span class="r1">15 replies</span></span>
 									<span class="last">· 2m</span>
-									<span class="unread">3</span>
+									<span class="unread roll roll-a"><span class="r0">3</span><span class="r1">4</span></span>
 								</div>
 							</div>
 							<div class="thread">
-								<div class="reply"><i style:background="#c2410c">P</i><span>I’m in!! 🌴</span></div>
-								<div class="reply"><i style:background="#4d7c0f">N</i><span>Dec 20 works for me</span></div>
+								<div class="reply t-r1"><i style:background="#c2410c">P</i><span>I’m in!! 🌴</span></div>
+								<div class="reply t-r2"><i style:background="#4d7c0f">N</i><span>Dec 20 works for me</span></div>
+								<div class="slot">
+									<div class="reply typing"><i style:background="#be185d">S</i><span class="dots"><u></u><u></u><u></u></span></div>
+									<div class="reply t-r3"><i style:background="#be185d">S</i><span>Count me in 🙌</span></div>
+								</div>
 							</div>
-							<div class="bubble bubble--muted">
+							<div class="bubble bubble--muted t-b">
 								<b style:color="#7c3aed">Meera</b>
 								<p>Did anyone watch the match??</p>
 								<div class="bar">
-									<span class="count">23 replies</span>
+									<span class="count roll roll-b"><span class="r0">23 replies</span><span class="r1">24 replies</span></span>
 									<span class="last">· 5m</span>
 								</div>
 							</div>
@@ -67,28 +81,35 @@
 									<img src="/uber/auto-front.avif" alt="" loading="lazy" />
 									<span>Look for the front</span>
 								</div>
-								<div class="ride-cues"><em>“LAVANYA” sign</em><em>Red tassels</em></div>
+								<div class="ride-cues"><em class="cue-1">“LAVANYA” sign</em><em class="cue-2">Red tassels</em></div>
 								<div class="ride-row">
-									<b>Arriving · 1 min</b>
+									<b class="eta"
+										><i class="live"></i
+										><span class="eta-box"
+											><span class="e3">Arriving · 3 min</span><span class="e2">Arriving · 2 min</span><span class="e1">Arriving · 1 min</span></span
+										></b
+									>
 									<span class="ride-plate">KA 02 9275</span>
 								</div>
 							</div>
 						</div>
 					{:else if c.preview === 'compare'}
 						<div class="preview preview--compare" aria-hidden="true">
+							<span class="ask">Which is cheaper, Swiggy or Zomato?</span>
 							<div class="cmp">
 								<b class="cmp-head">Single Chicken Biryani Bowl</b>
-								<div class="cmp-row">
+								<div class="cmp-row c-1">
 									<i style:background="#e23744">Z</i>
 									<span><b>Zomato</b><small>15–20 min</small><em>Cheapest · Fastest</em></span>
 									<strong>₹219</strong>
 								</div>
-								<div class="cmp-row">
+								<div class="cmp-row c-2">
 									<i style:background="#fc8019">S</i>
 									<span><b>Swiggy</b><small>25–30 min</small></span>
 									<strong>₹252</strong>
 								</div>
 							</div>
+							<div class="siri"><SiriWave paused={idle} /></div>
 						</div>
 					{/if}
 				</a>
@@ -468,6 +489,326 @@
 	}
 	.cmp-row em.fast { background: #e8f0fe; color: #1967d2; }
 	.cmp-row strong { color: #202124; font-size: 16px; }
+
+	/* ---- waves: each preview plays a short loop ---------------------------
+	   The loops are 9s. Everything is hidden at both ends, so the elements can
+	   reset at different moments (their delays differ) without a visible jump.
+	   With reduced motion all of this is off and the cards show their still. */
+	.preview {
+		position: relative;
+	}
+	.preview *,
+	.preview {
+		animation-duration: 9s;
+		animation-iteration-count: infinite;
+		animation-fill-mode: both;
+	}
+	.grid.idle .preview * {
+		animation-play-state: paused;
+	}
+	@keyframes pop {
+		0%, 2% { opacity: 0; translate: 0 14px; scale: 0.94; animation-timing-function: var(--ease-back); }
+		8%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 -6px; scale: 1; }
+	}
+
+	/* WhatsApp: replies roll in one after another, someone starts typing (the
+	   dots bounce in a wave), their reply lands and the counts tick up */
+	.t-a { animation-name: pop; }
+	.t-r1 { animation-name: r1; }
+	.t-r2 { animation-name: r2; }
+	.t-r3 { animation-name: r3; }
+	.typing { animation-name: typing; }
+	.t-b { animation-name: popLate; }
+	@keyframes r1 {
+		0%, 10% { opacity: 0; translate: -12px 8px; animation-timing-function: var(--ease-back); }
+		15%, 92% { opacity: 1; translate: 0 0; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; }
+	}
+	@keyframes r2 {
+		0%, 18% { opacity: 0; translate: -12px 8px; animation-timing-function: var(--ease-back); }
+		23%, 92% { opacity: 1; translate: 0 0; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; }
+	}
+	@keyframes typing {
+		0%, 27% { opacity: 0; translate: -8px 6px; scale: 0.8; animation-timing-function: var(--ease-back); }
+		32%, 43% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		46%, 100% { opacity: 0; translate: 0 0; scale: 1; }
+	}
+	@keyframes r3 {
+		0%, 44% { opacity: 0; translate: -8px 6px; scale: 0.85; animation-timing-function: var(--ease-back); }
+		50%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; scale: 1; }
+	}
+	@keyframes popLate {
+		0%, 56% { opacity: 0; translate: 0 14px; scale: 0.94; animation-timing-function: var(--ease-back); }
+		62%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 -6px; scale: 1; }
+	}
+	.slot {
+		position: relative;
+		height: 32px;
+	}
+	.slot .reply {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.reply .dots {
+		display: inline-flex;
+		gap: 4px;
+		padding: 11px 12px;
+	}
+	.dots u {
+		display: block;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #8696a0;
+		text-decoration: none;
+		animation: bounce 1.1s ease-in-out infinite;
+	}
+	.dots u:nth-child(2) { animation-delay: 0.15s; }
+	.dots u:nth-child(3) { animation-delay: 0.3s; }
+	@keyframes bounce {
+		0%, 60%, 100% { translate: 0 0; opacity: 0.45; }
+		30% { translate: 0 -5px; opacity: 1; }
+	}
+	/* a count that rolls to its next number, like an odometer */
+	.roll {
+		display: inline-grid;
+	}
+	.roll > span {
+		grid-area: 1 / 1;
+		text-align: center;
+	}
+	.roll .r1 {
+		opacity: 0;
+	}
+	.roll-a .r0 { animation-name: rollOutA; }
+	.roll-a .r1 { animation-name: rollInA; }
+	.roll-b .r0 { animation-name: rollOutB; }
+	.roll-b .r1 { animation-name: rollInB; }
+	@keyframes rollOutA {
+		0%, 49% { opacity: 1; translate: 0 0; }
+		53%, 100% { opacity: 0; translate: 0 -70%; }
+	}
+	@keyframes rollInA {
+		0%, 49% { opacity: 0; translate: 0 70%; }
+		53%, 100% { opacity: 1; translate: 0 0; }
+	}
+	@keyframes rollOutB {
+		0%, 76% { opacity: 1; translate: 0 0; }
+		80%, 100% { opacity: 0; translate: 0 -70%; }
+	}
+	@keyframes rollInB {
+		0%, 76% { opacity: 0; translate: 0 70%; }
+		80%, 100% { opacity: 1; translate: 0 0; }
+	}
+
+	/* Uber: waves spread from the live dot, the cues pop in turn, and the wait
+	   counts down to the plate */
+	.preview--pickup .ride { animation-name: card; }
+	.ride-photo img { animation-name: drift; animation-timing-function: ease-in-out; }
+	.ride-photo span { animation-name: tag; }
+	.cue-1 { animation-name: cue1; }
+	.cue-2 { animation-name: cue2; }
+	.ride-plate { position: relative; overflow: hidden; animation-name: plate; }
+	.ride-plate::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 85%) 50%, transparent 65%);
+		translate: -120% 0;
+		animation: glint 9s infinite both;
+	}
+	@keyframes card {
+		0%, 1% { opacity: 0; translate: 0 12px; animation-timing-function: var(--ease-out); }
+		7%, 93% { opacity: 1; translate: 0 0; animation-timing-function: ease-in; }
+		98%, 100% { opacity: 0; translate: 0 -6px; }
+	}
+	@keyframes drift {
+		0%, 100% { scale: 1; translate: 0 0; }
+		50% { scale: 1.09; translate: -1.5% 1%; }
+	}
+	@keyframes tag {
+		0%, 8% { opacity: 0; translate: -10px 0; animation-timing-function: var(--ease-back); }
+		14%, 92% { opacity: 1; translate: 0 0; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; }
+	}
+	@keyframes cue1 {
+		0%, 14% { opacity: 0; translate: 0 8px; scale: 0.8; animation-timing-function: var(--ease-back); }
+		20%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; scale: 1; }
+	}
+	@keyframes cue2 {
+		0%, 20% { opacity: 0; translate: 0 8px; scale: 0.8; animation-timing-function: var(--ease-back); }
+		26%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 0; scale: 1; }
+	}
+	@keyframes plate {
+		0%, 52% { opacity: 0; scale: 0.8; animation-timing-function: var(--ease-back); }
+		58%, 92% { opacity: 1; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; scale: 1; }
+	}
+	@keyframes glint {
+		0%, 62% { translate: -120% 0; }
+		72%, 100% { translate: 120% 0; }
+	}
+	.eta {
+		display: inline-flex;
+		align-items: center;
+		gap: 9px;
+	}
+	.eta-box {
+		display: inline-grid;
+	}
+	.eta-box > span {
+		grid-area: 1 / 1;
+	}
+	.eta-box .e3, .eta-box .e2 { opacity: 0; }
+	.e3 { animation-name: eta3; }
+	.e2 { animation-name: eta2; }
+	.e1 { animation-name: eta1; }
+	@keyframes eta3 {
+		0%, 8% { opacity: 0; translate: 0 70%; }
+		13%, 26% { opacity: 1; translate: 0 0; }
+		30%, 100% { opacity: 0; translate: 0 -70%; }
+	}
+	@keyframes eta2 {
+		0%, 26% { opacity: 0; translate: 0 70%; }
+		31%, 46% { opacity: 1; translate: 0 0; }
+		50%, 100% { opacity: 0; translate: 0 -70%; }
+	}
+	@keyframes eta1 {
+		0%, 46% { opacity: 0; translate: 0 70%; }
+		51%, 92% { opacity: 1; translate: 0 0; }
+		97%, 100% { opacity: 0; translate: 0 0; }
+	}
+	/* the live dot, with two rings that spread out of it like a ripple */
+	.preview .live {
+		position: relative;
+		display: inline-block;
+		flex: none;
+		width: 8px;
+		height: 8px;
+		background: #05944f;
+	}
+	.preview .live::before,
+	.preview .live::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		border: 1.5px solid #05944f;
+		opacity: 0;
+		animation: ping 1.8s ease-out infinite;
+	}
+	.preview .live::after {
+		animation-delay: 0.9s;
+	}
+	@keyframes ping {
+		0% { opacity: 0.7; scale: 1; }
+		100% { opacity: 0; scale: 3.4; }
+	}
+
+	/* Swiggy vs Zomato: Siri listens (the classic wave), then the answer waves in */
+	.ask { animation-name: ask; }
+	.cmp { overflow: hidden; animation-name: cmp; }
+	.c-1 { animation-name: row1; }
+	.c-2 { animation-name: row2; }
+	.cmp-row em { animation-name: badge; }
+	.cmp::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 75%) 50%, transparent 62%);
+		translate: -120% 0;
+		animation: sweep 9s infinite both;
+		pointer-events: none;
+	}
+	.ask {
+		position: absolute;
+		top: 16px;
+		left: 50%;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 12px;
+		border-radius: 999px;
+		background: #fff;
+		box-shadow: 0 4px 14px -6px rgb(0 0 0 / 25%);
+		color: #202124;
+		font-size: 12px;
+		font-weight: 600;
+		white-space: nowrap;
+		translate: -50% 0;
+	}
+	.ask::before {
+		content: '';
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: conic-gradient(#5ac8fa, #bf5af2, #ff375f, #5ac8fa);
+	}
+	.siri {
+		position: absolute;
+		left: 50%;
+		bottom: 16px;
+		width: 206px;
+		height: 46px;
+		border-radius: 999px;
+		overflow: hidden;
+		background: #0b0b10;
+		box-shadow: 0 8px 22px -8px rgb(0 0 0 / 50%);
+		translate: -50% 0;
+		animation-name: siri;
+	}
+	@keyframes siri {
+		0%, 2% { opacity: 0; translate: -50% 12px; animation-timing-function: var(--ease-back); }
+		8%, 92% { opacity: 1; translate: -50% 0; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: -50% 0; }
+	}
+	@keyframes ask {
+		0%, 8% { opacity: 0; translate: -50% -8px; animation-timing-function: var(--ease-back); }
+		14%, 30% { opacity: 1; translate: -50% 0; animation-timing-function: ease-in; }
+		34%, 100% { opacity: 0; translate: -50% -4px; }
+	}
+	@keyframes cmp {
+		0%, 30% { opacity: 0; translate: 0 18px; scale: 0.96; animation-timing-function: var(--ease-back); }
+		37%, 92% { opacity: 1; translate: 0 0; scale: 1; animation-timing-function: ease-in; }
+		97%, 100% { opacity: 0; translate: 0 -6px; scale: 1; }
+	}
+	@keyframes row1 {
+		0%, 36% { opacity: 0; translate: 22px 0; animation-timing-function: var(--ease-back); }
+		43%, 100% { opacity: 1; translate: 0 0; }
+	}
+	@keyframes row2 {
+		0%, 42% { opacity: 0; translate: 22px 0; animation-timing-function: var(--ease-back); }
+		49%, 100% { opacity: 1; translate: 0 0; }
+	}
+	@keyframes badge {
+		0%, 50% { opacity: 0; scale: 0.5; animation-timing-function: var(--ease-back); }
+		56%, 100% { opacity: 1; scale: 1; }
+	}
+	@keyframes sweep {
+		0%, 58% { translate: -120% 0; }
+		70%, 100% { translate: 120% 0; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.preview *,
+		.preview,
+		.preview *::before,
+		.preview *::after {
+			animation: none !important;
+		}
+		.slot,
+		.ask,
+		.siri {
+			display: none;
+		}
+	}
 
 	@media (max-width: 1024px) {
 		.grid {

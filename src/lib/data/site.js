@@ -24,7 +24,7 @@ export const nav = [
 	{ label: 'Me', href: '#me' },
 	{ label: 'Projects', href: '#work' },
 	{ label: 'Thinking', href: '#product-thinking' },
-	{ label: 'Play', href: '#playground' },
+	{ label: 'Micros', href: '#playground' },
 	{ label: 'Also me', href: '#also-me' }
 ];
 

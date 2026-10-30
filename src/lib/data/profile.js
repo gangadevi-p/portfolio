@@ -223,7 +223,7 @@ export const projects = [
 	}
 ];
 
-/** Smaller experiments — the "Play" / playground list. */
+/** Smaller experiments — the "Micros" / playground list. */
 export const playground = [
 	{ name: 'Motion study — micro-interactions', year: '2025', note: 'A weekly set of interface animation experiments.' },
 	{ name: 'Type specimen — Anton / Archivo', year: '2024', note: 'An editorial layout system for heavy display type.' },
