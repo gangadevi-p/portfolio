@@ -39,16 +39,12 @@
 	}
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		/* 2 × 2 — wide tiles give the mockups room to read */
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 24px;
 		align-items: stretch;
 	}
-	@media (max-width: 1024px) {
-		.grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-	@media (max-width: 560px) {
+	@media (max-width: 720px) {
 		.grid {
 			grid-template-columns: 1fr;
 			gap: 16px;

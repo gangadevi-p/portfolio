@@ -142,7 +142,7 @@ export const toolDefinitions = [
 		type: 'function',
 		function: {
 			name: 'get_playground',
-			description: 'List her smaller side experiments (the "Play" section) — motion studies, type, icons, colour tools.',
+			description: 'List her smaller side experiments (the "Micros" section) — motion studies, type, icons, colour tools.',
 			parameters: { type: 'object', properties: {}, additionalProperties: false }
 		}
 	},

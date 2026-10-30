@@ -15,6 +15,13 @@
  * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
  * `outcome` — optional. One-line result shown in bold under the blurb.
  * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
+ * `preview` — optional mockup at the top of the card, on a soft `tone` panel
+ *   (leave `tone` out and the mockup sits straight on the card, no panel):
+ *   { kind: 'phones', shots: [front, back], tone } — two app screens in phone frames
+ *   { kind: 'athera' | 'toolkit', backdrop }   — an animated brand loop
+ *     (components/athera/AtheraReel.svelte, components/toolkit/ToolkitReel.svelte);
+ *     `backdrop` is any CSS background in the site's own palette and, unlike
+ *     `tone`, stays the same in dark mode
  */
 export const work = [
 	{
@@ -24,8 +31,14 @@ export const work = [
 		logoHeight: 32,
 		logoName: 'Relay',
 		heading: 'Rent & Repair',
-		outcome: 'Rent and repairs in one shared view',
+		outcome: 'Landlords and tenants chase rent and repairs over calls and chats. Relay gives both one shared view.',
 		period: 'Jun 2026 – Aug 2026',
+		preview: {
+			kind: 'phones',
+			shots: ['/img/work/relay-tenant-home.avif', '/img/CueUp/LandlordHomeSo%201.avif'],
+			// the app's pale blue-grey, lit from the top; a backdrop, so it stays put in dark mode
+			backdrop: 'radial-gradient(90% 85% at 50% 0%, #f0f5fc 0%, #d3e2f4 55%, #b7cfeb 100%)'
+		},
 		href: '/work/relay',
 		slug: 'relay',
 		bespoke: true
@@ -35,8 +48,13 @@ export const work = [
 		logo: '/img/KIET/kiet%20logo.png',
 		darkLogo: '/kiet/Kietdarkthemelogo.png',
 		logoVariant: 'kiet',
-		outcome: 'Live on Google Play · 6,061 acquisitions',
+		outcome: 'Students missed updates scattered across WhatsApp, PDFs and sites. One app now holds it all.',
 		period: 'Feb 2026 – Mar 2026',
+		preview: {
+			kind: 'phones',
+			shots: ['/img/KIET/Home%20so.avif', '/img/KIET/Projects%20So.avif'],
+			tone: '#fcebe0'
+		},
 		href: '/work/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
@@ -48,8 +66,13 @@ export const work = [
 		logoHeight: 32,
 		logoName: 'Athera',
 		heading: 'Premium furniture',
-		outcome: 'Designed by me, built with Claude',
+		outcome: 'Premium furniture is a big, permanent purchase. Athera makes renting it calm and effortless.',
 		period: 'Sep 2026 · 2 weeks',
+		preview: {
+			kind: 'athera',
+			// the hero's warm spotlight on walnut
+			backdrop: 'radial-gradient(110% 90% at 50% 75%, #a68c75 0%, #6e5848 45%, #3b2f27 100%)'
+		},
 		href: 'https://gangadevi-p.github.io/athera/',
 		openInNewTab: false,
 		hoverLabel: 'Open Athera'
@@ -58,8 +81,14 @@ export const work = [
 		title: "Designer's Tool-Kit",
 		hideLogo: true,
 		subheading: 'Digital Notes',
-		outcome: 'We design what others use. This is what we use to design.',
+		outcome: 'Design references get scattered across tabs and notes. The Tool-Kit keeps them in one saveable place.',
 		period: 'Oct 2026 · 2 weeks',
+		preview: {
+			kind: 'toolkit',
+			// the app's black canvas, a faint dot grid and a soft top light
+			backdrop:
+				'radial-gradient(rgb(255 255 255 / 8%) 1px, transparent 1.2px) 0 0 / 14px 14px, radial-gradient(90% 80% at 50% 0%, #2b2b2e 0%, #0b0b0c 65%)'
+		},
 		href: 'https://gangadevi-p.github.io/toolkit/',
 		openInNewTab: false,
 		hoverLabel: 'Open Toolkit'
