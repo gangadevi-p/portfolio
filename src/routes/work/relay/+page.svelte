@@ -119,7 +119,10 @@
 	<div class="page">
 		<header class="hero-preview cu-wrap" id="relay-preview" aria-label="Relay introduction">
 			<div class="hero-copy">
-				<p class="hero-eyebrow">{hero.eyebrow}</p>
+				<p class="hero-brand">
+					<img src={hero.logo} alt="" width="48" height="48" />
+					<span>{hero.eyebrow}</span>
+				</p>
 				<h1 class="hero-title">{hero.title}</h1>
 				<p class="hero-text">{hero.text}</p>
 			</div>
@@ -536,13 +539,21 @@
 		gap: 56px;
 		align-items: center;
 	}
-	.hero-eyebrow {
-		margin: 0 0 18px;
-		font-size: 13px;
-		font-weight: 600;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--cu-ink-soft);
+	/* the project's logo with its name beside it, as on the card in the project grid */
+	.hero-brand {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		margin: 0 0 22px;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--cu-ink);
+	}
+	.hero-brand img {
+		display: block;
+		width: 48px;
+		height: 48px;
 	}
 	.hero-title {
 		margin: 0;

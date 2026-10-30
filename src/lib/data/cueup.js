@@ -31,9 +31,10 @@ export const contents = [
 ];
 
 export const hero = {
+	logo: '/img/CueUp/logo.png',
 	eyebrow: 'Relay',
-	title: 'Rent and repairs, with a status.',
-	text: 'Relay is a shared view for self-managing landlords and their tenants. Every payment reads paid, pending or overdue, and every repair shows who has it and what happens next, so nobody has to chase anyone over WhatsApp.',
+	title: 'Stop chasing. Start knowing.',
+	text: 'A status-based guide to rent and repairs, so both sides always know where things stand.',
 	// two apps cropped in a stage, the same way the Relay card in the project grid shows them
 	phones: [
 		{
