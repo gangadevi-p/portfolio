@@ -1,5 +1,5 @@
 /**
- * "Product Thinking" — feature concepts for apps people already use.
+ * "UX" (the Product Thinking section) — feature concepts for apps people already use.
  *
  * Each entry is one card in ThinkingSection.svelte and links to its own
  * /work/<slug> page. Keep `problem` to one sentence; the card is a teaser.

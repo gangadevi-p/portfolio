@@ -97,6 +97,19 @@
 				{#each item.preview.shots as src, i (src)}
 					<img class="phone phone--{i ? 'back' : 'front'}" {src} alt="" loading="lazy" />
 				{/each}
+			{:else if item.preview.kind === 'screens'}
+				<div class="pair">
+					{#each item.preview.shots as src, i (src)}
+						<div
+							class="zoom-phone zoom-phone--{i ? 'back' : 'front'}"
+							style:--trim={item.preview.trim}
+						>
+							<div class="clip" class:trimmed={Boolean(item.preview.trim)}>
+								<img {src} alt="" loading="lazy" decoding="async" />
+							</div>
+						</div>
+					{/each}
+				</div>
 			{:else if reels[item.preview.kind]}
 				{@const [Desktop, Phone] = reels[item.preview.kind]}
 				<div class="laptop">
@@ -162,6 +175,80 @@
 	.shot--brand:is(.shot--athera, .shot--toolkit) {
 		box-shadow: inset 0 0 0 999px rgb(0 0 0 / 22%);
 	}
+	/* Relay — two app screens shown up close: big phones the panel crops, so the
+	   interface fills the card. The pair zooms in a little further on hover. */
+	.pair {
+		position: absolute;
+		inset: 0;
+		transform-origin: 50% 0;
+		transition: transform 0.9s var(--ease-out);
+	}
+	.card.linked:hover .pair,
+	.card.linked:focus-visible .pair {
+		transform: scale(1.08);
+	}
+	.zoom-phone {
+		position: absolute;
+		width: 46cqw;
+		padding: 1.2cqw;
+		border-radius: 6.4cqw;
+		background: #0b0b0d;
+		box-shadow:
+			inset 0 0 0 0.22cqw rgb(255 255 255 / 16%),
+			0 0 0 0.28cqw #2b2b30,
+			0 3cqw 6cqw -1.5cqw rgb(15 30 60 / 45%);
+		animation: float 7s ease-in-out infinite alternate;
+	}
+	/* the island */
+	.zoom-phone::before {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		top: 2.5cqw;
+		left: 50%;
+		width: 12cqw;
+		height: 3.4cqw;
+		border-radius: 99px;
+		background: #000;
+		transform: translateX(-50%);
+	}
+	.clip {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 1572 / 3408;
+		border-radius: 5.2cqw;
+	}
+	.clip img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	/* a baked-in phone frame is cut away: the image is drawn slightly larger than
+	   its box and pulled up-left by the frame's thickness, so only the screen shows.
+	   (Margin percentages are of the box's width, which keeps the cut even all round.) */
+	.clip.trimmed img {
+		width: calc(100% / (1 - 2 * var(--trim)) + 1%);
+		height: auto;
+		max-width: none;
+		margin: calc(var(--trim) / (1 - 2 * var(--trim)) * -100% - 0.5%) 0 0
+			calc(var(--trim) / (1 - 2 * var(--trim)) * -100% - 0.5%);
+	}
+	.zoom-phone--front {
+		left: 4cqw;
+		top: 6.5cqw;
+		z-index: 2;
+	}
+	.zoom-phone--back {
+		left: 49.5cqw;
+		top: 17.5cqw;
+		animation-delay: -3.5s;
+	}
+	@keyframes float {
+		from { translate: 0 0; }
+		to { translate: 0 -1.3cqw; }
+	}
+
 	/* The devices stand on one baseline, a laptop and a phone, each card in its
 	   own finish: Athera is a silver laptop seen front-on, with the phone on the
 	   right; Tool-Kit is a dark laptop turned a little, with the phone on the left. */
@@ -343,7 +430,7 @@
 	}
 
 	/* Top row: the project's mark and name on the left, its date on the right,
-	   the same way the Product Thinking cards open */
+	   the same way the UX cards open */
 	.meta {
 		display: flex;
 		align-items: center;
@@ -506,8 +593,16 @@
 		.period .ic,
 		.phone,
 		.laptop,
-		.handset {
+		.handset,
+		.pair {
 			transition: none;
+		}
+		.zoom-phone {
+			animation: none;
+		}
+		.card.linked:hover .pair,
+		.card.linked:focus-visible .pair {
+			transform: none;
 		}
 		.card.linked:hover .phone,
 		.card.linked:focus-visible .phone {

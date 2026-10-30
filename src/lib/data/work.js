@@ -18,6 +18,9 @@
  * `preview` — optional mockup at the top of the card, on a soft `tone` panel
  *   (leave `tone` out and the mockup sits straight on the card, no panel):
  *   { kind: 'phones', shots: [front, back], tone } — two app screens in phone frames
+ *   { kind: 'screens', shots: [front, back], backdrop | tone, trim? } — two app screens, zoomed in
+ *     and cropped by the panel inside CSS phone frames (zooms further on hover). `trim` is the
+ *     share of the width to cut off every side when the export has a phone frame baked in.
  *   { kind: 'athera' | 'toolkit', backdrop }   — an animated brand loop
  *     (components/athera/AtheraReel.svelte, components/toolkit/ToolkitReel.svelte);
  *     `backdrop` is any CSS background in the site's own palette and, unlike
@@ -34,8 +37,9 @@ export const work = [
 		outcome: 'Landlords and tenants chase rent and repairs over calls and chats. Relay gives both one shared view.',
 		period: 'Jun 2026 – Aug 2026',
 		preview: {
-			kind: 'phones',
-			shots: ['/img/work/relay-tenant-home.avif', '/img/CueUp/LandlordHomeSo%201.avif'],
+			kind: 'screens',
+			// the tenant's and the landlord's home screens, shown up close, at their original export size
+			shots: ['/Relay/TenantHome.png', '/Relay/LandlordHome.png'],
 			// the app's pale blue-grey, lit from the top; a backdrop, so it stays put in dark mode
 			backdrop: 'radial-gradient(90% 85% at 50% 0%, #f0f5fc 0%, #d3e2f4 55%, #b7cfeb 100%)'
 		},
@@ -51,8 +55,11 @@ export const work = [
 		outcome: 'Students missed updates scattered across WhatsApp, PDFs and sites. One app now holds it all.',
 		period: 'Feb 2026 – Mar 2026',
 		preview: {
-			kind: 'phones',
+			kind: 'screens',
 			shots: ['/img/KIET/Home%20so.avif', '/img/KIET/Projects%20So.avif'],
+			// these exports have a phone frame baked in (4.64% of the width on every side);
+			// it is trimmed so they sit in the same zoomed frame as Relay's bare screens
+			trim: 0.0464,
 			tone: '#fcebe0'
 		},
 		href: '/work/kiet-student-app',
