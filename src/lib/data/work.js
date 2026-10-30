@@ -52,6 +52,7 @@ export const work = [
 		logo: '/img/KIET/kiet%20logo.png',
 		darkLogo: '/kiet/Kietdarkthemelogo.png',
 		logoVariant: 'kiet',
+		logoHeight: 28,
 		outcome: 'Students missed updates scattered across WhatsApp, PDFs and sites. One app now holds it all.',
 		period: 'Feb 2026 – Mar 2026',
 		preview: {
