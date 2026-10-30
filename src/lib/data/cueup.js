@@ -88,7 +88,7 @@ export const solution = [
 ];
 
 export const findings = {
-	note: 'I reviewed nine public Reddit posts and comments to understand how landlords and tenants currently coordinate rent and repairs.',
+	note: 'I looked at how landlords and tenants coordinate rent and repairs today, and where that coordination breaks down.',
 	callout: 'Relay Focuses On Payment Verification And Repair Progress.',
 	tracks: [
 		{

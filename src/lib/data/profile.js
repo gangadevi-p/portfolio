@@ -96,7 +96,7 @@ export const skills = [
 	},
 	{
 		name: 'User research and synthesis',
-		evidence: 'Student interviews for the KIET app; reviewed nine public Reddit threads to map how landlords and tenants coordinate rent and repairs for Relay.'
+		evidence: 'Student interviews for the KIET app; research synthesis on how landlords and tenants coordinate rent and repairs for Relay.'
 	},
 	{
 		name: 'Information architecture',
@@ -294,7 +294,7 @@ export const knowledge = [
 	{
 		id: 'skills',
 		tags: ['skill', 'skills', 'strength', 'strengths', 'strongest', 'expertise', 'good', 'best', 'ux', 'ui', 'capabilities', 'do'],
-		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, nine Reddit threads synthesised for Relay, and a daily poster series for ADM.'
+		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, research synthesis on rent and repair coordination for Relay, and a daily poster series for ADM.'
 	},
 	{
 		id: 'tools',
@@ -309,7 +309,7 @@ export const knowledge = [
 	{
 		id: 'cueup',
 		tags: ['cueup', 'landlord', 'tenant', 'rent', 'repair', 'repairs', 'property', 'housing', 'whatsapp'],
-		text: 'Relay is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi reviewed nine public Reddit threads, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
+		text: 'Relay is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi researched how both sides coordinate today, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
 	},
 	{
 		id: 'athera',
