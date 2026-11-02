@@ -1,4 +1,5 @@
 <script>
+	import ScrollKey from '$lib/components/ScrollKey.svelte';
 	import { reveal, revealScale } from '$motion/reveal.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
 	import FPhone from '$components/food/FPhone.svelte';
@@ -14,7 +15,6 @@
 		decisions,
 		constraints,
 		measure,
-		openQuestions,
 		credits,
 		rupees
 	} from '$data/food.js';
@@ -28,12 +28,11 @@
 </svelte:head>
 
 <div class="fc">
-	<a class="back" href="/#product-thinking" use:cursorLabel={'Back home'}>
-		<span aria-hidden="true">←</span> Back
-	</a>
-
 	<!-- HERO -->
 	<header class="hero wrap">
+		<a class="back" href="/#product-thinking" use:cursorLabel={'Back home'}>
+			<span aria-hidden="true">←</span> Back
+		</a>
 		<div class="hero-copy">
 			<p class="eyebrow" use:reveal>{hero.eyebrow}</p>
 			<h1 use:reveal>{hero.title} <span>{hero.accent}</span></h1>
@@ -50,6 +49,7 @@
 		<div class="hero-phone" use:revealScale>
 			<FPhone />
 		</div>
+		<ScrollKey href="#problem" label="Scroll down" fixed theme="orange" />
 	</header>
 
 	<!-- PROBLEM -->
@@ -196,14 +196,6 @@
 		</div>
 	</section>
 
-	<!-- OPEN QUESTIONS -->
-	<section class="sec wrap" id="open-questions">
-		<h2 class="head" use:reveal>Open questions</h2>
-		<ul class="questions" use:reveal>
-			{#each openQuestions as q (q)}<li>{q}</li>{/each}
-		</ul>
-	</section>
-
 	<footer class="credits wrap"><p>{credits}</p></footer>
 </div>
 
@@ -213,7 +205,7 @@
 		--c-cursor: #202124;
 		--c-cursor-ink: #f6f7f9;
 
-		--fc-bg: #f6f7f9;
+		--fc-bg: #ffffff;
 		--fc-card: #ffffff;
 		--fc-ink: #202124;
 		--fc-ink-soft: #5f6368;
@@ -224,7 +216,7 @@
 
 		position: relative;
 		min-height: 100vh;
-		padding: 24px 0 120px;
+		padding: 12px 0 120px;
 		background: var(--fc-bg);
 		color: var(--fc-ink-soft);
 		font-family: 'Plus Jakarta Sans', 'Poppins', system-ui, sans-serif;
@@ -248,11 +240,19 @@
 		margin-inline: auto;
 	}
 
+	/* shares the copy column's cell, pinned to its top = the top of the phone */
 	.back {
-		display: inline-flex;
+		grid-area: 1 / 1;
+		align-self: start;
+		z-index: 1;
+		display: flex;
+		width: fit-content;
 		align-items: center;
 		gap: 10px;
-		margin: 0 0 0 max(16px, calc((100% - 1020px) / 2));
+		margin: 0;
+		padding: 6px 14px 6px 0;
+		border-radius: 999px;
+		background: var(--fc-bg);
 		font-size: 15px;
 		font-weight: 500;
 		color: var(--fc-ink-soft);
@@ -267,10 +267,15 @@
 	.hero {
 		display: grid;
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+		grid-template-rows: auto;
 		align-items: center;
-		gap: 56px;
-		padding: 40px 0 24px;
+		column-gap: 56px;
+		/* sized to its content (no full-screen height) so the problem section peeks into the first screen */
+		row-gap: 20px;
+		padding: 80px 0 8px;
 	}
+	.hero-copy { grid-area: 1 / 1; }
+	.hero-phone { grid-area: 1 / 2; }
 	.eyebrow {
 		display: inline-block;
 		padding: 6px 12px;
@@ -281,7 +286,12 @@
 		font-weight: 600;
 	}
 	.hero h1 {
+		width: fit-content;
 		margin-top: 18px;
+		padding: 6px 16px 10px 0;
+		border-radius: 20px;
+		background: var(--fc-bg);
+		box-shadow: 0 0 0 6px var(--fc-bg);
 		font-size: clamp(40px, 5.6vw, 64px);
 		letter-spacing: -0.035em;
 		line-height: 1.04;
@@ -289,6 +299,10 @@
 	.hero h1 span { color: #fc8019; }
 	.fc .lead {
 		margin-top: 20px;
+		padding: 8px 14px 8px 0;
+		border-radius: 16px;
+		background: var(--fc-bg);
+		box-shadow: 0 0 0 6px var(--fc-bg);
 		max-width: 520px;
 		font-size: 18px;
 		line-height: 1.65;
@@ -316,11 +330,17 @@
 	}
 
 	/* ---------- sections ---------- */
-	.sec { margin-top: 96px; }
+	.sec { margin-top: 56px; }
 	.head {
 		display: flex;
+		width: fit-content;
 		align-items: center;
 		gap: 11px;
+		/* solid chip so the doodles never run through the text */
+		padding: 8px 18px 8px 0;
+		border-radius: 999px;
+		background: var(--fc-bg);
+		box-shadow: 0 0 0 6px var(--fc-bg);
 		font-size: 26px;
 		text-transform: uppercase;
 		letter-spacing: 0.01em;
@@ -335,6 +355,10 @@
 	}
 	.fc .note {
 		margin-top: 16px;
+		padding: 8px 14px 8px 0;
+		border-radius: 16px;
+		background: var(--fc-bg);
+		box-shadow: 0 0 0 6px var(--fc-bg);
 		font-size: 19px;
 		line-height: 1.7;
 	}
@@ -581,20 +605,6 @@
 	}
 
 	/* ---------- questions + credits ---------- */
-	.questions {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		margin: 24px 0 0;
-		padding: 0;
-		list-style: none;
-	}
-	.questions li {
-		padding: 18px 22px;
-		border: 1px dashed #c6c9cd;
-		border-radius: 18px;
-		color: var(--fc-ink);
-	}
 	.credits {
 		margin-top: 72px;
 		font-size: 13px;
@@ -604,13 +614,17 @@
 	@media (max-width: 960px) {
 		.hero {
 			grid-template-columns: 1fr;
+			grid-template-rows: auto;
 			gap: 40px;
 		}
+		.back,
+		.hero-copy,
+		.hero-phone { grid-area: auto; }
 		.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 		.screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	}
 	@media (max-width: 700px) {
-		.sec { margin-top: 64px; }
+		.sec { margin-top: 44px; }
 		.head { font-size: 22px; gap: 9px; }
 		.head::before { width: 10px; height: 10px; }
 		.fc .note, .fc .lead, .quote { font-size: 17px; }

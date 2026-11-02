@@ -28,3 +28,14 @@ export function scrollToId(id, { offset = -72 } = {}) {
 		el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 }
+
+/** Scroll down by (most of) one screen — used by the pinned "scroll down" key. */
+export function scrollByScreen(fraction = 0.85) {
+	if (typeof window === 'undefined') return;
+	const target = window.scrollY + window.innerHeight * fraction;
+	if (_lenis) {
+		_lenis.scrollTo(target, { duration: 1.05 });
+	} else {
+		window.scrollTo({ top: target, behavior: 'smooth' });
+	}
+}
