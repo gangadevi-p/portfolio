@@ -1,7 +1,7 @@
 /**
  * Spot your ride — a self-directed feature concept for Uber (autos + cabs).
  *
- * Everything on /work/uber-pickup reads from here. Like WhatsApp Threads, this
+ * Everything on /projects/uber-pickup reads from here. Like WhatsApp Threads, this
  * is a concept: the "measure" block is a plan, not results. The photos come
  * from Wikimedia Commons (see `credits`) and were cropped / had faces blurred.
  */

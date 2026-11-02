@@ -1,1 +1,1 @@
-<!-- redirects to /work/relay/ (see +page.js) -->
+<!-- redirects to /projects/relay/ (see +page.js) -->

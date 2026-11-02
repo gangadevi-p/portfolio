@@ -60,7 +60,7 @@
 		<div class="intro">
 			<p class="intro-kicker">{hero.kicker} {hero.name}</p>
 			<h1 class="intro-role">{hero.role}</h1>
-			<a class="intro-next" href="#work" aria-label="Scroll to projects">
+			<a class="intro-next" href="#projects" aria-label="Scroll to projects">
 				<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
 					<path d="M12 4v13m0 0-5.5-5.5M12 17l5.5-5.5" fill="none" stroke="currentColor"
 						stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />

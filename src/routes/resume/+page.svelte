@@ -4,7 +4,7 @@
 	import { cursorLabel } from '$motion/cursor.svelte.js';
 	import { base } from '$app/paths';
 
-	/** "/work/…" stays on the site; anything else is a live site in a new tab */
+	/** "/projects/…" stays on the site; anything else is a live site in a new tab */
 	const isInternal = (href) => href.startsWith('/');
 	const linkLabel = (href) => (isInternal(href) ? 'Case study' : 'Live site');
 	/** "Designer's Tool-Kit" → "DT" */

@@ -1,7 +1,7 @@
 /**
  * WhatsApp Threads — a self-directed feature concept.
  *
- * Everything on /work/whatsapp-threads reads from here. The chat in the phone
+ * Everything on /projects/whatsapp-threads reads from here. The chat in the phone
  * mock is made up; nothing here is a research result — the "test" block is the
  * plan for validating the idea, not findings.
  */

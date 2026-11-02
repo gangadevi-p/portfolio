@@ -3,15 +3,30 @@
 	import { resume } from '$data/resume.js';
 	import NavButton from './NavButton.svelte';
 	import { navigation } from '$motion/navigation.svelte.js';
+	import { scrollToId } from '$motion/smoothscroll.js';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	let onHome = $derived(page.route.id === '/');
 	/** `label` keeps the two copies of this nav (hero + sticky) distinct to AT. */
 	let { label = 'Primary', centered = true } = $props();
+
+	/**
+	 * On the home page, scroll to the section with the same Lenis helper the
+	 * case studies use — the browser's own #hash jump never moves the page
+	 * while Lenis is driving it. On other pages the link just goes home.
+	 */
+	function go(event, href, title) {
+		navigation.active = title;
+		const id = href.slice(1);
+		const modified = event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0;
+		if (!onHome || modified || !document.getElementById(id)) return;
+		event.preventDefault();
+		scrollToId(id);
+	}
 </script>
 
 <nav class="nav" class:centered aria-label={label}>
-	<a class="brand" href={`${base}/#me`}>
+	<a class="brand" href={`${base}/#me`} onclick={(e) => go(e, '#me', 'Me')}>
 		<span class="pin" aria-hidden="true">
 			<svg viewBox="0 0 24 24" width="16" height="16">
 				<path
@@ -32,7 +47,7 @@
 					label={link.label}
 					wide={link.label === 'Me'}
 					selected={onHome && link.label === navigation.active}
-					onclick={() => (navigation.active = link.label)}
+					onclick={(e) => go(e, link.href, link.label)}
 				/>
 			</li>
 		{/each}

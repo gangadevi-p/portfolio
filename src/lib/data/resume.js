@@ -9,7 +9,7 @@
  */
 export const resume = {
 	/** the original PDF */
-	resumeUrl: '/files/GangadeviCv.pdf',
+	resumeUrl: '/files/GangaDeviDesigner.pdf',
 	/** filename the browser saves it as */
 	fileName: 'Gangadevi-P-Resume.pdf',
 	/** the résumé page on this site */
@@ -31,7 +31,7 @@ export const resume = {
 			name: 'KIET Student App',
 			role: 'Product Designer · Android',
 			period: 'Feb 2026 – Mar 2026',
-			href: '/work/kiet-student-app',
+			href: '/projects/kiet-student-app',
 			logo: '/img/KIET/kiet%20logo.png',
 			points: [
 				'Designed a centralized student platform integrating announcements, attendance, academics, and campus services.',
@@ -43,7 +43,7 @@ export const resume = {
 			name: 'Relay',
 			role: 'Rent & Repair',
 			period: 'Jun 2026 – Aug 2026',
-			href: '/work/relay',
+			href: '/projects/relay',
 			logo: '/img/CueUp/logo.png',
 			points: [
 				'Designed an end-to-end landlord–tenant platform to simplify rent tracking, payment verification, and maintenance coordination.',

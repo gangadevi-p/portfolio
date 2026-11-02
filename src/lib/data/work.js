@@ -14,7 +14,7 @@
  * `heading` — optional. Replaces the title text shown under the logo.
  * `framed` — optional. Wraps the logo in a white, rounded "app icon" tile.
  * `outcome` — optional. One-line result shown in bold under the blurb.
- * `slug` + `bespoke` — only for projects that have their own /work/<slug> route.
+ * `slug` + `bespoke` — only for projects that have their own /projects/<slug> route.
  * `preview` — optional mockup at the top of the card, on a soft `tone` panel
  *   (leave `tone` out and the mockup sits straight on the card, no panel):
  *   { kind: 'phones', shots: [front, back], tone } — two app screens in phone frames
@@ -43,7 +43,7 @@ export const work = [
 			// the app's pale blue-grey, lit from the top; a backdrop, so it stays put in dark mode
 			backdrop: 'radial-gradient(90% 85% at 50% 0%, #f0f5fc 0%, #d3e2f4 55%, #b7cfeb 100%)'
 		},
-		href: '/work/relay',
+		href: '/projects/relay',
 		slug: 'relay',
 		bespoke: true
 	},
@@ -63,7 +63,7 @@ export const work = [
 			trim: 0.0464,
 			tone: '#fcebe0'
 		},
-		href: '/work/kiet-student-app',
+		href: '/projects/kiet-student-app',
 		slug: 'kiet-student-app',
 		bespoke: true
 	},

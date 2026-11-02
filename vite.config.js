@@ -9,7 +9,7 @@ export default defineConfig({
 		warmup: {
 			clientFiles: [
 				'./src/routes/+layout.svelte',
-				'./src/routes/work/**/+page.svelte',
+				'./src/routes/projects/**/+page.svelte',
 				'./src/lib/components/cueup/*.svelte',
 				'./src/lib/components/kiet/*.svelte'
 			]

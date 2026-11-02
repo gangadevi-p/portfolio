@@ -2,7 +2,7 @@
  * One biryani, two apps — a self-directed feature concept: ask Siri for a dish
  * and compare it on Swiggy and Zomato, Google Flights-style, before ordering.
  *
- * Everything on /work/food-compare reads from here. The order is real: the
+ * Everything on /projects/food-compare reads from here. The order is real: the
  * same bowl from the same restaurant, checked on both apps on 29 Oct 2026
  * (screenshots in /static/food, full resolution, with the address and card
  * digits painted out).

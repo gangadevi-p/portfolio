@@ -15,11 +15,11 @@
 
 	// Link-preview text per page; anything not listed falls back to the home copy.
 	const pageMeta = {
-		'/work/food-compare': {
+		'/projects/food-compare': {
 			title: 'One biryani, two apps — Concept',
 			description: 'Compare the same dish on Swiggy and Zomato by final price, delivery time and rating.'
 		},
-		'/work/kiet-student-app': {
+		'/projects/kiet-student-app': {
 			title: 'KIET Student App — Case study',
 			description: 'One app for announcements, attendance and campus services — live on Google Play with 6,061 acquisitions.'
 		},
@@ -27,15 +27,15 @@
 			title: 'Résumé — Gangadevi P',
 			description: 'UX & Product Designer — selected projects, skills and education, with the PDF to download.'
 		},
-		'/work/relay': {
+		'/projects/relay': {
 			title: 'Relay — Case study',
 			description: 'A shared view of rent and repairs for self-managing landlords and their tenants.'
 		},
-		'/work/uber-pickup': {
+		'/projects/uber-pickup': {
 			title: 'Spot your ride — Concept',
 			description: 'Riders see a real photo of their auto; drivers see a photo of the pickup spot.'
 		},
-		'/work/whatsapp-threads': {
+		'/projects/whatsapp-threads': {
 			title: 'WhatsApp Threads — Concept',
 			description: 'Optional, Reddit-style reply threads so big WhatsApp groups stay easy to follow.'
 		}
