@@ -1,19 +1,18 @@
 <script>
 	/**
-	 * Segmented tab control for the "Also me" copy: Story / TL;DR / Timeline.
+	 * Segmented tab control for the "Also me" copy: Story / TL;DR.
 	 *
 	 * A white thumb slides behind the active tab. All three panels share one
 	 * grid cell, so the block keeps the height of the tallest panel and the
 	 * photos around it don't jump when you switch.
 	 *
-	 * Panels are passed in as snippets: `story`, `tldr`, `timeline`.
+	 * Panels are passed in as snippets: `story`, `tldr`.
 	 */
-	let { title, story, tldr, timeline } = $props();
+	let { title, story, tldr } = $props();
 
 	const tabs = [
 		{ id: 'story', label: 'Story' },
-		{ id: 'tldr', label: 'TL;DR' },
-		{ id: 'timeline', label: 'Timeline' }
+		{ id: 'tldr', label: 'TL;DR' }
 	];
 
 	let active = $state('story');
@@ -54,17 +53,12 @@
 						<svg viewBox="0 0 24 24" aria-hidden="true">
 							<path d="M4 6h16M4 12h10M4 18h16" />
 						</svg>
-					{:else if tab.id === 'tldr'}
+					{:else}
 						<svg viewBox="0 0 24 24" aria-hidden="true">
 							<path d="M9 6h11M9 12h11M9 18h11" />
 							<circle cx="4.5" cy="6" r="0.9" />
 							<circle cx="4.5" cy="12" r="0.9" />
 							<circle cx="4.5" cy="18" r="0.9" />
-						</svg>
-					{:else}
-						<svg viewBox="0 0 24 24" aria-hidden="true">
-							<rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
-							<path d="M3.5 10h17M8 3v4M16 3v4" />
 						</svg>
 					{/if}
 					<span>{tab.label}</span>
@@ -74,7 +68,7 @@
 	</header>
 
 	<div class="panels">
-		{#each [{ id: 'story', body: story }, { id: 'tldr', body: tldr }, { id: 'timeline', body: timeline }] as panel (panel.id)}
+		{#each [{ id: 'story', body: story }, { id: 'tldr', body: tldr }] as panel (panel.id)}
 			<div
 				class="panel"
 				class:active={active === panel.id}
@@ -90,7 +84,7 @@
 </div>
 
 <style>
-	/* Heading on the left, tab switch on the right — same row, like Work Experience. */
+	/* Heading on the left, tab switch on the right — same row, like Projects. */
 	.head {
 		display: flex;
 		align-items: center;
@@ -108,7 +102,7 @@
 		--pad: 6px;
 		position: relative;
 		display: inline-grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		padding: var(--pad);
 		/* Same surface as every other card: pure white, no border, soft card shadow. */
 		background: var(--c-surface);
@@ -122,7 +116,7 @@
 		position: absolute;
 		inset-block: var(--pad);
 		left: var(--pad);
-		width: calc((100% - var(--pad) * 2) / 3);
+		width: calc((100% - var(--pad) * 2) / 2);
 		translate: calc(var(--i) * 100%) 0;
 		background: var(--c-surface-subtle);
 		border-radius: 999px;

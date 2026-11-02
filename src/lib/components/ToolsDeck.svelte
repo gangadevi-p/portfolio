@@ -5,11 +5,10 @@
 
 	/* Hover drives this on a mouse; touch has no hover, so a tap toggles it too. */
 	let open = $state(false);
-	/* Three rows, top to bottom, taking `take` icons each. Each slot has a small
+	/* Two rows, top to bottom, taking `take` icons each. Each slot has a small
 	   drop (in icon heights, so a row curves down at its ends) and a tilt. */
 	const rows = [
 		{ take: 3, drop: [0.05, 0, 0.05], rotate: [-8, -2, 8] },
-		{ take: 3, drop: [0.05, 0, 0.05], rotate: [-6, 3, 9] },
 		{ take: Infinity, drop: [0, 0], rotate: [-8, 6] }
 	];
 	/* space, in px, between neighbouring icons' artwork: 4px apart within a row,

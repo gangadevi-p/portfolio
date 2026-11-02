@@ -62,7 +62,6 @@
 		display: block;
 		font-size: 0.92rem;
 		font-weight: 500;
-		opacity: 0.95;
 	}
 	.card img {
 		position: absolute;

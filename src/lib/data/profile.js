@@ -5,8 +5,8 @@
  * on-site "Portfolio guide" (portfolio-assistant.js reads `knowledge` below)
  * and the written PROFILE.md at the repo root.
  *
- * Everything here is drawn from the real project data (work.js, experience.js,
- * kiet.js, cueup.js, geekbull.js, adm.js, projects.js, site.js). If a project,
+ * Everything here is drawn from the real project data (work.js, kiet.js,
+ * cueup.js, projects.js, site.js) and her CV. If a project,
  * date, or metric changes in those files, update it here too.
  *
  * Voice: third person ("Gangadevi", "she") so the assistant can quote it
@@ -96,7 +96,7 @@ export const skills = [
 	},
 	{
 		name: 'User research and synthesis',
-		evidence: 'Student interviews for the KIET app; reviewed nine public Reddit threads to map how landlords and tenants coordinate rent and repairs for Relay.'
+		evidence: 'Student interviews for the KIET app; research synthesis on how landlords and tenants coordinate rent and repairs for Relay.'
 	},
 	{
 		name: 'Information architecture',
@@ -135,10 +135,10 @@ export const projects = [
 	{
 		name: 'KIET Student App',
 		slug: 'kiet-student-app',
-		year: '2024',
+		year: '2026',
 		role: 'Product Designer',
 		detailed: true,
-		context: 'Team of two (designer + Android developer), roughly four months. Live on the Google Play Store.',
+		context: 'Team of two (designer + Android developer), Feb 2026 – Mar 2026. Live on the Google Play Store.',
 		problem:
 			'Students relied on WhatsApp, PDFs, and several separate websites for college information, so updates were hard to find and easy to miss.',
 		contribution: 'Research, user personas, UX design, UI design, user flows, and iteration.',
@@ -163,6 +163,48 @@ export const projects = [
 			'Competitive analysis (RentOk, RentRovio, Rent Maa), landlord and tenant personas, information architecture and user flows for both roles, and the UI.'
 	},
 	{
+		name: 'WhatsApp Threads',
+		slug: 'whatsapp-threads',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for WhatsApp group chats.',
+		problem:
+			'In large groups (say 50 friends), several conversations run at once — a trip plan, match talk, a birthday gift — and they get mixed up in one flat stream, so it is hard to follow any one of them.',
+		contribution: 'Problem framing, interaction design, and an interactive prototype on the portfolio.',
+		solution:
+			'Optional, Reddit-style reply threads: people reply under a specific message instead of in the main chat. Each thread collapses to one line with a reply count, avatars, and last activity, and expands inline. Normal chatting is unchanged, so smaller groups are not affected.',
+		outcome:
+			'Concept only — not yet tested. The plan is to test it with active groups to see whether people can follow conversations and find messages more easily.'
+	},
+	{
+		name: 'Spot your ride (Uber)',
+		slug: 'uber-pickup',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept for Uber’s rider and driver apps, focused on autos in crowded places.',
+		problem:
+			'At busy spots like metro exits, the ride has arrived but neither side can find the other: every auto looks the same, and the driver sees only a pin in a crowd. Everyone ends up calling “where are you?”.',
+		contribution: 'Problem framing, interaction design, privacy rules, and an interactive rider/driver prototype on the portfolio.',
+		solution:
+			'Riders see a real photo of their vehicle, showing the side they will actually see (front when it is coming toward them, side when it pulls up). Drivers can see an optional photo of the pickup spot, which shows the place, never the person, with faces blurred. Drivers upload four sides of the vehicle at onboarding. A 3D model from the photos was considered and dropped.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time from arrival to pickup, “where are you?” calls, and cancellations at pickup in crowded places.'
+	},
+	{
+		name: 'One biryani, two apps (Swiggy vs Zomato)',
+		slug: 'food-compare',
+		year: '2026',
+		role: 'Product Designer',
+		context: 'A self-directed feature concept, built from her own habit of checking both food apps before ordering.',
+		problem:
+			'To find the cheaper app for one meal, people add the same dish on Swiggy and Zomato and apply coupons on both, because the real price only appears at checkout. Dish names differ between apps, coupons are personal, and delivery time and rating matter too.',
+		contribution: 'Problem framing, interaction design, and an interactive Siri comparison on the portfolio, built on real screenshots of her own order.',
+		solution:
+			'Ask Siri for a dish and it compares it on both apps, the way Google Flights compares airlines: one row per app with the final price after fees and the best coupon, delivery time and rating. Rows sort by cheapest, fastest or top rated, each opens its full bill, and ordering opens the chosen app with the dish in the cart and the coupon applied. It lives in Siri because the two apps are rivals and Apple has no delivery app of its own. Today Siri answers the same request with Maps directions.',
+		outcome:
+			'Concept only, not yet tested. The plan is to measure time to order, money saved, and how often people still check both apps by hand.'
+	},
+	{
 		name: 'Athera',
 		year: '2026',
 		role: 'Designer',
@@ -181,7 +223,7 @@ export const projects = [
 	}
 ];
 
-/** Smaller experiments — the "Play" / playground list. */
+/** Smaller experiments — the "Micros" / playground list. */
 export const playground = [
 	{ name: 'Motion study — micro-interactions', year: '2025', note: 'A weekly set of interface animation experiments.' },
 	{ name: 'Type specimen — Anton / Archivo', year: '2024', note: 'An editorial layout system for heavy display type.' },
@@ -193,7 +235,7 @@ export const playground = [
 	}
 ];
 
-/** Work history — from experience.js. */
+/** Work history — from her CV. Only the portfolio guide uses this; the site has no Experience section. */
 export const experience = [
 	{
 		company: 'Manino',
@@ -252,7 +294,7 @@ export const knowledge = [
 	{
 		id: 'skills',
 		tags: ['skill', 'skills', 'strength', 'strengths', 'strongest', 'expertise', 'good', 'best', 'ux', 'ui', 'capabilities', 'do'],
-		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, nine Reddit threads synthesised for Relay, and a daily poster series for ADM.'
+		text: 'Gangadevi is strongest at end-to-end product design, user research and synthesis, information architecture, and user flows — including multi-role products. She also works in prototyping, design systems, motion and micro-interactions, and visual / communication design. Each of these is backed by real project work: student interviews and a 9-module IA for the KIET app, research synthesis on rent and repair coordination for Relay, and a daily poster series for ADM.'
 	},
 	{
 		id: 'tools',
@@ -267,7 +309,7 @@ export const knowledge = [
 	{
 		id: 'cueup',
 		tags: ['cueup', 'landlord', 'tenant', 'rent', 'repair', 'repairs', 'property', 'housing', 'whatsapp'],
-		text: 'Relay is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi reviewed nine public Reddit threads, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
+		text: 'Relay is a 2026 product concept for self-managing landlords and their tenants. Rent and repairs are the only two things the two sides owe each other, but both live in WhatsApp with no status, so everyone keeps chasing. Gangadevi researched how both sides coordinate today, then designed a shared status view that makes payment verification, repair progress, and the next responsibility clear — deliberately scoped to leave out accounting, chat, payment processing, and a vendor marketplace.'
 	},
 	{
 		id: 'athera',
@@ -327,7 +369,7 @@ export const knowledge = [
 	{
 		id: 'experience-length',
 		tags: ['years', 'experience', 'long', 'senior', 'junior', 'level', 'much', 'old', 'fresher', 'graduate'],
-		text: 'She has around two years of design experience across product roles and internships — Manino (2026), Geekbull (2024–25), and ADM (2024) — plus the KIET Student App, which she designed and shipped to the Play Store in 2024.'
+		text: 'She has around two years of design experience across product roles and internships — Manino (2026), Geekbull (2024–25), and ADM (2024) — plus the KIET Student App, which she designed and shipped to the Play Store in 2026.'
 	},
 	/**
 	 * Kept last on purpose: its tags ("work", "project") are generic, so any

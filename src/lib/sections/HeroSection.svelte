@@ -7,6 +7,25 @@
 	import ParallaxImage from '$components/ParallaxImage.svelte';
 	import SkillsDeck from '$components/SkillsDeck.svelte';
 	import ToolsDeck from '$components/ToolsDeck.svelte';
+
+	// Typewriter for the role: starts once the kicker has faded in. Under
+	// reduced motion the full role shows straight away.
+	let typed = $state('');
+	$effect(() => {
+		const role = hero.role;
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			typed = role;
+			return;
+		}
+		let i = 0;
+		let timer;
+		const tick = () => {
+			typed = role.slice(0, ++i);
+			if (i < role.length) timer = setTimeout(tick, 70);
+		};
+		timer = setTimeout(tick, 700);
+		return () => clearTimeout(timer);
+	});
 </script>
 
 <section id="me" class="hero" use:pointer.track>
@@ -14,7 +33,10 @@
 		<SiteNav />
 
 		<div class="headline">
-			<span class="kicker">{hero.kicker}</span>
+			<span class="kicker" aria-label="{hero.kicker} {hero.role}">
+				<span aria-hidden="true">{hero.kicker}
+					<span class="role">{typed}</span><span class="caret"></span></span>
+			</span>
 			<span class="name-mask">
 				<h1 class="name">{hero.name}</h1>
 			</span>
@@ -32,6 +54,18 @@
 
 		<div class="hero-photo" use:cursorLabel={hero.photo.label}>
 			<ParallaxImage src={hero.photo.src} alt={hero.photo.alt} depth={-0.04} />
+		</div>
+
+		<!-- Small screens swap the collage for this plain, centred intro. -->
+		<div class="intro">
+			<p class="intro-kicker">{hero.kicker} {hero.name}</p>
+			<h1 class="intro-role">{hero.role}</h1>
+			<a class="intro-next" href="#projects" aria-label="Scroll to projects">
+				<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+					<path d="M12 4v13m0 0-5.5-5.5M12 17l5.5-5.5" fill="none" stroke="currentColor"
+						stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</a>
 		</div>
 	</div>
 </section>
@@ -74,6 +108,20 @@
 	}
 	.kicker {
 		animation: hero-in 0.45s ease-out 0.2s both;
+	}
+	.caret {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		margin-left: 2px;
+		vertical-align: -0.12em;
+		background: currentColor;
+		animation: caret-blink 0.9s steps(1) infinite;
+	}
+	@keyframes caret-blink {
+		50% {
+			opacity: 0;
+		}
 	}
 	.name {
 		animation: hero-in 0.6s ease-out 0.3s both;
@@ -249,61 +297,117 @@
 
 	}
 
-	/* SiteNav wraps onto two lines below 900px (not enough room for brand +
-	   5 links + the assistant launcher on one row), which makes the nav
-	   taller than the collage's fixed overlap math assumes — the photo and
-	   the deck cards would ride up over the wrapped nav and the name text.
-	   Simplest fix: stop absolutely-positioning them below that same 900px
-	   point and just stack everything in normal document flow instead, so
-	   the layout never depends on knowing the nav's exact height. */
-	@media (max-width: 900px) {
+	/* ---- small screens: plain centred intro ------------------------------
+	   The collage (name + folders + portrait) only holds together on a wide,
+	   tall viewport — on laptops around 1000×600 and on phones the name runs
+	   into the folders. Below that, hide it and show the simple intro. */
+	.intro {
+		display: none;
+	}
+	@media (max-width: 1100px), (max-height: 680px) {
 		.frame {
 			display: flex;
 			flex-direction: column;
-			min-height: 0;
-			/* the anchor maths above no longer apply once stacked */
-			--name-fs: clamp(3.5rem, 15vw, 6.5rem);
+			min-height: calc(100svh - 2 * clamp(0.75rem, 2vw, 1.5rem));
 		}
-		.headline {
-			margin-top: 1.25rem;
-		}
+		.headline,
+		.deck-row,
 		.hero-photo {
-			order: 2;
-			position: static;
-			width: min(62%, 280px);
-			max-width: none;
-			height: auto;
-			margin: 1rem auto 0;
-			overflow: visible;
+			display: none;
 		}
-		.hero-photo :global(img) {
-			width: 100%;
-		}
-		.deck-row {
-			order: 3;
-			position: static;
-			margin-top: 1.75rem;
-			left: auto;
-			bottom: auto;
+		.intro {
+			flex: 1;
+			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
+			align-items: center;
+			gap: clamp(0.75rem, 2vw, 1.25rem);
+			padding-block: 2rem 0.5rem;
+			text-align: center;
+			animation: hero-in 0.6s ease-out 0.2s both;
 		}
-		.skills-slot {
-			height: auto;
+		.intro-kicker {
+			/* this auto margin and the button's split the free space, so the
+			   text sits centred with the button pinned to the bottom */
+			margin: auto 0 0;
+			font-size: clamp(1.125rem, 2.6vw, 1.75rem);
+			font-weight: 700;
+			color: #b8b8be;
 		}
-		.skills-slot :global(.deck) {
-			transform: none;
+		.intro-role {
+			margin: 0;
+			max-width: 14ch;
+			font-family: var(--font-display);
+			font-size: clamp(2.5rem, 8vw, 5rem);
+			font-weight: 800;
+			line-height: 1.05;
+			letter-spacing: -0.035em;
+			text-wrap: balance;
 		}
-		.tools-slot {
-			width: min(220px, 52vw);
-			height: auto;
-			translate: none;
+		/* 3D key: a raised body sitting on a dark slab (the 8px solid shadow),
+		   with a recessed face and a glossy streak drawn by the pseudo-elements.
+		   Hover sinks it part-way, pressing pushes it flush with the slab. */
+		.intro-next {
+			--depth: 8px;
+			position: relative;
+			display: grid;
+			place-items: center;
+			width: 60px;
+			height: 60px;
+			margin-top: auto;
+			margin-bottom: var(--depth);
+			border-radius: 18px;
+			background: linear-gradient(180deg, #55555b, #232326);
+			color: #fff;
+			box-shadow:
+				inset 0 1px 0 rgb(255 255 255 / 30%),
+				0 var(--depth) 0 #0b0b0c,
+				0 calc(var(--depth) + 3px) 0 #d6d6db,
+				0 calc(var(--depth) + 14px) 22px rgb(29 29 31 / 22%);
+			transition: translate 0.15s ease-out, box-shadow 0.15s ease-out;
 		}
-		.tools-slot :global(.deck) {
-			--deck-stretch: 1;
-			height: auto;
-			aspect-ratio: 300 / 249;
-			transform: none;
+		.intro-next::before {
+			content: '';
+			position: absolute;
+			inset: 5px;
+			border-radius: 13px;
+			background: linear-gradient(180deg, #3d3d42, #1d1d1f);
+			box-shadow:
+				inset 0 1px 0 rgb(255 255 255 / 16%),
+				inset 0 -3px 6px rgb(0 0 0 / 35%);
+		}
+		.intro-next::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 9%) 38% 56%, transparent 56%);
+			pointer-events: none;
+		}
+		.intro-next svg {
+			position: relative;
+			z-index: 1;
+			filter: drop-shadow(0 1.5px 0 rgb(0 0 0 / 55%));
+		}
+		.intro-next:hover {
+			translate: 0 3px;
+			box-shadow:
+				inset 0 1px 0 rgb(255 255 255 / 30%),
+				0 calc(var(--depth) - 3px) 0 #0b0b0c,
+				0 var(--depth) 0 #d6d6db,
+				0 calc(var(--depth) + 8px) 16px rgb(29 29 31 / 20%);
+		}
+		.intro-next:active {
+			translate: 0 calc(var(--depth) - 1px);
+			box-shadow:
+				inset 0 1px 0 rgb(255 255 255 / 30%),
+				0 1px 0 #0b0b0c,
+				0 4px 0 #d6d6db,
+				0 6px 10px rgb(29 29 31 / 18%);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.intro {
+			animation: none;
 		}
 	}
 </style>

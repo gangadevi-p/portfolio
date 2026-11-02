@@ -13,13 +13,13 @@ export const cueupMeta = {
 	role: 'Product Designer',
 	year: '2026',
 	summary: 'A shared view of rent and repairs for self-managing landlords and their tenants.',
-	cover: '/cueup/landlord-home.avif'
+	cover: '/Relay/landlord-home.avif'
 };
 
 /** the deck's left-hand contents list — order matches the sections below */
 export const contents = [
 	{ id: 'overview', label: 'Overview' },
-	{ id: 'research', label: 'Research' },
+	{ id: 'research', label: 'Primary Findings' },
 	{ id: 'competitive-analysis', label: 'Competitive Analysis' },
 	{ id: 'user-persona', label: 'User Persona' },
 	{ id: 'constraints', label: 'Constraints' },
@@ -31,11 +31,30 @@ export const contents = [
 ];
 
 export const hero = {
+	logo: '/img/CueUp/logo.png',
+	eyebrow: 'Relay',
+	title: 'Stop chasing. Start knowing.',
+	text: 'A status-based guide to rent and repairs, so both sides always know where things stand.',
+	// two apps cropped in a stage, the same way the Relay card in the project grid shows them
 	phones: [
-		{ src: '/img/CueUp/Landlord%20repairsSo.avif', alt: 'Relay landlord repairs screen', width: 1540, height: 3200 },
-		{ src: '/img/CueUp/LandlordHomeSo%201.avif', alt: 'Relay landlord home screen', width: 387, height: 800, highlight: 'Landlord' },
-		{ src: '/img/CueUp/TenantHomeSo.avif', alt: 'Relay tenant home screen', width: 1546, height: 3200, highlight: 'Tenant' },
-		{ src: '/img/CueUp/TenantRepairsSo.avif', alt: 'Relay tenant repairs screen', width: 1552, height: 3200 }
+		{
+			src: '/Relay/LandlordHome.png',
+			alt: 'Relay landlord home screen',
+			width: 1572,
+			height: 3408,
+			// what each persona opens the app for is lifted off the screen as a larger copy floating in front of the
+			// phone: `crop` is the card's place in the screen image (percentages, inset a touch so no background
+			// shows at the corners), `top` is where the copy sits on the phone (in stage-width units)
+			popouts: [{ crop: { left: 5.1, top: 54.9, width: 89.7, height: 32.5 }, top: 52.2 }]
+		},
+		{
+			src: '/Relay/TenantHome.png',
+			alt: 'Relay tenant home screen',
+			width: 1572,
+			height: 3408,
+			// the rent card with Pay & Submit
+			popouts: [{ crop: { left: 5.2, top: 14.3, width: 89.6, height: 38.7 }, top: 14.6 }]
+		}
 	]
 };
 
@@ -49,13 +68,13 @@ export const overview = {
 		{ label: 'Title', values: ['Relay'] },
 		{ label: 'Target audience', values: ['Self-managing landlords', 'Tenants'] },
 		{ label: 'Focus', values: ['Rent', 'Repair coordination'] },
-		{ label: 'Timeline', values: ['Apr 2026 – Jul 2026'] },
+		{ label: 'Timeline', values: ['Jun 2026 – Aug 2026'] },
 		{
 			label: 'Tools',
 			tools: [
-				{ src: '/cueup/tool-figma.png', alt: 'Figma', round: true },
-				{ src: '/cueup/tool-claude.avif', alt: 'Claude' },
-				{ src: '/cueup/tool-chatgpt.avif', alt: 'ChatGPT' }
+				{ src: '/Relay/tool-figma.png', alt: 'Figma', round: true },
+				{ src: '/Relay/tool-claude.avif', alt: 'Claude' },
+				{ src: '/Relay/tool-chatgpt.avif', alt: 'ChatGPT' }
 			]
 		},
 		{ label: 'My Role', values: ['Product design', 'Research synthesis', 'UI Execution'] }
@@ -69,7 +88,7 @@ export const solution = [
 ];
 
 export const findings = {
-	note: 'I reviewed nine public Reddit posts and comments to understand how landlords and tenants currently coordinate rent and repairs.',
+	note: 'I looked at how landlords and tenants coordinate rent and repairs today, and where that coordination breaks down.',
 	callout: 'Relay Focuses On Payment Verification And Repair Progress.',
 	tracks: [
 		{
@@ -168,17 +187,17 @@ export const compare = {
 	note: 'Built for different rental needs',
 	columns: [
 		{
-			logo: { src: '/cueup/logo-rentok.avif', alt: 'RentOk', wide: true },
+			logo: { src: '/Relay/logo-rentok.avif', alt: 'RentOk', wide: true },
 			focus: 'PG, Hostel And Co-Living Properties',
 			cueup: 'For Self-Managing Landlords With A Few Properties'
 		},
 		{
-			logo: { src: '/cueup/logo-rentrovio.png', alt: 'RentRovio' },
+			logo: { src: '/Relay/logo-rentrovio.png', alt: 'RentRovio' },
 			focus: 'PG, Hostel And Co-Living Properties',
 			cueup: 'Simple Rent + Maintenance Coordination'
 		},
 		{
-			logo: { src: '/cueup/logo-rentmaa.png', alt: 'Rent Maa' },
+			logo: { src: '/Relay/logo-rentmaa.png', alt: 'Rent Maa' },
 			focus: 'Shared Rent Records',
 			cueup: 'Shared Status For Rent + Maintenance'
 		}
@@ -191,25 +210,25 @@ export const constraints = {
 		{
 			title: 'Focused Audience',
 			tone: 'violet',
-			icon: '/cueup/icon-audience.avif',
+			icon: '/Relay/icon-audience.avif',
 			text: 'Self-Managing Landlords With A Limited Number Of Properties And Their Tenants.'
 		},
 		{
 			title: 'External Payments',
 			tone: 'pink',
-			icon: '/cueup/icon-payments.avif',
+			icon: '/Relay/icon-payments.avif',
 			text: 'Rent Is Paid Through UPI, Bank Transfer, Or Cash. Relay Records Proof And Status.'
 		},
 		{
 			title: 'Manual Accountability',
 			tone: 'amber',
-			icon: '/cueup/icon-accountability.avif',
+			icon: '/Relay/icon-accountability.avif',
 			text: 'Landlords Verify Payments And Assign Technicians They Already Work With.'
 		},
 		{
 			title: 'Product Boundary',
 			tone: 'emerald',
-			icon: '/cueup/icon-boundary.avif',
+			icon: '/Relay/icon-boundary.avif',
 			text: 'No Accounting, Built-In Chat, Payment Processing, Or Vendor Marketplace.'
 		}
 	]
@@ -226,7 +245,7 @@ export const personas = {
 		sub: 'Landlords',
 		name: 'Akash Kulkarni',
 		tone: 'green',
-		photo: { src: '/cueup/landlordimg.avif', alt: 'Akash Kulkarni' },
+		photo: { src: '/Relay/landlordimg.avif', alt: 'Akash Kulkarni' },
 		context:
 			'Manages Rental Units Directly And Coordinates Rent And Repairs Through Notebooks, WhatsApp, Calls, And Payment Screenshots.',
 		stats: [
@@ -258,7 +277,7 @@ export const personas = {
 		sub: 'Tenants',
 		name: 'Arjun',
 		tone: 'blue',
-		photo: { src: '/cueup/tenantimg.avif', alt: 'Arjun' },
+		photo: { src: '/Relay/tenantimg.avif', alt: 'Arjun' },
 		context:
 			'Pays Rent Externally And Coordinates Payment Confirmation And Repairs With His Landlord Through WhatsApp, Calls, And Screenshots.',
 		behaviours: [

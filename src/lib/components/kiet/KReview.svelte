@@ -1,5 +1,5 @@
 <script>
-	let { name, date, stars = 5, text, helpful } = $props();
+	let { name, stars = 5, text, helpful } = $props();
 	const initials = $derived(
 		name
 			.split(' ')
@@ -17,7 +17,6 @@
 	</header>
 	<div class="rating">
 		<span class="stars" aria-label={`${stars} out of 5`}>{'★'.repeat(stars)}</span>
-		<span class="date">{date}</span>
 	</div>
 	<p class="body">{text}</p>
 	<p class="helpful">{helpful} people found this helpful</p>
@@ -60,10 +59,6 @@
 		color: #1f5fd0;
 		letter-spacing: 2px;
 		font-size: 0.95rem;
-	}
-	.date {
-		font-size: 0.85rem;
-		color: var(--k-ink-soft);
 	}
 	.body {
 		color: #565656;

@@ -21,8 +21,8 @@
 	const THRESHOLD = 6;
 	/** how long scrolling must pause before the address bar follows it */
 	const HASH_DELAY = 120;
-	/** anchors from before the sections were renamed, so shared links still land */
-	const LEGACY = { '#work': '#projects', '#playground': '#play' };
+	/** anchors from before the Projects section was renamed, so shared links still land */
+	const LEGACY = { '#work': '#projects' };
 
 	let shown = $state(false);
 

@@ -10,7 +10,7 @@ export const kietMeta = {
 	slug: 'kiet-student-app',
 	title: 'KIET Student App',
 	role: 'Product Designer',
-	year: '2024',
+	year: '2026',
 	summary: 'One app for everything at KIET campus — announcements, academics and student services.',
 	cover: '/kiet/hero-phone-home.avif'
 };
@@ -54,7 +54,7 @@ export const overview = {
 export const team = {
 	facts: [
 		{ label: 'Users:', value: 'Students + Admin', tone: 'teal' },
-		{ label: 'Timeline:', value: '4 Months', tone: 'dark' }
+		{ label: 'Timeline:', value: 'Feb 2026 – Mar 2026', tone: 'dark' }
 	],
 	download: {
 		label: 'Download App',
@@ -209,6 +209,64 @@ export const flow = {
 	]
 };
 
+/**
+ * Animated user journey (after User Flow). Each chapter starts on Home, a tap
+ * pointer travels to `tap` ({ x, y } in % of the phone), then the destination
+ * screen opens. Screens are the phone exports in /static/img/KIET/hd (2x, sharpened).
+ */
+export const journey = {
+	home: { src: '/img/KIET/hd/home.avif', alt: 'KIET Student App home screen' },
+	chapters: [
+		{
+			title: 'Never miss an update',
+			text: 'An announcement lands as a notification, then lives in one place with New and Seen tabs. No more hunting through WhatsApp groups and PDFs.',
+			banner: true,
+			tap: { x: 39.3, y: 93.5 },
+			// drawn in HTML to match the Figma notification design; only the card from the design is shown
+			screen: {
+				alt: 'Notifications screen with New and Seen tabs',
+				title: 'Notifications',
+				tabs: ['All', 'New (12)', 'Seen'],
+				selected: 1,
+				tabbar: '/img/KIET/hd/tabbar-notifications.avif',
+				items: [
+					{ title: 'Exams on june 3rd postponed.', text: 'III B.Tech Reg-Supply exams moved to 03-11 June', ago: '1d ago', from: 'Dean' }
+				]
+			}
+		},
+		{
+			title: 'See academics',
+			text: 'Academics keeps semester-wise results, CGPA and backlogs in one list.',
+			tap: { x: 61, y: 94.5 },
+			screen: { src: '/img/KIET/hd/academics.avif', alt: 'Academics screen with semester results' }
+		},
+		{
+			title: 'Check attendance',
+			text: 'From Home, one tap on Attendance shows days present, absent and the overall percentage.',
+			tap: { x: 83, y: 94.5 },
+			screen: { src: '/img/KIET/hd/attendance.avif', alt: 'Attendance screen with monthly calendar' }
+		},
+		{
+			title: 'Track projects',
+			text: 'Quick actions → Projects. Course progress, modules and team in a single view.',
+			tap: { x: 50, y: 41 },
+			screen: { src: '/img/KIET/hd/projects.avif', alt: 'Projects screen with course progress' }
+		},
+		{
+			title: 'Raise a complaint',
+			text: 'Quick actions → Complaint. Fill the details, submit, then track it as New, Pending or Resolved.',
+			tap: { x: 75, y: 41 },
+			screen: { src: '/img/KIET/hd/complaints.avif', alt: 'Complaints screen with status filters' }
+		},
+		{
+			title: 'Ask for permission',
+			text: 'Quick actions → Permission. Send a request and see who approved, rejected or is still reviewing.',
+			tap: { x: 75, y: 34 },
+			screen: { src: '/img/KIET/hd/permissions.avif', alt: 'Permissions screen with request statuses' }
+		}
+	]
+};
+
 export const studentExperience = {
 	phone: { src: '/kiet/student-home.avif', alt: 'Student home screen' }
 };
@@ -278,42 +336,36 @@ export const admin = [
 export const reviews = [
 	{
 		name: 'Naresh Dakarapu',
-		date: '3/30/24',
 		stars: 5,
 		helpful: 8,
 		text: 'it is very helpful for our college students to manage all works in a single app. And we can check my percentage and daily attendance here'
 	},
 	{
 		name: 'Avinash Alapati',
-		date: '5/2/24',
 		stars: 5,
 		helpful: 10,
 		text: "As a KIET Student this app is very useful different purposes of students like academic pdf's cafe menu, results etc…  I would recommend everyone to install this app to get latest update on everything regarding KIET groups."
 	},
 	{
 		name: 'Lava Kumar Sagireddy',
-		date: '3/28/24',
 		stars: 5,
 		helpful: 10,
 		text: 'The first app for our college is ready to rock. The features are too good and happy to see the developer is from our KIET itself. Smooth experience.'
 	},
 	{
 		name: 'Midhin kathi',
-		date: '5/3/24',
 		stars: 5,
 		helpful: 1,
 		text: 'Excellent app for kiet all sources can be viewed here thankyou for making this app.'
 	},
 	{
 		name: 'Kavya Amrutha Anisetti',
-		date: '2/24/25',
 		stars: 5,
 		helpful: 1,
 		text: 'Very useful thank you now no need to search any links. Loved it'
 	},
 	{
 		name: 'Hemanth Kumar Ganteda',
-		date: '7/28/24',
 		stars: 5,
 		helpful: 5,
 		text: 'It is really a good recommended app for the students who are in kiet. And its provides pdfs in semesters wise.'

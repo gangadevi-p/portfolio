@@ -23,8 +23,8 @@ export const site = {
 export const nav = [
 	{ label: 'Me', href: '#me' },
 	{ label: 'Projects', href: '#projects' },
-	{ label: 'Experience', href: '#experience' },
-	{ label: 'Play', href: '#play' },
+	{ label: 'UX', href: '#product-thinking' },
+	{ label: 'Micros', href: '#playground' },
 	{ label: 'Also me', href: '#also-me' }
 ];
 

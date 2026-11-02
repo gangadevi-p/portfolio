@@ -2,13 +2,14 @@
 	import Container from '$components/Container.svelte';
 	import SectionHeading from '$components/SectionHeading.svelte';
 	import PomodoroTimer from '$components/PomodoroTimer.svelte';
+	import GlyphEditor from '$components/glyph/GlyphEditor.svelte';
 	import { reveal } from '$motion/reveal.js';
 </script>
 
 <section class="section">
 	<Container class="wide-container">
 		<div class="section-head">
-			<SectionHeading id="play" title="Play" />
+			<SectionHeading id="playground" title="Micros" />
 			<span class="tool">Figma</span>
 		</div>
 
@@ -23,14 +24,11 @@
 		<div class="videos">
 			<div class="anims">
 				<div class="anim">
-					<img src="/files/heartbloom-lossless.avif" alt="Heartbloom interaction preview" loading="lazy" />
-				</div>
-				<div class="anim">
-					<img src="/files/progress.gif" alt="Progress interaction preview" loading="lazy" />
+					<img src="/files/heartbloom.png" alt="Heartbloom interaction preview" width="348" height="244" loading="lazy" />
 				</div>
 			</div>
 			<figure class="piece piece--vector">
-				<img class="vector" src="/img/vector.avif" alt="Bézier vector editing of a lowercase g" width="1155" height="1362" loading="lazy" />
+				<GlyphEditor />
 				<figcaption class="vector-note">
 					<h3 class="note-heading">Have a look</h3>
 					<p>We know how hard it is to find the perfect typeface for your next project. I am here to help you.</p>
@@ -54,7 +52,7 @@
 	.section {
 		padding-block: 40px;
 		/* horizontal inset moved here (off the Container) so the section's
-		   visible width matches the hero frame's — see WorkExperienceSection. */
+		   visible width matches the hero frame's — see HeroSection. */
 		padding-inline: var(--pad-x);
 		background: var(--c-bg);
 		color: var(--c-ink);
@@ -62,8 +60,8 @@
 	.section :global(.wide-container) {
 		padding-inline: 0;
 	}
-	/* Match the Work Experience and Projects heading alignment. */
-	.section :global(#play) {
+	/* Match the Projects heading alignment. */
+	.section :global(#playground) {
 		text-align: left;
 		align-items: flex-start;
 	}
@@ -96,6 +94,7 @@
 	/* one raised card holds the whole playground, like the project and work cards;
 	   rows are centred inside it */
 	.card {
+		container-type: inline-size;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -140,7 +139,9 @@
 	/* second row — the two animations stack in a column, then the vector image
 	   and the timer; the vector image matches the mockup/code height */
 	.videos {
-		--shot-h: clamp(200px, 26vw, 380px);
+		/* the three pieces stay on one row: if the card is narrower than they
+		   need, the shared height (and with it every width) scales down */
+		--shot-h: min(clamp(200px, 26vw, 380px), calc((100cqw - 48px) / 3.175));
 		display: flex;
 		justify-content: center;
 		align-self: center;
@@ -160,18 +161,12 @@
 		width: calc(var(--shot-h) * 1155 / 1362);
 	}
 	.piece--pomodoro {
-		width: min(100%, 340px);
+		width: min(340px, calc(var(--shot-h) * 0.9));
 	}
 	/* tile matches the vector image's height (grows if it ever needs more room) */
 	.piece--pomodoro > :global(.pomo) {
 		min-height: var(--shot-h);
 		justify-content: space-between;
-	}
-	.vector {
-		display: block;
-		height: var(--shot-h);
-		width: auto;
-		border-radius: 10px;
 	}
 	.vector-note {
 		align-self: stretch;
@@ -203,10 +198,11 @@
 	.anims {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		gap: 24px;
 		height: var(--shot-h);
-		/* two stacked 348:244 tiles — width follows the tile height */
-		width: calc((var(--shot-h) - 24px) / 2 * 348 / 244);
+		/* one 348:244 tile at the full row height — width follows it */
+		width: calc(var(--shot-h) * 348 / 244);
 		flex-shrink: 0;
 	}
 	.anim {
@@ -238,6 +234,7 @@
 			height: auto;
 		}
 		.videos {
+			--shot-h: clamp(200px, 26vw, 380px);
 			flex-direction: column;
 			align-self: stretch;
 			gap: 16px;
@@ -245,10 +242,6 @@
 		.piece--vector,
 		.piece--pomodoro {
 			width: 100%;
-		}
-		.vector {
-			width: 100%;
-			height: auto;
 		}
 		.anims {
 			height: auto;

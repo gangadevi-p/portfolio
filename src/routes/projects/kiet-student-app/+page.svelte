@@ -1,7 +1,7 @@
 <script>
-	import { onMount } from 'svelte';
 	import '$lib/styles/kiet.css';
 	import { revealScale } from '$motion/reveal.js';
+	import { countUp } from '$motion/countup.js';
 	import { cursorLabel } from '$motion/cursor.svelte.js';
 
 	import KSideNav from '$components/kiet/KSideNav.svelte';
@@ -12,6 +12,7 @@
 	import KJobs from '$components/kiet/KJobs.svelte';
 	import KIA from '$components/kiet/KIA.svelte';
 	import KFlow from '$components/kiet/KFlow.svelte';
+	import KJourney from '$components/kiet/KJourney.svelte';
 	import KReview from '$components/kiet/KReview.svelte';
 	import KSummary from '$components/kiet/KSummary.svelte';
 	import { toneVars } from '$components/kiet/tone.js';
@@ -19,7 +20,6 @@
 	import {
 		kietMeta,
 		hero,
-		mockups,
 		overview,
 		team,
 		personas,
@@ -27,6 +27,7 @@
 		jobs,
 		ia,
 		flow,
+		journey,
 		iterated,
 		admin,
 		reviews,
@@ -51,55 +52,6 @@
 		{ id: 'impact', label: 'Metrics' },
 		{ id: 'learnings', label: 'Learnings' }
 	];
-
-	onMount(() => {
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-		const page = document.querySelector('.kiet');
-		const caseSections = [...document.querySelectorAll('.kiet .k-section')];
-		if (!page || !caseSections.length) return;
-
-		let frame = 0;
-		const updateFocus = () => {
-			frame = 0;
-			if (window.scrollY < 40) {
-				page.classList.remove('scroll-focus-ready');
-				return;
-			}
-
-			const viewportMiddle = window.innerHeight / 2;
-			let focused = caseSections[0];
-			let closestDistance = Infinity;
-
-			for (const section of caseSections) {
-				const bounds = section.getBoundingClientRect();
-				const middle = bounds.top + bounds.height / 2;
-				const distance = Math.abs(middle - viewportMiddle);
-				if (distance < closestDistance) {
-					closestDistance = distance;
-					focused = section;
-				}
-			}
-
-			for (const section of caseSections) {
-				section.classList.toggle('is-scroll-focus', section === focused);
-			}
-			page.classList.add('scroll-focus-ready');
-		};
-		const scheduleFocus = () => {
-			if (!frame) frame = requestAnimationFrame(updateFocus);
-		};
-
-		updateFocus();
-		window.addEventListener('scroll', scheduleFocus, { passive: true });
-		window.addEventListener('resize', scheduleFocus, { passive: true });
-
-		return () => {
-			window.removeEventListener('scroll', scheduleFocus);
-			window.removeEventListener('resize', scheduleFocus);
-			if (frame) cancelAnimationFrame(frame);
-		};
-	});
 </script>
 
 <svelte:head>
@@ -138,7 +90,7 @@
 							<div class="stat-card">
 								{#each group as s}
 									<div class="stat" style={toneVars(s.tone)}>
-										<b>{s.n}</b>
+										<b use:countUp>{s.n}</b>
 										<span>{s.label}</span>
 									</div>
 								{/each}
@@ -150,9 +102,7 @@
 				</div>
 
 				<div class="hero-mockups" use:revealScale>
-					{#each mockups as mockup}
-						<img src={mockup.src} alt={mockup.alt} decoding="async" />
-					{/each}
+					<KJourney compact home={journey.home} chapters={journey.chapters} />
 				</div>
 			</div>
 		</div>
@@ -476,7 +426,7 @@
 		margin-inline: auto;
 		font-size: clamp(2.6rem, 5.5vw, 4.375rem);
 		font-weight: 700;
-		color: #8f8f8f;
+		color: #6b6b74;
 		line-height: 0.98;
 	}
 	.hero-copy h1 .accent {
@@ -487,27 +437,27 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 1rem;
-		margin: 1.75rem auto 1.5rem;
+		gap: 0.65rem;
+		margin: 1.25rem auto 1.1rem;
 	}
 	.stat-card {
 		display: flex;
-		gap: clamp(0.9rem, 2vw, 1.5rem);
+		gap: clamp(0.7rem, 1.6vw, 1.1rem);
 		background: #fff;
-		border-radius: 16px;
+		border-radius: 14px;
 		box-shadow: var(--k-shadow);
-		padding: 1rem 1.25rem;
+		padding: 0.65rem 0.9rem;
 		width: fit-content;
 	}
 	.stat b {
 		display: block;
-		font-size: clamp(1.4rem, 3vw, 2rem);
+		font-size: clamp(1.1rem, 2.2vw, 1.45rem);
 		font-weight: 800;
 		color: var(--pill-fg);
 		text-align: center;
 	}
 	.stat span {
-		font-size: 0.82rem;
+		font-size: 0.72rem;
 		font-weight: 600;
 		color: #5a5a5a;
 	}
@@ -523,11 +473,10 @@
 		position: relative;
 		z-index: 0;
 		isolation: isolate;
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: clamp(0.75rem, 2vw, 1.5rem);
-		align-items: end;
-		width: min(100%, 900px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: min(100%, 440px);
 		margin-inline: auto;
 	}
 	.hero-mockups::before {
@@ -549,16 +498,35 @@
 		background: linear-gradient(90deg, rgb(241 90 36 / 4%), rgb(120 100 220 / 5%));
 		filter: blur(60px);
 	}
-	.hero-mockups img {
-		display: block;
-		width: 100%;
-		height: auto;
-		filter:
-			drop-shadow(0 20px 18px rgb(43 31 54 / 26%))
-			drop-shadow(0 0 18px rgb(241 90 36 / 8%));
-	}
-	.hero-mockups img:nth-child(2) {
-		transform: translateY(clamp(-0.75rem, -1.8vw, -1.25rem)) scale(1.035);
+	/* wide screens: copy on the left, phone deck on the right */
+	@media (min-width: 901px) {
+		.hero-in {
+			max-width: 1200px;
+		}
+		.hero-grid {
+			grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+			align-items: center;
+		}
+		.hero-copy {
+			text-align: left;
+			margin-inline: 0;
+		}
+		.hero-copy h1 {
+			margin-inline: 0;
+			font-size: clamp(2.6rem, 4.6vw, 4rem);
+		}
+		.stat-row {
+			justify-content: flex-start;
+		}
+		.lead {
+			margin-inline: 0;
+		}
+		/* the phone is larger than the copy column and centres against it */
+		.hero-mockups {
+			order: 0;
+			width: min(100%, 520px);
+			margin-inline: auto 0;
+		}
 	}
 
 	/* ---------- overview / problem / solution ---------- */

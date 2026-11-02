@@ -116,17 +116,42 @@
 			{/each}
 		</ul>
 	</nav>
-	<header class="hero-preview" id="relay-preview" aria-label="Relay app preview">
-		<div class="shot">
-			{#each hero.phones as phone (phone.src)}
-				<figure class="phone-card" class:home-screen={phone.highlight} style:--phone-ratio={phone.width / phone.height}>
-					<img class="phone" src={phone.src} alt={phone.alt} width={phone.width} height={phone.height} fetchpriority="high" />
-					{#if phone.highlight}<figcaption>{phone.highlight}</figcaption>{/if}
-				</figure>
-			{/each}
-		</div>
-	</header>
 	<div class="page">
+		<header class="hero-preview cu-wrap" id="relay-preview" aria-label="Relay introduction">
+			<div class="hero-copy">
+				<p class="hero-brand">
+					<img src={hero.logo} alt="" width="48" height="48" />
+					<span>{hero.eyebrow}</span>
+				</p>
+				<h1 class="hero-title">{hero.title}</h1>
+				<p class="hero-text">{hero.text}</p>
+			</div>
+			<div class="stage">
+				{#each hero.phones as phone, i (phone.src)}
+					<div class="stage-phone stage-phone--{i ? 'back' : 'front'}">
+						<div class="stage-clip">
+							<img src={phone.src} alt={phone.alt} width={phone.width} height={phone.height} fetchpriority="high" />
+						</div>
+						{#each phone.popouts ?? [] as { crop, top }, n (n)}
+							<div
+								class="popout"
+								style:top="{top}cqw"
+								style:aspect-ratio="{crop.width * phone.width} / {crop.height * phone.height}"
+							>
+								<img
+									src={phone.src}
+									alt=""
+									aria-hidden="true"
+									style:width="{10000 / crop.width}%"
+									style:left="{-(crop.left / crop.width) * 100}%"
+									style:top="{-(crop.top / crop.height) * 100}%"
+								/>
+							</div>
+						{/each}
+					</div>
+				{/each}
+			</div>
+		</header>
 
 		<!-- 2 · OVERVIEW -->
 		<section class="sec cu-wrap" use:scrollFade id="overview">
@@ -140,20 +165,23 @@
 		<!-- 3 · SOLUTION -->
 		<section class="sec cu-wrap" use:scrollFade>
 			<h2 class="cu-head" use:reveal>Solution</h2>
-			<p class="cu-note cu-note--surface" use:reveal>
-				{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}
-			</p>
-			<img
-				class="solution-visual"
-				src="/img/CueUp/repair-process-3d.avif"
-				alt="A repair process moving from request to completion"
-				loading="lazy"
-			/>
+			<div class="solution-row">
+				<p class="cu-note cu-note--surface" use:reveal>
+					<span>{#each solution as part, i (i)}{#if part.bold}<b>{part.text}</b>{:else}{part.text}{/if}{/each}</span>
+				</p>
+				<div class="solution-visual">
+					<img
+						src="/img/CueUp/repair-process-3d.avif"
+						alt="A repair process moving from request to completion"
+						loading="lazy"
+					/>
+				</div>
+			</div>
 		</section>
 
 		<!-- 4 · RESEARCH -->
 		<section class="sec cu-wrap" use:scrollFade id="research">
-			<h2 class="cu-head" use:reveal>Research</h2>
+			<h2 class="cu-head" use:reveal>Primary findings</h2>
 			<p class="cu-note" use:reveal>{findings.note}</p>
 
 			<div class="pad"><CFindings tracks={findings.tracks} callout={findings.callout} /></div>
@@ -504,79 +532,177 @@
 		.outcome-card { min-height: 0; padding: 20px; border-radius: 18px; }
 	}
 
+	/* Sits in the same 1020px column as the rest of the case study, inside the
+	   scaled artboard, so it is exactly as wide as every section below it. */
 	.hero-preview {
-		min-height: 85svh;
-		/* Equal margins match the centred case-study content without resizing phones. */
-		margin-inline: 133px;
-		padding: 60px clamp(20px, 2vw, 40px) 48px;
+		min-height: 640px;
+		padding: 0 0 20px;
 		display: grid;
-		place-items: center;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+		gap: 56px;
+		align-items: center;
 	}
-	.shot {
-		--original-gap: clamp(12px, 1.5vw, 28px);
-		--phone-width: calc((100% - 3 * var(--original-gap)) / 4);
-		--home-width: calc(var(--phone-width) + var(--original-gap) * 0.65);
-		--phone-height: calc(85svh - 108px);
+	/* the project's logo with its name beside it, as on the card in the project grid */
+	.hero-brand {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		gap: 4px;
-		width: 100%;
-		margin-inline: auto;
+		gap: 14px;
+		margin: 0 0 22px;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--cu-ink);
 	}
-	.phone-card {
-		position: relative;
-		flex: 0 0 auto;
-		/* Fit the visible phone when height-limited, without empty image padding. */
-		width: min(var(--phone-width), calc(var(--phone-height) * var(--phone-ratio)));
+	.hero-brand img {
+		display: block;
+		width: 48px;
+		height: 48px;
+	}
+	.hero-title {
 		margin: 0;
+		font-size: 48px;
+		font-weight: 700;
+		line-height: 1.04;
+		letter-spacing: -0.025em;
+		color: var(--cu-ink);
 	}
-	.home-screen {
-		width: min(var(--home-width), calc(var(--phone-height) * var(--phone-ratio)));
-		translate: 0 -20px;
+	.hero-text {
+		max-width: 31em;
+		margin: 24px 0 0;
+		font-size: 18px;
+		line-height: 1.65;
+		color: var(--cu-ink-soft);
 	}
-	.home-screen figcaption {
+
+	/* Two app screens in a rounded stage, the way the Relay card in the project
+	   grid shows them: big phones the stage crops, so the interface fills it. */
+	.stage {
+		position: relative;
+		aspect-ratio: 1 / 1.15;
+		isolation: isolate;
+		/* no panel behind the phones, and nothing is cropped: both are whole devices */
+		/* lets the bezels size themselves off the stage's width */
+		container-type: inline-size;
+	}
+	.stage-phone {
 		position: absolute;
-		top: calc(100% + 14px);
-		left: 50%;
-		translate: -50% 0;
-		white-space: nowrap;
-		font-size: 12px;
-		font-weight: 600;
-		color: #365c4b;
+		width: 47cqw;
+		padding: 1.22cqw;
+		border-radius: 6.5cqw;
+		background: #0b0b0d;
+		box-shadow:
+			inset 0 0 0 0.25cqw rgb(255 255 255 / 16%),
+			0 0 0 0.32cqw #2b2b30,
+			0 3cqw 6cqw -1.5cqw rgb(15 30 60 / 30%);
+		animation: stage-float 7s ease-in-out infinite alternate;
 	}
-	.phone {
+	/* the island */
+	.stage-phone::before {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		top: 2.53cqw;
+		left: 50%;
+		width: 12.1cqw;
+		height: 3.43cqw;
+		border-radius: 99px;
+		background: #000;
+		transform: translateX(-50%);
+	}
+	.stage-clip {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 1572 / 3408;
+		border-radius: 5.3cqw;
+	}
+	.stage-clip img {
 		display: block;
 		width: 100%;
-		height: auto;
-		max-height: calc(85svh - 108px);
-		object-fit: contain;
+		height: 100%;
+		object-fit: cover;
+		/* the screens sit back a little so the lifted cards read first (the cards are not dimmed) */
+		filter: brightness(0.8);
 	}
-	@media (min-width: 1000px) and (max-width: 1479px) {
-		/* Keep the fixed contents sidebar clear on smaller desktop windows. */
-		.hero-preview { margin-left: 266px; margin-right: 0; }
+	/* the landlord's overdue card, lifted off the screen: a larger copy floats in front of
+	   the phone and breaks out past its edge, so who hasn't paid is the first thing read */
+	.popout {
+		position: absolute;
+		z-index: 2;
+		left: -1.5cqw;
+		width: 50cqw;
+		overflow: hidden;
+		border-radius: 3.4cqw;
+		background: #fff;
+		box-shadow:
+			0 0 0 0.2cqw rgb(15 30 60 / 8%),
+			0 2.4cqw 5.5cqw -0.5cqw rgb(15 30 60 / 32%);
+	}
+	.popout img {
+		position: absolute;
+		display: block;
+		height: auto;
+		max-width: none;
+	}
+	.stage-phone--front {
+		left: 0;
+		top: 2cqw;
+		z-index: 2;
+	}
+	/* the tenant phone sits at the stage's right edge, so its cards break out less */
+	.stage-phone--back .popout {
+		left: -1cqw;
+		width: 49cqw;
+	}
+	.stage-phone--back {
+		left: 52cqw;
+		top: 12cqw;
+		animation-delay: -3.5s;
+	}
+	@keyframes stage-float {
+		from { translate: 0 0; }
+		to { translate: 0 -1.3cqw; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.stage-phone { animation: none; }
 	}
 	@media (max-width: 999px) {
-		.hero-preview { min-height: auto; margin-inline: 0; padding: 24px 16px 48px; }
-	}
-	@media (max-width: 600px) {
-		.shot {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, calc((100% - 16px) / 2)));
-			gap: 40px 4px;
+		.hero-preview {
+			min-height: auto;
+			padding: 12px 0 0;
+			grid-template-columns: 1fr;
+			gap: 32px;
 		}
-		.home-screen { translate: none; }
-		.phone-card { width: 100%; }
-		.phone { max-height: calc((100svh - 144px) / 2); }
-		.phone-card:nth-child(2) { grid-column: 1; grid-row: 1; }
-		.phone-card:nth-child(3) { grid-column: 2; grid-row: 1; }
+		.hero-title { font-size: 38px; }
+		.hero-text { font-size: 16px; }
+	}
+	/* the solution statement and its picture sit side by side as two cards of the same height */
+	.solution-row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 24px;
+		align-items: stretch;
+		margin-top: 16px;
+	}
+	.solution-row .cu-note {
+		display: flex;
+		align-items: center;
+		margin-top: 0;
+		padding: 28px;
 	}
 	.solution-visual {
+		display: grid;
+		place-items: center;
+		padding: 20px 24px;
+		background: #fff;
+		border-radius: 24px;
+	}
+	.solution-visual img {
 		display: block;
-		width: min(100%, 460px);
+		width: 100%;
 		height: auto;
-		margin: 22px auto 0;
-		opacity: 0.82;
+	}
+	@media (max-width: 999px) {
+		.solution-row { grid-template-columns: 1fr; gap: 20px; }
 	}
 
 	/* ---------- sections ---------- */
